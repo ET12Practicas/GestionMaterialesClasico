@@ -1,0 +1,76 @@
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.personal>
+@{
+    ViewBag.Title = "Personal";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="container">
+            <h2>Buscar Personal</h2>
+        </div>
+    </div>
+    <hr />
+    <div class=" row">
+
+        @using (Html.BeginForm("Buscar", "Personal", FormMethod.Get))
+        {
+            <div class="col-xs-offset-6 col-md-3">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Buscar...", maxlength = 45 })
+            </div>
+            <button class="btn btn-default" type="submit">Buscar</button>
+        }
+
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-xs-offset-2 col-md-8">
+            <table class="table table-bordered table-striped table-hover text-center table-condensed">
+                <tr>
+                    <th>
+                        @Html.ActionLink("Nombre", "Buscar", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Apellido", "Buscar", new { sortOrder = ViewBag.ApellidoSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+                    <th>
+                        Ficha Censal
+                    </th>
+                    <th>
+                        Dni
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                    <th>
+                        Borrar
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fichaCensal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dni)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Editar", new { id = item.idPersonal })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Borrar", "Borrar", new { id = item.idPersonal })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

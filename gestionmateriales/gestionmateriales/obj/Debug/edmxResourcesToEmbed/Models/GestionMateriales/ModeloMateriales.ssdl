@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ot_gestionmaterialesModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="clasematerial">
+    <Key>
+      <PropertyRef Name="idMaterial" />
+    </Key>
+    <Property Name="idMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="idMaterialPadre" Type="int" Nullable="false" />
+    <Property Name="stockMinimo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="entrada">
+    <Key>
+      <PropertyRef Name="idEntrada" />
+      <PropertyRef Name="idMaterial" />
+    </Key>
+    <Property Name="idEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nroPedido" Type="int" Nullable="false" />
+    <Property Name="idProveedor" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="idMaterial" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="material">
+    <Key>
+      <PropertyRef Name="idMaterial" />
+    </Key>
+    <Property Name="idMaterial" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="idUnidad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pedido">
+    <Key>
+      <PropertyRef Name="nroPedido" />
+    </Key>
+    <Property Name="nroPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nroOrdenDeTrabajo" Type="int" Nullable="false" />
+    <Property Name="destino" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="personal">
+    <Key>
+      <PropertyRef Name="idPersonal" />
+    </Key>
+    <Property Name="idPersonal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="45" />
+    <Property Name="apellido" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="dni" Type="int" />
+    <Property Name="fichaCensal" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proveedor">
+    <Key>
+      <PropertyRef Name="idProveedor" />
+    </Key>
+    <Property Name="idProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="contacto" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="salida">
+    <Key>
+      <PropertyRef Name="idPersonal" />
+      <PropertyRef Name="idMaterial" />
+    </Key>
+    <Property Name="idPersonal" Type="int" Nullable="false" />
+    <Property Name="idMaterial" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="nroOrdenDeTrabajo" Type="int" />
+  </EntityType>
+  <EntityType Name="unidad">
+    <Key>
+      <PropertyRef Name="idUnidad" />
+    </Key>
+    <Property Name="idUnidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ot_gestionmaterialesModelStoreContainer">
+    <EntitySet Name="clasematerial" EntityType="Self.clasematerial" Schema="ot_gestionmateriales" store:Type="Tables" />
+    <EntitySet Name="entrada" EntityType="Self.entrada" Schema="ot_gestionmateriales" store:Type="Tables" />
+    <EntitySet Name="material" EntityType="Self.material" Schema="ot_gestionmateriales" store:Type="Tables" />
+    <EntitySet Name="pedido" EntityType="Self.pedido" Schema="ot_gestionmateriales" store:Type="Tables" />
+    <EntitySet Name="personal" EntityType="Self.personal" Schema="ot_gestionmateriales" store:Type="Tables" />
+    <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="ot_gestionmateriales" store:Type="Tables" />
+    <EntitySet Name="salida" EntityType="Self.salida" Schema="ot_gestionmateriales" store:Type="Tables" />
+    <EntitySet Name="unidad" EntityType="Self.unidad" Schema="ot_gestionmateriales" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

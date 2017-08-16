@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-sm-offset-4 col-md-4">
+    <br><br><br>
+    <div class="panel panel-default">
+        <div class="panel-heading">Oficina Técnica</div>
+        <div class="panel-body">
+            @using (@Html.BeginForm("SingIn", "Login", new {ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            { 
+                <div class="form-group">
+                    <label for="unUsuario" class="sr-only">Usuario</label>
+                    <input type="text" name="unUsuario" class="form-control" placeholder="Usuario" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="unaContrasenia" class="sr-only">Contraseña</label>
+                    <input type="password" name="unaContrasenia" class="form-control" placeholder="Contraseña" required>
+                </div>
+                <div class="form-group">
+                    <select name="unRol" class="form-control">
+                        <option>Oficina Técnica</option>
+                        <option>Jefatura Taller</option>
+                        <option>Deposito</option>
+                        <option>Rectoría</option>
+                        <option>Alumno</option>
+                    </select>
+                </div>
+                <input type ="submit" class="btn ntm-lng btn-primary btn-block" value="Iniciar Sesión"/>
+            }
+        </div>
+    </div>
+</div>

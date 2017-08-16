@@ -1,0 +1,48 @@
+﻿@model gestionmateriales.Models.GestionMateriales.personal
+@{
+    ViewBag.Title = "Personal";
+}
+
+<div id="page-wrapper">
+    <div class="container">
+        <h1>Editar Personal</h1>
+        <hr />
+        <div class="col-sm-offset-2 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Editar Personal</h3>
+                </div>
+                <div class="panel-body">
+                    @using (@Html.BeginForm("Editar", "Personal", new { id = Model.idPersonal }, FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label for="unNombre" class="col-sm-offset-1 col-md-4">Nombre</label>
+                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                        </div>
+                        <div class="form-group">
+                            <label for="unApellido" class="col-sm-offset-1 col-md-4">Apellido</label>
+                            @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", minlength = 5, maxlength = 50, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                        </div>
+                        <div class="form-group">
+                            <label for="ficha" class="col-sm-offset-1 col-md-4">Ficha Censal</label>
+                            @Html.EditorFor(model => model.fichaCensal, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, maxlength = 6, required = "true" } })
+                        </div>
+                        <div class="form-group">
+                            <label for="unDni" class="col-sm-offset-1 col-md-4">DNI</label>
+                            @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", min = 1, max = 99999999, maxlength = 8, required = "true" } })
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-10">
+                                <input type="reset" class="btn btn-default" value="Limpiar" />
+                            </div>
+                            <div class="col-xs-6 col-md-1">
+                                <input type="submit" class="btn btn-primary" value="Aceptar" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
