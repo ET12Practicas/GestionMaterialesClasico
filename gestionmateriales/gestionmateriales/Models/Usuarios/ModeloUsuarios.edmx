@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ot_usuariosModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="pp67_usuariosModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="rol">
           <Key>
             <PropertyRef Name="idRol" />
@@ -20,15 +20,15 @@
           <Property Name="contrasenia" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="idRol" Type="int" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ot_usuariosModelStoreContainer">
-          <EntitySet Name="rol" EntityType="Self.rol" Schema="ot_usuarios" store:Type="Tables" />
-          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="ot_usuarios" store:Type="Tables" />
+        <EntityContainer Name="pp67_usuariosModelStoreContainer">
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="pp67_usuarios" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="pp67_usuarios" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ot_usuariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="pp67_usuariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="rol">
           <Key>
             <PropertyRef Name="idRol" />
@@ -44,7 +44,7 @@
           <Property Name="contrasenia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idRol" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ot_usuariosEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="pp67_usuariosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="rol" EntityType="Self.rol" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
         </EntityContainer>
@@ -53,9 +53,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ot_usuariosModelStoreContainer" CdmEntityContainer="ot_usuariosEntities">
+        <EntityContainerMapping StorageEntityContainer="pp67_usuariosModelStoreContainer" CdmEntityContainer="pp67_usuariosEntities">
           <EntitySetMapping Name="rol">
-            <EntityTypeMapping TypeName="ot_usuariosModel.rol">
+            <EntityTypeMapping TypeName="pp67_usuariosModel.rol">
               <MappingFragment StoreEntitySet="rol">
                 <ScalarProperty Name="idRol" ColumnName="idRol" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -63,7 +63,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usuario">
-            <EntityTypeMapping TypeName="ot_usuariosModel.usuario">
+            <EntityTypeMapping TypeName="pp67_usuariosModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />

@@ -95,26 +95,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\GestionMateriales\ModeloMateriales.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
-      <LastGenOutput>ModeloMateriales.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\GestionMateriales\ModeloMateriales.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
-      <LastGenOutput>ModeloMateriales.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Usuarios\ModeloUsuarios.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
-      <LastGenOutput>ModeloUsuarios.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Usuarios\ModeloUsuarios.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
-      <LastGenOutput>ModeloUsuarios.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -126,15 +106,35 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloUsuarios.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\Usuarios\ModeloUsuarios.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
+      <LastGenOutput>ModeloUsuarios.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Usuarios\ModeloUsuarios.edmx.diagram">
       <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\GestionMateriales\ModeloMateriales.edmx">
+    <Content Include="Models\Usuarios\ModeloUsuarios.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
+      <LastGenOutput>ModeloUsuarios.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\GestionMateriales\ModeloGestionMateriales.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloMateriales.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModeloGestionMateriales.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\GestionMateriales\ModeloMateriales.edmx.diagram">
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
+    <Content Include="Models\GestionMateriales\ModeloGestionMateriales.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloGestionMateriales.edmx</DependentUpon>
+      <LastGenOutput>ModeloGestionMateriales.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\GestionMateriales\ModeloGestionMateriales.edmx.diagram">
+      <DependentUpon>ModeloGestionMateriales.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\GestionMateriales\ModeloGestionMateriales.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloGestionMateriales.edmx</DependentUpon>
+      <LastGenOutput>ModeloGestionMateriales.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -158,43 +158,43 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\clasematerial.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\entrada.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\material.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GestionMateriales\ModeloMateriales.Context.cs">
+    <Compile Include="Models\GestionMateriales\ModeloGestionMateriales.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloMateriales.Context.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GestionMateriales\ModeloMateriales.cs">
+    <Compile Include="Models\GestionMateriales\ModeloGestionMateriales.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GestionMateriales\ModeloMateriales.Designer.cs">
+    <Compile Include="Models\GestionMateriales\ModeloGestionMateriales.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\pedido.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\personal.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\proveedor.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\salida.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestionMateriales\unidad.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
+      <DependentUpon>ModeloGestionMateriales.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios\ModeloUsuarios.Context.cs">
       <AutoGen>True</AutoGen>

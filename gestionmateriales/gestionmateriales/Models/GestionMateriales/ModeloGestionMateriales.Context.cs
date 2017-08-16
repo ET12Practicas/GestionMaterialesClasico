@@ -13,10 +13,10 @@ namespace gestionmateriales.Models.GestionMateriales
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ot_gestionmaterialesEntities : DbContext
+    public partial class pp67_gestionmaterialesEntities : DbContext
     {
-        public ot_gestionmaterialesEntities()
-            : base("name=ot_gestionmaterialesEntities")
+        public pp67_gestionmaterialesEntities()
+            : base("name=pp67_gestionmaterialesEntities")
         {
         }
     

@@ -9,7 +9,8 @@ namespace gestionmateriales.Controllers
 {
     public class LoginController : Controller
     {
-        ot_usuariosEntities db = new ot_usuariosEntities();
+        pp67_usuariosEntities db = new pp67_usuariosEntities();
+        //ot_usuariosEntities db = new ot_usuariosEntities();
 
         // GET: Login
         public ActionResult Index()

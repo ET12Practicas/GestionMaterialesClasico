@@ -9,7 +9,8 @@ namespace gestionmateriales.Controllers
 {
     public class PersonalController : Controller
     {
-        ot_gestionmaterialesEntities db = new ot_gestionmaterialesEntities();
+        pp67_gestionmaterialesEntities db = new pp67_gestionmaterialesEntities();
+        //ot_gestionmaterialesEntities db = new ot_gestionmaterialesEntities();
 
         // GET: Personal
         public ActionResult Index()

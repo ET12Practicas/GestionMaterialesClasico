@@ -13,10 +13,10 @@ namespace gestionmateriales.Models.Usuarios
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ot_usuariosEntities : DbContext
+    public partial class pp67_usuariosEntities : DbContext
     {
-        public ot_usuariosEntities()
-            : base("name=ot_usuariosEntities")
+        public pp67_usuariosEntities()
+            : base("name=pp67_usuariosEntities")
         {
         }
     
