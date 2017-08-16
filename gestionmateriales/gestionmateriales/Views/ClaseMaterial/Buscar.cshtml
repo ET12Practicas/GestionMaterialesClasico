@@ -1,18 +1,18 @@
-﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.proveedor>
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.clasematerial>
 @{
-    ViewBag.Title = "Proveedor";
+    ViewBag.Title = "ClaseMaterial";
 }
 
 <div id="page-wrapper">
     <div class="row">
         <div class="container">
-            <h2>Buscar Proveedor</h2>
+            <h2>Buscar Material</h2>
         </div>
     </div>
     <hr />
     <div class=" row">
 
-        @using (Html.BeginForm("Buscar", "Proveedor", FormMethod.Get))
+        @using (Html.BeginForm("Buscar", "Material", FormMethod.Get))
         {
             <div class="col-xs-offset-6 col-md-3">
                 @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Buscar...", maxlength = 45 })
@@ -28,13 +28,13 @@
             <table class="table table-bordered table-striped table-hover text-center table-condensed">
                 <tr>
                     <th>
-                        @Html.ActionLink("Nombre", "Contacto", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
-                    </th>
-                    <th>
-                        Contacto
+                        @Html.ActionLink("Material", "Buscar", new { sortOrder = ViewBag.MaterialSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
                         Editar
+                    </th>
+                    <th>
+                        Borrar
                     </th>
                 </tr>
 
@@ -45,10 +45,10 @@
                             @Html.DisplayFor(modelItem => item.nombre)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.contacto)
+                            @Html.ActionLink("Editar", "Editar", new { id = item.idMaterial })
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "Editar", new { id = item.idProveedor })
+                            @Html.ActionLink("Borrar", "Borrar", new { id = item.idMaterial })
                         </td>
                     </tr>
                 }
