@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="pp67_gestionmaterialesModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="pp67_gestionmaterialesModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="clasematerial">
           <Key>
             <PropertyRef Name="idMaterial" />
@@ -37,7 +37,7 @@
           <Key>
             <PropertyRef Name="nroPedido" />
           </Key>
-          <Property Name="nroPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nroPedido" Type="int" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="nroOrdenDeTrabajo" Type="int" Nullable="false" />
           <Property Name="destino" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
@@ -87,8 +87,7 @@
           <EntitySet Name="salida" EntityType="Self.salida" Schema="pp67_gestionmateriales" store:Type="Tables" />
           <EntitySet Name="unidad" EntityType="Self.unidad" Schema="pp67_gestionmateriales" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="pp67_gestionmaterialesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -124,7 +123,7 @@
           <Key>
             <PropertyRef Name="nroPedido" />
           </Key>
-          <Property Name="nroPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nroPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="nroOrdenDeTrabajo" Type="Int32" Nullable="false" />
           <Property Name="destino" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>

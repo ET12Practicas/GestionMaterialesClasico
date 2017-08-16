@@ -1,0 +1,44 @@
+﻿@model gestionmateriales.Models.GestionMateriales.pedido
+@{
+    ViewBag.Title = "Pedidos";
+}
+
+<div id="page-wrapper">
+    <div class="container">
+        <h1>Agregar Personal</h1>
+        <hr />
+        <div class="col-sm-offset-2 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Nuevo Pedido</h3>
+                </div>
+                <div class="panel-body">
+                    @using (@Html.BeginForm("Agregar", "Pedidos", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label for="unNombre" class="col-sm-offset-1 col-md-4">Nro Pedido</label>
+                            @Html.EditorFor(model => model.nroPedido, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                        </div>
+                        <div class="form-group">
+                            <label for="unApellido" class="col-sm-offset-1 col-md-4">Nro Orden de Trabajo</label>
+                            @Html.EditorFor(model => model.nroOrdenDeTrabajo, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                        </div>
+                        <div class="form-group">
+                            <label for="ficha" class="col-sm-offset-1 col-md-4">Destino</label>
+                            @Html.EditorFor(model => model.destino, new { htmlAttributes = new { @class = "form-control", minlength = 5, maxlength = 45, required = "true" } })
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-10">
+                                <input type="reset" class="btn btn-default" value="Limpiar" />
+                            </div>
+                            <div class="col-xs-6 col-md-1">
+                                <input type="submit" class="btn btn-primary" value="Aceptar" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
