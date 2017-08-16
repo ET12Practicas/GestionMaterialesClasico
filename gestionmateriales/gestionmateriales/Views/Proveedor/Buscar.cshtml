@@ -1,0 +1,58 @@
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.proveedor>
+@{
+    ViewBag.Title = "Proveedor";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="container">
+            <h2>Buscar Proveedor</h2>
+        </div>
+    </div>
+    <hr />
+    <div class=" row">
+
+        @using (Html.BeginForm("Buscar", "Proveedor", FormMethod.Get))
+        {
+            <div class="col-xs-offset-6 col-md-3">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Buscar...", maxlength = 45 })
+            </div>
+            <button class="btn btn-default" type="submit">Buscar</button>
+        }
+
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-xs-offset-2 col-md-8">
+            <table class="table table-bordered table-striped table-hover text-center table-condensed">
+                <tr>
+                    <th>
+                        @Html.ActionLink("Nombre", "Buscar", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+                    <th>
+                        Buscar
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.contacto)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Editar", new { id = item.idProveedor })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
