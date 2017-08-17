@@ -150,8 +150,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AyudaController.cs" />
+    <Compile Include="Controllers\ClaseMaterialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -236,6 +239,15 @@
     <Content Include="Views\Proveedor\Agregar.cshtml" />
     <Content Include="Views\Proveedor\Editar.cshtml" />
     <Content Include="Views\Proveedor\Buscar.cshtml" />
+    <Content Include="Views\ClaseMaterial\Alta.cshtml" />
+    <Content Include="Views\ClaseMaterial\Buscar.cshtml" />
+    <Content Include="Views\ClaseMaterial\Index.cshtml" />
+    <Content Include="Views\Material\Buscar.cshtml" />
+    <Content Include="Views\Material\Index.cshtml" />
+    <Content Include="Views\Pedidos\Agregar.cshtml" />
+    <Content Include="Views\Pedidos\Buscar.cshtml" />
+    <Content Include="Views\Pedidos\Editar.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
