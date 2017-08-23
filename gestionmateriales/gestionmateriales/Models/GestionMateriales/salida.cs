@@ -14,10 +14,11 @@ namespace gestionmateriales.Models.GestionMateriales
     
     public partial class salida
     {
-        public int idPersonal { get; set; }
-        public int idMaterial { get; set; }
+        public int idSalida { get; set; }
         public System.DateTime fecha { get; set; }
         public int cantidad { get; set; }
-        public Nullable<int> nroOrdenDeTrabajo { get; set; }
+        public int nroOrdenDeTrabajo { get; set; }
+        public int material_idMaterial { get; set; }
+        public int personal_idPersonal { get; set; }
     }
 }

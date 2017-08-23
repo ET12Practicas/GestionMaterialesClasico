@@ -15,9 +15,8 @@ namespace gestionmateriales.Models.GestionMateriales
     public partial class entrada
     {
         public int idEntrada { get; set; }
-        public int nroPedido { get; set; }
-        public int idProveedor { get; set; }
         public System.DateTime fecha { get; set; }
-        public int idMaterial { get; set; }
+        public int cantidad { get; set; }
+        public int material_idMaterial { get; set; }
     }
 }

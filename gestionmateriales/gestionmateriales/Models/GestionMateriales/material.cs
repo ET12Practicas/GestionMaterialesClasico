@@ -16,6 +16,10 @@ namespace gestionmateriales.Models.GestionMateriales
     {
         public int idMaterial { get; set; }
         public int cantidad { get; set; }
-        public int idUnidad { get; set; }
+        public string nombre { get; set; }
+        public int stockMinimo { get; set; }
+        public int pedido_nroPedido { get; set; }
+        public int proveedor_idProveedor { get; set; }
+        public int unidad_idUnidad { get; set; }
     }
 }
