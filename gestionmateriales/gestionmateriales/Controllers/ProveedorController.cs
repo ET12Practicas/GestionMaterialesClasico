@@ -10,9 +10,8 @@ namespace gestionmateriales.Controllers
 {
     public class ProveedorController : Controller
     {
-        pp67_gestionmaterialesEntities db = new pp67_gestionmaterialesEntities();
-        //ot_gestionmaterialesEntities db = new ot_gestionmaterialesEntities();
-
+        OtContext db = new OtContext();
+        
         // GET: Proveedor
         public ActionResult Index()
         {
@@ -29,11 +28,11 @@ namespace gestionmateriales.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            List<proveedor> staff = db.proveedor.Take(20).ToList();
+            List<Proveedor> staff = db.Proveedor.Take(20).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                staff = db.proveedor.Where(s => s.nombre.ToUpper().Contains(searchString.ToUpper())).ToList();
+                staff = db.Proveedor.Where(s => s.nombre.ToUpper().Contains(searchString.ToUpper())).ToList();
             }
 
             switch (sortOrder)
@@ -54,11 +53,11 @@ namespace gestionmateriales.Controllers
 
         //POST: Proveedor/1/Agregar
         [HttpPost]
-        public ActionResult Agregar(proveedor unProveedor)
+        public ActionResult Agregar(Proveedor unProveedor)
         {
             try
             {
-                db.proveedor.Add(new proveedor { nombre = unProveedor.nombre, contacto = unProveedor.contacto });
+                db.Proveedor.Add(new Proveedor { nombre = unProveedor.nombre, contacto = unProveedor.contacto });
                 db.SaveChanges();
             }
             catch
@@ -72,11 +71,11 @@ namespace gestionmateriales.Controllers
         //GET: Proveedor/Editar/1
         public ActionResult Editar(int id)
         {
-            proveedor proveedorSeleccionado;
+            Proveedor proveedorSeleccionado;
 
             try
             {
-                proveedorSeleccionado = db.proveedor.Find(id);
+                proveedorSeleccionado = db.Proveedor.Find(id);
             }
             catch
             {
@@ -88,9 +87,9 @@ namespace gestionmateriales.Controllers
 
         //POST: Proveedor/Editar/1
         [HttpPost]
-        public ActionResult Editar(int id, proveedor unProveedor)
+        public ActionResult Editar(int id, Proveedor unProveedor)
         {
-            proveedor nuevoProveedor = db.proveedor.Find(id);
+            Proveedor nuevoProveedor = db.Proveedor.Find(id);
             try
             {
                 nuevoProveedor.nombre = unProveedor.nombre;

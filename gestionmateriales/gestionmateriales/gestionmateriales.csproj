@@ -38,12 +38,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.Entity" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -95,16 +106,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\GestionMateriales\ModeloMateriales.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
-      <LastGenOutput>ModeloMateriales.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\GestionMateriales\ModeloMateriales.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
-      <LastGenOutput>ModeloMateriales.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -112,30 +113,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="Models\Usuarios\ModeloUsuarios.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloUsuarios.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Usuarios\ModeloUsuarios.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
-      <LastGenOutput>ModeloUsuarios.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Usuarios\ModeloUsuarios.edmx.diagram">
-      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Usuarios\ModeloUsuarios.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
-      <LastGenOutput>ModeloUsuarios.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\GestionMateriales\ModeloMateriales.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloMateriales.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\GestionMateriales\ModeloMateriales.edmx.diagram">
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -159,63 +136,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GestionMateriales\entrada.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\material.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\ModeloMateriales.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloMateriales.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\ModeloMateriales.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\ModeloMateriales.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloMateriales.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\pedido.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\personal.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\proveedor.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\salida.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GestionMateriales\unidad.cs">
-      <DependentUpon>ModeloMateriales.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Usuarios\ModeloUsuarios.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloUsuarios.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Usuarios\ModeloUsuarios.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloUsuarios.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Usuarios\ModeloUsuarios.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloUsuarios.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Usuarios\rol.cs">
-      <DependentUpon>ModeloUsuarios.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Usuarios\usuario.cs">
-      <DependentUpon>ModeloUsuarios.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\GestionMateriales\Entrada.cs" />
+    <Compile Include="Models\GestionMateriales\Material.cs" />
+    <Compile Include="Models\GestionMateriales\OtContext.cs" />
+    <Compile Include="Models\GestionMateriales\Pedido.cs" />
+    <Compile Include="Models\GestionMateriales\Personal.cs" />
+    <Compile Include="Models\GestionMateriales\Proveedor.cs" />
+    <Compile Include="Models\GestionMateriales\Salida.cs" />
+    <Compile Include="Models\GestionMateriales\Unidad.cs" />
+    <Compile Include="Models\Usuarios\OtUsersContext.cs" />
+    <Compile Include="Models\Usuarios\Rol.cs" />
+    <Compile Include="Models\Usuarios\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +172,10 @@
     <Content Include="Views\Pedidos\Buscar.cshtml" />
     <Content Include="Views\Pedidos\Editar.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Material\Alta.cshtml" />
+    <Content Include="Views\Material\Editar.cshtml" />
+    <Content Include="Views\Material\Restar.cshtml" />
+    <Content Include="Views\Material\Sumar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,4 @@
-﻿
+﻿@model gestionmateriales.Models.Usuarios.Usuario
 @{
     ViewBag.Title = "Index";
 }
@@ -8,26 +8,20 @@
     <div class="panel panel-default">
         <div class="panel-heading">Oficina Técnica</div>
         <div class="panel-body">
-            @using (@Html.BeginForm("SingIn", "Login", new {ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            @using (@Html.BeginForm("SingIn", "Login", FormMethod.Post))
             { 
                 <div class="form-group">
-                    <label for="unUsuario" class="sr-only">Usuario</label>
-                    <input type="text" name="unUsuario" class="form-control" placeholder="Usuario" required autofocus>
+                    <label for="Nombre" class="sr-only">Usuario</label>
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuario",  maxlength = 45, required = "true" } })
                 </div>
                 <div class="form-group">
-                    <label for="unaContrasenia" class="sr-only">Contraseña</label>
-                    <input type="password" name="unaContrasenia" class="form-control" placeholder="Contraseña" required>
+                    <label for="Contrasenia" class="sr-only">Contraseña</label>
+                    @Html.EditorFor(model => model.Contrasenia, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña", maxlength = 45, required = "true" } })
                 </div>
                 <div class="form-group">
-                    <select name="unRol" class="form-control">
-                        <option>Oficina Técnica</option>
-                        <option>Jefatura Taller</option>
-                        <option>Deposito</option>
-                        <option>Rectoría</option>
-                        <option>Alumno</option>
-                    </select>
+                    @Html.DropDownList("Rol_Id", null, htmlAttributes: new { @class = "form-control" })
                 </div>
-                <input type ="submit" class="btn ntm-lng btn-primary btn-block" value="Iniciar Sesión"/>
+                <input type="submit" class="btn ntm-lng btn-primary btn-block" value="Iniciar Sesión" />
             }
         </div>
     </div>

@@ -9,24 +9,27 @@ namespace gestionmateriales.Controllers
 {
     public class PedidosController : Controller
     {
-        pp67_gestionmaterialesEntities db = new pp67_gestionmaterialesEntities();
+        OtContext db = new OtContext();
+
         // GET: Pedidos
         public ActionResult Index()
         {
             return View();
         }
+       
         // GET: Pedido/Agregar
         public ActionResult Agregar()
         {
             return View();
         }
+      
         //POST: Pedido/1/Agregar
         [HttpPost]
-        public ActionResult Agregar(pedido unPedido)
+        public ActionResult Agregar(Pedido unPedido)
         {
             try
             {
-                db.pedido.Add(new pedido { nroPedido = unPedido.nroPedido, nroOrdenDeTrabajo = unPedido.nroOrdenDeTrabajo, destino = unPedido.destino });
+                db.Pedido.Add(new Pedido { nroPedido = unPedido.nroPedido, nroOrdenDeTrabajo = unPedido.nroOrdenDeTrabajo, destino = unPedido.destino });
                 db.SaveChanges();
             }
             catch
@@ -36,14 +39,15 @@ namespace gestionmateriales.Controllers
 
             return RedirectToAction("Agregar", "Pedidos");
         }
+     
         //GET: Pedidos/Editar/1
         public ActionResult Editar(int id)
         {
-            pedido pedidoSeleccionado;
+            Pedido pedidoSeleccionado;
 
             try
             {
-                pedidoSeleccionado = db.pedido.Find(id);
+                pedidoSeleccionado = db.Pedido.Find(id);
             }
             catch
             {
@@ -52,11 +56,13 @@ namespace gestionmateriales.Controllers
 
             return View(pedidoSeleccionado);
         }
+
         //POST: Personal/Editar/1
         [HttpPost]
-        public ActionResult Editar(int id, pedido unPedido)
+        public ActionResult Editar(int id, Pedido unPedido)
         {
-            pedido nuevoPedido = db.pedido.Find(id);
+            Pedido nuevoPedido = db.Pedido.Find(id);
+            
             try
             {
                 nuevoPedido.nroPedido = unPedido.nroPedido;
@@ -84,12 +90,12 @@ namespace gestionmateriales.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            List<pedido> staff = db.pedido.Take(20).ToList();
+            List<Pedido> staff = db.Pedido.Take(20).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 //TODO
-                staff = db.pedido.Where(s => s.nroPedido.ToString().Contains(searchString.ToUpper()) || s.nroOrdenDeTrabajo.ToString().Contains(searchString.ToUpper())).ToList();
+                staff = db.Pedido.Where(s => s.nroPedido.ToString().Contains(searchString.ToUpper()) || s.nroOrdenDeTrabajo.ToString().Contains(searchString.ToUpper())).ToList();
             }
 
             switch (sortOrder)

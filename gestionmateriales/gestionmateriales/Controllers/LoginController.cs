@@ -9,36 +9,60 @@ namespace gestionmateriales.Controllers
 {
     public class LoginController : Controller
     {
-        pp67_usuariosEntities db = new pp67_usuariosEntities();
-        //ot_usuariosEntities db = new ot_usuariosEntities();
+        OtUsersContext db = new OtUsersContext();
 
         // GET: Login
         public ActionResult Index()
         {
+            //TODO: Borrar usuario de ejemplo
+            //try
+            //{
+            //    Rol unRol = new Rol { Nombre = "Alumno" };
+            //    db.Rol.Add(unRol);
+            //    db.Rol.Add(new Rol { Nombre = "Rectoría" });
+            //    db.Rol.Add(new Rol { Nombre = "Secretaría" });
+            //    db.Rol.Add(new Rol { Nombre = "Cooperadora" });
+            //    db.Rol.Add(new Rol { Nombre = "Oficina Tecnica" });
+
+            //    Usuario user = new Usuario { Nombre = "alumno", Contrasenia = "tecnica", Rol = unRol };
+            //    db.Usuario.Add(user);
+
+            //    db.SaveChanges();
+            //}
+            //catch (Exception)
+            //{
+            //    throw new InvalidOperationException();
+            //}
+            
+            cargarRoles();
+
             return View();
+        }
+
+        private void cargarRoles(object selectedRol = null)
+        {
+            ViewBag.Rol_Id = new SelectList(db.Rol.ToList(), "Id", "Nombre", selectedRol);
         }
 
         // POST: Login/Create
         [HttpPost]
-        public ActionResult SingIn(string unUsuario, string unaContrasenia, string unRol)
+        public ActionResult SingIn(Usuario unUsuario)
         {
             try
             {
-                int rol = db.rol.First(y => y.Nombre.Equals(unRol)).idRol;
-
-                bool res = db.usuario.Any(x => x.nombre.Equals(unUsuario) &&
-                    x.contrasenia.Equals(unaContrasenia) &&
-                    x.idRol == rol);
+                bool res = db.Usuario.Any(x => x.Nombre.Equals(unUsuario.Nombre) &&
+                    x.Contrasenia.Equals(unUsuario.Contrasenia) &&
+                    x.Rol.Id == unUsuario.Rol_Id);
 
                 if (!res)
                 {
-                    //TODO: Mostrar pantalla error, ver tipos de errores, no existe usuario, error contraseña
+                    //TODO: Mostrar pantalla error, ver tipos de errores, no existe usuario, error contraseña, etc..
                     return RedirectToAction("Index", "Login");
                 }
             }
-            catch
+            catch (Exception)
             {
-                return RedirectToAction("Index", "Login");
+                throw new InvalidOperationException("Error de Singin, acceso a base de datos");
             }
         
             return RedirectToAction("Index", "Home");

@@ -9,9 +9,8 @@ namespace gestionmateriales.Controllers
 {
     public class PersonalController : Controller
     {
-        pp67_gestionmaterialesEntities db = new pp67_gestionmaterialesEntities();
-        //ot_gestionmaterialesEntities db = new ot_gestionmaterialesEntities();
-
+        OtContext db = new OtContext();
+        
         // GET: Personal
         public ActionResult Index()
         {
@@ -29,11 +28,11 @@ namespace gestionmateriales.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            List<personal> staff = db.personal.Take(20).ToList();
+            List<Personal> staff = db.Personal.Take(20).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                staff = db.personal.Where(s => s.apellido.ToUpper().Contains(searchString.ToUpper()) || s.nombre.ToUpper().Contains(searchString.ToUpper())).ToList();
+                staff = db.Personal.Where(s => s.apellido.ToUpper().Contains(searchString.ToUpper()) || s.nombre.ToUpper().Contains(searchString.ToUpper())).ToList();
             }
 
             switch (sortOrder)
@@ -57,11 +56,11 @@ namespace gestionmateriales.Controllers
 
         //POST: Personal/1/Agregar
         [HttpPost]
-        public ActionResult Agregar(personal unPersonal)
+        public ActionResult Agregar(Personal unPersonal)
         {
             try
             {
-                db.personal.Add(new personal {nombre = unPersonal.nombre, apellido = unPersonal.apellido, fichaCensal = unPersonal.fichaCensal, dni = unPersonal.dni});
+                db.Personal.Add(new Personal { nombre = unPersonal.nombre, apellido = unPersonal.apellido, fichaCensal = unPersonal.fichaCensal, dni = unPersonal.dni });
                 db.SaveChanges();
             }
             catch
@@ -75,11 +74,11 @@ namespace gestionmateriales.Controllers
         //GET: Personal/Editar/1
         public ActionResult Editar(int id)
         {
-            personal personalSeleccionado;
+            Personal personalSeleccionado;
 
             try
             {
-                personalSeleccionado = db.personal.Find(id);
+                personalSeleccionado = db.Personal.Find(id);
             }
             catch
             {
@@ -91,9 +90,9 @@ namespace gestionmateriales.Controllers
       
         //POST: Personal/Editar/1
         [HttpPost]
-        public ActionResult Editar(int id, personal unPersonal)
+        public ActionResult Editar(int id, Personal unPersonal)
         {
-            personal nuevoPersonal = db.personal.Find(id);
+            Personal nuevoPersonal = db.Personal.Find(id);
             try
             {
                 nuevoPersonal.nombre = unPersonal.nombre;
@@ -113,10 +112,11 @@ namespace gestionmateriales.Controllers
         //POST: Personal/Borrar/1
         public ActionResult Borrar(int id)
         {
-            personal nuevoPersonal = db.personal.Find(id);
+            Personal nuevoPersonal = db.Personal.Find(id);
+            
             try
             {
-                db.personal.Remove(nuevoPersonal);
+                db.Personal.Remove(nuevoPersonal);
                 db.SaveChanges();
             }
             catch
