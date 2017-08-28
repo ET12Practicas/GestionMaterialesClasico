@@ -33,12 +33,12 @@ namespace gestionmateriales.Models.GestionMateriales
         public virtual Pedido Pedido { get; set; }
 
         [Required]
-        public int idUnidad { get; set; }
+        public int Unidad_Id { get; set; }
 
         public virtual Unidad Unidad { get; set; }
 
         [Required]
-        public int idProveedor { get; set; }
+        public int Proveedor_Id { get; set; }
 
         public virtual Proveedor Proveedor { get; set; }
 

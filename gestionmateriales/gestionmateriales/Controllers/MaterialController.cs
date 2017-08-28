@@ -33,8 +33,23 @@ namespace gestionmateriales.Controllers
         // GET: Material/Agregar
         public ActionResult Alta()
         {
+            cargarProveedor();
+
+            cargarUnidad();
+
             return View();
         }
+
+        private void cargarProveedor(object selectedProveedor = null)
+        {
+            ViewBag.Proveedor_Id = new SelectList(db.Proveedor.ToList(), "idProveedor", "nombre", selectedProveedor);
+        }
+
+        private void cargarUnidad(object selectedUnidad = null)
+        {
+            ViewBag.Unidad_Id = new SelectList(db.Unidad.ToList(), "idUnidad", "nombre", selectedUnidad);
+        }
+        
 
         //POST: Material/Agregar
         [HttpPost]
@@ -56,6 +71,12 @@ namespace gestionmateriales.Controllers
         //GET: Materiales/Editar/1
         public ActionResult Editar(int id)
         {
+
+            cargarProveedor();
+
+            cargarUnidad();
+
+
             Material materialSeleccionado;
 
             try
