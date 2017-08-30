@@ -15,24 +15,24 @@ namespace gestionmateriales.Controllers
         public ActionResult Index()
         {
             //TODO: Borrar usuario de ejemplo
-            //try
-            //{
-            //    Rol unRol = new Rol { Nombre = "Alumno" };
-            //    db.Rol.Add(unRol);
-            //    db.Rol.Add(new Rol { Nombre = "Rectoría" });
-            //    db.Rol.Add(new Rol { Nombre = "Secretaría" });
-            //    db.Rol.Add(new Rol { Nombre = "Cooperadora" });
-            //    db.Rol.Add(new Rol { Nombre = "Oficina Tecnica" });
+            try
+            {
+                Rol unRol = new Rol { Nombre = "Alumno" };
+                db.Rol.Add(unRol);
+                db.Rol.Add(new Rol { Nombre = "Rectoría" });
+                db.Rol.Add(new Rol { Nombre = "Secretaría" });
+                db.Rol.Add(new Rol { Nombre = "Cooperadora" });
+                db.Rol.Add(new Rol { Nombre = "Oficina Tecnica" });
 
-            //    Usuario user = new Usuario { Nombre = "alumno", Contrasenia = "tecnica", Rol = unRol };
-            //    db.Usuario.Add(user);
+                Usuario user = new Usuario { Nombre = "alumno", Contrasenia = "tecnica", Rol = unRol };
+                db.Usuario.Add(user);
 
-            //    db.SaveChanges();
-            //}
-            //catch (Exception)
-            //{
-            //    throw new InvalidOperationException();
-            //}
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new InvalidOperationException();
+            }
             
             cargarRoles();
 

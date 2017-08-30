@@ -29,10 +29,6 @@ namespace gestionmateriales.Models.GestionMateriales
         public int stockMinimo { get; set; }
 
         [Required]
-        public int idPedido { get; set; }
-        public virtual Pedido Pedido { get; set; }
-
-        [Required]
         public int Unidad_Id { get; set; }
 
         public virtual Unidad Unidad { get; set; }

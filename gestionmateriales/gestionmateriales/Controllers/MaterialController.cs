@@ -57,15 +57,18 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                db.Material.Add(new Material { codigo = unMaterial.codigo, nombre = unMaterial.nombre, stockMinimo = unMaterial.stockMinimo });
+                Unidad nuevaUnidad = db.Unidad.Find(unMaterial.Unidad_Id);
+
+                db.Material.Add(new Material { codigo = unMaterial.codigo, nombre = unMaterial.nombre, stockMinimo = unMaterial.stockMinimo, 
+                    Unidad_Id = unMaterial.Unidad_Id, Proveedor_Id = unMaterial.Proveedor_Id, Unidad = nuevaUnidad });
                 db.SaveChanges();
             }
             catch
             {
-                return RedirectToAction("Index", "Materiales");
+                return RedirectToAction("Index", "Material");
             }
 
-            return RedirectToAction("Agregar", "Materiales");
+            return RedirectToAction("Alta", "Material");
         }
 
         //GET: Materiales/Editar/1
@@ -140,6 +143,23 @@ namespace gestionmateriales.Controllers
             }
 
             return View(staff.ToList());
+        }
+
+        public ActionResult Borrar(int id)
+        {
+            Material nuevoMaterial = db.Material.Find(id);
+
+            try
+            {
+                db.Material.Remove(nuevoMaterial);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Buscar", "Material");
+            }
+
+            return RedirectToAction("Buscar", "Material");
         }
     }
 

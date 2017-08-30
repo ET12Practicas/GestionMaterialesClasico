@@ -28,7 +28,16 @@
                 <table class="table table-bordered table-striped table-hover text-center table-condensed">
                     <tr>
                         <th>
+                            Código
+                        </th>
+                        <th>
                             @Html.ActionLink("Nombre", "Buscar", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
+                        </th>
+                        <th>
+                            Unidad
+                        </th>
+                        <th>
+                            Stock Actual
                         </th>
                         <th>
                             @Html.ActionLink("Stock Minimo", "Buscar", new { sortOrder = ViewBag.StockMinimoSortParm, currentFilter = ViewBag.CurrentFilter })
@@ -45,7 +54,16 @@
                     {
                         <tr>
                             <td>
+                                @Html.DisplayFor(modelItem => item.codigo)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Unidad.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stockActual)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.stockMinimo)
