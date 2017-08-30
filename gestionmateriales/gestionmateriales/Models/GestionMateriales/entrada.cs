@@ -22,6 +22,10 @@ namespace gestionmateriales.Models.GestionMateriales
         public int cantidad { get; set; }
 
         [Required]
+        [StringLength(15)]
+        public string codigo { get; set; }
+
+        [Required]
         public int idMaterial { get; set; }
         
         public virtual Material Material { get; set; }
