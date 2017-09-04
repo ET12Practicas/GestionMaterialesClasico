@@ -5,7 +5,7 @@
 
 <div id="page-wrapper">
     <div class="container">
-        <h1>Editar Material</h1>
+        <h2>Editar Material</h2>
         <hr />
         <div class="col-sm-offset-2 col-md-7">
             <div class="panel panel-default">
@@ -13,26 +13,26 @@
                     <h3 class="panel-title">Editar Material</h3>
                 </div>
                 <div class="panel-body">
-                    @using (@Html.BeginForm("Alta", "Material", FormMethod.Post))
+                    @using (@Html.BeginForm("Editar", "Material", FormMethod.Post))
                     {
                         <div class="form-group">
-                            <label for="codigo" class="col-sm-offset-1 col-md-4">Código</label>
+                            @Html.LabelFor(model => model.codigo, "Código", new { @class = "control-label"})
                             @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 15, required = "true" } })
                         </div>
                         <div class="form-group">
-                            <label for="unNombre" class="col-sm-offset-1 col-md-4">Nombre</label>
+                            @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
                             @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 75, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                         </div>
                         <div class="form-group">
-                            <label for="unaUnidad" class="col-sm-offset-1 col-md-4">Unidad</label>
+                            @Html.LabelFor(model => model.Unidad, "Unidad", new { @class = "control-label" })
                             @Html.DropDownList("Unidad_Id", null, htmlAttributes: new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label for="unStock" class="col-sm-offset-1 col-md-4">Stock Mínimo</label>
-                            @Html.EditorFor(model => model.stockMinimo, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true" } })
+                            @Html.LabelFor(model => model.stockMinimo, "Stock Mínimo", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.stockMinimo, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true"} })
                         </div>
                         <div class="form-group">
-                            <label for="unProveedor" class="col-sm-offset-1 col-md-4">Proveedor</label>
+                            @Html.LabelFor(model => model.Proveedor, "Proveedor", new { @class = "control-label" })
                             @Html.DropDownList("Proveedor_Id", null, htmlAttributes: new { @class = "form-control" })
                         </div>
                         <div class="row">

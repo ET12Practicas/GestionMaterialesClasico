@@ -77,6 +77,7 @@ namespace gestionmateriales.Controllers
 
             return RedirectToAction("Buscar", "Pedidos");
         }
+       
         // GET: Pedido/Buscar
         public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
         {

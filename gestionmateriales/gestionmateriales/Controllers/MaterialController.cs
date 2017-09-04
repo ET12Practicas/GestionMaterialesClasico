@@ -50,7 +50,6 @@ namespace gestionmateriales.Controllers
             ViewBag.Unidad_Id = new SelectList(db.Unidad.ToList(), "idUnidad", "nombre", selectedUnidad);
         }
         
-
         //POST: Material/Agregar
         [HttpPost]
         public ActionResult Alta(Material unMaterial)
@@ -103,22 +102,26 @@ namespace gestionmateriales.Controllers
             try
             {
                 nuevoMaterial.nombre = unMaterial.nombre;
+                nuevoMaterial.codigo = unMaterial.codigo;
+                nuevoMaterial.Unidad = db.Unidad.Find(unMaterial.Unidad_Id);
+                nuevoMaterial.stockMinimo = unMaterial.stockMinimo;
+                nuevoMaterial.Proveedor = db.Proveedor.Find(unMaterial.Proveedor_Id);
                 db.SaveChanges();
             }
             catch
             {
-                return RedirectToAction("Buscar", "Materiales");
+                return RedirectToAction("Buscar", "Material");
             }
 
-            return RedirectToAction("Buscar", "Materiales");
+            return RedirectToAction("Buscar", "Material");
         }
         // GET: Material/Buscar
 
         public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.nombreMaterialSortParm = String.IsNullOrEmpty(sortOrder) ? "nombreMaterial_asc" : "";
-            ViewBag.nombreMaterialSortParm = String.IsNullOrEmpty(sortOrder) ? "nombreMaterial_desc" : "";
+            ViewBag.nombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_asc" : "";
+            //ViewBag.nombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_desc" : "";
 
             //searchString = currentFilter;
 
@@ -134,10 +137,10 @@ namespace gestionmateriales.Controllers
 
             switch (sortOrder)
             {
-                case "nombreMaterial_asc":
+                case "nombre_asc":
                     staff = staff.OrderBy(s => s.nombre).ToList();
                     break;
-                case "nombreMaterial_desc":
+                default:
                     staff = staff.OrderByDescending(s => s.nombre).ToList();
                     break;
             }

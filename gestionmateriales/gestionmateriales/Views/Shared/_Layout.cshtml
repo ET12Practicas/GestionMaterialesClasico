@@ -1,45 +1,38 @@
-﻿@{
-    ViewBag.Title = "Home";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Nombre App</title> 
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Oficina Técnica", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="move">
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Gestión de Materiales", "Index", "Material")</li>
-                        <li>@Html.ActionLink("Gestión de Pedidos", "Index", "Pedidos")</li>
-                        <li>@Html.ActionLink("Gestión de Proveedores", "Index", "Proveedor")</li>
-                        <li>@Html.ActionLink("Gestión de Personal", "Index", "Personal")</li>
-                        <li>@Html.ActionLink("Ayuda", "Index", "Ayuda")</li>
-                        <li>@Html.ActionLink("Salir", "Index", "Login")</li>
-                    </ul>
-                </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Materiales", "Index", "Material")</li>
+                    <li>@Html.ActionLink("Pedidos", "Index", "Pedidos")</li>
+                    <li>@Html.ActionLink("Proveedores", "Index", "Proveedor")</li>
+                    <li>@Html.ActionLink("Personal", "Index", "Personal")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </nav>
-
+    </div>
     <div class="container body-content">
+        <br />
         @RenderBody()
         <hr />
         <footer>

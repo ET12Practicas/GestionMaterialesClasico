@@ -4,6 +4,7 @@
 }
 
 <div id="page-wrapper">
+    <br />
     <div class="row">
         <div class="container">
             <h2>Buscar Pedido</h2>
@@ -54,7 +55,7 @@
                             @Html.DisplayFor(modelItem => item.destino)
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "Editar", new { id = item.nroPedido })
+                            @Html.ActionLink("Editar", "Editar", new { id = item.idPedido })
                         </td>
                     </tr>
                 }

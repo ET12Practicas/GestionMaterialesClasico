@@ -5,6 +5,7 @@
 
 <div id="page-wrapper">
     <div class="container">
+        <br />
         <h1>Agregar Personal</h1>
         <hr />
         <div class="col-sm-offset-2 col-md-7">
@@ -16,19 +17,19 @@
                     @using (@Html.BeginForm("Agregar", "Personal", FormMethod.Post))
                     {
                         <div class="form-group">
-                            <label for="unNombre" class="col-sm-offset-1 col-md-4">Nombre</label>
+                            @Html.LabelFor(model => model.nombre,"Nombre", new { @class = "col-md-2 control-label" })
                             @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                         </div>
                         <div class="form-group">
-                            <label for="unApellido" class="col-sm-offset-1 col-md-4">Apellido</label>
+                            @Html.LabelFor(model => model.apellido, "Apellido", new { @class = "col-md-2 control-label" })
                             @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", minlength = 5, maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                         </div>
                         <div class="form-group">
-                            <label for="ficha" class="col-sm-offset-1 col-md-4">Ficha Censal</label>
+                            @Html.LabelFor(model => model.fichaCensal, "Ficha Censal", new { @class = "col-md-3 control-label" })
                             @Html.EditorFor(model => model.fichaCensal, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, maxlength = 6, required = "true" } })
                         </div>
                         <div class="form-group">
-                            <label for="unDni" class="col-sm-offset-1 col-md-4">DNI</label>
+                            @Html.LabelFor(model => model.dni, "Dni", new { @class = "col-md-2 control-label" })
                             @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", min = 1, max = 99999999, maxlength = 8, required = "true" } })
                         </div>
                         <div class="row">

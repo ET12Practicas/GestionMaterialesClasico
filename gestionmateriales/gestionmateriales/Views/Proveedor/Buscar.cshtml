@@ -4,6 +4,7 @@
 }
 
 <div id="page-wrapper">
+    <br />
     <div class="row">
         <div class="container">
             <h2>Buscar Proveedor</h2>
@@ -28,7 +29,7 @@
             <table class="table table-bordered table-striped table-hover text-center table-condensed">
                 <tr>
                     <th>
-                        @Html.ActionLink("Nombre", "Contacto", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @Html.ActionLink("Nombre", "Buscar", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
                         Contacto

@@ -1,13 +1,9 @@
-﻿@{
-    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
-    string cLayout = "";
-    if (controller == "Login")
-    {
-        cLayout = "~/Views/Shared/_LoginLayout.cshtml";
-    }
-    else
-    {
-        cLayout = "~/Views/Shared/_Layout.cshtml";
-    }
-    Layout = cLayout;
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
