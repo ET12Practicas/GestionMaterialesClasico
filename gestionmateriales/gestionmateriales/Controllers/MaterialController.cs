@@ -70,6 +70,40 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Alta", "Material");
         }
 
+        //POST: Material/Sumar
+        [HttpPost]
+        public ActionResult Sumar(Material unMaterial, int sumaActual)
+        {
+            try
+            {
+                unMaterial.stockActual = unMaterial.stockActual + sumaActual;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Material");
+            }
+
+            return RedirectToAction("Sumar", "Material");
+        }
+
+        //POST: Material/Restar
+        [HttpPost]
+        public ActionResult Restar(Material unMaterial, int restaActual)
+        {
+            try
+            {
+                unMaterial.stockActual = unMaterial.stockActual - restaActual;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Material");
+            }
+
+            return RedirectToAction("Restar", "Material");
+        }
+
         //GET: Materiales/Editar/1
         public ActionResult Editar(int id)
         {
@@ -148,6 +182,7 @@ namespace gestionmateriales.Controllers
             return View(staff.ToList());
         }
 
+        //POST: Material/Borrar/1
         public ActionResult Borrar(int id)
         {
             Material nuevoMaterial = db.Material.Find(id);

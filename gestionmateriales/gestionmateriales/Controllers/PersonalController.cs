@@ -54,7 +54,7 @@ namespace gestionmateriales.Controllers
             return View();
         }
 
-        //POST: Personal/1/Agregar
+        //POST: Personal/Agregar
         [HttpPost]
         public ActionResult Agregar(Personal unPersonal)
         {
