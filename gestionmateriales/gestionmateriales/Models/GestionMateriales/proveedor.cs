@@ -20,8 +20,27 @@ namespace gestionmateriales.Models.GestionMateriales
         public string nombre { get; set; }
 
         [Required]
-        [StringLength(200)]
-        public string contacto { get; set; }
+        [StringLength(100)]
+        public string direccion { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string cuit { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string telefono { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string razonSocial { get; set; }
+
+        [StringLength(45)]
+        public string nombreContacto { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string horario { get; set; }
 
         public Proveedor()
         {
