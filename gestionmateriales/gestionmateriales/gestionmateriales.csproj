@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\OrdenTrabajoController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
@@ -167,7 +168,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GestionMateriales\entrada.cs" />
+    <Compile Include="Models\GestionMateriales\itemOT.cs" />
     <Compile Include="Models\GestionMateriales\material.cs" />
+    <Compile Include="Models\GestionMateriales\ordenTrabajo.cs" />
     <Compile Include="Models\GestionMateriales\OtContext.cs" />
     <Compile Include="Models\GestionMateriales\pedido.cs" />
     <Compile Include="Models\GestionMateriales\personal.cs" />
@@ -232,6 +235,8 @@
     <Content Include="Views\Proveedor\Editar.cshtml" />
     <Content Include="Views\Proveedor\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Index.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Alta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

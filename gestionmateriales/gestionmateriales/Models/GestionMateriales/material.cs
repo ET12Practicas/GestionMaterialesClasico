@@ -36,6 +36,10 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int Proveedor_Id { get; set; }
 
+        [Required]
+        [StringLength(12)]
+        public string estado { get; set; }
+
         public virtual Proveedor Proveedor { get; set; }
 
         public virtual ICollection<Entrada> Entrada { get; set; }
