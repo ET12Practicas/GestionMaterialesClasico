@@ -32,7 +32,16 @@
                         @Html.ActionLink("Nombre", "Buscar", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
-                        Contacto
+                        Razon Social
+                    </th>
+                    <th>
+                        Dirección
+                    </th>
+                    <th>
+                        Teléfono
+                    </th>
+                    <th>
+                        Horario
                     </th>
                     <th>
                         Editar
@@ -46,7 +55,16 @@
                             @Html.DisplayFor(modelItem => item.nombre)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.contacto)
+                            @Html.DisplayFor(modelItem => item.razonSocial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.direccion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.horario)
                         </td>
                         <td>
                             @Html.ActionLink("Editar", "Editar", new { id = item.idProveedor })

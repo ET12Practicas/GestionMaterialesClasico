@@ -59,11 +59,10 @@ namespace gestionmateriales.Controllers
             }
             catch 
             {
-                
-                return RedirectionToAction("Index", "OrdenTrabajo");
+                return RedirectToAction("Index", "OrdenTrabajo");
             }
 
-            return RedirectionToAction("Agregar", "OrdenTrabajo");
+            return RedirectToAction("Agregar", "OrdenTrabajo");
         }
     }
 }

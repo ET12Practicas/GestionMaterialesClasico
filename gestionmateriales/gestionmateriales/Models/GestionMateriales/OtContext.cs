@@ -28,5 +28,7 @@ namespace gestionmateriales.Models.GestionMateriales
         public DbSet<Salida> Salida { get; set; }
 
         public DbSet<Personal> Personal { get; set; }
+
+        public DbSet<OrdenTrabajo> OrdenTrabajo { get; set; }
     }
 }

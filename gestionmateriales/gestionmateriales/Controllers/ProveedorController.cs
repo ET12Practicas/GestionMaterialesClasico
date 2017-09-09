@@ -57,7 +57,8 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                db.Proveedor.Add(new Proveedor { nombre = unProveedor.nombre, direccion = unProveedor.direccion });
+                db.Proveedor.Add(new Proveedor { nombre = unProveedor.nombre, cuit = unProveedor.cuit, razonSocial = unProveedor.razonSocial,
+                direccion = unProveedor.direccion, horario = unProveedor.horario, telefono = unProveedor.telefono, nombreContacto = unProveedor.nombreContacto});
                 db.SaveChanges();
             }
             catch
@@ -93,6 +94,11 @@ namespace gestionmateriales.Controllers
             try
             {
                 nuevoProveedor.nombre = unProveedor.nombre;
+                nuevoProveedor.cuit = unProveedor.cuit;
+                nuevoProveedor.razonSocial = unProveedor.razonSocial;
+                nuevoProveedor.horario = unProveedor.horario;
+                nuevoProveedor.telefono = unProveedor.telefono;
+                nuevoProveedor.nombreContacto = unProveedor.nombreContacto;
                 nuevoProveedor.direccion = unProveedor.direccion;
                 db.SaveChanges();
             }
