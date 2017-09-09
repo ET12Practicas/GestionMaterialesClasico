@@ -4,7 +4,7 @@
 
 ## Módulos
 
-- Pedidos: Relacionar los documentos Orden de Trabajo y Orden de Pedido con las entradas de cada material.
+- Orden de Trabajo de Aplicación: Relacionar los documentos Orden de Trabajo con cada material solicitado.
 
 - Proveedor: Almacenar información relativa al proveedor por cada material y compra realizada.
   
