@@ -27,9 +27,12 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int fichaCensal { get; set; }
 
+        [Required]
+        public bool habilitado { get; set; }
+
         public Personal()
         {
-
+            this.habilitado = true;
         }
     }
 }

@@ -16,7 +16,7 @@
         @using (Html.BeginForm("Buscar", "Pedidos", FormMethod.Get))
         {
             <div class="col-xs-offset-6 col-md-3">
-                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Buscar...", maxlength = 45 })
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Ingrese nro. pedido, orden de trabajo..", maxlength = 45 })
             </div>
             <button class="btn btn-default" type="submit">Buscar</button>
         }
@@ -29,16 +29,19 @@
             <table class="table table-bordered table-striped table-hover text-center table-condensed">
                 <tr>
                     <th>
-                        @Html.ActionLink("nroPedido", "Buscar", new { sortOrder = ViewBag.NroPedidoSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @Html.ActionLink("Nro. Pedido", "Buscar", new { sortOrder = ViewBag.NroPedidoSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
-                        @Html.ActionLink("nroOrdenDeTrabajo", "Buscar", new { sortOrder = ViewBag.nroOrdenDeTrabajoSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @Html.ActionLink("Nro. Orden De Trabajo", "Buscar", new { sortOrder = ViewBag.nroOrdenDeTrabajoSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
                         Destino
                     </th>
                     <th>
                         Editar
+                    </th>
+                    <th>
+                        Borrar
                     </th>
                 </tr>
 
@@ -56,6 +59,9 @@
                         </td>
                         <td>
                             @Html.ActionLink("Editar", "Editar", new { id = item.idPedido })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Borrar", "Borrar", new { id = item.idPedido })
                         </td>
                     </tr>
                 }

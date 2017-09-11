@@ -91,12 +91,12 @@ namespace gestionmateriales.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            List<Pedido> staff = db.Pedido.Take(20).ToList();
+            List<Pedido> staff = db.Pedido.Where(x => x.habilitado == true).Take(20).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 //TODO
-                staff = db.Pedido.Where(s => s.nroPedido.ToString().Contains(searchString.ToUpper()) || s.nroOrdenDeTrabajo.ToString().Contains(searchString.ToUpper())).ToList();
+                staff = db.Pedido.Where(s => (s.nroPedido.ToString().Contains(searchString.ToUpper()) || s.nroOrdenDeTrabajo.ToString().Contains(searchString.ToUpper())) && s.habilitado == true).ToList();
             }
 
             switch (sortOrder)
@@ -116,6 +116,25 @@ namespace gestionmateriales.Controllers
             }
 
             return View(staff.ToList());
+        }
+
+        //POST: Pedido/Borrar/1
+        public ActionResult Borrar(int id)
+        {
+            Pedido pedidoSeleccionado = db.Pedido.Find(id);
+
+            try
+            {
+                // db.Personal.Remove(personalSeleccionado);
+                pedidoSeleccionado.habilitado = false;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Buscar", "Pedidos");
+            }
+
+            return RedirectToAction("Buscar", "Pedidos");
         }
     }
 }

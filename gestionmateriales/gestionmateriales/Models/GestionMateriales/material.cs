@@ -40,6 +40,9 @@ namespace gestionmateriales.Models.GestionMateriales
         [StringLength(12)]
         public string estado { get; set; }
 
+        [Required]
+        public bool habilitado { get; set; }
+
         public virtual Proveedor Proveedor { get; set; }
 
         public virtual ICollection<Entrada> Entrada { get; set; }
@@ -51,6 +54,10 @@ namespace gestionmateriales.Models.GestionMateriales
             this.Entrada = new HashSet<Entrada>();
 
             this.Salida = new HashSet<Salida>();
+
+            this.habilitado = true;
+
+            this.estado = "Sin Stock";
         }
     }
 }

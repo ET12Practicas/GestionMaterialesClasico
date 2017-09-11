@@ -161,12 +161,12 @@ namespace gestionmateriales.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            List<Material> staff = db.Material.Take(20).ToList();
+            List<Material> staff = db.Material.Where(x => x.habilitado == true).Take(20).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 //TODO: Que ???
-                staff = db.Material.Where(s => s.nombre.Contains(searchString.ToUpper())).ToList();
+                staff = db.Material.Where(s => s.nombre.Contains(searchString.ToUpper()) && s.habilitado == true).ToList();
             }
 
             switch (sortOrder)
@@ -189,7 +189,8 @@ namespace gestionmateriales.Controllers
 
             try
             {
-                db.Material.Remove(nuevoMaterial);
+                //db.Material.Remove(nuevoMaterial);
+                nuevoMaterial.habilitado = false;
                 db.SaveChanges();
             }
             catch

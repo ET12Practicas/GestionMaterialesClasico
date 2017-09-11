@@ -14,7 +14,7 @@
                     <h3 class="panel-title">Editar Pedido</h3>
                 </div>
                 <div class="panel-body">
-                    @using (@Html.BeginForm("Agregar", "Pedidos", FormMethod.Post))
+                    @using (@Html.BeginForm("Editar", "Pedidos", FormMethod.Post))
                     {
                         <div class="form-group">
                             @Html.LabelFor(model => model.nroPedido, "Número Orden de Pedido", new { @class = "col-md-5 control-label" })
@@ -30,7 +30,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-md-8">
-                                <input type="reset" class="btn btn-default" value="Limpiar" />
+                                <input type="reset" class="btn btn-default" value="Restaurar Valores" />
                             </div>
                             <div class="col-xs-1 col-md-2">
                                 <input type="submit" class="btn btn-primary" value="Aceptar" />

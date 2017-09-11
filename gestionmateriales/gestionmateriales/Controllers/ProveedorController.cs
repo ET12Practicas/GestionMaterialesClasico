@@ -28,11 +28,11 @@ namespace gestionmateriales.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            List<Proveedor> staff = db.Proveedor.Take(20).ToList();
+            List<Proveedor> staff = db.Proveedor.Where(x => x.habilitado == true).Take(20).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                staff = db.Proveedor.Where(s => s.nombre.ToUpper().Contains(searchString.ToUpper())).ToList();
+                staff = db.Proveedor.Where(s => s.nombre.ToUpper().Contains(searchString.ToUpper()) && s.habilitado == true).ToList();
             }
 
             switch (sortOrder)
@@ -100,6 +100,25 @@ namespace gestionmateriales.Controllers
                 nuevoProveedor.telefono = unProveedor.telefono;
                 nuevoProveedor.nombreContacto = unProveedor.nombreContacto;
                 nuevoProveedor.direccion = unProveedor.direccion;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Buscar", "Proveedor");
+            }
+
+            return RedirectToAction("Buscar", "Proveedor");
+        }
+
+        //POST: Personal/Borrar/1
+        public ActionResult Borrar(int id)
+        {
+            Proveedor proveedorSeleccionado = db.Proveedor.Find(id);
+
+            try
+            {
+                // db.Personal.Remove(personalSeleccionado);
+                proveedorSeleccionado.habilitado = false;
                 db.SaveChanges();
             }
             catch

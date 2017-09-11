@@ -25,8 +25,12 @@ namespace gestionmateriales.Models.GestionMateriales
         [StringLength(150)]
         public string destino { get; set; }
 
+        [Required]
+        public bool habilitado { get; set; }
+
         public Pedido()
         {
+            this.habilitado = true;
         }
     }
 }

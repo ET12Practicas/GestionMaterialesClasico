@@ -24,6 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Materiales", "Index", "Material")</li>
                     <li>@Html.ActionLink("Pedidos", "Index", "Pedidos")</li>
+                    <li>@Html.ActionLink("Orden de Trabajo", "Index", "OrdenTrabajo")</li>
                     <li>@Html.ActionLink("Proveedores", "Index", "Proveedor")</li>
                     <li>@Html.ActionLink("Personal", "Index", "Personal")</li>
                 </ul>
@@ -33,7 +34,7 @@
     </div>
     <div class="container body-content">
         <br />
-        @RenderBody()
+            @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - ET N°12 DE 1 Libertador General José de San Martín</p>

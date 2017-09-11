@@ -42,9 +42,12 @@ namespace gestionmateriales.Models.GestionMateriales
         [StringLength(20)]
         public string horario { get; set; }
 
+        [Required]
+        public bool habilitado { get; set; }
+
         public Proveedor()
         {
-
+            this.habilitado = true;
         }
     }
 }

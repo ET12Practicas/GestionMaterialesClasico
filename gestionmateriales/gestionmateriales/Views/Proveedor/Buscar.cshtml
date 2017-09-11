@@ -16,7 +16,7 @@
         @using (Html.BeginForm("Buscar", "Proveedor", FormMethod.Get))
         {
             <div class="col-xs-offset-6 col-md-3">
-                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Buscar...", maxlength = 45 })
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Ingrese nombre..", maxlength = 45 })
             </div>
             <button class="btn btn-default" type="submit">Buscar</button>
         }
@@ -46,6 +46,9 @@
                     <th>
                         Editar
                     </th>
+                    <th>
+                        Borrar
+                    </th>
                 </tr>
 
                 @foreach (var item in Model)
@@ -68,6 +71,9 @@
                         </td>
                         <td>
                             @Html.ActionLink("Editar", "Editar", new { id = item.idProveedor })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Borrar", "Borrar", new { id = item.idProveedor })
                         </td>
                     </tr>
                 }
