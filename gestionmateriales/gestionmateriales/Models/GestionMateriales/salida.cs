@@ -21,9 +21,6 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int cantidad { get; set; }
 
-        [Required]
-        public int nroOrdenDeTrabajo { get; set; }
-
         public virtual Material Material { get; set; }
 
         public virtual Personal Personal { get; set; }

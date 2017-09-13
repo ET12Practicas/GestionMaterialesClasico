@@ -176,6 +176,7 @@
     <Compile Include="Models\GestionMateriales\personal.cs" />
     <Compile Include="Models\GestionMateriales\proveedor.cs" />
     <Compile Include="Models\GestionMateriales\salida.cs" />
+    <Compile Include="Models\GestionMateriales\tipoMaterial.cs" />
     <Compile Include="Models\GestionMateriales\unidad.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

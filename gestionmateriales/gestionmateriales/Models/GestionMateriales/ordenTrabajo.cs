@@ -19,17 +19,15 @@ namespace gestionmateriales.Models.GestionMateriales
         public string nombreTrabajo { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public string responsable { get; set; }
-
-        [Required]
         [StringLength(7)]
         public string turno { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public string jefeSeccion { get; set; }
+        public DateTime fecha { get; set; }
 
+        public virtual Personal jefeSeccion { get; set; }
+
+        public virtual Personal responsable { get; set; }
 
         public virtual ICollection<ItemOT> ItemOT { get; set; }
 

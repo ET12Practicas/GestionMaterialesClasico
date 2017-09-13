@@ -1,4 +1,4 @@
-﻿@model gestionmateriales.Models.GestionMateriales.Entrada
+﻿@model gestionmateriales.Models.GestionMateriales.Salida
 @{
     ViewBag.Title = "Material";
 }
@@ -17,8 +17,12 @@
                     @using (@Html.BeginForm("Restar", "Material", FormMethod.Post))
                     {
                             <div class="form-group">
-                                @Html.LabelFor(model => model.codigo, "Código", new { @class = "label-control" })
-                                @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                                @Html.LabelFor(model => model.Personal, "Cantidad", new { @class = "label-control" })
+                                @Html.EditorFor(model => model.Personal, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                            </div>
+                            <div class="form-group">s
+                                @Html.LabelFor(model => model.Material, "Código", new { @class = "label-control" })
+                                @Html.EditorFor(model => model.Material, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cantidad, "Cantidad", new { @class = "label-control" })

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -38,10 +35,17 @@ namespace gestionmateriales.Models.GestionMateriales
 
         [Required]
         [StringLength(12)]
+        //stock Alto, Bajo, Sin Stock y Pedido//        
         public string estado { get; set; }
 
         [Required]
+        [StringLength(100)]
+        public string detalle { get; set; }
+
+        [Required]
         public bool habilitado { get; set; }
+
+        public virtual TipoMaterial tipoMaterial { get; set; }
 
         public virtual Proveedor Proveedor { get; set; }
 
