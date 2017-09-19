@@ -37,7 +37,14 @@ namespace gestionmateriales.Controllers
 
             cargarUnidad();
 
+            cargarTipoMaterial();
+
             return View();
+        }
+
+        private void cargarTipoMaterial(object selectedTipoMaterial = null)
+        {
+            ViewBag.TipoMaterial_Id = new SelectList(db.TipoMaterial.ToList(), "idTipoMaterial", "nombre", selectedTipoMaterial);
         }
 
         private void cargarProveedor(object selectedProveedor = null)
@@ -57,9 +64,22 @@ namespace gestionmateriales.Controllers
             try
             {
                 Unidad nuevaUnidad = db.Unidad.Find(unMaterial.Unidad_Id);
+                Proveedor nuevoProveedor = db.Proveedor.Find(unMaterial.Proveedor_Id);
+                TipoMaterial tipo = db.TipoMaterial.Find(unMaterial.TipoMaterial_Id);
 
-                db.Material.Add(new Material { codigo = unMaterial.codigo, nombre = unMaterial.nombre, stockMinimo = unMaterial.stockMinimo, 
-                    Unidad_Id = unMaterial.Unidad_Id, Proveedor_Id = unMaterial.Proveedor_Id, Unidad = nuevaUnidad });
+                db.Material.Add(new Material
+                {
+                    codigo = unMaterial.codigo,
+                    nombre = unMaterial.nombre,
+                    stockMinimo = unMaterial.stockMinimo,
+                    Unidad_Id = unMaterial.Unidad_Id,
+                    Proveedor_Id = unMaterial.Proveedor_Id,
+                    TipoMaterial_Id = unMaterial.TipoMaterial_Id,
+                    Unidad = nuevaUnidad,
+                    Proveedor = nuevoProveedor,
+                    TipoMaterial = tipo
+                });
+
                 db.SaveChanges();
             }
             catch

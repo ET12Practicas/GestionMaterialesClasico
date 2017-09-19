@@ -111,22 +111,22 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Personal/Borrar/1
-        public ActionResult Borrar(int id)
-        {
-            Proveedor proveedorSeleccionado = db.Proveedor.Find(id);
+        //public ActionResult Borrar(int id)
+        //{
+        //    Proveedor proveedorSeleccionado = db.Proveedor.Find(id);
 
-            try
-            {
-                // db.Personal.Remove(personalSeleccionado);
-                proveedorSeleccionado.habilitado = false;
-                db.SaveChanges();
-            }
-            catch
-            {
-                return RedirectToAction("Buscar", "Proveedor");
-            }
+        //    try
+        //    {
+        //        // db.Personal.Remove(personalSeleccionado);
+        //        proveedorSeleccionado.habilitado = false;
+        //        db.SaveChanges();
+        //    }
+        //    catch
+        //    {
+        //        return RedirectToAction("Buscar", "Proveedor");
+        //    }
 
-            return RedirectToAction("Buscar", "Proveedor");
-        }
+        //    return RedirectToAction("Buscar", "Proveedor");
+        //}
     }
 }

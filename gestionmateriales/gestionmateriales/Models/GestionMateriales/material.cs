@@ -33,6 +33,13 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int Proveedor_Id { get; set; }
 
+        public virtual Proveedor Proveedor { get; set; }
+
+        [Required]
+        public int TipoMaterial_Id { get; set; }
+
+        public virtual TipoMaterial TipoMaterial { get; set; }
+        
         [Required]
         [StringLength(12)]
         //stock Alto, Bajo, Sin Stock y Pedido//        
@@ -44,10 +51,6 @@ namespace gestionmateriales.Models.GestionMateriales
 
         [Required]
         public bool habilitado { get; set; }
-
-        public virtual TipoMaterial tipoMaterial { get; set; }
-
-        public virtual Proveedor Proveedor { get; set; }
 
         public virtual ICollection<Entrada> Entrada { get; set; }
 
@@ -62,6 +65,10 @@ namespace gestionmateriales.Models.GestionMateriales
             this.habilitado = true;
 
             this.estado = "Sin Stock";
+
+            this.stockActual = 0;
+
+            this.detalle = "";
         }
     }
 }

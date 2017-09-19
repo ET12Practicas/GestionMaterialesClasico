@@ -60,7 +60,7 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                db.Personal.Add(new Personal { nombre = unPersonal.nombre, apellido = unPersonal.apellido, fichaCensal = unPersonal.fichaCensal, dni = unPersonal.dni });
+                db.Personal.Add(new Personal { nombre = unPersonal.nombre, apellido = unPersonal.apellido, fichaCensal = unPersonal.fichaCensal, dni = unPersonal.dni, habilitado = true });
                 db.SaveChanges();
             }
             catch
