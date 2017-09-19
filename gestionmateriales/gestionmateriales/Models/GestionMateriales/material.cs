@@ -68,7 +68,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
             this.stockActual = 0;
 
-            this.detalle = "";
+            this.detalle = "sin detalle";
         }
     }
 }

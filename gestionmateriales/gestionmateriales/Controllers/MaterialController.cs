@@ -63,21 +63,22 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                Unidad nuevaUnidad = db.Unidad.Find(unMaterial.Unidad_Id);
-                Proveedor nuevoProveedor = db.Proveedor.Find(unMaterial.Proveedor_Id);
-                TipoMaterial tipo = db.TipoMaterial.Find(unMaterial.TipoMaterial_Id);
+                Unidad u = db.Unidad.Find(unMaterial.Unidad_Id);
+                Proveedor p = db.Proveedor.Find(unMaterial.Proveedor_Id);
+                TipoMaterial tm = db.TipoMaterial.Find(unMaterial.TipoMaterial_Id);
 
                 db.Material.Add(new Material
                 {
                     codigo = unMaterial.codigo,
                     nombre = unMaterial.nombre,
                     stockMinimo = unMaterial.stockMinimo,
-                    Unidad_Id = unMaterial.Unidad_Id,
-                    Proveedor_Id = unMaterial.Proveedor_Id,
-                    TipoMaterial_Id = unMaterial.TipoMaterial_Id,
-                    Unidad = nuevaUnidad,
-                    Proveedor = nuevoProveedor,
-                    TipoMaterial = tipo
+                    detalle = unMaterial.detalle,
+                    Unidad_Id = u.idUnidad,
+                    Proveedor_Id = p.idProveedor,
+                    TipoMaterial_Id = tm.idTipoMaterial,
+                    //Unidad = nuevaUnidad,
+                    //Proveedor = nuevoProveedor,
+                    //TipoMaterial = tipo
                 });
 
                 db.SaveChanges();
