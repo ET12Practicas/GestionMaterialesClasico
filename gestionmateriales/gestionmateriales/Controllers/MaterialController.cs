@@ -133,6 +133,8 @@ namespace gestionmateriales.Controllers
 
             cargarUnidad();
 
+            cargarTipoMaterial();
+
 
             Material materialSeleccionado;
 
@@ -161,6 +163,8 @@ namespace gestionmateriales.Controllers
                 nuevoMaterial.Unidad = db.Unidad.Find(unMaterial.Unidad_Id);
                 nuevoMaterial.stockMinimo = unMaterial.stockMinimo;
                 nuevoMaterial.Proveedor = db.Proveedor.Find(unMaterial.Proveedor_Id);
+                nuevoMaterial.TipoMaterial = db.TipoMaterial.Find(unMaterial.TipoMaterial_Id);
+                nuevoMaterial.detalle = unMaterial.detalle;
                 db.SaveChanges();
             }
             catch
