@@ -109,7 +109,7 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Buscar", "Proveedor");
         }
 
-        //POST: Personal/Borrar/1
+        //POST: Proveedor/Borrar/1
         //public ActionResult Borrar(int id)
         //{
         //    Proveedor proveedorSeleccionado = db.Proveedor.Find(id);
