@@ -23,11 +23,15 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Materiales", "Index", "Material")</li>
-                    <li>@Html.ActionLink("Orden de Pedidos", "Index", "Pedidos")</li>
-                    <li>@Html.ActionLink("Orden de Trabajo", "Index", "OrdenTrabajo")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entrada<b class="caret"></b></a>                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Orden de Pedido", "Index", "Pedidos")</li>
+                            <li>@Html.ActionLink("Orden de Trabajo de Aplicación", "Index", "OrdenTrabajo")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Proveedores", "Index", "Proveedor")</li>
                     <li>@Html.ActionLink("Personal", "Index", "Personal")</li>
-                </ul>
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

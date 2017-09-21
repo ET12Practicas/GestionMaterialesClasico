@@ -17,8 +17,9 @@ namespace gestionmateriales.Models.GestionMateriales
         public string nombreTrabajo { get; set; }
 
         [Required]
-        [StringLength(7)]
-        public string turno { get; set; }
+        public int Turno_Id { get; set; }
+        
+        public virtual Turno turno { get; set; }
 
         [Required]
         public DateTime fecha { get; set; }

@@ -8,12 +8,11 @@ namespace gestionmateriales.Models.GestionMateriales
     {
         [Key]
         [Required]
-
         public int idTurno { get; set; }
 
         [Required]
-        [StringLength(15)]
-        public string turno { get; set; }
+        [StringLength(7)]
+        public string nombreTurno { get; set; }
 
         public Turno()
         {

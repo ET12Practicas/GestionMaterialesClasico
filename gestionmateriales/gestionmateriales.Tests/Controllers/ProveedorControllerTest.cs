@@ -14,6 +14,7 @@ namespace gestionmateriales.Tests.Controllers
         {
             controller = new ProveedorController();
         }
+
         [TestMethod]
         public void Proveedor_RetornaVistaBuscarProveedor()
         {

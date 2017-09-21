@@ -20,30 +20,35 @@ namespace gestionmateriales.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
             Assert.IsNotNull("Index", result.ViewName);
         }
+
         [TestMethod]
         public void Material_RetornaVistaSumarMaterial()
         {
             ViewResult result = controller.Sumar() as ViewResult;
             Assert.IsNotNull("Sumar", result.ViewName);
         }
+
         [TestMethod]
         public void Material_RetornaVistaRestarMaterial()
         {
             ViewResult result = controller.Restar() as ViewResult;
             Assert.IsNotNull("Restar", result.ViewName);
         }
+
         [TestMethod]
         public void Material_RetornaVistaAltaMaterial()
         {
             ViewResult result = controller.Alta() as ViewResult;
             Assert.IsNotNull("Alta", result.ViewName);
         }
+
         [TestMethod]
         public void Material_RetornaVistaEditarMaterial()
         {
             ViewResult result = controller.Editar(1) as ViewResult;
             Assert.IsNotNull("Editar", result.ViewName);
         }
+
         [TestMethod]
         public void Material_RetornaVistaBuscarMaterial()
         {

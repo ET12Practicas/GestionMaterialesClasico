@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using gestionmateriales.Controllers;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
 
 namespace gestionmateriales.Tests.Controllers
 {

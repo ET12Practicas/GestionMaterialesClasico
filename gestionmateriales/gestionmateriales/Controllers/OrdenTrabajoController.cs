@@ -19,6 +19,12 @@ namespace gestionmateriales.Controllers
         // GET: OrdenTrabajo/Alta
         public ActionResult Alta()
         {
+            cargarJefeSeccion();
+
+            cargarResponsable();
+
+            cargarTurno();
+
             return View();
         }
 
@@ -62,6 +68,21 @@ namespace gestionmateriales.Controllers
             }
 
             return RedirectToAction("Agregar", "OrdenTrabajo");
+        }
+
+        private void cargarTurno(object selectedTurno = null)
+        {
+            ViewBag.Turno_Id = new SelectList(db.Turno.ToList(), "idTurno", "nombreTurno", selectedTurno);
+        }
+
+        private void cargarJefeSeccion(object selectedJefeSeccion = null)
+        {
+            ViewBag.JefeSeccion_Id = new SelectList(db.Personal.ToList(), "idPersonal", "apellido", selectedJefeSeccion);
+        }
+
+        private void cargarResponsable(object selectedResponsable = null)
+        {
+            ViewBag.Responsable_Id = new SelectList(db.Personal.ToList(), "idPersonal", "apellido", selectedResponsable);
         }
     }
 }

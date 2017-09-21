@@ -29,6 +29,9 @@
             <table class="table table-bordered table-striped table-hover text-center table-condensed">
                 <tr>
                     <th>
+                        Numero
+                    </th>
+                    <th>
                         @Html.ActionLink("Nombre del Trabajo", "Buscar", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
@@ -38,7 +41,7 @@
                         Turno
                     </th>
                     <th>
-                        Jefe de Sección
+                        Jefe de Seccion
                     </th>
                     <th>
                         Editar
@@ -48,6 +51,9 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idOrdenTrabajo)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.nombreTrabajo)
                         </td>

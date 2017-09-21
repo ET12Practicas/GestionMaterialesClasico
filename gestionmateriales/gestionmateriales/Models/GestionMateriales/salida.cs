@@ -23,6 +23,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public Salida()
         {
+            cantidad = 0;
         }
 
         public void ActualizarStockMaterial()

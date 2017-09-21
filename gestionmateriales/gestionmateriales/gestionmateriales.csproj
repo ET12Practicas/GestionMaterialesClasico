@@ -167,18 +167,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\GestionMateriales\entrada.cs" />
-    <Compile Include="Models\GestionMateriales\itemOT.cs" />
-    <Compile Include="Models\GestionMateriales\material.cs" />
-    <Compile Include="Models\GestionMateriales\ordenTrabajo.cs" />
+    <Compile Include="Models\GestionMateriales\Entrada.cs" />
+    <Compile Include="Models\GestionMateriales\IitemOT.cs" />
+    <Compile Include="Models\GestionMateriales\Material.cs" />
+    <Compile Include="Models\GestionMateriales\OrdenTrabajo.cs" />
     <Compile Include="Models\GestionMateriales\OtContext.cs" />
-    <Compile Include="Models\GestionMateriales\pedido.cs" />
-    <Compile Include="Models\GestionMateriales\personal.cs" />
-    <Compile Include="Models\GestionMateriales\proveedor.cs" />
-    <Compile Include="Models\GestionMateriales\salida.cs" />
-    <Compile Include="Models\GestionMateriales\tipoMaterial.cs" />
-    <Compile Include="Models\GestionMateriales\turno.cs" />
-    <Compile Include="Models\GestionMateriales\unidad.cs" />
+    <Compile Include="Models\GestionMateriales\Pedido.cs" />
+    <Compile Include="Models\GestionMateriales\Personal.cs" />
+    <Compile Include="Models\GestionMateriales\Proveedor.cs" />
+    <Compile Include="Models\GestionMateriales\Salida.cs" />
+    <Compile Include="Models\GestionMateriales\TipoMaterial.cs" />
+    <Compile Include="Models\GestionMateriales\Turno.cs" />
+    <Compile Include="Models\GestionMateriales\Unidad.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,6 +242,7 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\OrdenTrabajo\Index.cshtml" />
     <Content Include="Views\OrdenTrabajo\Alta.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

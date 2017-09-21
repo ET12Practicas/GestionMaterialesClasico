@@ -13,18 +13,21 @@ namespace gestionmateriales.Tests.Controllers
         {
             controller = new OrdenTrabajoController();
         }
+
         [TestMethod]
         public void OrdenTrabajo_RetornaVistaBuscarOT()
         {
             ViewResult result = controller.Buscar("", "", "") as ViewResult;
             Assert.IsNotNull("Buscar", result.ViewName);
         }
+
         [TestMethod]
         public void OrdenTrabajo_RetornaVistaAltaOT()
         {
             ViewResult result = controller.Alta() as ViewResult;
             Assert.IsNotNull("Alta", result.ViewName);
         }
+
         [TestMethod]
         public void OrdenTrabajo_RetornaVistaIndex()
         {

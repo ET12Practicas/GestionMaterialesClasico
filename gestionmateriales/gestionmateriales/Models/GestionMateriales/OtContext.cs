@@ -27,5 +27,7 @@ namespace gestionmateriales.Models.GestionMateriales
         public DbSet<OrdenTrabajo> OrdenTrabajo { get; set; }
 
         public DbSet<TipoMaterial> TipoMaterial { get; set; }
+
+        public DbSet<Turno> Turno { get; set; }
     }
 }
