@@ -56,7 +56,7 @@ namespace gestionmateriales.Controllers
             return View(pedidoSeleccionado);
         }
 
-        //POST: Personal/Editar/1
+        //POST: Pedido/Editar/1
         [HttpPost]
         public ActionResult Editar(int id, Pedido unPedido)
         {

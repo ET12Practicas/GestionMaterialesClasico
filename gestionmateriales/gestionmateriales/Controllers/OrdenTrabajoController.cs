@@ -28,6 +28,51 @@ namespace gestionmateriales.Controllers
             return View();
         }
 
+        //GET: OrdenTrabajo/Editar/1
+        public ActionResult Editar(int id)
+        {
+            cargarJefeSeccion();
+
+            cargarResponsable();
+
+            cargarTurno();
+
+            OrdenTrabajo ordenSeleccionada;
+
+            try
+            {
+                ordenSeleccionada = db.OrdenTrabajo.Find(id);
+            }
+            catch
+            {
+                return RedirectToAction("Buscar", "OrdenTrabajo");
+            }
+            
+            return View(ordenSeleccionada);
+        }
+
+        //POST: OrdenTrabajo/Editar/1
+        [HttpPost]
+        public ActionResult Editar(int id, OrdenTrabajo unaOrdenDeTrabajo)
+        {
+            OrdenTrabajo nuevaOrdenDeTrabajo = db.OrdenTrabajo.Find(id);
+
+            try
+            {
+                nuevaOrdenDeTrabajo.nombreTrabajo = unaOrdenDeTrabajo.nombreTrabajo;
+                nuevaOrdenDeTrabajo.turno = unaOrdenDeTrabajo.turno;
+                nuevaOrdenDeTrabajo.responsable = unaOrdenDeTrabajo.responsable;
+                nuevaOrdenDeTrabajo.jefeSeccion = unaOrdenDeTrabajo.jefeSeccion;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Buscar", "OrdenTrabajo");
+            }
+
+            return RedirectToAction("Buscar", "OrdenTrabajo");
+        }
+
         // GET: OrdenTrabajo/Buscar
         public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
         {
