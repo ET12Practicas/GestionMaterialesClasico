@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.GestionMateriales
 {
-    [Table("Pedido")]
+    [Table("OrdenPedido")]
     public class OrdenPedido
     {
         [Key]
