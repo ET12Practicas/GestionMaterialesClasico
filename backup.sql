@@ -26,22 +26,22 @@ INSERT INTO `material` VALUES (1,'15','Tornillo',0,100,3,1,1,'Sin Stock',NULL,0,
 UNLOCK TABLES;
 
 --
--- Dumping data for table `ordendetrabajo`
+-- Dumping data for table `ordentrabajo`
 --
 
-LOCK TABLES `ordendetrabajo` WRITE;
-/*!40000 ALTER TABLE `ordendetrabajo` DISABLE KEYS */;
-INSERT INTO `ordendetrabajo` VALUES (1,100,'Banco',1,'2017-10-01 00:00:00',2,1,2,1,1),(2,101,'Martillo',2,'2017-12-01 00:00:00',2,3,2,3,2),(3,1001,'Bodega',3,'2017-10-02 00:00:00',2,2,2,2,3);
-/*!40000 ALTER TABLE `ordendetrabajo` ENABLE KEYS */;
+LOCK TABLES `ordentrabajo` WRITE;
+/*!40000 ALTER TABLE `ordentrabajo` DISABLE KEYS */;
+INSERT INTO `ordentrabajo` VALUES (1,100,'Banco',1,'2017-10-01 00:00:00',2,1,2,1,1),(2,101,'Martillo',2,'2017-12-01 00:00:00',2,3,2,3,2),(3,1001,'Bodega',3,'2017-10-02 00:00:00',2,2,2,2,3);
+/*!40000 ALTER TABLE `ordentrabajo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `pedido`
+-- Dumping data for table `ordenpedido`
 --
 
-LOCK TABLES `pedido` WRITE;
-/*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
+LOCK TABLES `ordenpedido` WRITE;
+/*!40000 ALTER TABLE `ordenpedido` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ordenpedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
