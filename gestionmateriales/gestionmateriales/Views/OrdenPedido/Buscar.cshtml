@@ -1,6 +1,6 @@
-﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.Pedido>
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.OrdenPedido>
 @{
-    ViewBag.Title = "Pedidos";
+    ViewBag.Title = "Orden de Pedido";
 }
 
 <div id="page-wrapper">
@@ -29,10 +29,10 @@
             <table class="table table-bordered table-striped table-hover text-center table-condensed">
                 <tr>
                     <th>
-                        @Html.ActionLink("Nro. Pedido", "Buscar", new { sortOrder = ViewBag.NroPedidoSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @Html.ActionLink("Nro. Orden de Pedido", "Buscar", new { sortOrder = ViewBag.NroOrdenPedidoSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
-                        @Html.ActionLink("Nro. Orden De Trabajo", "Buscar", new { sortOrder = ViewBag.nroOrdenDeTrabajoSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @Html.ActionLink("Nro. Orden De Trabajo", "Buscar", new { sortOrder = ViewBag.nroOrdenTrabajoSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
                         Destino
@@ -49,19 +49,19 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.nroPedido)
+                            @Html.DisplayFor(modelItem => item.nroOrdenPedido)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.nroOrdenDeTrabajo)
+                            @Html.DisplayFor(modelItem => item.nroOrdenTrabajo)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.destino)
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "Editar", new { id = item.idPedido })
+                            @Html.ActionLink("Editar", "Editar", new { id = item.idOrdenPedido })
                         </td>
                         <td>
-                            @Html.ActionLink("Borrar", "Borrar", new { id = item.idPedido })
+                            @Html.ActionLink("Borrar", "Borrar", new { id = item.idOrdenPedido })
                         </td>
                     </tr>
                 }

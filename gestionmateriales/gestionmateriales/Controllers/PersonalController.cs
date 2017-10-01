@@ -23,7 +23,6 @@ namespace gestionmateriales.Controllers
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_asc" : "";
-            ViewBag.ApellidoSortParm = String.IsNullOrEmpty(sortOrder) ? "apellido_asc" : "";
             
             ViewBag.CurrentFilter = searchString;
 
@@ -31,16 +30,13 @@ namespace gestionmateriales.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                staff = db.Personal.Where(s => (s.apellido.ToUpper().Contains(searchString.ToUpper()) || s.nombre.ToUpper().Contains(searchString.ToUpper())) && s.habilitado == true).ToList();
+                staff = db.Personal.Where(s => (s.nombre.ToUpper().Contains(searchString.ToUpper()) || s.nombre.ToUpper().Contains(searchString.ToUpper())) && s.habilitado == true).ToList();
             }
 
             switch (sortOrder)
             {
                 case "nombre_asc":
                     staff = staff.OrderBy(s => s.nombre).ToList();
-                    break;
-                case "apellido_asc":
-                    staff = staff.OrderBy(s => s.apellido).ToList();
                     break;
             }
 
@@ -60,7 +56,7 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                db.Personal.Add(new Personal { nombre = unPersonal.nombre, apellido = unPersonal.apellido, fichaCensal = unPersonal.fichaCensal, dni = unPersonal.dni, habilitado = true });
+                db.Personal.Add(new Personal { nombre = unPersonal.nombre, fichaCensal = unPersonal.fichaCensal, dni = unPersonal.dni, habilitado = true });
                 db.SaveChanges();
             }
             catch
@@ -97,7 +93,6 @@ namespace gestionmateriales.Controllers
             try
             {
                 nuevoPersonal.nombre = unPersonal.nombre;
-                nuevoPersonal.apellido = unPersonal.apellido;
                 nuevoPersonal.dni = unPersonal.dni;
                 nuevoPersonal.fichaCensal = unPersonal.fichaCensal;
                 db.SaveChanges();

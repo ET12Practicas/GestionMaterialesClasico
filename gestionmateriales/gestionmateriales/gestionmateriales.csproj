@@ -160,19 +160,20 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\OrdenTrabajoController.cs" />
-    <Compile Include="Controllers\PedidosController.cs" />
+    <Compile Include="Controllers\OrdenPedidoController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GestionMateriales\Entrada.cs" />
-    <Compile Include="Models\GestionMateriales\IitemOT.cs" />
+    <Compile Include="Models\GestionMateriales\ItemOT.cs" />
     <Compile Include="Models\GestionMateriales\Material.cs" />
     <Compile Include="Models\GestionMateriales\OrdenTrabajo.cs" />
     <Compile Include="Models\GestionMateriales\OtContext.cs" />
-    <Compile Include="Models\GestionMateriales\Pedido.cs" />
+    <Compile Include="Models\GestionMateriales\OrdenPedido.cs" />
     <Compile Include="Models\GestionMateriales\Personal.cs" />
     <Compile Include="Models\GestionMateriales\Proveedor.cs" />
     <Compile Include="Models\GestionMateriales\Salida.cs" />
@@ -226,12 +227,11 @@
     <Content Include="Views\Material\Buscar.cshtml" />
     <Content Include="Views\Material\Editar.cshtml" />
     <Content Include="Views\Material\Index.cshtml" />
-    <Content Include="Views\Material\Restar.cshtml" />
-    <Content Include="Views\Material\Sumar.cshtml" />
-    <Content Include="Views\Pedidos\Agregar.cshtml" />
-    <Content Include="Views\Pedidos\Buscar.cshtml" />
-    <Content Include="Views\Pedidos\Editar.cshtml" />
-    <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Stock\Restar.cshtml" />
+    <Content Include="Views\OrdenPedido\Agregar.cshtml" />
+    <Content Include="Views\OrdenPedido\Buscar.cshtml" />
+    <Content Include="Views\OrdenPedido\Editar.cshtml" />
+    <Content Include="Views\OrdenPedido\Index.cshtml" />
     <Content Include="Views\Personal\Agregar.cshtml" />
     <Content Include="Views\Personal\Buscar.cshtml" />
     <Content Include="Views\Personal\Editar.cshtml" />
@@ -244,6 +244,9 @@
     <Content Include="Views\OrdenTrabajo\Index.cshtml" />
     <Content Include="Views\OrdenTrabajo\Alta.cshtml" />
     <Content Include="Views\OrdenTrabajo\Buscar.cshtml" />
+    <Content Include="Views\Stock\Index.cshtml" />
+    <Content Include="Views\Stock\Sumar.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

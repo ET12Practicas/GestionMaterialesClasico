@@ -1,6 +1,6 @@
-﻿@model gestionmateriales.Models.GestionMateriales.Pedido
+﻿@model gestionmateriales.Models.GestionMateriales.OrdenPedido
 @{
-    ViewBag.Title = "Pedidos";
+    ViewBag.Title = "Orden de Pedido";
 }
 
 <div id="page-wrapper">
@@ -17,12 +17,12 @@
                     @using (@Html.BeginForm("Agregar", "Pedidos", FormMethod.Post))
                     {
                         <div class="form-group">
-                            @Html.LabelFor(model => model.nroPedido, "Número Orden de Pedido", new { @class = "col-md-5 control-label" })
-                            @Html.EditorFor(model => model.nroPedido, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                            @Html.LabelFor(model => model.nroOrdenPedido, "Número Orden de Pedido", new { @class = "col-md-5 control-label" })
+                            @Html.EditorFor(model => model.nroOrdenPedido, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.nroOrdenDeTrabajo, "Número Orden de Trabajo", new { @class = "col-md-6 control-label" })
-                            @Html.EditorFor(model => model.nroOrdenDeTrabajo, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                            @Html.LabelFor(model => model.nroOrdenTrabajo, "Número Orden de Trabajo", new { @class = "col-md-6 control-label" })
+                            @Html.EditorFor(model => model.nroOrdenTrabajo, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.destino, "Destino", new { @class = "col-md-12 control-label" })

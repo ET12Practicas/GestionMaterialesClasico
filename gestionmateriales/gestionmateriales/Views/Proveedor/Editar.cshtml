@@ -6,52 +6,65 @@
 <div id="page-wrapper">
     <div class="container">
         <br />
-        <h1>Editar Proveedor</h1>
+        <h1>Proveedor</h1>
         <hr />
-        <div class="col-sm-offset-2 col-md-7">
+        <div class="col-sm-offset-1 col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Editar Proveedor</h3>
+                    <h3 class="panel-title">Editar Datos del Proveedor</h3>
                 </div>
                 <div class="panel-body">
                     @using (@Html.BeginForm("Editar", "Proveedor", new { id = Model.idProveedor }, FormMethod.Post))
                     {
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "col-md-2 control-label" })
-                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.cuit, "CUIT", new { @class = "col-md-2 control-label" })
-                            @Html.EditorFor(model => model.cuit, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten guiones y numeros..", pattern = "^[0-9]+$" } })
-                        </div><div class="form-group">
-                            @Html.LabelFor(model => model.telefono, "Telefono", new { @class = "col-md-2 control-label" })
-                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "true", title = "Solo se admiten guiones y números.", pattern = "^[0-9]+$" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.razonSocial, "Razon Social", new { @class = "col-md-3 control-label" })
-                            @Html.EditorFor(model => model.razonSocial, new { htmlAttributes = new { @class = "form-control", maxlength = 15, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.direccion, "Dirección", new { @class = "col-md-2 control-label" })
-                            @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", maxlength = 100, required = "true" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nombreContacto, "Nombre del Contacto", new { @class = "col-md-4 control-label" })
-                            @Html.EditorFor(model => model.nombreContacto, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "false", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.horario, "Horario", new { @class = "col-md-2 control-label" })
-                            @Html.EditorFor(model => model.horario, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "false" } })
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-md-8">
-                                <input type="reset" class="btn btn-default" value="Restaurar Valores" />
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                                </div>
                             </div>
-                            <div class="col-xs-1 col-md-2">
-                                <input type="submit" class="btn btn-primary" value="Aceptar" />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cuit, "CUIT", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cuit, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten guiones y numeros..", pattern = "^[0-9]+$" } })
+                                </div>
+                                @Html.LabelFor(model => model.razonSocial, "Razon Social", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.razonSocial, new { htmlAttributes = new { @class = "form-control", maxlength = 15, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                                </div>
                             </div>
-                            <div class="col-xs-1 col-md-1">
-                                <input type="button" class="btn btn-default" onclick="location.href = '../Buscar'" value="Cancelar" />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.telefono, "Telefono", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "true", title = "Solo se admiten guiones y números.", pattern = "^[0-9]+$" } })
+                                </div>
+                                @Html.LabelFor(model => model.direccion, "Dirección", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", maxlength = 100, required = "true" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.horario, "Horario", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.horario, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "false" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nombreContacto, "Contacto", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.nombreContacto, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "false", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="reset" class="btn btn-default btn-block" value="Restaurar" />
+                                </div>
+                                <div class="col-md-offset-3 col-md-3">
+                                    <input type="submit" class="btn btn-primary btn-block" value="Aceptar" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="button" class="btn btn-default btn-block" onclick="location.href='../Buscar'" value="Cancelar" />
+                                </div>
                             </div>
                         </div>
                     }

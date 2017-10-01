@@ -14,8 +14,6 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public DbSet<Unidad> Unidad { get; set; }
 
-        public DbSet<Pedido> Pedido { get; set; }
-
         public DbSet<Material> Material { get; set; }
 
         public DbSet<Entrada> Entrada { get; set; }
@@ -25,6 +23,8 @@ namespace gestionmateriales.Models.GestionMateriales
         public DbSet<Personal> Personal { get; set; }
 
         public DbSet<OrdenTrabajo> OrdenTrabajo { get; set; }
+
+        public DbSet<OrdenPedido> OrdenPedido { get; set; }
 
         public DbSet<TipoMaterial> TipoMaterial { get; set; }
 

@@ -6,17 +6,19 @@ using gestionmateriales.Models.GestionMateriales;
 
 namespace gestionmateriales.Controllers
 {
-    public class PedidosController : Controller
+    public class OrdenPedidoController : Controller
     {
         OtContext db = new OtContext();
 
         // GET: Pedidos
+        [Route("/OrdenPedido")]
         public ActionResult Index()
         {
             return View();
         }
        
         // GET: Pedido/Agregar
+        [Route("/OrdenPedido/Agregar")]
         public ActionResult Agregar()
         {
             return View();
@@ -24,11 +26,11 @@ namespace gestionmateriales.Controllers
       
         //POST: Pedido/1/Agregar
         [HttpPost]
-        public ActionResult Agregar(Pedido unPedido)
+        public ActionResult Agregar(OrdenPedido unPedido)
         {
             try
             {
-                db.Pedido.Add(new Pedido { nroPedido = unPedido.nroPedido, nroOrdenDeTrabajo = unPedido.nroOrdenDeTrabajo, destino = unPedido.destino });
+                db.OrdenPedido.Add(new OrdenPedido(unPedido.nroOrdenPedido, unPedido.nroOrdenTrabajo, unPedido.destino)); 
                 db.SaveChanges();
             }
             catch
@@ -40,13 +42,14 @@ namespace gestionmateriales.Controllers
         }
      
         //GET: Pedidos/Editar/1
+        [Route("/OrdenPedido/Editar/{id}")]
         public ActionResult Editar(int id)
         {
-            Pedido pedidoSeleccionado;
+            OrdenPedido pedidoSeleccionado;
 
             try
             {
-                pedidoSeleccionado = db.Pedido.Find(id);
+                pedidoSeleccionado = db.OrdenPedido.Find(id);
             }
             catch
             {
@@ -58,14 +61,14 @@ namespace gestionmateriales.Controllers
 
         //POST: Pedido/Editar/1
         [HttpPost]
-        public ActionResult Editar(int id, Pedido unPedido)
+        public ActionResult Editar(int id, OrdenPedido unPedido)
         {
-            Pedido nuevoPedido = db.Pedido.Find(id);
+            OrdenPedido nuevoPedido = db.OrdenPedido.Find(id);
             
             try
             {
-                nuevoPedido.nroPedido = unPedido.nroPedido;
-                nuevoPedido.nroOrdenDeTrabajo = unPedido.nroOrdenDeTrabajo;
+                nuevoPedido.nroOrdenPedido = unPedido.nroOrdenPedido;
+                nuevoPedido.nroOrdenTrabajo = unPedido.nroOrdenTrabajo;
                 nuevoPedido.destino = unPedido.destino;
                 db.SaveChanges();
             }
@@ -78,39 +81,39 @@ namespace gestionmateriales.Controllers
         }
        
         // GET: Pedido/Buscar
+        [Route("/OrdenPedido/Buscar")]
         public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.nroPedidoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroPedido_asc" : "";
-            ViewBag.nroPedidoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroPedido_desc" : "";
-            ViewBag.nroOrdenDeTrabajoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenDeTrabajo_asc" : "";
-            ViewBag.nroOrdenDeTrabajoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenDeTrabajo_desc" : "";
+            ViewBag.nroOrdenPedidoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenPedido_asc" : "";
+            ViewBag.nroOrdenPedidoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenPedido_desc" : "";
+            ViewBag.nroOrdenTrabajoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenTrabajo_asc" : "";
+            ViewBag.nroOrdenTrabajoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenTrabajo_desc" : "";
 
             //searchString = currentFilter;
 
             ViewBag.CurrentFilter = searchString;
 
-            List<Pedido> staff = db.Pedido.Where(x => x.habilitado == true).Take(20).ToList();
+            List<OrdenPedido> staff = db.OrdenPedido.Where(x => x.habilitado == true).Take(20).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                //TODO
-                staff = db.Pedido.Where(s => (s.nroPedido.ToString().Contains(searchString.ToUpper()) || s.nroOrdenDeTrabajo.ToString().Contains(searchString.ToUpper())) && s.habilitado == true).ToList();
+                staff = db.OrdenPedido.Where(s => (s.nroOrdenPedido.ToString().Contains(searchString.ToUpper()) || s.nroOrdenTrabajo.ToString().Contains(searchString.ToUpper())) && s.habilitado == true).ToList();
             }
 
             switch (sortOrder)
             {
-                case "nroPedido_asc":
-                    staff = staff.OrderBy(s => s.nroPedido).ToList();
+                case "nroOrdenPedido_asc":
+                    staff = staff.OrderBy(s => s.nroOrdenPedido).ToList();
                     break;
-                case "nroPedido_desc":
-                    staff = staff.OrderByDescending(s => s.nroPedido).ToList();
+                case "nroOrdenPedido_desc":
+                    staff = staff.OrderByDescending(s => s.nroOrdenPedido).ToList();
                     break;
-                case "nroOrdenDeTrabajo_asc":
-                    staff = staff.OrderBy(s => s.nroOrdenDeTrabajo).ToList();
+                case "nroOrdenTrabajo_asc":
+                    staff = staff.OrderBy(s => s.nroOrdenTrabajo).ToList();
                     break;
-                case "nroOrdenDeTrabajo_desc":
-                    staff = staff.OrderByDescending(s => s.nroOrdenDeTrabajo).ToList();
+                case "nroOrdenTrabajo_desc":
+                    staff = staff.OrderByDescending(s => s.nroOrdenTrabajo).ToList();
                     break;
             }
 
@@ -120,7 +123,7 @@ namespace gestionmateriales.Controllers
         //POST: Pedido/Borrar/1
         public ActionResult Borrar(int id)
         {
-            Pedido pedidoSeleccionado = db.Pedido.Find(id);
+            OrdenPedido pedidoSeleccionado = db.OrdenPedido.Find(id);
 
             try
             {

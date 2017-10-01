@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace gestionmateriales.Models.GestionMateriales
 {
     [Table("Pedido")]
-    public class Pedido
+    public class OrdenPedido
     {
         [Key]
         [Required]
-        public int idPedido { get; set; }
+        public int idOrdenPedido { get; set; }
 
         [Required]
-        public int nroPedido { get; set; }
+        public int nroOrdenPedido { get; set; }
 
         [Required]
-        public int nroOrdenDeTrabajo { get; set; }
+        public int nroOrdenTrabajo { get; set; }
 
         [Required]
         [StringLength(150)]
@@ -23,9 +23,17 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public bool habilitado { get; set; }
 
-        public Pedido()
+        public OrdenPedido()
+        {
+        }
+
+        public OrdenPedido(int aNroOP, int aNroOT, string aDestino)
         {
             this.habilitado = true;
+
+            this.nroOrdenPedido = aNroOP;
+            this.nroOrdenTrabajo = aNroOT;
+            this.destino = aDestino;
         }
     }
 }

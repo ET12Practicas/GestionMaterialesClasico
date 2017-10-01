@@ -12,12 +12,14 @@ namespace gestionmateriales.Controllers
         OtContext db = new OtContext();
         
         // GET: Proveedor
+        [Route("/Proveedor")]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: Proveedor/Buscar
+        [Route("/Proveedor/Buscar")]
         public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -45,6 +47,7 @@ namespace gestionmateriales.Controllers
         }
 
         // GET: Proveedor/Agregar
+        [Route("/Proveedor/Agregar")]
         public ActionResult Agregar()
         {
             return View();
@@ -69,6 +72,7 @@ namespace gestionmateriales.Controllers
         }
 
         //GET: Proveedor/Editar/1
+        [Route("/Proveedor/Editar/{id}")]
         public ActionResult Editar(int id)
         {
             Proveedor proveedorSeleccionado;

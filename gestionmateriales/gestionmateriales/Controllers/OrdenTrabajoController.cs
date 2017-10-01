@@ -11,30 +11,50 @@ namespace gestionmateriales.Controllers
         OtContext db = new OtContext();
         
         // GET: OrdenTrabajo
+        [Route("/OrdenTrabajo")]
         public ActionResult Index()
         {
             return View();
         }
         
         // GET: OrdenTrabajo/Alta
+        [Route("/OrdenTrabajo/Alta")]
         public ActionResult Alta()
         {
             cargarJefeSeccion();
-
             cargarResponsable();
-
             cargarTurno();
 
             return View();
         }
 
+        //POST: OrdenTrabajo/Alta
+        [HttpPost]
+        public ActionResult Alta(OrdenTrabajo aOT)
+        {
+            try
+            {
+                Turno t = db.Turno.Find(aOT.Turno_Id);
+                Personal jefe = db.Personal.Find(aOT.JefeSeccion_Id);
+                Personal res = db.Personal.Find(aOT.Responsable_Id);
+
+                db.OrdenTrabajo.Add(new OrdenTrabajo(aOT.nroOrdenTrabajo, aOT.nombreTrabajo, t, aOT.fecha, jefe, res));
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Index", "OrdenTrabajo");
+            }
+
+            return RedirectToAction("Alta", "OrdenTrabajo");
+        }
+
         //GET: OrdenTrabajo/Editar/1
+        [Route("/OrdenTrabajo/Editar/{id}")]
         public ActionResult Editar(int id)
         {
             cargarJefeSeccion();
-
             cargarResponsable();
-
             cargarTurno();
 
             OrdenTrabajo ordenSeleccionada;
@@ -53,16 +73,25 @@ namespace gestionmateriales.Controllers
 
         //POST: OrdenTrabajo/Editar/1
         [HttpPost]
-        public ActionResult Editar(int id, OrdenTrabajo unaOrdenDeTrabajo)
+        public ActionResult Editar(int id, OrdenTrabajo aOT)
         {
-            OrdenTrabajo nuevaOrdenDeTrabajo = db.OrdenTrabajo.Find(id);
+            OrdenTrabajo nuevaOT = db.OrdenTrabajo.Find(id);
 
             try
             {
-                nuevaOrdenDeTrabajo.nombreTrabajo = unaOrdenDeTrabajo.nombreTrabajo;
-                nuevaOrdenDeTrabajo.turno = unaOrdenDeTrabajo.turno;
-                nuevaOrdenDeTrabajo.responsable = unaOrdenDeTrabajo.responsable;
-                nuevaOrdenDeTrabajo.jefeSeccion = unaOrdenDeTrabajo.jefeSeccion;
+                Turno t = db.Turno.Find(aOT.Turno_Id);
+                Personal jefe = db.Personal.Find(aOT.JefeSeccion_Id);
+                Personal res = db.Personal.Find(aOT.Responsable_Id);
+
+                nuevaOT.nroOrdenTrabajo = aOT.nroOrdenTrabajo;
+                nuevaOT.nombreTrabajo = aOT.nombreTrabajo;
+                nuevaOT.Turno_Id = t.idTurno;
+                nuevaOT.Turno = t;
+                nuevaOT.fecha = aOT.fecha;
+                nuevaOT.Responsable = res;
+                nuevaOT.Responsable_Id = res.idPersonal;
+                nuevaOT.JefeSeccion = jefe;
+                nuevaOT.JefeSeccion_Id = jefe.idPersonal;
                 db.SaveChanges();
             }
             catch
@@ -74,6 +103,7 @@ namespace gestionmateriales.Controllers
         }
 
         // GET: OrdenTrabajo/Buscar
+        [Route("/OrdenTrabajo/Buscar")]
         public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -85,7 +115,11 @@ namespace gestionmateriales.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                staff = db.OrdenTrabajo.Where(s => s.nombreTrabajo.ToUpper().Contains(searchString.ToUpper())).ToList();
+                //staff = db.OrdenTrabajo.Where(s => s.nombreTrabajo.ToUpper().Contains(searchString.ToUpper())).ToList();
+                staff = (from ot in db.OrdenTrabajo
+                        where ot.nombreTrabajo.ToUpper().Contains(searchString.ToUpper()) 
+                            || ot.nroOrdenTrabajo.ToString().Equals(searchString) || ot.Responsable.nombre.ToUpper().Contains(searchString.ToUpper())
+                        select ot).ToList();
             }
 
             switch (sortOrder)
@@ -98,23 +132,6 @@ namespace gestionmateriales.Controllers
             return View(staff.ToList());
         }
 
-        //POST: OrdenTrabajo/1/Alta
-        [HttpPost]
-        public ActionResult Alta(OrdenTrabajo unaOrdenDeTrabajo)
-        {
-            try
-            {
-                db.OrdenTrabajo.Add(new OrdenTrabajo { nombreTrabajo = unaOrdenDeTrabajo.nombreTrabajo, responsable = unaOrdenDeTrabajo.responsable, turno = unaOrdenDeTrabajo.turno, jefeSeccion = unaOrdenDeTrabajo.jefeSeccion});
-                db.SaveChanges();
-            }
-            catch 
-            {
-                return RedirectToAction("Index", "OrdenTrabajo");
-            }
-
-            return RedirectToAction("Agregar", "OrdenTrabajo");
-        }
-
         private void cargarTurno(object selectedTurno = null)
         {
             ViewBag.Turno_Id = new SelectList(db.Turno.ToList(), "idTurno", "nombreTurno", selectedTurno);
@@ -122,12 +139,12 @@ namespace gestionmateriales.Controllers
 
         private void cargarJefeSeccion(object selectedJefeSeccion = null)
         {
-            ViewBag.JefeSeccion_Id = new SelectList(db.Personal.ToList(), "idPersonal", "apellido", selectedJefeSeccion);
+            ViewBag.JefeSeccion_Id = new SelectList(db.Personal.ToList(), "idPersonal", "nombre", selectedJefeSeccion);
         }
 
         private void cargarResponsable(object selectedResponsable = null)
         {
-            ViewBag.Responsable_Id = new SelectList(db.Personal.ToList(), "idPersonal", "apellido", selectedResponsable);
+            ViewBag.Responsable_Id = new SelectList(db.Personal.ToList(), "idPersonal", "nombre", selectedResponsable);
         }
     }
 }

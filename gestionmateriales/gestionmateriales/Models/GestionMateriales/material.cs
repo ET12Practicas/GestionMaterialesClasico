@@ -45,7 +45,6 @@ namespace gestionmateriales.Models.GestionMateriales
         //stock Alto, Bajo, Sin Stock y Pedido//        
         public string estado { get; set; }
 
-        [Required]
         [StringLength(100)]
         public string detalle { get; set; }
 
@@ -59,16 +58,25 @@ namespace gestionmateriales.Models.GestionMateriales
         public Material()
         {
             this.Entrada = new HashSet<Entrada>();
-
             this.Salida = new HashSet<Salida>();
-
+        }
+        public Material(string aCodigo, string aNombre, int aStockMinimo, string aDetalle, Unidad aUnidad, Proveedor aProveedor, TipoMaterial aTipoMaterial)
+        {
             this.habilitado = true;
-
             this.estado = "Sin Stock";
-
             this.stockActual = 0;
 
-            this.detalle = "sin detalle";
+            this.codigo = aCodigo;
+            this.nombre = aNombre;
+            this.stockMinimo = aStockMinimo;
+            this.detalle = aDetalle;
+
+            this.Unidad_Id = aUnidad.idUnidad;
+            this.Unidad = aUnidad;
+            this.Proveedor_Id = aProveedor.idProveedor;
+            this.Proveedor = aProveedor;
+            this.TipoMaterial_Id = aTipoMaterial.idTipoMaterial;
+            this.TipoMaterial = aTipoMaterial;
         }
     }
 }
