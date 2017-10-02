@@ -63,7 +63,25 @@
                             @Html.ActionLink("Editar", "Editar", new { id = item.idPersonal })
                         </td>
                         <td>
-                            @Html.ActionLink("Borrar", "Borrar", new { id = item.idPersonal })
+                            <a href="" data-toggle="modal" data-target="#myModal-@item.idPersonal">Borrar</a>
+                          
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal-@item.idPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Borrar Personal</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Desea borrar a @item.nombre?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="~/Personal/Borrar/@item.idPersonal" type="button" class="btn btn-primary">Aceptar</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 }
