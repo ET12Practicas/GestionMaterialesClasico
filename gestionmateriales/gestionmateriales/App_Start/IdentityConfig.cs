@@ -51,14 +51,14 @@ namespace gestionmateriales
                 RequireUniqueEmail = true
             };
 
-            // Configure la lógica de validación de contraseñas
+            // Configure la lógica de validación de contraseñas #PASSWORD
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                RequiredLength = 8,
+                RequireNonLetterOrDigit = false,
                 RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configurar valores predeterminados para bloqueo de usuario
