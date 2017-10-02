@@ -15,3 +15,5 @@
 - Salida: Registrar la salida de material del stock actual por orden de trabajo.
   
 - Personal: Almacenar y relacionar el personal que retira el material del depósito.
+
+© 2017 - ET N°12 DE 1 Libertador General José de San Martín
