@@ -11,6 +11,9 @@
         </div>
     </div>
     <hr />
+    <div class="col-md-4">
+        Total Personal: <strong>@ViewData["totPersonal"]</strong>
+    </div>
     <div class=" row">
         @using (Html.BeginForm("Buscar", "Personal", FormMethod.Get))
         {
@@ -65,7 +68,6 @@
                         <td>
                             <a href="" data-toggle="modal" data-target="#myModal-@item.idPersonal">Borrar</a>
                           
-                            <!-- Modal -->
                             <div class="modal fade" id="myModal-@item.idPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -73,7 +75,10 @@
                                             <h4 class="modal-title" id="myModalLabel">Borrar Personal</h4>
                                         </div>
                                         <div class="modal-body">
-                                            ¿Desea borrar a @item.nombre?
+                                            <p>Desea borrar a:</p>
+                                            <p><strong>Nombre y Apellido:</strong> @item.nombre</p>
+                                            <p><strong>Ficha Censal:</strong> @item.fichaCensal</p>
+                                            <p><strong>DNI:</strong> @item.dni</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="~/Personal/Borrar/@item.idPersonal" type="button" class="btn btn-primary">Aceptar</a>

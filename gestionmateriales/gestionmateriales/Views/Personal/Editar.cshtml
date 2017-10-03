@@ -37,41 +37,28 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <input type="reset" class="btn btn-default btn-block" value="Limpiar" />
+                                    <input type="reset" class="btn btn-default btn-block" value="Restaurar" />
                                 </div>
 
-                                <!-- Button trigger modal -->
                                 <div class="col-md-offset-3 col-md-3">
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Aceptar</button>
+                                    <input type="submit" class="btn btn-primary btn-block" value="Aceptar" />
                                 </div>
 
                                 <div class="col-md-3">
                                     <input type="button" class="btn btn-default btn-block" onclick="location.href='../Buscar'" value="Cancelar" />
                                 </div>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Editar Personal</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Desea guardar los cambios?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <input type="submit" class="btn btn-primary" value="Aceptar" />
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+                           
                         </div>
                     }
                 </div>
             </div>
+            @if (ViewBag.Result == true)
+            {
+                <div id="alert_message" class="alert alert-success">
+                    Los datos se guardaron con éxito.
+                </div>
+            }
         </div>
     </div>
 </div>

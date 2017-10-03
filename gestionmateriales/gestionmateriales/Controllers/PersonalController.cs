@@ -39,7 +39,7 @@ namespace gestionmateriales.Controllers
                     staff = staff.OrderBy(s => s.nombre).ToList();
                     break;
             }
-
+            @ViewData["totPersonal"] = db.Personal.Where(x => x.habilitado == true).Count().ToString();
             return View(staff.ToList());
         }
 
@@ -47,24 +47,24 @@ namespace gestionmateriales.Controllers
         [Route("/Personal/Agregar")]
         public ActionResult Agregar()
         {
-            return View();
+            return View("Agregar");
         }
 
         //POST: Personal/Agregar
         [HttpPost]
-        public ActionResult Agregar(Personal unPersonal)
+        public ActionResult Agregar(Personal aPersonal)
         {
             try
             {
-                db.Personal.Add(new Personal { nombre = unPersonal.nombre, fichaCensal = unPersonal.fichaCensal, dni = unPersonal.dni, habilitado = true });
+                db.Personal.Add(aPersonal);
                 db.SaveChanges();
             }
             catch
             {
                 return RedirectToAction("Index", "Personal");
             }
-
-            return RedirectToAction("Agregar", "Personal");
+            ViewBag.Result = true;
+            return View("Agregar", aPersonal);
         }
 
         //GET: Personal/Editar/1
@@ -72,7 +72,7 @@ namespace gestionmateriales.Controllers
         public ActionResult Editar(int id)
         {
             Personal personalSeleccionado;
-
+            
             try
             {
                 personalSeleccionado = db.Personal.Find(id);
@@ -89,6 +89,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, Personal unPersonal)
         {
+            
             Personal nuevoPersonal = db.Personal.Find(id);
             try
             {
@@ -101,8 +102,10 @@ namespace gestionmateriales.Controllers
             {
                 return RedirectToAction("Buscar", "Personal");
             }
-
-            return RedirectToAction("Buscar", "Personal");
+            
+            ViewBag.Result = true;
+            
+            return View("Editar", nuevoPersonal);
         }
 
         //POST: Personal/Borrar/1
@@ -120,7 +123,7 @@ namespace gestionmateriales.Controllers
             {
                 return RedirectToAction("Buscar", "Personal");
             }
-
+            
             return RedirectToAction("Buscar", "Personal");
         }
     }
