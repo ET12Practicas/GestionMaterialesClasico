@@ -10,3 +10,4 @@
 //    document.getElementById("fc").value = "";
 //    document.getElementById("dni").value = "";
 //}
+
