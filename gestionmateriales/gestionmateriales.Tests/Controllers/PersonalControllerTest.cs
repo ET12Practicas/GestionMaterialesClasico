@@ -28,12 +28,6 @@ namespace gestionmateriales.Tests.Controllers
             Assert.IsNotNull("Agregar", result.ViewName);
         }
 
-        [TestMethod]
-        public void Personal_RetornaVistaBuscarPersonal()
-        {
-            ViewResult result = controller.Buscar("", "", "") as ViewResult;
-            Assert.IsNotNull("Buscar", result.ViewName);
-        }
 
         [TestMethod]
         public void Personal_RetornaVistaEditarPersonal()

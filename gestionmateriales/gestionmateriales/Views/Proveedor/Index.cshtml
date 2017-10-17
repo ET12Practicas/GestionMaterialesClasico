@@ -1,24 +1,105 @@
-﻿@{
-    ViewBag.Title = "Personal";
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.Proveedor>
+@{
+    ViewBag.Title = "Proveedor";
 }
 
 <div id="page-wrapper">
-    <br>
-    <div class="container">
-        <div class="starter-template">
-            <h1>Gestión de Proveedores</h1>
-            <hr />
-            <p class="lead">Seleccione la operación a realizar</p>
+    <br />
+    <div class="row">
+        <div class="container">
+            <h2>Gestión de Proveedores</h2>
         </div>
     </div>
-    <div class="container">
-        <div id="seleccion">
-            <div class="col-md-3">
-                <a class="btn btn-primary btn-block" href="~/Proveedor/Agregar" role="button">Nuevo Proveedor</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-primary btn-block" href="~/Proveedor/Buscar" role="button">Buscar</a>
-            </div>
+    <h5>Empresa o negocio donde se compran materiales o herramientas.</h5>
+    <hr />
+    <div class="col-md-3">
+        <a class="btn btn-primary btn-block" href="~/Proveedor/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agrega nuevo proveedor para comprar materiales o herramientas"><span class=" glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Nuevo Proveedor</a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tabla_proveedores" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Razon Social
+                        </th>
+                        <th>
+                            Dirección
+                        </th>
+                        <th>
+                            Teléfono
+                        </th>
+                        <th>
+                            Horario
+                        </th>
+                        <th>
+                            <span class="glyphicon glyphicon-pencil" aria-hidden=true></span>
+                        </th>
+                        <th>
+                            <span class="glyphicon glyphicon-trash" aria-hidden=true></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.razonSocial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.direccion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.horario)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", new { id = item.idProveedor })
+                            </td>
+                            <td>
+                                <a href="" data-toggle="modal" data-target="#myModal-@item.idProveedor">Borrar</a>
+
+                                <div class="modal fade" id="myModal-@item.idProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">Borrar Proveedor</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>¿Desea borrar el siguiente proveedor del sistema?</p>
+                                                <p><strong>Proveedor:</strong> @item.nombre</p>
+                                                <p><strong>Razón Social:</strong> @item.razonSocial</p>
+                                                <p><strong>CUIT:</strong> @item.cuit</p>
+                                                <p><strong>Teléfono:</strong> @item.telefono</p>
+                                                <p><strong>Dirección:</strong> @item.direccion</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="~/Proveedor/Borrar/@item.idProveedor" type="button" class="btn btn-primary">Aceptar</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $('#tabla_proveedores').DataTable();
+            </script>
         </div>
     </div>
 </div>

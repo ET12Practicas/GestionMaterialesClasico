@@ -21,27 +21,8 @@
 
 LOCK TABLES `material` WRITE;
 /*!40000 ALTER TABLE `material` DISABLE KEYS */;
-INSERT INTO `material` VALUES (1,'15','Tornillo',0,100,3,1,1,'Sin Stock',NULL,0,1,1,3),(2,'100','Taladro',0,5,3,2,2,'Sin Stock','No funciona',1,2,2,3);
+INSERT INTO `material` VALUES (1,'15','Tornillo',0,100,3,1,1,'Sin Stock',NULL,1,1,1,3),(2,'100','Taladro',0,8,3,2,2,'Sin Stock','No funciona',1,1,1,3),(3,'1000','Lima',0,1000,3,1,1,'Sin Stock',NULL,1,1,1,3),(4,'1001','Lima',0,1000,3,1,1,'Sin Stock',NULL,1,1,1,1),(5,'1000','Lima',0,1000,3,1,1,'Sin Stock',NULL,0,1,1,3),(6,'1000','Sillas',0,11,1,1,1,'Sin Stock',NULL,1,1,1,3),(7,'1000','jose',0,11,2,1,1,'Sin Stock',NULL,0,1,1,2),(8,'3232','Mesa',0,23,3,1,1,'Sin Stock',NULL,1,1,1,1),(9,'19191','Destornillador',0,22,1,1,1,'Sin Stock',NULL,1,1,1,1),(10,'19191','kdaksdkjal',0,22,1,1,1,'Sin Stock',NULL,1,1,1,1),(11,'23232','dasda',0,22,1,1,1,'Sin Stock',NULL,0,1,1,1),(12,'292','Morsa',0,23,3,1,1,'Sin Stock',NULL,1,1,1,3),(13,'292','Morsa',0,23,3,1,1,'Sin Stock',NULL,0,1,1,3);
 /*!40000 ALTER TABLE `material` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `ordentrabajo`
---
-
-LOCK TABLES `ordentrabajo` WRITE;
-/*!40000 ALTER TABLE `ordentrabajo` DISABLE KEYS */;
-INSERT INTO `ordentrabajo` VALUES (1,100,'Banco',1,'2017-10-01 00:00:00',2,1,2,1,1),(2,101,'Martillo',2,'2017-12-01 00:00:00',2,3,2,3,2),(3,1001,'Bodega',3,'2017-10-02 00:00:00',2,2,2,2,3);
-/*!40000 ALTER TABLE `ordentrabajo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `ordenpedido`
---
-
-LOCK TABLES `ordenpedido` WRITE;
-/*!40000 ALTER TABLE `ordenpedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ordenpedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -50,7 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `personal` WRITE;
 /*!40000 ALTER TABLE `personal` DISABLE KEYS */;
-INSERT INTO `personal` VALUES (1,'Gustavo Colombre',41353628,123456,1),(2,'Gonzalo Suarez',41235235,456780,1),(3,'Roberto Ordoñez',42654987,123789,1);
+INSERT INTO `personal` VALUES (1,'Gustavo Colombre',41353628,123456,1),(2,'Gonzalo Suarez',41235235,456780,1),(3,'Roberto Ordoñez',42654987,123789,1),(4,'Artie',23122312,100200,1),(5,'nuevowwwrr',34833834,292293,0),(6,'Jose',23232332,233223,1),(7,'Franco',23232323,232323,1),(8,'Martin',23232323,232323,1),(9,'Pedro',23232323,222222,1),(10,'i want i that way',10191818,101010,0),(11,'Claudio',23232323,232323,1),(12,'Marcos',27272727,222233,1),(13,'Jonathan Velazquez',19122921,192382,1);
 /*!40000 ALTER TABLE `personal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,27 +41,8 @@ UNLOCK TABLES;
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1,'Ferreteria','ads','11','11','SA','Pepe','10 a 15',1),(2,'Bosch','asd','10','10','SRL','Jose','8 a 16',1),(3,'Maderera','asd','10','10','SRL','Jose','8 a 16',1);
+INSERT INTO `proveedor` VALUES (1,'Ferreteria','ads','11','11','SA','Pepe','10 a 15',1),(2,'Bosch','asd','10','10','SRL','Jose','8 a 16',1),(3,'Maderera','asd','10','10','SRL','Jose','8 a 16',1),(4,'pepe','ancjancjs','292922929','2929292','SRL','dsdajdask','29292',1),(5,'pepesssss','ancjancjs','292922929','2929292','SRL','dsdajdask','29292',1),(6,'dsdasdas','dasdasd','31232','323232','sda','dasdasda','dasas',1);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `salida`
---
-
-LOCK TABLES `salida` WRITE;
-/*!40000 ALTER TABLE `salida` DISABLE KEYS */;
-/*!40000 ALTER TABLE `salida` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `tipoentrada`
---
-
-LOCK TABLES `tipoentrada` WRITE;
-/*!40000 ALTER TABLE `tipoentrada` DISABLE KEYS */;
-INSERT INTO `tipoentrada` VALUES (1,'Orden de Trabajo de Aplicación'),(2,'Orden de Pedido'),(3,'Donación'),(4,'Trabajo Práctico'),(5,'Sobrante');
-/*!40000 ALTER TABLE `tipoentrada` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -122,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-01  1:22:46
+-- Dump completed on 2017-10-17  9:37:14

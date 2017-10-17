@@ -4,25 +4,47 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.GestionMateriales
 {
+    /// <summary>
+    /// Clase Personal
+    /// Representa a cualquier persona para solicitar y/o retirar materiales..
+    /// </summary>
     [Table("Personal")]
     public class Personal
     {
+        /// <summary>
+        /// Identificador único de cada persona
+        /// </summary>
         [Key]
         [Required]
         public int idPersonal { get; set; }
 
+        /// <summary>
+        /// Primer nombre y apellido de cada persona
+        /// </summary>
         [Required]
         [StringLength(60)]
         public string nombre { get; set; }
 
+        /// <summary>
+        /// Documento Nacional de Identidad
+        /// </summary>
         public int dni { get; set; }
 
+        /// <summary>
+        /// Identificador único del personal
+        /// </summary>
         [Required]
         public int fichaCensal { get; set; }
 
+        /// <summary>
+        /// Campo para borrado logico, 1 visible ? 0 oculto
+        /// </summary>
         [Required]
         public bool habilitado { get; set; }
 
+        /// <summary>
+        /// Constructor que inicialliza la clase Personal, por defecto Habilitado: true
+        /// </summary>
         public Personal()
         {
             this.habilitado = true;

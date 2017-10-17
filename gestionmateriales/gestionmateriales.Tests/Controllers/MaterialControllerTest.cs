@@ -24,8 +24,8 @@ namespace gestionmateriales.Tests.Controllers
         [TestMethod]
         public void Material_RetornaVistaAltaMaterial()
         {
-            ViewResult result = controller.Alta() as ViewResult;
-            Assert.IsNotNull("Alta", result.ViewName);
+            ViewResult result = controller.Agregar() as ViewResult;
+            Assert.IsNotNull("Agregar", result.ViewName);
         }
 
         [TestMethod]
@@ -33,13 +33,6 @@ namespace gestionmateriales.Tests.Controllers
         {
             ViewResult result = controller.Editar(1) as ViewResult;
             Assert.IsNotNull("Editar", result.ViewName);
-        }
-
-        [TestMethod]
-        public void Material_RetornaVistaBuscarMaterial()
-        {
-            ViewResult result = controller.Buscar("", "", "") as ViewResult;
-            Assert.IsNotNull("Buscar", result.ViewName);
         }
     }
 }

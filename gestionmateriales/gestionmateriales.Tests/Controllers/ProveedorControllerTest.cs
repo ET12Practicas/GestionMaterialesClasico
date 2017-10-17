@@ -16,13 +16,6 @@ namespace gestionmateriales.Tests.Controllers
         }
 
         [TestMethod]
-        public void Proveedor_RetornaVistaBuscarProveedor()
-        {
-            ViewResult result = controller.Buscar("", "", "") as ViewResult;
-            Assert.IsNotNull("Buscar", result.ViewName);
-        }
-
-        [TestMethod]
         public void Proveedor_RetornaVistaAgregarProveedor()
         {
             ViewResult result = controller.Agregar() as ViewResult;

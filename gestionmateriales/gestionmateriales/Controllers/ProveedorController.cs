@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using gestionmateriales.Models.GestionMateriales;
@@ -15,38 +14,11 @@ namespace gestionmateriales.Controllers
         [Route("/Proveedor")]
         public ActionResult Index()
         {
-            return View();
+            List<Proveedor> proveedores = db.Proveedor.Where(x => x.habilitado).ToList();
+
+            return View(proveedores);
         }
 
-        // GET: Proveedor/Buscar
-        [Route("/Proveedor/Buscar")]
-        public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
-        {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_asc" : "";
-
-            //searchString = currentFilter;
-
-            ViewBag.CurrentFilter = searchString;
-
-            List<Proveedor> staff = db.Proveedor.Where(x => x.habilitado == true).Take(20).ToList();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                staff = db.Proveedor.Where(s => s.nombre.ToUpper().Contains(searchString.ToUpper()) && s.habilitado == true).ToList();
-            }
-
-            switch (sortOrder)
-            {
-                case "nombre_asc":
-                    staff = staff.OrderBy(s => s.nombre).ToList();
-                    break;
-            }
-
-            return View(staff.ToList());
-        }
-
-        // GET: Proveedor/Agregar
         [Route("/Proveedor/Agregar")]
         public ActionResult Agregar()
         {
@@ -68,7 +40,9 @@ namespace gestionmateriales.Controllers
                 return RedirectToAction("Index", "Proveedor");
             }
 
-            return RedirectToAction("Agregar", "Proveedor");
+            ViewBag.Result = true;
+
+            return View("Agregar", unProveedor);
         }
 
         //GET: Proveedor/Editar/1
@@ -83,7 +57,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Buscar", "Proveedor");
+                return RedirectToAction("Index", "Proveedor");
             }
 
             return View(proveedorSeleccionado);
@@ -107,29 +81,30 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Buscar", "Proveedor");
+                return RedirectToAction("Index", "Proveedor");
             }
+            
+            ViewBag.Result = true;
 
-            return RedirectToAction("Buscar", "Proveedor");
+            return View("Editar", unProveedor);
         }
 
         //POST: Proveedor/Borrar/1
-        //public ActionResult Borrar(int id)
-        //{
-        //    Proveedor proveedorSeleccionado = db.Proveedor.Find(id);
+        public ActionResult Borrar(int id)
+        {
+            Proveedor proveedorSeleccionado = db.Proveedor.Find(id);
 
-        //    try
-        //    {
-        //        // db.Personal.Remove(personalSeleccionado);
-        //        proveedorSeleccionado.habilitado = false;
-        //        db.SaveChanges();
-        //    }
-        //    catch
-        //    {
-        //        return RedirectToAction("Buscar", "Proveedor");
-        //    }
+            try
+            {
+                proveedorSeleccionado.habilitado = false;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Proveedor");
+            }
 
-        //    return RedirectToAction("Buscar", "Proveedor");
-        //}
+            return RedirectToAction("Index", "Proveedor");
+        }
     }
 }

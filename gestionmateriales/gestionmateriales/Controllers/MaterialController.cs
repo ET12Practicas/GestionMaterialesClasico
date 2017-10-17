@@ -14,107 +14,43 @@ namespace gestionmateriales.Controllers
         [Route("/Material")]
         public ActionResult Index()
         {
-            return View();
-        }
-        
-        // GET: Material/Sumar
-        //[Route("/Material/Sumar")]
-        //public ActionResult Sumar()
-        //{
-        //    return View();
-        //}
-        
-        // GET: Material/Restar
-        //public ActionResult Restar()
-        //{
-        //    return View();
-        //}
-        
-        // GET: Material/Agregar
+            List<Material> materiales = db.Material.Where(x => x.habilitado).ToList();
 
-        [Route("/Material/Alta")]
-        public ActionResult Alta()
+            return View(materiales);
+        }
+
+        //GET: Material/Agregar
+        [Route("/Material/Agregar")]
+        public ActionResult Agregar()
         {
             cargarProveedor();
-
             cargarUnidad();
-
             cargarTipoMaterial();
-
             return View();
         }
                 
         //POST: Material/Agregar
         [HttpPost]
-        public ActionResult Alta(Material aMat)
+        public ActionResult Agregar(Material aMat)
         {
             try
             {
                 Unidad u = db.Unidad.Find(aMat.Unidad_Id);
                 Proveedor p = db.Proveedor.Find(aMat.Proveedor_Id);
                 TipoMaterial tm = db.TipoMaterial.Find(aMat.TipoMaterial_Id);
-
-                //db.Material.Add(new Material
-                //{
-                //    codigo = unMaterial.codigo,
-                //    nombre = unMaterial.nombre,
-                //    stockMinimo = unMaterial.stockMinimo,
-                //    detalle = unMaterial.detalle,
-                //    Unidad_Id = u.idUnidad,
-                //    Proveedor_Id = p.idProveedor,
-                //    TipoMaterial_Id = tm.idTipoMaterial,
-                //    //Unidad = u,
-                //    //Proveedor = p,
-                //    //TipoMaterial = tm
-                //});
-
                 db.Material.Add(new Material(aMat.codigo, aMat.nombre, aMat.stockMinimo, aMat.detalle, u, p, tm));
-
                 db.SaveChanges();
             }
             catch
             {
                 return RedirectToAction("Index", "Material");
             }
-
-            return RedirectToAction("Alta", "Material");
+            cargarProveedor();
+            cargarUnidad();
+            cargarTipoMaterial();
+            ViewBag.Result = true;
+            return View("Agregar", aMat);
         }
-
-        //POST: Material/Sumar
-        //[HttpPost]
-        //public ActionResult Sumar(Material unMaterial, int sumaActual)
-        //{
-        //    try
-        //    {
-        //        unMaterial.stockActual = unMaterial.stockActual + sumaActual;
-        //        db.SaveChanges();
-        //    }
-        //    catch
-        //    {
-        //        return RedirectToAction("Index", "Material");
-        //    }
-
-        //    return RedirectToAction("Sumar", "Material");
-        //}
-
-        //POST: Material/Restar
-        //[HttpPost]
-        //public ActionResult Restar(Material unMaterial, int restaActual)
-        //{
-        //    try
-        //    {
-        //        unMaterial.stockActual = unMaterial.stockActual - restaActual;
-        //        db.SaveChanges();
-        //    }
-        //    catch
-        //    {
-        //        return RedirectToAction("Index", "Material");
-        //    }
-
-        //    return RedirectToAction("Restar", "Material");
-        //}
-
-        //GET: Materiales/Editar/1
 
         [Route("/Material/Editar/{id}")]
         public ActionResult Editar(int id)
@@ -135,7 +71,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Buscar", "Material");
+                return RedirectToAction("Index", "Material");
             }
 
             return View(materialSeleccionado);
@@ -160,46 +96,15 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Buscar", "Material");
+                return RedirectToAction("Index", "Material");
             }
-
-            return RedirectToAction("Buscar", "Material");
+            cargarProveedor();
+            cargarUnidad();
+            cargarTipoMaterial();
+            ViewBag.Result = true;
+            return View("Editar", unMaterial);
         }
         
-        
-        // GET: Material/Buscar
-        [Route("/Material/Buscar")]
-        public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
-        {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.nombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_asc" : "";
-            
-            //ViewBag.nombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_desc" : "";
-            //searchString = currentFilter;
-
-            ViewBag.CurrentFilter = searchString;
-
-            List<Material> staff = db.Material.Where(x => x.habilitado == true).Take(20).ToList();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                //TODO: Que ???
-                staff = db.Material.Where(s => s.nombre.Contains(searchString.ToUpper()) && s.habilitado == true).ToList();
-            }
-
-            switch (sortOrder)
-            {
-                case "nombre_asc":
-                    staff = staff.OrderBy(s => s.nombre).ToList();
-                    break;
-                default:
-                    staff = staff.OrderByDescending(s => s.nombre).ToList();
-                    break;
-            }
-
-            return View(staff.ToList());
-        }
-
         //POST: Material/Borrar/1
         public ActionResult Borrar(int id)
         {
@@ -213,10 +118,10 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Buscar", "Material");
+                return RedirectToAction("Index", "Material");
             }
 
-            return RedirectToAction("Buscar", "Material");
+            return RedirectToAction("Index", "Material");
         }
 
         private void cargarTipoMaterial(object selectedTipoMaterial = null)

@@ -4,24 +4,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - OT</title>
+    <title>Principal - OT</title>
     
-    <!-- link href="~/Content/Site.css" rel="stylesheet" type="text/css" / -->
-    <!--link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" /-->
-    
-    <!-- ref Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
     <!--JQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!---script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></!--script-->
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
+    <!--script-- src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></!--script-->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
 
     <!--Scrips Varios-->
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
+    <!--Datatables-->
+    <!--link rel="stylesheet" type="text/css" href="/Scripts/Datatables/jquery.dataTables.css" />
+    <!--script type="text/javascript" charset="utf8" src="/Scripts/Datatables/jquery.dataTables.min.js"></!--script-->
+    <link rel="stylesheet" type="text/css" href="~/Scripts/Datatables/datatables.css" />
+    <script type="text/javascript" src="~/Scripts/Datatables/datatables.min.js"></script>
+
+    <!--Font Awesome-->
+    <!-->script src="https://use.fontawesome.com/4a38d0457f.js"></!--script-->
+    <!--script type="text/javascript" src="~/Scripts/fontAwesome.js"></!--script-->
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,12 +38,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Oficina Técnica", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="~/Home/Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entrada<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> Entrada<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Orden de Trabajo de Aplicación", "Index", "OrdenTrabajo")</li>
                             <li>@Html.ActionLink("Orden de Pedido", "Index", "OrdenPedido")</li>
@@ -43,10 +52,10 @@
                             <li>@Html.ActionLink("Sobrante", "", "")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Stock", "Index", "Stock")</li>
-                    <li>@Html.ActionLink("Materiales", "Index", "Material")</li>
-                    <li>@Html.ActionLink("Proveedores", "Index", "Proveedor")</li>
-                    <li>@Html.ActionLink("Personal", "Index", "Personal")</li>
+                    <li><a href="~/Stock/Index"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Stock</a></li>
+                    <li><a href="~/Material/Index"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Materiales</a></li>
+                    <li><a href="~/Proveedor/Index"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Proveedores</a></li>
+                    <li><a href="~/Personal/Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personal</a></li>
                     </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -60,9 +69,8 @@
             <p>&copy; @DateTime.Now.Year - ET N°12 DE 1 Libertador General José de San Martín</p>
         </footer>
     </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+      
+    <!--script-- src="~/Scripts/bootstrap.min.js"></!--script-->
     <script src="~/Scripts/animacion.js"></script>
 </body>
 </html>

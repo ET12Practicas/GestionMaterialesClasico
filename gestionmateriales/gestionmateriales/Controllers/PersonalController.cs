@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using gestionmateriales.Models.GestionMateriales;
+using System.Collections.Generic;
 
 namespace gestionmateriales.Controllers
 {
@@ -14,33 +13,9 @@ namespace gestionmateriales.Controllers
         [Route("/Personal")]
         public ActionResult Index()
         {
-            return View();
-        }
+            List<Personal> personas = db.Personal.Where(x => x.habilitado == true).ToList();
 
-        // GET: Personal/Buscar
-        [Route("/Personal/Buscar")]
-        public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
-        {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_asc" : "";
-            
-            ViewBag.CurrentFilter = searchString;
-
-            List<Personal> staff = db.Personal.Where(x => x.habilitado == true).Take(20).ToList();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                staff = db.Personal.Where(s => (s.nombre.ToUpper().Contains(searchString.ToUpper()) || s.nombre.ToUpper().Contains(searchString.ToUpper())) && s.habilitado == true).ToList();
-            }
-
-            switch (sortOrder)
-            {
-                case "nombre_asc":
-                    staff = staff.OrderBy(s => s.nombre).ToList();
-                    break;
-            }
-            @ViewData["totPersonal"] = db.Personal.Where(x => x.habilitado == true).Count().ToString();
-            return View(staff.ToList());
+            return View(personas);
         }
 
         // GET: Personal/Agregar
@@ -115,16 +90,15 @@ namespace gestionmateriales.Controllers
             
             try
             {
-               // db.Personal.Remove(personalSeleccionado);
                 personalSeleccionado.habilitado = false;
                 db.SaveChanges();
             }
             catch
             {
-                return RedirectToAction("Buscar", "Personal");
+                return RedirectToAction("index", "Personal");
             }
             
-            return RedirectToAction("Buscar", "Personal");
+            return RedirectToAction("Index", "Personal");
         }
     }
 }
