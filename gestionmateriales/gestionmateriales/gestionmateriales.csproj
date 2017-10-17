@@ -204,6 +204,7 @@
     <Content Include="Scripts\Datatables\datatables.min.css" />
     <Content Include="Scripts\Datatables\datatables.min.js" />
     <Content Include="Scripts\fontAwesome.js" />
+    <None Include="Properties\PublishProfiles\win2012-01.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
