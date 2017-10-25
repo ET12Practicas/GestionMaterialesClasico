@@ -1,0 +1,81 @@
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.ItemOT>
+@{
+    ViewBag.Title = "Material";
+}
+
+
+<div id="page-wrapper">
+    <br />
+    <div class="row">
+        <div class="container">
+            <h2>Selección de Materiales</h2>
+        </div>
+    </div>
+    <h5>Vale por una descripción.</h5>
+    <hr />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            @using (@Html.BeginForm("AddToCart", "ShopCartMaterial",  new { idOt = @ViewData["idOt"] }, FormMethod.Post))
+            {
+                <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Código
+                            </th>
+                            <th>
+                                Material
+                            </th>
+                            <th>
+                                Stock Actual
+                            </th>
+                            <th>
+                                Estado
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.material.codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.material.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.material.stockActual)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.material.estado)
+                                </td>
+                                <td>
+                                    <div class="input-group input-group-sm">
+                                        <input id="idMat-@item.material.idMaterial" type="hidden" name="idMat" value="@item.material.idMaterial" />
+                                        @Html.EditorFor(modelItem => item.cantidad, new { htmlAttributes = new { @min = 0, @id = "itemCant-" + @item.material.idMaterial.ToString() } })
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Extra-small button group"> 
+                                        <input id="addItem-@item.material.idMaterial" type="submit" class="btn btn-default" value="Agregar" />
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            <script type="text/javascript"> $('#tabla_materiales').DataTable();</script>
+        </div>
+    </div>
+</div>

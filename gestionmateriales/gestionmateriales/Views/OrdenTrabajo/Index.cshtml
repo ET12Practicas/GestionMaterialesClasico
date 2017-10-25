@@ -1,17 +1,95 @@
-﻿
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.OrdenTrabajo>
 @{
     ViewBag.Title = "OrdenTrabajo";
 }
 
 <div id="page-wrapper">
-    <br>
-    <div class="container">
-        <div class="starter-template">
-            <h1>Gestión de Ordenes de Trabajo</h1>
-            <hr />
-            <p class="lead">Seleccione la operación a realizar</p>
+    <br />
+    <div class="row">
+        <div class="container">
+            <h2>Ordenes de Trabajo de Aplicación</h2>
         </div>
     </div>
+<<<<<<< .mine
+    <h5>Vale por una breve descripción.</h5>
+    <hr />
+    <div class="col-md-3">
+        <a id="btn_crearordenpedido" class="btn btn-primary btn-block" href="~/OrdenTrabajo/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de trabajo de aplicación"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Nueva Orden de Trabajo</a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tabla_ordenpedido" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Numero
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Turno
+                        </th>
+                        <th>
+                            Orden de Trabajo
+                        </th>
+                        <th>
+                            Responsable
+                        </th>
+                        <th>
+                            Jefe de Seccion
+                        </th>
+                        <th>
+                            <span class="glyphicon glyphicon-pencil" aria-hidden=true></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nroOrdenTrabajo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fecha.Year)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Turno.nombreTurno)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombreTrabajo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Responsable.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.JefeSeccion.nombre)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", new { id = item.idOrdenTrabajo })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $('#tabla_ordenpedido').DataTable();
+                $('#btn_crearPersonal').tooltip();
+            </script>
+||||||| .r56
+    <div class="container">
+        <div id="seleccion">
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-block" href="~/OrdenTrabajo/Alta" role="button">Nueva Orden de Trabajo</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-block" href="~/OrdenTrabajo/Buscar" role="button">Buscar</a>
+            </div>
+=======
     <div class="container">
         <div id="seleccion">
             <div class="col-md-3">
@@ -20,6 +98,7 @@
             <div class="col-md-3">
                 <a class="btn btn-primary btn-block" href="~/OrdenTrabajo/Buscar" role="button">Buscar</a>
             </div>
+>>>>>>> .r57
         </div>
     </div>
 </div>
