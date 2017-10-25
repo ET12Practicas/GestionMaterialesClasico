@@ -4,44 +4,64 @@
 }
 
 <div id="page-wrapper">
-    <br />
     <div class="container">
-        <h1>Editar Pedido</h1>
+        <br />
+        <div class="row">
+            <div class="container">
+                <h2>Gestion de Ordenes de Pedido</h2>
+            </div>
+        </div>
+        <h5>Edita iformacion de las ordenes de pedido existentes.</h5>
         <hr />
         <div class="col-sm-offset-2 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Editar Pedido</h3>
+                    <h3 class="panel-title">Editar Datos de las Ordenes de Pedido</h3>
                 </div>
                 <div class="panel-body">
-                    @using (@Html.BeginForm("Editar", "Pedidos", FormMethod.Post))
+                    @using (@Html.BeginForm("Editar", "OrdenPedido", FormMethod.Post))
                     {
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nroOrdenPedido, "Número Orden de Pedido", new { @class = "col-md-5 control-label" })
-                            @Html.EditorFor(model => model.nroOrdenPedido, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nroOrdenTrabajo, "Número Orden de Trabajo", new { @class = "col-md-6 control-label" })
-                            @Html.EditorFor(model => model.nroOrdenTrabajo, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.destino, "Destino", new { @class = "col-md-12 control-label" })
-                            @Html.TextAreaFor(model => model.destino, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 150, required = "true" })
-                        </div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nroOrdenPedido, "Nro Orden de Pedido", new { @class = "col-md-4 control-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.nroOrdenPedido, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nroOrdenTrabajo, "Nro Orden de Trabajo", new { @class = "col-md-4 control-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.nroOrdenTrabajo, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.destino, "Destino", new { @class = "col-md-4 control-label" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.destino, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 150, required = "true" })
+                                </div>
+                            </div>
                         <div class="row">
-                            <div class="col-xs-6 col-md-8">
-                                <input type="reset" class="btn btn-default" value="Restaurar Valores" />
+                            <div class="col-md-3">
+                                <input type="reset" class="btn btn-default" value="Restaurar" data-toggle="tooltip" data-placement="right" title="Restaura los valores antes de los cambios" />
                             </div>
-                            <div class="col-xs-1 col-md-2">
-                                <input type="submit" class="btn btn-primary" value="Aceptar" />
+                            <div class="col-md-offset-3 col-md-3">
+                                <input type="submit" class="btn btn-primary" value="Aceptar" data-toggle="tooltip" data-placement="right" title="Confirma la operación" />
                             </div>
-                            <div class="col-xs-1 col-md-1">
-                                <input type="button" class="btn btn-default" onclick="location.href='../Buscar'" value="Cancelar" />
+                            <div class="col-md-3">
+                                <input type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                             </div>
                         </div>
+
+                      </div>
                     }
                 </div>
             </div>
+            @if (ViewBag.Result == true)
+            {
+                <div id="alert_message" class="alert alert-success">
+                    Los datos se guardaron con éxito.
+                </div>
+            }
         </div>
     </div>
 </div>

@@ -17,9 +17,9 @@ namespace gestionmateriales.Controllers
             return View();
         }
         
-        // GET: OrdenTrabajo/Alta
-        [Route("/OrdenTrabajo/Alta")]
-        public ActionResult Alta()
+        // GET: OrdenTrabajo/Agregar
+        [Route("/OrdenTrabajo/Agregar")]
+        public ActionResult Agregar()
         {
             cargarJefeSeccion();
             cargarResponsable();
@@ -28,9 +28,9 @@ namespace gestionmateriales.Controllers
             return View();
         }
 
-        //POST: OrdenTrabajo/Alta
+        //POST: OrdenTrabajo/Agregar
         [HttpPost]
-        public ActionResult Alta(OrdenTrabajo aOT)
+        public ActionResult Agregar(OrdenTrabajo aOT)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace gestionmateriales.Controllers
                 return RedirectToAction("Index", "OrdenTrabajo");
             }
 
-            return RedirectToAction("Alta", "OrdenTrabajo");
+            return RedirectToAction("Agregar", "OrdenTrabajo");
         }
 
         //GET: OrdenTrabajo/Editar/1

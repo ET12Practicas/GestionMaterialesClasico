@@ -10,38 +10,40 @@ namespace gestionmateriales.Controllers
     {
         OtContext db = new OtContext();
 
-        // GET: Pedidos
+        // GET: OrdenPedido
         [Route("/OrdenPedido")]
         public ActionResult Index()
         {
-            return View();
+            List<OrdenPedido> pedidos = db.OrdenPedido.Where(x => x.habilitado == true).ToList();
+
+            return View(pedidos);
         }
-       
-        // GET: Pedido/Agregar
+
+        // GET: OrdenPedido/Agregar
         [Route("/OrdenPedido/Agregar")]
         public ActionResult Agregar()
         {
             return View();
         }
-      
-        //POST: Pedido/1/Agregar
+
+        //POST: OrdenPedido/1/Agregar
         [HttpPost]
         public ActionResult Agregar(OrdenPedido unPedido)
         {
             try
             {
-                db.OrdenPedido.Add(new OrdenPedido(unPedido.nroOrdenPedido, unPedido.nroOrdenTrabajo, unPedido.destino)); 
+                db.OrdenPedido.Add(unPedido); 
                 db.SaveChanges();
             }
             catch
             {
-                return RedirectToAction("Index", "Pedidos");
+                return RedirectToAction("Index", "OrdenPedido");
             }
-
-            return RedirectToAction("Agregar", "Pedidos");
+            ViewBag.Result = true;
+            return View("Agregar", unPedido);
         }
-     
-        //GET: Pedidos/Editar/1
+
+        //GET: OrdenPedido/Editar/1
         [Route("/OrdenPedido/Editar/{id}")]
         public ActionResult Editar(int id)
         {
@@ -53,13 +55,13 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Buscar", "Pedidos");
+                return RedirectToAction("Buscar", "OrdenPedido");
             }
 
             return View(pedidoSeleccionado);
         }
 
-        //POST: Pedido/Editar/1
+        //POST: OrdenPedido/Editar/1
         [HttpPost]
         public ActionResult Editar(int id, OrdenPedido unPedido)
         {
@@ -74,50 +76,12 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Buscar", "Pedidos");
+                return RedirectToAction("Buscar", "OrdenPedido");
             }
 
-            return RedirectToAction("Buscar", "Pedidos");
-        }
-       
-        // GET: Pedido/Buscar
-        [Route("/OrdenPedido/Buscar")]
-        public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
-        {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.nroOrdenPedidoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenPedido_asc" : "";
-            ViewBag.nroOrdenPedidoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenPedido_desc" : "";
-            ViewBag.nroOrdenTrabajoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenTrabajo_asc" : "";
-            ViewBag.nroOrdenTrabajoSortParm = String.IsNullOrEmpty(sortOrder) ? "nroOrdenTrabajo_desc" : "";
+            ViewBag.Result = true;
 
-            //searchString = currentFilter;
-
-            ViewBag.CurrentFilter = searchString;
-
-            List<OrdenPedido> staff = db.OrdenPedido.Where(x => x.habilitado == true).Take(20).ToList();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                staff = db.OrdenPedido.Where(s => (s.nroOrdenPedido.ToString().Contains(searchString.ToUpper()) || s.nroOrdenTrabajo.ToString().Contains(searchString.ToUpper())) && s.habilitado == true).ToList();
-            }
-
-            switch (sortOrder)
-            {
-                case "nroOrdenPedido_asc":
-                    staff = staff.OrderBy(s => s.nroOrdenPedido).ToList();
-                    break;
-                case "nroOrdenPedido_desc":
-                    staff = staff.OrderByDescending(s => s.nroOrdenPedido).ToList();
-                    break;
-                case "nroOrdenTrabajo_asc":
-                    staff = staff.OrderBy(s => s.nroOrdenTrabajo).ToList();
-                    break;
-                case "nroOrdenTrabajo_desc":
-                    staff = staff.OrderByDescending(s => s.nroOrdenTrabajo).ToList();
-                    break;
-            }
-
-            return View(staff.ToList());
+            return View("Editar", nuevoPedido);
         }
 
         //POST: Pedido/Borrar/1
@@ -127,16 +91,15 @@ namespace gestionmateriales.Controllers
 
             try
             {
-                // db.Personal.Remove(personalSeleccionado);
                 pedidoSeleccionado.habilitado = false;
                 db.SaveChanges();
             }
             catch
             {
-                return RedirectToAction("Buscar", "Pedidos");
+                return RedirectToAction("Index", "OrdenPedido");
             }
 
-            return RedirectToAction("Buscar", "Pedidos");
+            return RedirectToAction("Index", "OrdenPedido");
         }
     }
 }

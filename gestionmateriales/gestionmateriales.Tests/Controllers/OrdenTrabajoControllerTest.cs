@@ -24,7 +24,7 @@ namespace gestionmateriales.Tests.Controllers
         [TestMethod]
         public void OrdenTrabajo_RetornaVistaAltaOT()
         {
-            ViewResult result = controller.Alta() as ViewResult;
+            ViewResult result = controller.Agregar() as ViewResult;
             Assert.IsNotNull("Alta", result.ViewName);
         }
 

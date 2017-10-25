@@ -25,6 +25,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public OrdenPedido()
         {
+            this.habilitado = true;
         }
 
         public OrdenPedido(int aNroOP, int aNroOT, string aDestino)
