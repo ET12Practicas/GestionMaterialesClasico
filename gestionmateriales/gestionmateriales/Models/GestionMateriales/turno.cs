@@ -12,7 +12,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
         [Required]
         [StringLength(7)]
-        public string nombreTurno { get; set; }
+        public string nombre { get; set; }
 
         public Turno()
         {

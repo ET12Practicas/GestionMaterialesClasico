@@ -40,9 +40,6 @@
                             Estado
                         </th>
                         <th>
-                            Detalle
-                        </th>
-                        <th>
                             Tipo
                         </th>
                         <th>
@@ -80,16 +77,13 @@
                                 @Html.DisplayFor(modelItem => item.estado)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.detalle)
+                                @Html.DisplayFor(modelItem => item.tipoMaterial.nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.TipoMaterial.nombre)
+                                @Html.DisplayFor(modelItem => item.unidad.nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Unidad.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Proveedor.nombre)
+                                @Html.DisplayFor(modelItem => item.proveedor.nombre)
                             </td>
                             <td>
                                 @Html.ActionLink("Editar", "Editar", new { id = item.idMaterial })

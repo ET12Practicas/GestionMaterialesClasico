@@ -40,14 +40,22 @@ namespace gestionmateriales.Models.GestionMateriales
         /// Campo para borrado logico, 1 visible ? 0 oculto
         /// </summary>
         [Required]
-        public bool habilitado { get; set; }
+        public bool hab { get; set; }
 
         /// <summary>
         /// Constructor que inicialliza la clase Personal, por defecto Habilitado: true
         /// </summary>
         public Personal()
         {
-            this.habilitado = true;
+            this.hab = true;
+        }
+
+        public Personal(string aNombre, int aDni, int aFichaCensal)
+        {
+            this.nombre = aNombre;
+            this.dni = aDni;
+            this.fichaCensal = aFichaCensal;
+            this.hab = true;
         }
     }
 }

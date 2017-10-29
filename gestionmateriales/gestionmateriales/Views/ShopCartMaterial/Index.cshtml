@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.ItemOT>
 @{
-    ViewBag.Title = "Material";
+    ViewBag.Title = "Selección de Materiales";
 }
-
 
 <div id="page-wrapper">
     <br />
@@ -13,69 +12,78 @@
     </div>
     <h5>Vale por una descripción.</h5>
     <hr />
-    <br />
+    <div class="col-md-3">
+        <a id="btn_generarordentrabajo" class="btn btn-primary btn-block" href="~/ShopCartMaterial/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
+    </div>
+    <hr />
     <br />
     <br />
     <div class="row">
         <div class="col-md-12">
-            @using (@Html.BeginForm("AddToCart", "ShopCartMaterial",  new { idOt = @ViewData["idOt"] }, FormMethod.Post))
-            {
-                <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
-                    <thead>
+            <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Material
+                        </th>
+                        <th>
+                            Stock Actual
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th>
-                                Código
-                            </th>
-                            <th>
-                                Material
-                            </th>
-                            <th>
-                                Stock Actual
-                            </th>
-                            <th>
-                                Estado
-                            </th>
-                            <th>
-                                Cantidad
-                            </th>
-                            <th>
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.codigo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.stockActual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.estado)
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" value="@item.cantidad" onclick="updateCant(this)" onkeypress="updateCant(this)"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Extra-small button group">
+                                    <a id="itemLink-@item.material.idMaterial" href="/ShopCartMaterial/AddToCart?idOt=@ViewData["idOt"]&idMaterial=@item.material.idMaterial&itemCantidad=@item.cantidad">Agregar</a>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.material.codigo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.material.nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.material.stockActual)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.material.estado)
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input id="idMat-@item.material.idMaterial" type="hidden" name="idMat" value="@item.material.idMaterial" />
-                                        @Html.EditorFor(modelItem => item.cantidad, new { htmlAttributes = new { @min = 0, @id = "itemCant-" + @item.material.idMaterial.ToString() } })
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Extra-small button group"> 
-                                        <input id="addItem-@item.material.idMaterial" type="submit" class="btn btn-default" value="Agregar" />
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                    }
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $('#tabla_materiales').DataTable();
+                $('#btn_generarordentrabajo').tooltip();
+
+            //update que modifica el href del link "agregar"
+            function updateCant(control) {
+                var str = control.id.split('-');
+                var strhref = "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
+                $('#itemLink-' + str[1]).attr("href", strhref);
             }
-            <script type="text/javascript"> $('#tabla_materiales').DataTable();</script>
+            </script>
         </div>
     </div>
 </div>

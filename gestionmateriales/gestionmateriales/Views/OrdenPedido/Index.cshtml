@@ -13,7 +13,7 @@
         <h5>Ordenes de pedido ingresadas</h5>
     <hr />
     <div class="col-md-3">
-        <a id="btn_CrearOrdenPedido" class="btn btn-primary btn-block" href="~/OrdenPedido/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de pedido"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Nueva Orden de Pedido</a>
+        <a id="btn_CrearOrdenPedido" class="btn btn-primary btn-block" href="~/OrdenPedido/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de pedido">Nueva Orden de Pedido</a>
     </div>
     <br />
     <br />
@@ -45,10 +45,10 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.nroOrdenPedido)
+                                @Html.DisplayFor(modelItem => item.numOp)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.nroOrdenTrabajo)
+                                @Html.DisplayFor(modelItem => item.numOt)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.destino)
@@ -67,8 +67,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p>¿Desea borrar la siguiente orden de pedido del sistema?</p>
-                                                <p><strong>Orden de Pedido Numero: </strong>@item.nroOrdenPedido</p>
-                                                <p><strong>Orden de Trabajo Numero: </strong>@item.nroOrdenTrabajo</p>
+                                                <p><strong>Orden de Pedido Numero: </strong>@item.numOp</p>
+                                                <p><strong>Orden de Trabajo Numero: </strong>@item.numOt</p>
                                                 <p><strong>Destino: </strong>@item.destino</p>
                                             </div>
                                             <div class="modal-footer">

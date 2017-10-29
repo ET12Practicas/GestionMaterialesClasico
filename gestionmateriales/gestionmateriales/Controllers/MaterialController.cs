@@ -8,14 +8,13 @@ namespace gestionmateriales.Controllers
 {
     public class MaterialController : Controller
     {
-        OtContext db = new OtContext();
+        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
         
         // GET: Material
         [Route("/Material")]
         public ActionResult Index()
         {
-            List<Material> materiales = db.Material.Where(x => x.habilitado).ToList();
-
+            List<Material> materiales = db.materiales.Where(x => x.hab).ToList();
             return View(materiales);
         }
 
@@ -35,10 +34,10 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                Unidad u = db.Unidad.Find(aMat.Unidad_Id);
-                Proveedor p = db.Proveedor.Find(aMat.Proveedor_Id);
-                TipoMaterial tm = db.TipoMaterial.Find(aMat.TipoMaterial_Id);
-                db.Material.Add(new Material(aMat.codigo, aMat.nombre, aMat.stockMinimo, aMat.detalle, u, p, tm));
+                Unidad u = db.unidades.Find(aMat.idUnidad);
+                Proveedor p = db.proveedores.Find(aMat.idProveedor);
+                TipoMaterial tm = db.tipoMaterial.Find(aMat.idTipoMaterial);
+                db.materiales.Add(new Material(aMat.codigo, aMat.nombre, aMat.stockMinimo, aMat.detalle, u, p, tm));
                 db.SaveChanges();
             }
             catch
@@ -55,52 +54,37 @@ namespace gestionmateriales.Controllers
         [Route("/Material/Editar/{id}")]
         public ActionResult Editar(int id)
         {
-
-            cargarProveedor();
-
-            cargarUnidad();
-
-            cargarTipoMaterial();
-
-
-            Material materialSeleccionado;
-
-            try
-            {
-                materialSeleccionado = db.Material.Find(id);
-            }
-            catch
-            {
-                return RedirectToAction("Index", "Material");
-            }
-
-            return View(materialSeleccionado);
+            Material materialSelect = db.materiales.Find(id);
+            cargarProveedor(materialSelect.idProveedor);
+            cargarUnidad(materialSelect.idUnidad);
+            cargarTipoMaterial(materialSelect.idTipoMaterial);
+            return View(materialSelect);
         }
       
         //POST: Material/Editar/1
         [HttpPost]
         public ActionResult Editar(int id, Material unMaterial)
         {
-            Material nuevoMaterial = db.Material.Find(id);
+            Material materialEdit = db.materiales.Find(id);
             
             try
             {
-                nuevoMaterial.nombre = unMaterial.nombre;
-                nuevoMaterial.codigo = unMaterial.codigo;
-                nuevoMaterial.Unidad = db.Unidad.Find(unMaterial.Unidad_Id);
-                nuevoMaterial.stockMinimo = unMaterial.stockMinimo;
-                nuevoMaterial.Proveedor = db.Proveedor.Find(unMaterial.Proveedor_Id);
-                nuevoMaterial.TipoMaterial = db.TipoMaterial.Find(unMaterial.TipoMaterial_Id);
-                nuevoMaterial.detalle = unMaterial.detalle;
+                materialEdit.nombre = unMaterial.nombre;
+                materialEdit.codigo = unMaterial.codigo;
+                materialEdit.idUnidad = unMaterial.idUnidad;
+                materialEdit.stockMinimo = unMaterial.stockMinimo;
+                materialEdit.idProveedor = unMaterial.idProveedor; ;
+                materialEdit.idTipoMaterial = unMaterial.idTipoMaterial;
+                materialEdit.detalle = unMaterial.detalle;
                 db.SaveChanges();
             }
             catch
             {
                 return RedirectToAction("Index", "Material");
             }
-            cargarProveedor();
-            cargarUnidad();
-            cargarTipoMaterial();
+            cargarProveedor(materialEdit.idProveedor);
+            cargarUnidad(materialEdit.idUnidad);
+            cargarTipoMaterial(materialEdit.idTipoMaterial);
             ViewBag.Result = true;
             return View("Editar", unMaterial);
         }
@@ -108,12 +92,11 @@ namespace gestionmateriales.Controllers
         //POST: Material/Borrar/1
         public ActionResult Borrar(int id)
         {
-            Material nuevoMaterial = db.Material.Find(id);
+            Material nuevoMaterial = db.materiales.Find(id);
 
             try
             {
-                //db.Material.Remove(nuevoMaterial);
-                nuevoMaterial.habilitado = false;
+                nuevoMaterial.hab = false;
                 db.SaveChanges();
             }
             catch
@@ -126,17 +109,17 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoMaterial(object selectedTipoMaterial = null)
         {
-            ViewBag.TipoMaterial_Id = new SelectList(db.TipoMaterial.ToList(), "idTipoMaterial", "nombre", selectedTipoMaterial);
+            ViewBag.idTipoMaterial = new SelectList(db.tipoMaterial.ToList(), "idTipoMaterial", "nombre", selectedTipoMaterial);
         }
 
         private void cargarProveedor(object selectedProveedor = null)
         {
-            ViewBag.Proveedor_Id = new SelectList(db.Proveedor.ToList(), "idProveedor", "nombre", selectedProveedor);
+            ViewBag.idProveedor = new SelectList(db.proveedores.Where(x => x.hab).ToList(), "idProveedor", "nombre", selectedProveedor);
         }
 
         private void cargarUnidad(object selectedUnidad = null)
         {
-            ViewBag.Unidad_Id = new SelectList(db.Unidad.ToList(), "idUnidad", "nombre", selectedUnidad);
+            ViewBag.idUnidad = new SelectList(db.unidades.ToList(), "idUnidad", "nombre", selectedUnidad);
         }
         
     }

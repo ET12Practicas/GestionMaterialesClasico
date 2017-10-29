@@ -7,7 +7,7 @@ namespace gestionmateriales.Controllers
 {
     public class StockController : Controller
     {
-        OtContext db = new OtContext();
+        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
 
         // GET: Stock
         public ActionResult Index()
@@ -42,7 +42,7 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
         {
-            ViewBag.TipoEntrada_Id = new SelectList(db.TipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
+            ViewBag.TipoEntrada_Id = new SelectList(db.tipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
         }
     }
 }

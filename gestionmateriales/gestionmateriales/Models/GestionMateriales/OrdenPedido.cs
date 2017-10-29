@@ -12,32 +12,31 @@ namespace gestionmateriales.Models.GestionMateriales
         public int idOrdenPedido { get; set; }
 
         [Required]
-        public int nroOrdenPedido { get; set; }
+        public int numOp { get; set; }
 
-        [Required]
-        public int nroOrdenTrabajo { get; set; }
+        public int numOt { get; set; }
 
         [Required]
         [StringLength(150)]
         public string destino { get; set; }
 
         [Required]
-        public bool habilitado { get; set; }
+        public bool hab { get; set; }
 
-        public virtual ICollection<ItemOP> ItemOP { get; set; }
+        public virtual ICollection<ItemOP> itemsOP { get; set; }
 
         public OrdenPedido()
         {
-            this.ItemOP = new HashSet<ItemOP>();
-            this.habilitado = true;
+            this.itemsOP = new HashSet<ItemOP>();
+            this.hab = true;
         }
 
         public OrdenPedido(int aNroOP, int aNroOT, string aDestino)
         {
-            this.habilitado = true;
+            this.hab = true;
 
-            this.nroOrdenPedido = aNroOP;
-            this.nroOrdenTrabajo = aNroOT;
+            this.numOp = aNroOP;
+            this.numOt = aNroOT;
             this.destino = aDestino;
         }
     }

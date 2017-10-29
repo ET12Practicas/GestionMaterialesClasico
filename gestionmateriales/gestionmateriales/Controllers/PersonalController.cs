@@ -7,13 +7,13 @@ namespace gestionmateriales.Controllers
 {
     public class PersonalController : Controller
     {
-        OtContext db = new OtContext();
+        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
         
         // GET: Personal
         [Route("/Personal")]
         public ActionResult Index()
         {
-            List<Personal> personas = db.Personal.Where(x => x.habilitado == true).ToList();
+            List<Personal> personas = db.personal.Where(x => x.hab == true).ToList();
 
             return View(personas);
         }
@@ -31,7 +31,7 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                db.Personal.Add(aPersonal);
+                db.personal.Add(aPersonal);
                 db.SaveChanges();
             }
             catch
@@ -50,7 +50,7 @@ namespace gestionmateriales.Controllers
             
             try
             {
-                personalSeleccionado = db.Personal.Find(id);
+                personalSeleccionado = db.personal.Find(id);
             }
             catch
             {
@@ -65,7 +65,7 @@ namespace gestionmateriales.Controllers
         public ActionResult Editar(int id, Personal unPersonal)
         {
             
-            Personal nuevoPersonal = db.Personal.Find(id);
+            Personal nuevoPersonal = db.personal.Find(id);
             try
             {
                 nuevoPersonal.nombre = unPersonal.nombre;
@@ -86,11 +86,11 @@ namespace gestionmateriales.Controllers
         //POST: Personal/Borrar/1
         public ActionResult Borrar(int id)
         {
-            Personal personalSeleccionado = db.Personal.Find(id);
+            Personal personalSeleccionado = db.personal.Find(id);
             
             try
             {
-                personalSeleccionado.habilitado = false;
+                personalSeleccionado.hab = false;
                 db.SaveChanges();
             }
             catch

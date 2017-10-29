@@ -13,14 +13,14 @@ namespace gestionmateriales.Models.GestionMateriales
         public int idOrdenTrabajo { get; set; }
 
         [Required]
-        public int nroOrdenTrabajo { get; set; }
+        public int numero { get; set; }
 
         [Required]
         [StringLength(70)]
-        public string nombreTrabajo { get; set; }
+        public string nombre { get; set; }
 
         [Required]
-        public int Turno_Id { get; set; }
+        public int idTurno { get; set; }
         
         public virtual Turno Turno { get; set; }
 
@@ -28,35 +28,39 @@ namespace gestionmateriales.Models.GestionMateriales
         public DateTime fecha { get; set; }
 
         [Required]
-        public int JefeSeccion_Id { get; set; }
+        public int idJefeSeccion { get; set; }
 
-        public virtual Personal JefeSeccion { get; set; }
+        public virtual Personal jefeSeccion { get; set; }
 
         [Required]
-        public int Responsable_Id { get; set; }
+        public int idResponsable { get; set; }
 
-        public virtual Personal Responsable { get; set; }
+        public virtual Personal responsable { get; set; }
 
-        public virtual ICollection<ItemOT> ItemOT { get; set; }
+        public virtual ICollection<ItemOT> itemsOT { get; set; }
+
+        [Required]
+        public bool hab { get; set; }
 
         public OrdenTrabajo()
         {
-            this.ItemOT = new HashSet<ItemOT>();
+            this.itemsOT = new HashSet<ItemOT>();
         }
 
         public OrdenTrabajo(int aNro, string aNombreTrabajo, Turno aTurno, DateTime aFecha, Personal aJefeSeccion, Personal aResponable)
         {
-            this.nroOrdenTrabajo = aNro;
-            this.nombreTrabajo = aNombreTrabajo;
+            this.numero = aNro;
+            this.nombre = aNombreTrabajo;
             this.fecha = aFecha;
 
-            this.Turno_Id = aTurno.idTurno;
+            this.idTurno = aTurno.idTurno;
             this.Turno = aTurno;
 
-            this.JefeSeccion_Id = aJefeSeccion.idPersonal;
-            this.JefeSeccion = aJefeSeccion;
-            this.Responsable_Id = aResponable.idPersonal;
-            this.Responsable = aResponable;
+            this.idJefeSeccion = aJefeSeccion.idPersonal;
+            this.jefeSeccion = aJefeSeccion;
+            this.idResponsable = aResponable.idPersonal;
+            this.responsable = aResponable;
+            this.hab = true;
         }
     }
 }

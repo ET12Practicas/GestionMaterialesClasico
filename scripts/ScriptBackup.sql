@@ -16,54 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `__migrationhistory`
---
-
-DROP TABLE IF EXISTS `__migrationhistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `__migrationhistory` (
-  `MigrationId` varchar(150) NOT NULL,
-  `ContextKey` varchar(300) NOT NULL,
-  `Model` longblob NOT NULL,
-  `ProductVersion` varchar(32) NOT NULL,
-  PRIMARY KEY (`MigrationId`,`ContextKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `__migrationhistory`
 --
 
 LOCK TABLES `__migrationhistory` WRITE;
 /*!40000 ALTER TABLE `__migrationhistory` DISABLE KEYS */;
-INSERT INTO `__migrationhistory` VALUES ('201710010521063_InitialCreate','gestionmateriales.Models.GestionMateriales.OtContext','ã\0\0\0\0\0\0\Ì]\€n\‰∏}êhÙc0\Î∂gˆíˆ.f=;\'\Î±1ˆ,Ú6ê[¥GYµ‘ë\‘;Aæ,˘§¸B®ñHÒR≈ãDIˆn\‡∑$ãáE≤X$ˇ˚\Ôˇú|˜∞IüIQ&yv∫<:8\\.H∂\Œ\„$ª?]Ó™ª/˛∏¸\Ó\€\ﬂˇ\Ó\‰áxÛ∞¯ô}˜™˛é¶\Ã\ \”Âß™\⁄ØV\Â˙\ŸD\Â¡&Yyô\ﬂU\Î|≥ä\‚|ıÚO´££°KäµXúº\ﬂeU≤!˚Ù\ÁYû≠…∂\⁄E\ÈEì¥lü\”7\◊{\‘≈ªhC\ m¥&ß\À{RVTÜMTë\"âRR4i~l^\\\À\≈\Î4â®Ñ\◊$Ω[.¢,À´®˛\‰¯CIÆ´\"\œÓØ∑ÙAî\ﬁ<n	˝\Ó.JK“ñ\Î∏˚‹µàá/\Î\"Æ∫ÑjΩ+´|\„	xÙ™\’\ŸJM\ﬁKÛKÆS™\’®ˆ´«∫\‘{Õû.\ÈÉ\"ä£\ÂB\Õ\Î¯,-\Í\Ô|Ù~–¢ΩXhi^p\nQ¶\’/gª¥\⁄\‰4#;ö*}±∏\⁄›¶\…˙/\‰Ò&ˇÖdß\Ÿ.ME\·©¯ÙùÙÄ>∫*Ú-)™\«˜\‰Æ-RÛB≠\‰\‰+5=O≠\'m\ ~ûUØ^.\Ô®(\—mJ8S=]WyA~$)ha„´®¢E¶}ìΩÆ5!î,\Ô\»˙\œ\Ó\rÖ∏°\Õ\»—å≤éhfq\€‰∂†\–\÷ü3\⁄P®-X..¢áüHv_}¢V\‚´\Â\‚mÚ@bˆ†Ö˝ê%4-MS;·ìòQhò¯7\…6o\Î\Ô„πØ*\ﬁEüì˚}ç*®ùl\ÔI∫ˇ†¸îl\€r¿^~\‰ºy[\‰õ˜y*$d\Ô>\ﬁD\≈=©®\\9Ú¡uæ+\÷¢	•\„ã\ﬂuØπLF\ËVQÃìUgZåßSgã\√˛ù\€\‰t\≈Ú∑9Æ\Ïgtfj\ËYæπ-à!\€oF…ñ\“l˝\À\Îu=\ f`ˆ@IñlÚa@¥<\‘X˚)Ü˛¸LHúÉë\Í\Ê\Õ\Õ\—P0\⁄\È\ƒƒÆócTsL™(MMÙ::<t\ ÿúœß\Ë6I±à\ﬂ\Á\‘VFŸÄN\∆d≈Ω˙\’~£ùê´dúcfŸÑ\œ\0\È:¢¢Úuü¯Jx•	¢∫\Ê\’\«\Œ¿v≤)Ø¥\ŒY}ﬂßov:\»_⁄ì\Z\'™@\È+_6\…,\'˚ê∞µg®l\Ì˚AÅaAFoÓ°ÉP0ˇ±Éêx™¡Éµˇrî^<N\n≤^\Ôg¡É\rº\ÔºhóTÜ\\_éíiERróg¶~túåã\ËyvùØÖ\È\ƒ#ƒ≥<´¢ue*∫#\«,=y^DE2ΩÜ˚é úm%\ÎÉ\ ln+…ä\‰o\"Y\ ﬂÑGßü\√cú§ˆÒ\ÿ8\ y|I)îgfπ∫o4π\ÿ+L.˛~\ÿÿÉf\Ë\—\¬\Õ›¶∫bıx¥Of\‹Òı(\∆:Œía\”·ªÑ⁄É3íïC\›£wÚL$\’E»π\È.œüÚr˙\'C˚cgä∞I`r4`s”Ç…ü,Âì°BàAπóµª|( \ŒM\n©p˝L\≈\‰KâVzºöíó˚ä\ƒI\›]°áÄ87=§\¬˘\”CJ>=ä\‹#_7¨õ\"∫ç˛6,Æ´\“\Ë\Ë8˙\Íy\Œ\√eÖk-\‰ìhºx=õÅ#Ö¬∑É \‹mlÆ≠léB\‡õ]ë\ÂÉ\◊\Î\¬8,˛L\Ó\»u\„°,\—{Rns:a¢)FrúWdsy:\ZDB|d\ﬂu\Œ\‡µ\ÊpÄæÒuÜ:¥ã)}å\»*VäQ`ÒC_©Ö⁄≤K-}åH-VøQjÒC_©˜m\«.o˚\"i\”\0ç26ür?1B\È@\Z∞πªV$ˇNÉ•ú,V&∞#v\√=\0ıZª\—}\”ÒNy•ëN}?àq-\Î\√\Ã\Íj¨π˘\÷®\«LÆI8\ÌN\ \ZMå7è{]ñı\“_]e\ÂÄ«ü\»¯!ã∂`î¶b4-≠\ÎdKkó\nAG¯Kµ/≥7$%Yº^7°\”gQπébΩ•—Ç\ƒ\Œ\"Ò0èN$>Oó%˙Éñ\Â)\Íjå\“3\⁄ji™$´tÚ%\Ÿ:\ŸF©E)J:œ∞¬∫\ÿ<\'ı\Õ≤%Y\Õ7ãÜã¿sRjƒ¶©ìï@3Gˆuë\÷\ ¬ç\Ï\‘\Î€àIà≈ê°é\‘\÷\Á¨\0umì]®\Îd+°\ÓG£§\Ï˙Qhæ\»dëO_Phm\ÈP¨jæ˙∞\–pDòïìpxX ¬ÉQe∏º&2Ü2Z\'ªUR5-êî\–5ñyˇ\Z\n\ÿ\«$4F\Ô˜\Ë\›\Ã\»H\’#ËÉî†éÅ11\—q\'\"õ+∏óEO:ÑÒP\‰∏¿\ fÙbtÂìùc∂äµ\Ê\0h–©Z˙*Atã8\…	˙H\‹\‘abí’Ω2vwÇ∫]ú$}0Åµπo&\’J3\œríUÒÙ÷Ñ\Ï$çl3Ï≠Äfí∑®LËúî)°™üêá\nò\‚(I;\À/€â§ZÇ\ZÒöT\Í÷Ön>©v=ödÑŒ†jh∏Üä!åΩ5<¿ZEacE\râ>‘§\‡å’Ö¿b≠TyD•\·ÉXT,6D\—PêòHº~Mk\‰*í¥Ú®!ôñSA$\ﬁ\ﬁ`(lMJ\≈j:¢ÄA¸ìöÇöÊ©´t7	mTg∑ΩG¯\€§é4ú0\\t±¡iSz◊â\0ÑFH\»%ı—Ç\–X\rz@úÆ\ÓÄﬁ∫\–\Áˇîa#á∑>¥à\\]F«Äìk@ê6pNæ\0eˆW@g6Q¿N\'7A/h~ëhDmˇ![|C£¿\›éÉ\ﬁMÙh\Ê\Ë\À˛\Ía]ôA1ê¡…â\–[ä\◊@¿¡¢\rΩ\0n\Ó◊ï`u)8;\Ïv\ﬂŸã†\–\"\\7¢≠ü\È\n1∫úÇÙ|\0aP\ÊR\«nÇë∫¨~gœÅP\”\ÿ\À\ŸO`\◊\ÓP≠HÅ’†\ﬁ?\¬`%AÑq˙<Z√¢*\‘\≈\‡\Ád¨*»´0Å™\⁄!øEIÄ\«¡\’\Á0X1≤ìA¥¡\‚8™∂v\Ã\›\n¸\›…™9∑´}p≤B¯:πà∂\€$ª¸jü,Æõ”æŒæ∏ˆ?\Ój\”`¨\÷%p\Íóñ\ÁT\ÂEtOî∑4k*\È€§(´7QE5WØúü\≈\Ì≥ŒâÇ\ÃY>≤üDØ,6wd\ﬂ\◊ˇ7i¸è\ﬁu[ÿ∑¥¨õzQx°\0t\ÊZ\ E}\n[îF~J\÷Yû\Ó6ôˆXe$é\’\∆ä8\Ì#wå.BGÑ\Èûz µ\Á\‚H8\Ì3wq\Õ\\V>à\ƒ\—\‘S≠DDıùéz≤R™_[\√\◊¯ß-M\»tv\"ªa\ZÑ\Ìæ\›Ò§\”\‘gé±Ω\"\n{\Êé\"ùå$BI/<Ò\ÿI\Z{\·é\'úì$¢	è›±\‰√íD8˘ç_\À\‰3>®iJ/\›q\Ÿ˘I\"{\Êé¬èCa¯CwqìÑ%>2v\«\‰bx\–,è!-nzß¢l{Po£	/å\Ÿébë\»\’=ˆ0á˚≥U$c∏\‚é\–î\"¢tO›ë§ìOD0ÈÖØ∂ª\”Lt≠w\Ô<\Z$;µDjç\Ï·Ø¥a∑\ÓŸëZ5å\Ó–§±Ñx{f~fπ1c\ﬁgiûÅÛ\\fwÒá±\ÍæãQGì\Zl:wA(&qMò\–YÙ˙ê…ñ\◊<\ÿ(ûq!qR|Ò+µMñuó 5\Â\·¿Rsrú©Ú¢ç\ÃV”Çé	’è±3\’)∫d§6atáz\ƒ\‚5\»÷õ‰∫ÉW°û}≠ôπÇ5\ƒ˛æ6cjs3D|nÜı≥g_ùbX\–H\’i\»¬°:ç©Ò\Íî¬ù\‰\Í4DB´S9\€A™V\Âù?*_iÄ`\—eó¯ ª&⁄áø\“QÇ§¨1Ÿå\‰\·Jg4πÖ\œ I\ÃgD\Ã¡=\Â¿\›˛ı¿\Ïéaê<Ä¸È¥≥:ı L}Áé™\… ¢™\ÔûLõc#578n¬°°a	Ò&\∆\"9\‰\∆G©öêûÕî[(3àÉ¿]Üop:\√¿≠YYWÜl\–rª	G\⁄X,oÏ™ì\‡@1†w\–Rü‰∫¶WGB \Á\‡Í°º∫˙¸\\Ú†\—9ø\ﬂ\Ï\≈0{…ã\Ó ∂ziîÒ,\œ\‚dø£Êº¨è\‡\«x+C\r1Ò&ô%=¿˚+†∏yyÅ\ BB§\÷á\Î]evI}9\Â\Á\∆\Œ\'Ñb”ït≤q_6u(CŸ§∆õª\€)\–\Õ\Ã\·L˛\Ê~lR\„\Îü,õt0òMH¸˛∞>P\∆\n\—\rBa˚\ŒıÜªá%XõØ∏oóm`x“Ω¢áV\¬ÒO<•∏?ÛJ\Œ…ª#úkre∑P∏Gª/∑\‰ù OöUf∏\”dHê™å\‰è\nTñaãâó	]\Î\"®\≈\Õ\Ó\…1Hl_û˘F\‡Ü±]N˙\Ã7m\œ\0ÁåÄ\‚\ÊÑ\Í\Ÿ¿3\–&l∫~ Xœà\ÏXrñ\‘\œÀÑ7ò\‡.¶¡.qé‘õ\nÜçP\ŒJ\∆\›\⁄∫\Õu\ÓI\r√ñ´\…\È\·jr<Ùñq\“±·¥ì\‡|]lı\Ï\n8;Nm\‰4ûA\Ì≈âén∫	\ÀDi\ﬁp&Jp!ôl∫\»Dq,&˚ü\›tñâ¬ô¥\√8\ÿÖdü¥≥\—}\ËØ/®4@\Ë\ÕÆIõ9üÀå ∞ìK\€%™~¬óß\⁄\'¸7\ﬂ%\⁄\Ó–î∂é\ÓuUo\›\Î®lwã™[6õOñãz\Ì!â\Î\Ìöè\◊O\Í˜˚\œ“ÑdU˜\≈Eî%wîπ\ÕI\”ÀØæY.^ßIT6\€x\€Õ®\«\ÍyYNªSè^’ªSIºY©\…˝˜∏\÷(eK˝\0op\ÌzX6:±≥ó-˘\ËÉZ\√\÷#±á\‹WS\Ãj_\≈UA\÷\…˛<Ò\Â\·\‡\Î6˜Ç˚b¥ª¯\ZÑ\ÏsTP9\ÌÇ.OTqz(»¶ù\€vû\≈\‰\·t˘\œ}≤\„\≈˘_Öâ\ÂãEm+ä\„\≈\·\‚_˛óå(õL˚+\»\‡B+\nÑTø\r\ÿ˘(|\ÿ¡\È⁄îp˜ÆΩ-Åı∫1çCZ˘*2ıTiWj\ZJõQ˚\√ªP˚É\\I{Oá5-iªi(∂\’\‘ƒà>ó|µ;OM∞áá\ÊF´\√\ÍWx\›\Êy:†\Z§p?´Ç∏[$K•\¬˜è˙XLjàÑ\⁄“ÉüTJÚ¨˜º\Á\÷˘Üd<t\≈\·ädêH°\r∏É©˝\“\ﬂ\‘\n{y\›¨[á≥\ﬂ\ﬁk\0}\Èè\Ÿmˆ\rã+\Ì˚£á\Ïˆˇ:WüìUdªÅ√™£ó±un™P\\åk;E\Œ\Áuh§,\Âopæ\∆T˘p\0bHw\∆\Âxv\¬:\ƒ\›\n|1âkØÇ:\Ï:H/3Ù)_˚svøß∏?]•≠\ƒ˝a\∆5bÜ´[fº•~.íX˚\ﬂ{\Á{i4\‘\Ôsi\—:∫\Ëue{orb.üî˙*òR\—M†Û]&>éR¡˚\√˚ò`\‰\Ê>P\ \›\·H˚yjC]|≠kŒ´∑GeMÄ∫\Ô⁄Ü}ã˛Æ^•\›kÑ2\¬@æVªèt•\⁄}ê∞@øë:å2d˙Ä-ã˚\…£Ú\„\…©ûû;1ÒS“∞âoqge#¿\“Ù´?\0b\–rú1(\ŒO4\‘DÉ.€öÙˆ\ÊáöR>pó4\ﬂ}\Ãs^¿¨åˆ\'ºpy\ ñÒÅ|≥|Z7*k+æ˜˜\Ác 6 eD\Î]Ò\‚Éëµ\«Y∏\·zŸ¥WUZh!{\‡Ω\Ól~6=`T\œ\—q∑˜td@|›ÇïP⁄ûów\ŒJ∏p(La\»cê\\ô∑\◊p∫úrB˜∏/|ˆ\Ó\√rÏ¶Øˇ~ºN\ƒsøıîÑ±\\\‡.˚ÿΩnVüù\Ë9û\Ó\À\„Q\¬akÙ4Ä∂¸ö¨4a∫i~\Ê\Èá˘|P\œ5ï\—&!^õõ\'`âÒRæ\'6•ï]W\Ó\⁄?ßÒ*z≤ùû£\„>\Ê	HdΩ\”π\Õ˘:wã±ôöñ\”>}óç\∆\"à\ÁÆÊ©âÇ\ﬁ8\“ßÛûÒl«õ•\Ó[êß¶\nz\√\Âˇ©2U\‹˜OMh±C\Ëä\À\Õ∑yÚlËÅù†\Íºz3.1¨˚xÉÛA\Ÿ\Î\⁄ °_%™VfªˇYû-±\€Y°YK≥≥ıt\ﬂ÷ïﬁ¨\'a!Y*|7@\”ÖS\ÂÄ–ÄD5¡Å≠e!ºÉÚ¿˜Z®ô0è†ñ{¡#!\‚Z∏\—\Â\ÔétÑ\ƒ«Çz\’dﬂåñãr\ƒêì1BTÕçM˛µ|¯Ån@H\ƒ$Tú±Ú!_H9\\ô+EûiYIo°¨L!v`V\‹z\¬yÒ\◊hfXlñöõ!h˘≥äÄê∏≠~\Z\Îß\◊L{T\'\‡J;x˚µ∂\r\‹}m^´F¶ˆº∏›Åù<BB4H\’˚ío`π\‘TPt¡^VD6≠˝ıTSè\‚já!\Îe5.™S\Ÿƒã\Á\Ê+bg∞\—\"bÉ`pº/V%>ù¶à»Å±\ﬁZ.1Év\—-+\”X;±\‘PhÙñ/uqBı¶OWD»ß\”\Íz«ù\ÔJ\≈\‚\Œ·©¨∞vö£^\\£9êYí{kÒ\Ï¿\·EO*‘ãiır\ZÊàÇ\ÿ7\‹EñN…≥îu\⁄≤ÕΩ\‘6T\“\·l†Æ®Á¨Ävi):v3å\‚\\M\‚Ø∏\⁄\ŸW¸\›…™v∑\ËOÌå´ì\’˚]Voh~Ω!er\ﬂA\‘gwed-˘¯7\Á\Ÿ]Œº!äD\Ïu0©®ÖÆ¢\◊Eï\‹EÎäæ^ì≤L≤˚\Â\‚\Á(\›’ñ}sK\‚Û\ÏrWmw-2\Ÿ‹¶è¢2jwä)ˇìï&Û\…\Â∂˛UÜ(\¬\œ˚QSE.≥\ÔwI\Zsπ\ﬂQ∂D\ÌßiÉÇÎ∫¨\Í\‡\‡˚GéÙ.\œÅZıq˜\“\r\ŸlS\nV^f\◊\—g\“G∂%˘â\‹G\Î«´ˆ§2\ƒ^≤\⁄O\ﬁ$\—}m\ £KOR«õáoˇp\‚°!,\‘\0\0','6.1.3-40302');
+INSERT INTO `__migrationhistory` VALUES ('201710281612237_InitialCreate','gestionmateriales.Models.GestionMateriales.OficinaTecnicaEntities','ã\0\0\0\0\0\0\Ì]_s‹∂\ÔLø\√\Õ=vùd\'qÎëíqd;£6≤4∫s¶oäÑd&<ÚJÚ<V;˝d}\ËG\ÍW(¯ƒü] AÚ§d¸bà\≈bÒ\√\ÿ]`ˇ˜üˇû~ˇe->ì4ì¯lyrtº\\ê\ÿOÇ0æ?[\ÓÛªØ˛º¸˛ª?˛\·Ùm∞˝≤¯π˘\ÓEÒ≠gg\ÀOyæ{µZe˛\'≤ı≤£m\ËßIñ\‹\ÂG~≤]yA≤z~|¸ó\’\……äPKJk±8Ω\Ÿ\«y∏%\ÂÙ\œÛ$ˆ\….\ﬂ{\—eê(´ß%\Îí\Í‚Ω∑%\Ÿ\ŒÛ\…\ŸÚûd9\Âa\Î\Â$\rΩàdGUù£´ÇKV∞\\ºéBèr∏&\—\›r\·\≈qí{\≈\'Ø>ddùßI|ø\ﬁ\—ºhÛ∞#Ùª;/\ H›ØW\Ì\Á¶]<~^tq\’VlH˘˚,O∂ñO^\‘2[\…\’{I~\…dJ•˙ñJ?(z]JˆlIHΩ¿[.\‰∂^ùGiÒùç‹èjj\œJùgBi≈øgãÛ}î\ÔSrì=≠=[\\\Ôo£\–ˇy\ÿ$øí¯,\ﬁG\œ<eüñ	?–üÆ\”dG\“¸\·Ü\‹\’]\n÷©ïX}%\◊gµ’™U\ﬂ/\‚¸\≈Û\Â\‚=e≈ªçC\n\'ßuû§\‰Gìîv6∏ˆr\⁄e:\–)e≠0!5yG¸O¨π7îƒÜN†E=ﬂ£ç^\–\≈w:˚ÔìÜù(T,óﬁóüH|ü¢Z\‚õ\Â\‚]¯Ö\Õ5\ŸqH\Î\“:y∫∑g>\Z\rc?6\·.1Aâ\‘{\Ôsx_®D¥e\ÌÜD\ÂŸßpW©ñ£¶#©\Z•ö\Á]öloíà´\…\n?nºÙû‰î≥˚bù\ÏSﬂÇªú\Ô0¿`]ˆQ¯Æe(f,4LB\ﬂ4\·\Ÿ<]µ\ E´rZâ:\—9\Õ\ÁV:m∑Ïµé)˛›©ùô¶zúloS¢iˆ\Â(\ÕRò˘øæˆã}\∆0S∫\„põ\’U¥GÉv\–>$©\’\ÈF\r\”YH∑ :h=cåí{Q§\√\÷\…Ò±Q\√˙v>y∑M?$TCzÒÄ’•]7ÜØ.≤\‚\∆\◊S\Óv-∏t\Ïqü¸±Rú¡ˆ[3/\n1Ò≠À≤è-®[\Ê§\"eañ\À˚,\ÀfÒK@|¸∏ÖØlÖ∏Ø5ëé\œ\ÊÄ√™\Á≠.¥g\‡‘úìM£7˜ÆÅ\Îò˝∂¡X˘ª\€7t.\‡_è≤ÄaJ|ø<VÔ∂á¢}òkZ}>J£9â\»]\ÎV\—q\ZNΩ&Ò:Òπ]¿ƒõ\√Û$\Œ=?\◊u\›c\Îxízi8ΩÑ≠˜\∆J≤Zµi»ä\ÿ\‹\Í±ÈíΩnlj˛&\Ï8˝¨$yq\«6P¶|]S%±ûØˆÖØ¶„ãï\€t0\‹\Ï9jrsœ©∂[=v¨\Ó¡l8æEKq8\Ï|R}pN\‚l\ËqzºıB<Ú;¡8Ornúã›≥«∫çEdBºªÿïC§1R9GElnX4]≤Ñô\≈nB(∏ÿÜ[i∑\ﬁBé\‚‹†:\◊OUL\Ó9\ÏÑ«ã)\·qëì\Ì’µ#dT\ƒ\ÊE\”%{<45\'Û\Ê8qˇ∫Û\√^•îÒkÑÅ≠õ=1lu\'ôJ\ﬁ∑¿IF*RNrπ\ÌI&·ªä≥&|¶p«ïbÚü:\’c\„d∂rÁû≤B\Á\Ï\Á≠n\ÍÒ˝ˆj7l\∆$Úa$Çb‹¥«ìo\√¶õç!ù,Y°y]\ÃD\Ÿ+§ô¨˝óÃç\À%s3˜¸k∫\‘s\…\‹¸∆ó\ÃM\Í\›zøL∏fn5s”±fnÆô¨Ø8o\‚w\n|1∆£\Õuì1\„n\·¨I\Œ=s\≈\Óı\\:\rÒ\Ît\Ì$\È¿PúÓò§Q\÷=zj‹ßÒ@\ﬁ\›x\¬\‡Ø‰é¨Ek_EvC≤ù\ÃEùâ\rü\›Éç+mn\rçd\ \‚/¸\0lÚ3\Ï£q\À+ˆç¢\—muy\ w\◊\¬\«\◊\‹7zÆ˘mπÆß^øıgße©û\«\ÍìA\ÎNÕÉã[AkÓï¶\ÓP+õâæú–æˆr<Û\⁄\Î,+b0änHû\‹6Pd˛m,:#´ûÅ]¥Ct†\√Z\ =\‰-\Â!ºäﬂêà\‰dÒ⁄ØÆ∞ú{ô\Ô™b£]	\Ãyb\Z¥\ÂâYPEñ˛§¥D\—D\“bΩ\ËúN^Z+åsza\Ïá;/\ÍãTA-\ÊI*:ŒöíKﬁêâ∏uâa8¨)iP∫du∫\‚∞f¡6\‡≥sºÅ\Ë\œn™#Æ•@âãå\ﬂ\√p®t¿h\ƒ`?$*‰Äã	∞(«Æ`pAYZ¨4ëB\ÊD√áª°}|tt\"/∂ùfA¸©Q2:≠Ñ\÷≥éEá8\Ï4*›©\‡∏iG∫∑Êàã°´Å†nòM]lE?=çó^¶\\\Î0˘N\0\…1Ûép)Ö\⁄sdõÿÖÉ≈¢»∫\Ÿ\»√°˝\'é\»\–ˆ\'¿tµàˆûgè\r∏û2¢\ÍÛcP\”s\rÑDèXÅQ3LNô\0ï≤\'\√\r\Íño1\”QòÉÛ\ÂO}\Ó\ÌÖBÑ˘	Oß»ò<ä≥)\‡\‹\Ì@	s\·\0}†π•+Ñ(Å.òÅ@~\—â¿9\·c*<nı \‰jïê∏±F\"\‡ü}<zPe~j=®é…£–É®ì\√J∑\«H\“]\ÃCfé\«Ng\”\ÿ6\‘	e\ƒ1\Ëër,»ô5©T*\ÁäØí\ﬂÀ±$DóÜ®\‹?á¶Øp\Ê\r˜\Ïê;\ÃJ_\·É3êÉ\È\÷I¡˜ﬁ±¨¡a?\÷K\ÿ\√o\Ô˘q®\ÈÑ≈¶	â\0\Í≥~B\„\‰ÜÁ∏¨ú∞\Â\ÕÛ0&i£\Ô\Ë\‡\∆ﬁÜ¯q\Ë{\Â7aÒ∏†\‚äˇêë\⁄ü\’^_i˘5…ïW_Z\ÔØlÇQ¿*íh}˜\0Ù÷õLÖ9@2¯\€2ˆãBπ¿≠0\¬\÷7ïÏ∫™LC|JE°£Ω(”™¨Å†Tê˚c7l0AfLá∫9â*Dê˚)r}!\‡Y!¢ãò9\Ÿ`ú®aø \'l^√¨`!àä|ãE\Z8ºÑõ¯-\r\‡Å%\Ó;Ù&YôÑ^0ˆ≈©´\Ë6ìê	éVÀ∏º®à∂˜úìF\ZH\0\‹5\n`Ä<T\«?GL\–hÉe¢ºê†\nD\Îà:Äπ¢9\Óô\’\»s>I¥øZ5å\ \0ˆKC\Ã+û\È~2P|\—<\–W˙\œqÖ\—L\‹U\rC\ZtVò\"†ö£ókØ\∆˜PÛJòF4êá\ÓÑ\‰# \…-\ Qj\◊˘¡BÄ¸qÄ :\›vBté;Ée†ìÇ\rlkb/\Âf¶*≠\À\»\»i\ƒqÔâåºDc)P\Ë\ﬁ*‘Åa\Í\¬\Ë%\»g¡J4{ƒûÚ\ÿtC≥û\Ÿ\œe1(õS#É˘Xê¿C˘UYòYt\Ìl∫Ú\ÿ\‚gm#\Ó8ã/~†CT®ô\◊\Œ\–;XTêewQ\’«†!V_Sª\Ô`¡àÜ^~™èvÆ4ç\»™mp§±≤ó\÷ÕéÜ\“\’•πZ¿¨Z¨\ÏtU%◊®8]!Y8N/Ω\›.åÔπ¨ı/ãuïí\„¸´µ}NämEc\Â\'i\Ÿ\«Z ì‘ª\'R)mör˙.L≥¸çóS\—+ŒÉ≠Úb\√ClM£íôN\¬\∆\Ê\–T(˛_U≤œñEk≤\Ôhœ∑Ö]µº\…\¬A≠π(ßxëó*ógÿñ\Ó<âˆ\€X˘Y\∆)N´æs\»”©2ß\—ﬁæ\Ê…¥øZP™≤\Ë‘øôS\·˝∂¢ÄpÆéö`\ﬂ	jc¥ä\Ÿ(\ræb˝V–ß∏D4aù\€ﬁåÑv\Ï<l\0wº\Í4\„\Èc\Õ}2ûJÛõ9!ïOJ(∞§\◊d4P\Ë56\ÿo\‰¢‹±XY%\Œ!\”\‹>\—\—]\0\Í¥ÏÉç&\€O≠˘Õú\nK^¿ìa?ö\”)\ÔLÛ4\ F\À\÷Ÿë\‘\Ã5fó6\–3ö∫SÅ‘çí\‡ûK\0\’˛l°¸\ ˜\œ\’W˛bN°}Ãúß\“˛jNIxùú\'&\ÿJª}q\\ïz[f1	õó≈Öâ\ÿ¸¯d&sc®i\"◊ûc˚YåUƒßp\„§\Á/\Ï∫\÷Qögg<ó.«Ω=n9B\ﬂDè£U5jú\Ÿa$-é\ÿgt\‘)Ò\‚	jA}?X†ëÅZ¿$_d\‘Qá\œ\Õ	&7ö6p©Ø>\Ìæ\’£3ç)sœç4û@g§¡Hb\«?=äq\”;7ùM\≈˛4m\Ì1\Ã:èz8kG\‚H#	S7D¨\">~çGT:\ÃOäSrgætmx\¬˘DÇ\⁄KQ≥aK\Ôv∞+º	îikè1®™®\ﬁ	4Eıìç\\•auúg/ã∂™˙\«\'≥ü¨xc*=Ö∫©\“*v(Ω\r®Ù\0ˇ$N\È¿ïÛêì\rıMœ´ˆpg≥;Ωá¥a™¯\–\Í„åÜFoï\ÔºJä´¸m\Ís9ª0%m\0\·[T8\÷\"\È\ÂVë#°»Ü¶Ñ´HS(z2∫æé8\Î®ŸòR\‡zc\„Ú∞é$b|ã8lJx˛\0C3G\≈Ã†\\ÚHíCBÛUôY≠äåú˛r9«é=ß\Ëı<\'s-s\ÁIÑ\Âç–ã¨x+ïΩìj)9™/öÆÖá}\—\‘Rä&˘íÉÒ¡mFNg\⁄\Óá&˘V\«¡¢\…@É—Ñá¯\ﬁÀâ\‰l∂m¿\ÿuÖıÑO\—!\‚∫\"úçπ\ÓøYC3Ÿ∏Eb*ø\Œ?â9óH¢¶\"ëß8Å\0ÚGÅD3\Ÿt#Qâ9ñ?aª\≈˙ˆ7ã9Æ\„}Ö@\‰RhEXq)¨¨é=ñÄ´Oñã\"\Ó&ä\‡\ﬂÀáı?¢£¢¸®¸\Ôy\“\rj˚≈•áw\‡’ãˆ\Àoé^.Ø£\–À™¿:¥˘ï|\ﬂ\ﬂ(\÷˘\‰E\ÎLÇ\ÌJÆn1]P…≤@™â@Ü\È£¸à\Î\¬\‰Y~Vµ∫Ñ\Ó|zHûìÄ\“\Ã\À<\'\◊)Ò\√2o¡ÚxpÆıíq[\ZuhE!˛Ï•î\œTI\“:8´T…õÚ\Ó\ƒEê/g\Àï\’^-.˛\Œmèü-\n•ëæZ/˛\›\'7çö\—‘ú!±´1\∆1`∫)\“ÒÛC7\‘¡aqçıq0%f≥\0©æ¥ß*˜üFB¨q2räfs\ƒ6©©\Õ.\‡”∂}V\’¡¥\ÌØ;\ƒ\Ï\Ìi†uÓì¢≤éá÷ë=Ç*ãû,óg\Í6I\"WZ\n	&6US¯\„;z\nF¢kEe†Ræ∂W)\\ê≤˘8õ)\÷2nYCÙπ=\Õ6ä\Ÿ-]!†yåï†\rl6>£\…‘Ñ9ª\«Hs≤≈ôNP\‰e+É\Ÿ\Ÿ\‘¸\r\ÓóA;Æ\›2ê¿\÷*¿Ç∂@;é\0\ÊôØ\'p\÷\”\Â=\”¨&ê\\fXLæµ\«l2\›ÆB§t2#i/<ú\ÿ8üˆ Éå|\ÿvsttÆ*\∆rÖÇ{M%äºh K\‡\Ë2É;˜V\Ëdí“Ωëhà\Õ)LSB}\·L®P»´UnvıπH\”\‹\Ï\◊\„\Z=l.¿l&Ñv\⁄Ú¿U\√lÜ≤Z•«ûÅ2\Ã\»\∆˘Ñ¨Çb˚„®éà\ÌOÄ\√j\Ì¡úÇ†êR+•¢æ¸j™T6ø+C•¬ºΩ¥J]{4µ?\›n£W\–é$ü4Kq:@µX\·\ÌıÇî\Z\€\¬\‡[\ÂÄ\Œ1\rR\‰Íêπ{#á;LqÄS\Îcëv\„Sb¸¿¸˛v|¡TF0Å@9J&M:?\◊\‚\Âåi\‰\ÁL/ù\ﬂ&\Ã?eæ)¸\Z´mìáï^ÒBMòöΩ\'é°Ò˝°cä:˚¨pdâ]m£î\¬\›j\0’ÑX-\—ıbï	˝—®Ù\·µE√´”Åqrp:E⁄£XfGõp\ÁP0\ËBT\«\0ÉAT¸\‘k˛¶7åê\»¯ÛdõéGil˝>c.9]\ÌNâ-(7í¢;F\»¸ÙdëÑ>ác\Ó\È\Z=xã\‡\ÊmW\ﬁI#AG\·˜\'zÄ“ø\Àc\È\ÁÒ\’\—\Ít)\À\·$v=ÄV	\“Õæ}á\Ë\0O\·\È\Ó∑€§â\Ë\Áë˛\›K\ÁxPz<\…\ÍFmT$¸}\\öz\Ë\05ëu\¬yó\'x\»Û\◊#˘£9\ÕwºË£∂k~˝zj®†\Èô~á\ <P1ø=5T ∑w\ÿ\‚t|\‡Iñ£9aÖΩ+d\ÏˇPöFß\€\”\‡\Ô¨\r\ƒ\'≤ø\È1¨]Øå≥\œ\Èj\’9¶§ßjF‘ºcÚH\÷\Ô_àv# Q9+©.8[∑˙*\'?¯,ìow\n}\ÓA+†4\Ï_nÅs*MpeP¯Fπë\∆Ô¢¥\–@\‰ëXJ\ÿR¶Úﬂæ\“±è›ôë[\Õ\⁄J+b1‘íˆÜ\‹ZcU\⁄i\n†ê{	POp\ƒ\n•X?Lë\€˝ïVö®$Ü]¶-©ïÑR®]†3ÿç\r÷çç¶j\‘,\ÿ\r¶Ú\‡~∞b¥#Xd•2ˆ\’j≠ézı;8\ﬁ`Tï>G8<\“e	á£ìc\ÎÆ\’`£8WΩh\“?z £\Î)F#ûÉd,e´\“u\÷JL=∫´ºû®ˆU\Ë\·hL\≈Ñh\œY\€\Â\0\Ì\"v\–œ¥¸P‚ß≠i∫{\‹u∏\ÌH∑;\Á9\÷;\\¡\”Xv\Î:\r˘åf≈µôO2g!\ﬂ%\–\ÕNß2≤ê&\’;÷¶\“¬≤s\rK˚å˘\ﬂ©%qì\√g≠p\÷E\ﬁÑ˜RüfÙq<\Î]vw\”=¢ò\√\Âàn\‘.w†Ü%p˘\ÏH\„é\⁄\›-=\–FT}\‚—±\0Ñ∑%;ÄZì≥\0\Í\›uG\◊A+†j\Â54bñõæªêëü\◊91\Ô|é+Oa≤≤\”Uuî™†*O^ûÆnˆqqì™˙\Î\r\…\¬˚ñDÒ¶gL|¡^≈æπà\Ôí\∆|&q\‘|\"ø\…Br∫\Ê\Ê\ﬁ\Î4\Ô<?ß\≈>…≤0æ_.~ˆ¢}±VooIp_\ÌÛ\›>ß]&\€\€\ËÅFa~”µ∫Rx>Ω\⁄e.∫sπ\Œ\…U¸\√>å\∆˜;\‡™B¢∞\Î’ózä±Ãã\À=˜å\“˚$6$Tãèô#7dªã(±\Ï*^{üI\ﬁ>d\‰\'r\Ô˘\◊ı√•8ë\ÓÅ\≈~˙&Ù\ÓSoõ\’4\⁄˙ÙOä\·`˚\Âªˇz-g\".\Ê\0\0','6.1.3-40302');
 /*!40000 ALTER TABLE `__migrationhistory` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `entrada`
---
-
-DROP TABLE IF EXISTS `entrada`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `entrada` (
-  `idEntrada` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` datetime NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `codigo` varchar(15) NOT NULL,
-  `idMaterial` int(11) NOT NULL,
-  `TipoEntrada_Id` int(11) NOT NULL,
-  `TipoEntrada_idTipoEntrada` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idEntrada`),
-  UNIQUE KEY `idEntrada` (`idEntrada`),
-  KEY `idMaterial` (`idMaterial`),
-  KEY `TipoEntrada_idTipoEntrada` (`TipoEntrada_idTipoEntrada`),
-  CONSTRAINT `Entrada_TipoEntrada` FOREIGN KEY (`TipoEntrada_idTipoEntrada`) REFERENCES `tipoentrada` (`idTipoEntrada`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `Material_Entrada` FOREIGN KEY (`idMaterial`) REFERENCES `material` (`idMaterial`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `entrada`
@@ -75,25 +35,13 @@ LOCK TABLES `entrada` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `itemot`
+-- Dumping data for table `itemop`
 --
 
-DROP TABLE IF EXISTS `itemot`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `itemot` (
-  `idItemOT` int(11) NOT NULL AUTO_INCREMENT,
-  `cantidad` int(11) NOT NULL,
-  `material_idMaterial` int(11) NOT NULL,
-  `OrdenTrabajo_idOrdenTrabajo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idItemOT`),
-  UNIQUE KEY `idItemOT` (`idItemOT`),
-  KEY `material_idMaterial` (`material_idMaterial`),
-  KEY `OrdenTrabajo_idOrdenTrabajo` (`OrdenTrabajo_idOrdenTrabajo`),
-  CONSTRAINT `ItemOT_material` FOREIGN KEY (`material_idMaterial`) REFERENCES `material` (`idMaterial`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `OrdenTrabajo_ItemOT` FOREIGN KEY (`OrdenTrabajo_idOrdenTrabajo`) REFERENCES `ordentrabajo` (`idOrdenTrabajo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `itemop` WRITE;
+/*!40000 ALTER TABLE `itemop` DISABLE KEYS */;
+/*!40000 ALTER TABLE `itemop` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping data for table `itemot`
@@ -101,41 +49,9 @@ CREATE TABLE `itemot` (
 
 LOCK TABLES `itemot` WRITE;
 /*!40000 ALTER TABLE `itemot` DISABLE KEYS */;
+INSERT INTO `itemot` VALUES (1,5,2,2),(2,9,14,3),(3,7,1,3),(4,10,13,3),(5,4,5,3),(6,6,6,3),(7,7,11,3),(8,0,3,3),(9,9,14,4),(10,4,2,4);
 /*!40000 ALTER TABLE `itemot` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `material`
---
-
-DROP TABLE IF EXISTS `material`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `material` (
-  `idMaterial` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` varchar(15) NOT NULL,
-  `nombre` varchar(75) NOT NULL,
-  `stockActual` int(11) NOT NULL,
-  `stockMinimo` int(11) NOT NULL,
-  `Unidad_Id` int(11) NOT NULL,
-  `Proveedor_Id` int(11) NOT NULL,
-  `TipoMaterial_Id` int(11) NOT NULL,
-  `estado` varchar(12) NOT NULL,
-  `detalle` varchar(100) DEFAULT NULL,
-  `habilitado` tinyint(1) NOT NULL,
-  `Proveedor_idProveedor` int(11) DEFAULT NULL,
-  `TipoMaterial_idTipoMaterial` int(11) DEFAULT NULL,
-  `Unidad_idUnidad` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idMaterial`),
-  UNIQUE KEY `idMaterial` (`idMaterial`),
-  KEY `Proveedor_idProveedor` (`Proveedor_idProveedor`),
-  KEY `TipoMaterial_idTipoMaterial` (`TipoMaterial_idTipoMaterial`),
-  KEY `Unidad_idUnidad` (`Unidad_idUnidad`),
-  CONSTRAINT `Material_Proveedor` FOREIGN KEY (`Proveedor_idProveedor`) REFERENCES `proveedor` (`idProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `Material_TipoMaterial` FOREIGN KEY (`TipoMaterial_idTipoMaterial`) REFERENCES `tipomaterial` (`idTipoMaterial`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `Material_Unidad` FOREIGN KEY (`Unidad_idUnidad`) REFERENCES `unidad` (`idUnidad`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `material`
@@ -143,27 +59,9 @@ CREATE TABLE `material` (
 
 LOCK TABLES `material` WRITE;
 /*!40000 ALTER TABLE `material` DISABLE KEYS */;
-INSERT INTO `material` VALUES (1,'15','Tornillo',0,100,3,1,1,'Sin Stock',NULL,1,1,1,3),(2,'100','Taladro',0,8,3,2,2,'Sin Stock','No funciona',1,1,1,3),(3,'1000','Lima',0,1000,3,1,1,'Sin Stock',NULL,1,1,1,3),(4,'1001','Lima',0,1000,3,1,1,'Sin Stock',NULL,1,1,1,1),(5,'1000','Lima',0,1000,3,1,1,'Sin Stock',NULL,0,1,1,3),(6,'1000','Sillas',0,11,1,1,1,'Sin Stock',NULL,1,1,1,3),(7,'1000','jose',0,11,2,1,1,'Sin Stock',NULL,0,1,1,2),(8,'3232','Mesa',0,23,3,1,1,'Sin Stock',NULL,1,1,1,1),(9,'19191','Destornillador',0,22,1,1,1,'Sin Stock',NULL,1,1,1,1),(10,'19191','kdaksdkjal',0,22,1,1,1,'Sin Stock',NULL,1,1,1,1),(11,'23232','dasda',0,22,1,1,1,'Sin Stock',NULL,0,1,1,1),(12,'292','Morsa',0,23,3,1,1,'Sin Stock',NULL,1,1,1,3),(13,'292','Morsa',0,23,3,1,1,'Sin Stock',NULL,0,1,1,3);
+INSERT INTO `material` VALUES (1,'1000','Martillo',0,30,1,1,2,'Sin Stock',NULL,1),(2,'100','Taladro',0,8,1,1,2,'Sin Stock','No funciona',1),(3,'1000','Hoja de Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(4,'1001','Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(5,'1000','Papel de Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(6,'1000','Sillas',0,11,1,1,1,'Sin Stock',NULL,1),(7,'1000','Electrodos',0,11,6,1,1,'Sin Stock',NULL,1),(8,'3232','Mesa',0,23,3,1,2,'Sin Stock',NULL,1),(9,'19191','Destornillador',0,22,1,1,2,'Sin Stock',NULL,1),(10,'19191','Pinza',0,22,1,1,2,'Sin Stock',NULL,1),(11,'23232','Soldador',0,22,1,1,2,'Sin Stock',NULL,1),(12,'292','Resistencia',0,23,1,1,1,'Sin Stock',NULL,1),(13,'292','Morsa',0,23,1,1,2,'Sin Stock',NULL,1),(14,'15','Tornillo',0,100,1,1,1,'Sin Stock',NULL,1);
 /*!40000 ALTER TABLE `material` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ordenpedido`
---
-
-DROP TABLE IF EXISTS `ordenpedido`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ordenpedido` (
-  `idOrdenPedido` int(11) NOT NULL AUTO_INCREMENT,
-  `nroOrdenPedido` int(11) NOT NULL,
-  `nroOrdenTrabajo` int(11) NOT NULL,
-  `destino` varchar(150) NOT NULL,
-  `habilitado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idOrdenPedido`),
-  UNIQUE KEY `idOrdenPedido` (`idOrdenPedido`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ordenpedido`
@@ -175,61 +73,14 @@ LOCK TABLES `ordenpedido` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ordentrabajo`
---
-
-DROP TABLE IF EXISTS `ordentrabajo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ordentrabajo` (
-  `idOrdenTrabajo` int(11) NOT NULL AUTO_INCREMENT,
-  `nroOrdenTrabajo` int(11) NOT NULL,
-  `nombreTrabajo` varchar(70) NOT NULL,
-  `Turno_Id` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
-  `JefeSeccion_Id` int(11) NOT NULL,
-  `Responsable_Id` int(11) NOT NULL,
-  `JefeSeccion_idPersonal` int(11) DEFAULT NULL,
-  `Responsable_idPersonal` int(11) DEFAULT NULL,
-  `Turno_idTurno` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idOrdenTrabajo`),
-  UNIQUE KEY `idOrdenTrabajo` (`idOrdenTrabajo`),
-  KEY `JefeSeccion_idPersonal` (`JefeSeccion_idPersonal`),
-  KEY `Responsable_idPersonal` (`Responsable_idPersonal`),
-  KEY `Turno_idTurno` (`Turno_idTurno`),
-  CONSTRAINT `OrdenTrabajo_JefeSeccion` FOREIGN KEY (`JefeSeccion_idPersonal`) REFERENCES `personal` (`idPersonal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `OrdenTrabajo_Responsable` FOREIGN KEY (`Responsable_idPersonal`) REFERENCES `personal` (`idPersonal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `OrdenTrabajo_Turno` FOREIGN KEY (`Turno_idTurno`) REFERENCES `turno` (`idTurno`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ordentrabajo`
 --
 
 LOCK TABLES `ordentrabajo` WRITE;
 /*!40000 ALTER TABLE `ordentrabajo` DISABLE KEYS */;
-INSERT INTO `ordentrabajo` VALUES (1,100,'Banco',1,'2017-10-01 00:00:00',2,1,2,1,1),(2,101,'Martillo',2,'2017-12-01 00:00:00',2,3,2,3,2),(3,1001,'Bodega',3,'2017-10-02 00:00:00',2,2,2,2,3);
+INSERT INTO `ordentrabajo` VALUES (1,11,'Martillo',1,'2017-03-01 00:00:00',1,1,1,1,1),(2,100,'Mesa',2,'2017-11-11 00:00:00',1,3,1,1,3),(3,1000,'Nuevo',1,'2012-12-11 00:00:00',1,1,1,1,1),(4,2000,'Bodega',1,'2012-12-11 00:00:00',1,1,1,1,1);
 /*!40000 ALTER TABLE `ordentrabajo` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `personal`
---
-
-DROP TABLE IF EXISTS `personal`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `personal` (
-  `idPersonal` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(60) NOT NULL,
-  `dni` int(11) NOT NULL,
-  `fichaCensal` int(11) NOT NULL,
-  `habilitado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idPersonal`),
-  UNIQUE KEY `idPersonal` (`idPersonal`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `personal`
@@ -237,31 +88,9 @@ CREATE TABLE `personal` (
 
 LOCK TABLES `personal` WRITE;
 /*!40000 ALTER TABLE `personal` DISABLE KEYS */;
-INSERT INTO `personal` VALUES (1,'Gustavo Colombre',41353628,123456,1),(2,'Gonzalo Suarez',41235235,456780,1),(3,'Roberto Ordo√±ez',42654987,123789,1),(4,'Artie',23122312,100200,1),(5,'nuevowwwrr',34833834,292293,0),(6,'Jose',23232332,233223,1),(7,'Franco',23232323,232323,1),(8,'Martin',23232323,232323,1),(9,'Pedro',23232323,222222,1),(10,'i want i that way',10191818,101010,0),(11,'Claudio',23232323,232323,1),(12,'Marcos',27272727,222233,1),(13,'Jonathan Velazquez',19122921,192382,1);
+INSERT INTO `personal` VALUES (1,'Jonathan Velazquez',12345678,123456,1),(2,'Gustavo Colombre',12345678,123456,1),(3,'Gonzalo Suarez',12345678,123456,1),(4,'Roberto Ordo√±ez',12345678,123456,1);
 /*!40000 ALTER TABLE `personal` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `proveedor`
---
-
-DROP TABLE IF EXISTS `proveedor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `proveedor` (
-  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
-  `cuit` varchar(20) NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `razonSocial` varchar(15) NOT NULL,
-  `nombreContacto` varchar(45) DEFAULT NULL,
-  `horario` varchar(20) NOT NULL,
-  `habilitado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idProveedor`),
-  UNIQUE KEY `idProveedor` (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `proveedor`
@@ -269,31 +98,9 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1,'Ferreteria','ads','11','11','SA','Pepe','10 a 15',1),(2,'Bosch','asd','10','10','SRL','Jose','8 a 16',1),(3,'Maderera','asd','10','10','SRL','Jose','8 a 16',1),(4,'pepe','ancjancjs','292922929','2929292','SRL','dsdajdask','29292',1),(5,'pepesssss','ancjancjs','292922929','2929292','SRL','dsdajdask','29292',1),(6,'dsdasdas','dasdasd','31232','323232','sda','dasdasda','dasas',1);
+INSERT INTO `proveedor` VALUES (1,'Ferreteria','Libertador 123','12','12','SRL','Pepe','9 a 12',1),(2,'Maderera','Libertador 123','11','12','SRL','Pepe','9 a 12',1),(3,'Coto','Libertador 123','13','12','SRL','Pepe','8 a 18',1);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `salida`
---
-
-DROP TABLE IF EXISTS `salida`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `salida` (
-  `idSalida` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` datetime NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `Material_idMaterial` int(11) DEFAULT NULL,
-  `Personal_idPersonal` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idSalida`),
-  UNIQUE KEY `idSalida` (`idSalida`),
-  KEY `Material_idMaterial` (`Material_idMaterial`),
-  KEY `Personal_idPersonal` (`Personal_idPersonal`),
-  CONSTRAINT `Salida_Material` FOREIGN KEY (`Material_idMaterial`) REFERENCES `material` (`idMaterial`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `Salida_Personal` FOREIGN KEY (`Personal_idPersonal`) REFERENCES `personal` (`idPersonal`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `salida`
@@ -305,44 +112,13 @@ LOCK TABLES `salida` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tipoentrada`
---
-
-DROP TABLE IF EXISTS `tipoentrada`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipoentrada` (
-  `idTipoEntrada` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(35) NOT NULL,
-  PRIMARY KEY (`idTipoEntrada`),
-  UNIQUE KEY `idTipoEntrada` (`idTipoEntrada`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `tipoentrada`
 --
 
 LOCK TABLES `tipoentrada` WRITE;
 /*!40000 ALTER TABLE `tipoentrada` DISABLE KEYS */;
-INSERT INTO `tipoentrada` VALUES (1,'Orden de Trabajo de Aplicaci√≥n'),(2,'Orden de Pedido'),(3,'Donaci√≥n'),(4,'Trabajo Pr√°ctico'),(5,'Sobrante');
 /*!40000 ALTER TABLE `tipoentrada` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `tipomaterial`
---
-
-DROP TABLE IF EXISTS `tipomaterial`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipomaterial` (
-  `idTipoMaterial` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(20) NOT NULL,
-  PRIMARY KEY (`idTipoMaterial`),
-  UNIQUE KEY `idTipoMaterial` (`idTipoMaterial`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tipomaterial`
@@ -355,21 +131,6 @@ INSERT INTO `tipomaterial` VALUES (1,'Material'),(2,'Herramienta');
 UNLOCK TABLES;
 
 --
--- Table structure for table `turno`
---
-
-DROP TABLE IF EXISTS `turno`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `turno` (
-  `idTurno` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreTurno` varchar(7) NOT NULL,
-  PRIMARY KEY (`idTurno`),
-  UNIQUE KEY `idTurno` (`idTurno`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `turno`
 --
 
@@ -380,27 +141,12 @@ INSERT INTO `turno` VALUES (1,'Ma√±ana'),(2,'Tarde'),(3,'Noche');
 UNLOCK TABLES;
 
 --
--- Table structure for table `unidad`
---
-
-DROP TABLE IF EXISTS `unidad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `unidad` (
-  `idUnidad` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(15) NOT NULL,
-  PRIMARY KEY (`idUnidad`),
-  UNIQUE KEY `idUnidad` (`idUnidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `unidad`
 --
 
 LOCK TABLES `unidad` WRITE;
 /*!40000 ALTER TABLE `unidad` DISABLE KEYS */;
-INSERT INTO `unidad` VALUES (1,'Metros'),(2,'Litros'),(3,'Cantidad'),(4,'Mt2'),(5,'Mt3');
+INSERT INTO `unidad` VALUES (1,'Cantidad'),(2,'Litros'),(3,'Metros'),(4,'M2'),(5,'M3'),(6,'Kg');
 /*!40000 ALTER TABLE `unidad` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -413,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-17  9:53:14
+-- Dump completed on 2017-10-29 18:16:57

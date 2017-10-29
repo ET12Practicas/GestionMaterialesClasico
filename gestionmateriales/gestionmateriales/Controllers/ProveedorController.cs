@@ -8,13 +8,14 @@ namespace gestionmateriales.Controllers
 {
     public class ProveedorController : Controller
     {
-        OtContext db = new OtContext();
+        //TODO refactor con using o otra capa
+        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
         
         // GET: Proveedor
         [Route("/Proveedor")]
         public ActionResult Index()
         {
-            List<Proveedor> proveedores = db.Proveedor.Where(x => x.habilitado).ToList();
+            List<Proveedor> proveedores = db.proveedores.Where(x => x.hab).ToList();
 
             return View(proveedores);
         }
@@ -31,7 +32,8 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                db.Proveedor.Add(new Proveedor { nombre = unProveedor.nombre, cuit = unProveedor.cuit, razonSocial = unProveedor.razonSocial,
+                //TODO mejorar
+                db.proveedores.Add(new Proveedor { nombre = unProveedor.nombre, cuit = unProveedor.cuit, razonSocial = unProveedor.razonSocial,
                 direccion = unProveedor.direccion, horario = unProveedor.horario, telefono = unProveedor.telefono, nombreContacto = unProveedor.nombreContacto});
                 db.SaveChanges();
             }
@@ -53,7 +55,7 @@ namespace gestionmateriales.Controllers
 
             try
             {
-                proveedorSeleccionado = db.Proveedor.Find(id);
+                proveedorSeleccionado = db.proveedores.Find(id);
             }
             catch
             {
@@ -67,7 +69,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, Proveedor unProveedor)
         {
-            Proveedor nuevoProveedor = db.Proveedor.Find(id);
+            Proveedor nuevoProveedor = db.proveedores.Find(id);
             try
             {
                 nuevoProveedor.nombre = unProveedor.nombre;
@@ -92,11 +94,11 @@ namespace gestionmateriales.Controllers
         //POST: Proveedor/Borrar/1
         public ActionResult Borrar(int id)
         {
-            Proveedor proveedorSeleccionado = db.Proveedor.Find(id);
+            Proveedor proveedorSeleccionado = db.proveedores.Find(id);
 
             try
             {
-                proveedorSeleccionado.habilitado = false;
+                proveedorSeleccionado.hab = false;
                 db.SaveChanges();
             }
             catch

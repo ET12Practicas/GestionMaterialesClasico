@@ -8,13 +8,14 @@ namespace gestionmateriales.Controllers
 {
     public class OrdenTrabajoController : Controller
     {
-        OtContext db = new OtContext();
+        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
         
         // GET: OrdenTrabajo
         [Route("/OrdenTrabajo")]
         public ActionResult Index()
         {
-            return View();
+            List<OrdenTrabajo> ordenesTrabajo = db.ordenTrabajo.Where(x => x.hab).ToList();
+            return View(ordenesTrabajo);
         }
         
         // GET: OrdenTrabajo/Agregar
@@ -24,7 +25,6 @@ namespace gestionmateriales.Controllers
             cargarJefeSeccion();
             cargarResponsable();
             cargarTurno();
-
             return View();
         }
 
@@ -32,119 +32,98 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Agregar(OrdenTrabajo aOT)
         {
+            int idOt = -1;
+            
+            if(db.ordenTrabajo.Any(x => x.numero == aOT.numero))
+            {
+                return RedirectToAction("Index", "OrdenTrabajo");
+            }
+            
             try
             {
-                Turno t = db.Turno.Find(aOT.Turno_Id);
-                Personal jefe = db.Personal.Find(aOT.JefeSeccion_Id);
-                Personal res = db.Personal.Find(aOT.Responsable_Id);
-
-                db.OrdenTrabajo.Add(new OrdenTrabajo(aOT.nroOrdenTrabajo, aOT.nombreTrabajo, t, aOT.fecha, jefe, res));
+                Turno t = db.turnos.Find(aOT.idTurno);
+                Personal jefe = db.personal.Find(aOT.idJefeSeccion);
+                Personal res = db.personal.Find(aOT.idResponsable);
+                db.ordenTrabajo.Add(new OrdenTrabajo(aOT.numero, aOT.nombre, t, aOT.fecha, jefe, res));
                 db.SaveChanges();
+                
+                idOt = db.ordenTrabajo.SingleOrDefault(x => x.numero == aOT.numero).idOrdenTrabajo;
             }
             catch
             {
                 return RedirectToAction("Index", "OrdenTrabajo");
             }
+            
+            if (idOt < 0)
+            {
+                return RedirectToAction("Index", "OrdenTrabajo");
+            }
 
-            return RedirectToAction("Agregar", "OrdenTrabajo");
+            return RedirectToAction("Index", "ShopCartMaterial", new { id = idOt });
         }
 
         //GET: OrdenTrabajo/Editar/1
         [Route("/OrdenTrabajo/Editar/{id}")]
         public ActionResult Editar(int id)
         {
-            cargarJefeSeccion();
-            cargarResponsable();
-            cargarTurno();
-
-            OrdenTrabajo ordenSeleccionada;
-
-            try
-            {
-                ordenSeleccionada = db.OrdenTrabajo.Find(id);
-            }
-            catch
-            {
-                return RedirectToAction("Buscar", "OrdenTrabajo");
-            }
-            
-            return View(ordenSeleccionada);
+            OrdenTrabajo ordenSelect = db.ordenTrabajo.Find(id);
+            cargarJefeSeccion(ordenSelect.idJefeSeccion);
+            cargarResponsable(ordenSelect.idResponsable);
+            cargarTurno(ordenSelect.idTurno);
+            return View(ordenSelect);
         }
 
         //POST: OrdenTrabajo/Editar/1
         [HttpPost]
         public ActionResult Editar(int id, OrdenTrabajo aOT)
         {
-            OrdenTrabajo nuevaOT = db.OrdenTrabajo.Find(id);
+            int idOt = -1;
+            OrdenTrabajo otEdit = db.ordenTrabajo.Find(id);
 
             try
             {
-                Turno t = db.Turno.Find(aOT.Turno_Id);
-                Personal jefe = db.Personal.Find(aOT.JefeSeccion_Id);
-                Personal res = db.Personal.Find(aOT.Responsable_Id);
+                Turno t = db.turnos.Find(aOT.idTurno);
+                Personal jefe = db.personal.Find(aOT.idJefeSeccion);
+                Personal res = db.personal.Find(aOT.idResponsable);
 
-                nuevaOT.nroOrdenTrabajo = aOT.nroOrdenTrabajo;
-                nuevaOT.nombreTrabajo = aOT.nombreTrabajo;
-                nuevaOT.Turno_Id = t.idTurno;
-                nuevaOT.Turno = t;
-                nuevaOT.fecha = aOT.fecha;
-                nuevaOT.Responsable = res;
-                nuevaOT.Responsable_Id = res.idPersonal;
-                nuevaOT.JefeSeccion = jefe;
-                nuevaOT.JefeSeccion_Id = jefe.idPersonal;
+                otEdit.numero = aOT.numero;
+                otEdit.nombre = aOT.nombre;
+                otEdit.idTurno = t.idTurno;
+                otEdit.Turno = t;
+                otEdit.fecha = aOT.fecha;
+                otEdit.responsable = res;
+                otEdit.jefeSeccion = jefe;
                 db.SaveChanges();
             }
             catch
             {
-                return RedirectToAction("Buscar", "OrdenTrabajo");
+                //TODO redirect error correspondiente
+                return RedirectToAction("Index", "OrdenTrabajo");
             }
 
-            return RedirectToAction("Buscar", "OrdenTrabajo");
-        }
+            idOt = otEdit.idOrdenTrabajo;
 
-        // GET: OrdenTrabajo/Buscar
-        [Route("/OrdenTrabajo/Buscar")]
-        public ViewResult Buscar(string sortOrder, string currentFilter, string searchString)
-        {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombreTrabajo_asc" : "";
-
-            ViewBag.CurrentFilter = searchString;
-
-            List<OrdenTrabajo> staff = db.OrdenTrabajo.Take(20).ToList();
-
-            if (!String.IsNullOrEmpty(searchString))
+            if(idOt < 0)
             {
-                //staff = db.OrdenTrabajo.Where(s => s.nombreTrabajo.ToUpper().Contains(searchString.ToUpper())).ToList();
-                staff = (from ot in db.OrdenTrabajo
-                        where ot.nombreTrabajo.ToUpper().Contains(searchString.ToUpper()) 
-                            || ot.nroOrdenTrabajo.ToString().Equals(searchString) || ot.Responsable.nombre.ToUpper().Contains(searchString.ToUpper())
-                        select ot).ToList();
+                return RedirectToAction("Index", "OrdenTrabajo");
             }
 
-            switch (sortOrder)
-            {
-                case "nombreTrabajo_asc":
-                    staff = staff.OrderBy(s => s.nombreTrabajo).ToList();
-                    break;
-            }
-
-            return View(staff.ToList());
+            return RedirectToAction("Index", "ShopCartMaterial", new { id = idOt });
         }
 
         private void cargarTurno(object selectedTurno = null)
         {
-            ViewBag.Turno_Id = new SelectList(db.Turno.ToList(), "idTurno", "nombreTurno", selectedTurno);
+            ViewBag.idTurno = new SelectList(db.turnos.ToList(), "idTurno", "nombre", selectedTurno);
         }
 
         private void cargarJefeSeccion(object selectedJefeSeccion = null)
         {
-            ViewBag.JefeSeccion_Id = new SelectList(db.Personal.ToList(), "idPersonal", "nombre", selectedJefeSeccion);
+            ViewBag.idJefeSeccion = new SelectList(db.personal.Where(x => x.hab).ToList(), "idPersonal", "nombre", selectedJefeSeccion);
         }
 
         private void cargarResponsable(object selectedResponsable = null)
         {
-            ViewBag.Responsable_Id = new SelectList(db.Personal.ToList(), "idPersonal", "nombre", selectedResponsable);
+            ViewBag.idResponsable = new SelectList(db.personal.Where(x => x.hab).ToList(), "idPersonal", "nombre", selectedResponsable);
         }
     }
 }

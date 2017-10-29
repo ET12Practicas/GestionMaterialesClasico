@@ -27,9 +27,9 @@ namespace gestionmateriales.Models.GestionMateriales
         public virtual Material Material { get; set; }
 
         [Required]
-        public int TipoEntrada_Id { get; set; }
+        public int idTipoEntrada { get; set; }
 
-        public virtual TipoEntrada TipoEntrada { get; set; }
+        public virtual TipoEntrada tipoEntrada { get; set; }
 
         public Entrada()
         {

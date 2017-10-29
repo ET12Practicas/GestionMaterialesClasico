@@ -10,11 +10,10 @@
             <h2>Ordenes de Trabajo de Aplicación</h2>
         </div>
     </div>
-<<<<<<< .mine
     <h5>Vale por una breve descripción.</h5>
     <hr />
     <div class="col-md-3">
-        <a id="btn_crearordenpedido" class="btn btn-primary btn-block" href="~/OrdenTrabajo/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de trabajo de aplicación"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Nueva Orden de Trabajo</a>
+        <a id="btn_nuevarordentrabajo" class="btn btn-primary btn-block" href="~/OrdenTrabajo/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Genera una nueva orden de trabajo de aplicación"> Nueva Orden de Trabajo</a>
     </div>
     <br />
     <br />
@@ -52,22 +51,22 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.nroOrdenTrabajo)
+                                @Html.DisplayFor(modelItem => item.numero)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.fecha.Year)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Turno.nombreTurno)
+                                @Html.DisplayFor(modelItem => item.Turno.nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.nombreTrabajo)
+                                @Html.DisplayFor(modelItem => item.nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Responsable.nombre)
+                                @Html.DisplayFor(modelItem => item.responsable.nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.JefeSeccion.nombre)
+                                @Html.DisplayFor(modelItem => item.jefeSeccion.nombre)
                             </td>
                             <td>
                                 @Html.ActionLink("Editar", "Editar", new { id = item.idOrdenTrabajo })
@@ -78,27 +77,8 @@
             </table>
             <script type="text/javascript">
                 $('#tabla_ordenpedido').DataTable();
-                $('#btn_crearPersonal').tooltip();
+                $('#btn_nuevarordentrabajo').tooltip();
             </script>
-||||||| .r56
-    <div class="container">
-        <div id="seleccion">
-            <div class="col-md-3">
-                <a class="btn btn-primary btn-block" href="~/OrdenTrabajo/Alta" role="button">Nueva Orden de Trabajo</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-primary btn-block" href="~/OrdenTrabajo/Buscar" role="button">Buscar</a>
-            </div>
-=======
-    <div class="container">
-        <div id="seleccion">
-            <div class="col-md-3">
-                <a class="btn btn-primary btn-block" href="~/OrdenTrabajo/Agregar" role="button">Nueva Orden de Trabajo</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-primary btn-block" href="~/OrdenTrabajo/Buscar" role="button">Buscar</a>
-            </div>
->>>>>>> .r57
         </div>
     </div>
 </div>

@@ -163,6 +163,7 @@
     <Compile Include="Controllers\OrdenPedidoController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\ShopCartMaterialController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,7 +174,7 @@
     <Compile Include="Models\GestionMateriales\ItemOT.cs" />
     <Compile Include="Models\GestionMateriales\Material.cs" />
     <Compile Include="Models\GestionMateriales\OrdenTrabajo.cs" />
-    <Compile Include="Models\GestionMateriales\OtContext.cs" />
+    <Compile Include="Models\GestionMateriales\OficinaTecnicaEntities.cs" />
     <Compile Include="Models\GestionMateriales\OrdenPedido.cs" />
     <Compile Include="Models\GestionMateriales\Personal.cs" />
     <Compile Include="Models\GestionMateriales\Proveedor.cs" />
@@ -250,12 +251,12 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\OrdenTrabajo\Index.cshtml" />
     <Content Include="Views\OrdenTrabajo\Agregar.cshtml" />
-    <Content Include="Views\OrdenTrabajo\Buscar.cshtml" />
     <Content Include="Views\Stock\Index.cshtml" />
     <Content Include="Views\Stock\Sumar.cshtml" />
     <Content Include="Views\OrdenTrabajo\Editar.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Views\ShopCartMaterial\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

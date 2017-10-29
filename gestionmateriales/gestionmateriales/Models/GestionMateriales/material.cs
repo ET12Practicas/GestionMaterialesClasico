@@ -26,19 +26,19 @@ namespace gestionmateriales.Models.GestionMateriales
         public int stockMinimo { get; set; }
 
         [Required]
-        public int Unidad_Id { get; set; }
+        public int idUnidad { get; set; }
 
-        public virtual Unidad Unidad { get; set; }
-
-        [Required]
-        public int Proveedor_Id { get; set; }
-
-        public virtual Proveedor Proveedor { get; set; }
+        public virtual Unidad unidad { get; set; }
 
         [Required]
-        public int TipoMaterial_Id { get; set; }
+        public int idProveedor { get; set; }
 
-        public virtual TipoMaterial TipoMaterial { get; set; }
+        public virtual Proveedor proveedor { get; set; }
+
+        [Required]
+        public int idTipoMaterial { get; set; }
+
+        public virtual TipoMaterial tipoMaterial { get; set; }
         
         [Required]
         [StringLength(12)]
@@ -49,20 +49,20 @@ namespace gestionmateriales.Models.GestionMateriales
         public string detalle { get; set; }
 
         [Required]
-        public bool habilitado { get; set; }
+        public bool hab { get; set; }
 
-        public virtual ICollection<Entrada> Entrada { get; set; }
+        public virtual ICollection<Entrada> entradas { get; set; }
 
-        public virtual ICollection<Salida> Salida { get; set; }
+        public virtual ICollection<Salida> salidas { get; set; }
 
         public Material()
         {
-            this.Entrada = new HashSet<Entrada>();
-            this.Salida = new HashSet<Salida>();
+            this.entradas = new HashSet<Entrada>();
+            this.salidas = new HashSet<Salida>();
         }
         public Material(string aCodigo, string aNombre, int aStockMinimo, string aDetalle, Unidad aUnidad, Proveedor aProveedor, TipoMaterial aTipoMaterial)
         {
-            this.habilitado = true;
+            this.hab = true;
             this.estado = "Sin Stock";
             this.stockActual = 0;
 
@@ -71,12 +71,12 @@ namespace gestionmateriales.Models.GestionMateriales
             this.stockMinimo = aStockMinimo;
             this.detalle = aDetalle;
 
-            this.Unidad_Id = aUnidad.idUnidad;
-            this.Unidad = aUnidad;
-            this.Proveedor_Id = aProveedor.idProveedor;
-            this.Proveedor = aProveedor;
-            this.TipoMaterial_Id = aTipoMaterial.idTipoMaterial;
-            this.TipoMaterial = aTipoMaterial;
+            this.idUnidad = aUnidad.idUnidad;
+            this.unidad = aUnidad;
+            this.idProveedor = aProveedor.idProveedor;
+            this.proveedor = aProveedor;
+            this.idTipoMaterial = aTipoMaterial.idTipoMaterial;
+            this.tipoMaterial = aTipoMaterial;
         }
     }
 }

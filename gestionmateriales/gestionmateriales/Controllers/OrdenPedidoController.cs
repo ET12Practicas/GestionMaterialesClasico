@@ -8,13 +8,13 @@ namespace gestionmateriales.Controllers
 {
     public class OrdenPedidoController : Controller
     {
-        OtContext db = new OtContext();
+        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
 
         // GET: OrdenPedido
         [Route("/OrdenPedido")]
         public ActionResult Index()
         {
-            List<OrdenPedido> pedidos = db.OrdenPedido.Where(x => x.habilitado == true).ToList();
+            List<OrdenPedido> pedidos = db.ordenPedido.Where(x => x.hab).ToList();
 
             return View(pedidos);
         }
@@ -32,7 +32,7 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                db.OrdenPedido.Add(unPedido); 
+                db.ordenPedido.Add(unPedido); 
                 db.SaveChanges();
             }
             catch
@@ -51,7 +51,7 @@ namespace gestionmateriales.Controllers
 
             try
             {
-                pedidoSeleccionado = db.OrdenPedido.Find(id);
+                pedidoSeleccionado = db.ordenPedido.Find(id);
             }
             catch
             {
@@ -65,12 +65,12 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, OrdenPedido unPedido)
         {
-            OrdenPedido nuevoPedido = db.OrdenPedido.Find(id);
+            OrdenPedido nuevoPedido = db.ordenPedido.Find(id);
             
             try
             {
-                nuevoPedido.nroOrdenPedido = unPedido.nroOrdenPedido;
-                nuevoPedido.nroOrdenTrabajo = unPedido.nroOrdenTrabajo;
+                nuevoPedido.numOp = unPedido.numOp;
+                nuevoPedido.numOt = unPedido.numOt;
                 nuevoPedido.destino = unPedido.destino;
                 db.SaveChanges();
             }
@@ -87,11 +87,11 @@ namespace gestionmateriales.Controllers
         //POST: Pedido/Borrar/1
         public ActionResult Borrar(int id)
         {
-            OrdenPedido pedidoSeleccionado = db.OrdenPedido.Find(id);
+            OrdenPedido pedidoSeleccionado = db.ordenPedido.Find(id);
 
             try
             {
-                pedidoSeleccionado.habilitado = false;
+                pedidoSeleccionado.hab = false;
                 db.SaveChanges();
             }
             catch

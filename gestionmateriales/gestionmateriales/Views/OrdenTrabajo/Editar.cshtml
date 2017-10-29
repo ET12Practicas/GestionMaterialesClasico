@@ -2,57 +2,69 @@
 @{
     ViewBag.Title = "OrdenTrabajo";
 }
- <div>
-     <br />
-    <div class="container">
-        <h1>Editar Orden de Trabajo</h1>
-        <hr />
-        <div class="col-sm-offset-2 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Editar Orden de Trabajo</h3>
-                </div>
-                <div class="panel-body">
-                    @using (@Html.BeginForm("Editar", "OrdenTrabajo", FormMethod.Post))
-                    {
+<div id="page-wrapper">
+    <br />
+    <div class="row">
+        <div class="container">
+            <h2>Editar Orden de Trabajo de Aplicación</h2>
+        </div>
+    </div>
+    <h5>Modifica los campos de una orden trabajo de aplicación existente.</h5>
+    <hr />
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Orden de Trabajo de Aplicación</h3>
+            </div>
+            <div class="panel-body">
+                @using (@Html.BeginForm("Editar", "OrdenTrabajo", new { id = Model.idOrdenTrabajo }, FormMethod.Post))
+                {
+                    <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.nroOrdenTrabajo, "Numero", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.nroOrdenTrabajo, new { htmlAttributes = new { @class = "form-control", min = 1, required = "true" } })
+                            @Html.LabelFor(model => model.numero, "Número", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", min = 1, required = "true" } })
+                            </div>
+                            @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true" } })
+                            </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.nombreTrabajo, "Nombre", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.nombreTrabajo, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true" } })
+                            @Html.LabelFor(model => model.Turno, "Turno", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-3">
+                                @Html.DropDownList("idTurno", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.LabelFor(model => model.fecha, "Fecha", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                            </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.fecha, "Fecha", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", required = "true" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Turno, "Turno", new { @class = "control-label" })
-                            @Html.DropDownList("Turno_Id", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Responsable, "Responsable", new { @class = "control-label" })
-                            @Html.DropDownList("Responsable_Id", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.JefeSeccion, "Jefe de Seccion", new { @class = "control-label" })
-                            @Html.DropDownList("JefeSeccion_Id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.LabelFor(model => model.responsable, "Responsable", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("idResponsable", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.LabelFor(model => model.jefeSeccion, "Jefe de Sección", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("idJefeSeccion", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-md-8">
-                                <input type="reset" class="btn btn-default" value="Restaurar Valores" />
+                            <div class="col-md-3">
+                                <input type="reset" class="btn btn-default btn-block" value="Restaurar Valores" />
                             </div>
-                            <div class="col-xs-1 col-md-2">
-                                <input type="submit" class="btn btn-primary" value="Aceptar" />
+                            <div class="col-md-offset-3 col-md-3">
+                                <input type="submit" class="btn btn-primary btn-block" value="Editar Materiales" />
                             </div>
-                            <div class="col-xs-1 col-md-1">
-                                <input type="button" class="btn btn-default" onclick="location.href='../Buscar'" value="Cancelar" />
+                            <div class="col-md-3">
+                                <input type="button" class="btn btn-default btn-block" onclick=" location.href='../Index' " value="Cancelar" />
                             </div>
                         </div>
-                    }
-                </div>
+
+                    </div>
+                }
             </div>
         </div>
     </div>
- </div>
+</div>

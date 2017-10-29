@@ -13,5 +13,10 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         [StringLength(15)]
         public string nombre { get; set; }
+
+        public Unidad()
+        {
+
+        }
     }
 }
