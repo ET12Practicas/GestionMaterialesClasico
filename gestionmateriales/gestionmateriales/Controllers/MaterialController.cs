@@ -25,13 +25,23 @@ namespace gestionmateriales.Controllers
             cargarProveedor();
             cargarUnidad();
             cargarTipoMaterial();
-            return View();
+            return View("Agregar");
         }
                 
         //POST: Material/Agregar
         [HttpPost]
         public ActionResult Agregar(Material aMat)
         {
+            if(db.materiales.Any(x=>x.codigo == aMat.codigo))
+            {
+                //TODO codigo repetido avisar al cliente, resovler mediante codigo en el viewresult
+                ViewBag.Result = 1;
+                cargarProveedor();
+                cargarUnidad();
+                cargarTipoMaterial();
+                return View("Agregar", aMat);
+            }
+
             try
             {
                 Unidad u = db.unidades.Find(aMat.idUnidad);
@@ -47,7 +57,7 @@ namespace gestionmateriales.Controllers
             cargarProveedor();
             cargarUnidad();
             cargarTipoMaterial();
-            ViewBag.Result = true;
+            ViewBag.Result = 0;
             return View("Agregar", aMat);
         }
 

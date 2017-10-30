@@ -25,19 +25,19 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nombre, "Nombre y Apellido", new { @class = "col-md-4 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", placeholder="Juan Perez", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.fichaCensal, "Ficha Censal", new { @class = "col-md-4 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.fichaCensal, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, maxlength = 6, required = "true" } })
+                                    @Html.EditorFor(model => model.fichaCensal, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, maxlength = 6, placeholder= "243154", required = "true" } })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.dni, "DNI", new { @class = "col-md-4 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", min = 1, max = 99999999, maxlength = 8, required = "true" } })
+                                    @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", min = 1, max = 99999999, maxlength = 8, placeholder = "44243154", required = "true" } })
                                 </div>
                             </div>
                             <div class="row">
@@ -57,10 +57,16 @@
                     }
                 </div>
             </div>
-            @if (ViewBag.Result == true)
+            @if (ViewBag.Result == 0)
             {
                 <div id="alert_message" class="alert alert-success">
                     Los datos se guardaron con éxito.
+                </div>
+            }
+            @if (ViewBag.Result == 1)
+            {
+                <div id="alert_message" class="alert alert-danger">
+                    El DNI o Ficha Censal ya existe, verifique el valor.
                 </div>
             }
             <script type="text/javascript">

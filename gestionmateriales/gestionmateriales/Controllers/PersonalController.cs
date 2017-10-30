@@ -7,15 +7,17 @@ namespace gestionmateriales.Controllers
 {
     public class PersonalController : Controller
     {
-        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-        
         // GET: Personal
         [Route("/Personal")]
+        [HttpGet]
         public ActionResult Index()
         {
-            List<Personal> personas = db.personal.Where(x => x.hab == true).ToList();
-
-            return View(personas);
+            List<Personal> personas;
+            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
+            {
+                personas = db.personal.Where(x => x.hab == true).ToList();
+            }
+            return View("Index", personas);
         }
 
         // GET: Personal/Agregar
@@ -29,75 +31,97 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Agregar(Personal aPersonal)
         {
-            try
+            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
-                db.personal.Add(aPersonal);
-                db.SaveChanges();
+                if (db.personal.Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
+                {
+                    ViewBag.Result = 1;
+                    return View("Agregar", aPersonal);
+                }
+                try
+                {
+                    db.personal.Add(new Personal(aPersonal.nombre, aPersonal.fichaCensal, aPersonal.dni));
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error406", "Error");
+                }
             }
-            catch
-            {
-                return RedirectToAction("Index", "Personal");
-            }
-            ViewBag.Result = true;
-            return View("Agregar", aPersonal);
+            ViewBag.Result = 0;
+            //TODO Fix: Se ve la animacion y desencadena en error de duplicados, es mejor que se limpie en form
+            //return View("Agregar", new Personal()); 
+            return RedirectToAction("Agregar","Personal");
         }
 
         //GET: Personal/Editar/1
         [Route("/Personal/Editar/{id}")]
+        [HttpGet]
         public ActionResult Editar(int id)
         {
             Personal personalSeleccionado;
-            
-            try
-            {
-                personalSeleccionado = db.personal.Find(id);
+            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
+            {               
+                try
+                {
+                    personalSeleccionado = db.personal.Find(id);
+                }
+                catch
+                {
+                    return RedirectToAction("Error406", "Error");
+                }
             }
-            catch
-            {
-                return RedirectToAction("Buscar", "Personal");
-            }
-
-            return View(personalSeleccionado);
+            return View("Editar", personalSeleccionado);
         }
       
         //POST: Personal/Editar/1
         [HttpPost]
-        public ActionResult Editar(int id, Personal unPersonal)
+        public ActionResult Editar(int id, Personal aPersonal)
         {
-            
-            Personal nuevoPersonal = db.personal.Find(id);
-            try
+            Personal nuevoPersonal;
+            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
-                nuevoPersonal.nombre = unPersonal.nombre;
-                nuevoPersonal.dni = unPersonal.dni;
-                nuevoPersonal.fichaCensal = unPersonal.fichaCensal;
-                db.SaveChanges();
+                nuevoPersonal = db.personal.Find(id);
+                if (db.personal.Where(x => x.idPersonal != id).Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
+                {
+                    ViewBag.Result = 1;
+                    return View("Editar", nuevoPersonal);
+                }
+                try
+                {
+                    nuevoPersonal.nombre = aPersonal.nombre;
+                    nuevoPersonal.dni = aPersonal.dni;
+                    nuevoPersonal.fichaCensal = aPersonal.fichaCensal;
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error406", "Error");
+                }
             }
-            catch
-            {
-                return RedirectToAction("Buscar", "Personal");
-            }
-            
-            ViewBag.Result = true;
-            
-            return View("Editar", nuevoPersonal);
+            ViewBag.Result = 0;
+            //TODO Fix: Se ve la animacion y desencadena en error de duplicados, es mejor que se limpie en form
+            //return View("Agregar", new Personal()); 
+            return RedirectToAction("Agregar", "Personal");
         }
 
         //POST: Personal/Borrar/1
         public ActionResult Borrar(int id)
         {
-            Personal personalSeleccionado = db.personal.Find(id);
-            
-            try
+            Personal personalSeleccionado;
+            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
-                personalSeleccionado.hab = false;
-                db.SaveChanges();
+                personalSeleccionado = db.personal.Find(id);
+                try
+                {
+                    personalSeleccionado.hab = false;
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error406", "Error");
+                }
             }
-            catch
-            {
-                return RedirectToAction("index", "Personal");
-            }
-            
             return RedirectToAction("Index", "Personal");
         }
     }

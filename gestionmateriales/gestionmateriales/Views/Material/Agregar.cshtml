@@ -77,10 +77,16 @@
                     }
                 </div>
             </div>
-            @if (ViewBag.Result == true)
+            @if (ViewBag.Result == 0)
             {
                 <div id="alert_message" class="alert alert-success">
                     Los datos se guardaron con éxito.
+                </div>
+            }
+            @if (ViewBag.Result == 1)
+            {
+                <div id="alert_message" class="alert alert-danger">
+                    El código del material ya existe ingrese otro.
                 </div>
             }
         </div>
