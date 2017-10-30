@@ -4,38 +4,37 @@
 }
 
 <div id="page-wrapper">
-    <div class="container">
-        <br />
+    <br />
         <div class="row">
             <div class="container">
-                <h2>Gestion de Ordenes de Pedido</h2>
+                <h2>Crear Orden de Pedido</h2>
             </div>
         </div>
-        <h5>Agregar una nueva orden de pedido</h5>
+        <h5>Genera una nueva orden de pedido</h5>
         <hr />
-              <div class="col-sm-offset-2 col-md-7">
+              <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Nueva Orden de Pedido</h3>
+                            <h3 class="panel-title">Orden de Pedido</h3>
                         </div>
                         <div class="panel-body">
                             @using (@Html.BeginForm("Agregar", "OrdenPedido", FormMethod.Post))
                             {
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.numOp, "Nro Orden de Pedido", new { @class = " col-md-4 control-label" })
+                                        @Html.LabelFor(model => model.numOp, "Nro Orden de Pedido", new { @class = " col-md-2 control-label" })
                                         <div class="col-md-8">
                                             @Html.EditorFor(model => model.numOp, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, maxlength = 6, required = "true" } })
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.numOt, "Nro Orden de Trabajo", new { @class = "col-md-4 control-label" })
+                                        @Html.LabelFor(model => model.numOt, "Nro Orden de Trabajo", new { @class = "col-md-2 control-label" })
                                         <div class="col-md-8">
                                             @Html.EditorFor(model => model.numOt, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, maxlength = 6, required = "true" } })
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.destino, "Destino", new { @class = "col-md-4 control-label" })
+                                        @Html.LabelFor(model => model.destino, "Destino", new { @class = "col-md-2 control-label" })
                                         <div class="col-md-8">
                                             @Html.TextAreaFor(model => model.destino, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 150, required = "true" })
                                         </div>
@@ -44,11 +43,9 @@
                                         <div class="col-md-3">
                                             <input type="reset" class="btn btn-default btn-block" value="Limpiar" data-toggle="tooltip" data-placement="right" title="Vacia todos los campos del formulario" />
                                         </div>
-
                                         <div class="col-md-offset-3 col-md-3">
-                                            <input type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="right" title="Confirma la operación" />
+                                            <input type="submit" class="btn btn-primary btn-block" value="Agregar Materiales" />
                                         </div>
-
                                         <div class="col-md-3">
                                             <input type="button" class="btn btn-default btn-block" onclick="location.href='Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                                         </div>
@@ -57,18 +54,6 @@
                               }
                          </div>
                     </div>
-                  @if (ViewBag.Result == true)
-                  {
-                      <div id="alert_message" class="alert alert-success">
-                          Los datos se guardaron con éxito.
-                      </div>
-                  }
-                  <script type="text/javascript">
-                      $('#btn_limpiar').tooltip();
-                      $('#btn_aceptar').tooltip();
-                      $('#btn_cancelar').tooltip();
-                  </script>
                 </div>
-        </div>
 </div>
 

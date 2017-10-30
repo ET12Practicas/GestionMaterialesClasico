@@ -10,7 +10,7 @@
             <h2>Gestión de Pedidos</h2>
         </div>
         </div>
-        <h5>Ordenes de pedido ingresadas</h5>
+        <h5>Ordenes de pedido ingresadas.</h5>
     <hr />
     <div class="col-md-3">
         <a id="btn_CrearOrdenPedido" class="btn btn-primary btn-block" href="~/OrdenPedido/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de pedido">Nueva Orden de Pedido</a>
@@ -35,9 +35,6 @@
                         <th>
                             <span class="glyphicon glyphicon-pencil" aria-hidden=true></span>
                         </th>
-                        <th>
-                            <span class="glyphicon glyphicon-trash" aria-hidden=true></span>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,29 +52,6 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Editar", "Editar", new { id = item.idOrdenPedido})
-                            </td>
-                            <td>
-                                <a href="" data-toggle="modal" data-target="#myModal-@item.idOrdenPedido">Borrar</a>
-
-                                <div class="modal fade" id="myModal-@item.idOrdenPedido" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">    
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Borrar Personal</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>¿Desea borrar la siguiente orden de pedido del sistema?</p>
-                                                <p><strong>Orden de Pedido Numero: </strong>@item.numOp</p>
-                                                <p><strong>Orden de Trabajo Numero: </strong>@item.numOt</p>
-                                                <p><strong>Destino: </strong>@item.destino</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="~/OrdenPedido/Borrar/@item.idOrdenPedido" type="button" class="btn btn-primary">Aceptar</a>
-                                                <button type="button" class="btn btn-default" data-dissmiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                     }

@@ -15,7 +15,6 @@ namespace gestionmateriales.Controllers
         public ActionResult Index()
         {
             List<OrdenPedido> pedidos = db.ordenPedido.Where(x => x.hab).ToList();
-
             return View(pedidos);
         }
 
@@ -23,24 +22,41 @@ namespace gestionmateriales.Controllers
         [Route("/OrdenPedido/Agregar")]
         public ActionResult Agregar()
         {
+            //cargarDestino();
+            //cargarNumOT();
+            //cargarNumOP();
             return View();
         }
 
         //POST: OrdenPedido/1/Agregar
         [HttpPost]
-        public ActionResult Agregar(OrdenPedido unPedido)
+        public ActionResult Agregar(OrdenPedido aOP)
         {
+            int idOp = -1;
+
+            if(db.ordenPedido.Any(x=> x.numOp == aOP.numOp))
+            {
+                return RedirectToAction("Index", "OrdenTrabajo");
+            }
+
             try
             {
-                db.ordenPedido.Add(unPedido); 
+                db.ordenPedido.Add(new OrdenPedido {numOp = aOP.numOp, numOt = aOP.numOt, destino = aOP.destino });
                 db.SaveChanges();
+
+                idOp = db.ordenPedido.SingleOrDefault(x => x.numOp == aOP.numOp).idOrdenPedido;
             }
             catch
             {
                 return RedirectToAction("Index", "OrdenPedido");
             }
-            ViewBag.Result = true;
-            return View("Agregar", unPedido);
+
+            if (idOp < 0)
+            {
+                return RedirectToAction("Index", "OrdenTrabajo");
+            }
+
+            return RedirectToAction("Index", "ShopCartMaterial", new { id = idOp });
         }
 
         //GET: OrdenPedido/Editar/1
@@ -101,5 +117,20 @@ namespace gestionmateriales.Controllers
 
             return RedirectToAction("Index", "OrdenPedido");
         }
+
+        //private void cargarNumOP(object selectedNumOP = null)
+        //{
+        //    ViewBag.idNumOp = new SelectList(db.ordenPedido.Where(x => x.hab).ToList(), "idPedido", "numero", selectedNumOP);
+        //}
+
+        //private void cargarNumOT(object selectedNumOT = null)
+        //{
+        //    ViewBag.idNumOt = new SelectList(db.ordenTrabajo.Where(x => x.hab).ToList(), "idTrabajo", "numero", selectedNumOT);
+        //}
+
+        //private void cargarDestino(object selectedDestino = null)
+        //{
+        //    ViewBag.idDestino = new SelectList(db.ordenPedido.Where(x => x.hab).ToList(), "idDestino", "destino", selectedDestino);
+        //}
     }
 }

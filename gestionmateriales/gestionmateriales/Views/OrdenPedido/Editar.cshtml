@@ -4,38 +4,37 @@
 }
 
 <div id="page-wrapper">
-    <div class="container">
-        <br />
-        <div class="row">
+    <br />
+         <div class="row">
             <div class="container">
                 <h2>Gestion de Ordenes de Pedido</h2>
             </div>
         </div>
         <h5>Edita iformacion de las ordenes de pedido existentes.</h5>
         <hr />
-        <div class="col-sm-offset-2 col-md-7">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Editar Datos de las Ordenes de Pedido</h3>
+                    <h3 class="panel-title">Orden de Pedido</h3>
                 </div>
                 <div class="panel-body">
-                    @using (@Html.BeginForm("Editar", "OrdenPedido", FormMethod.Post))
+                    @using (@Html.BeginForm("Editar", "OrdenPedido", new { id = Model.idOrdenPedido }, FormMethod.Post))
                     {
                         <div class="form-horizontal">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.nroOrdenPedido, "Nro Orden de Pedido", new { @class = "col-md-4 control-label" })
+                                @Html.LabelFor(model => model.numOp, "Nro Orden de Pedido", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.nroOrdenPedido, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true" } })
+                                    @Html.EditorFor(model => model.numOp, new { htmlAttributes = new { @class = "form-control", min = 1, required = "true" } })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.nroOrdenTrabajo, "Nro Orden de Trabajo", new { @class = "col-md-4 control-label" })
+                                @Html.LabelFor(model => model.numOt, "Nro Orden de Trabajo", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.nroOrdenTrabajo, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, required = "true" } })
+                                    @Html.EditorFor(model => model.numOt, new { htmlAttributes = new { @class = "form-control", min = 1, required = "true" } })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.destino, "Destino", new { @class = "col-md-4 control-label" })
+                                @Html.LabelFor(model => model.destino, "Destino", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-8">
                                     @Html.TextAreaFor(model => model.destino, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 150, required = "true" })
                                 </div>
@@ -56,13 +55,6 @@
                     }
                 </div>
             </div>
-            @if (ViewBag.Result == true)
-            {
-                <div id="alert_message" class="alert alert-success">
-                    Los datos se guardaron con éxito.
-                </div>
-            }
         </div>
-    </div>
 </div>
 
