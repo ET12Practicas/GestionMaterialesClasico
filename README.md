@@ -1,3 +1,5 @@
+![](http://i66.tinypic.com/2nhjju9.png)
+
 ## Software Oficina Técnica
 
 ### Documentos
