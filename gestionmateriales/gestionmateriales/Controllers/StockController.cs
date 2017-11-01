@@ -20,24 +20,15 @@ namespace gestionmateriales.Controllers
         public ActionResult Sumar()
         {
             cargarTipoEntrada();
-            return View();
+            return View("Sumar");
         }
-        
-        //POST: Stock/Sumar
-        [HttpPost]
-        public ActionResult Sumar(Material unMaterial, int sumaActual)
+    
+        //GET: Stock/Restar
+        [Route("/Stock/Restar")]
+        public ActionResult Restar()
         {
-            try
-            {
-                unMaterial.stockActual = unMaterial.stockActual + sumaActual;
-                db.SaveChanges();
-            }
-            catch
-            {
-                return RedirectToAction("Index", "Material");
-            }
-
-            return RedirectToAction("Sumar", "Material");
+            cargarTipoEntrada();
+            return View("Restar");
         }
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
