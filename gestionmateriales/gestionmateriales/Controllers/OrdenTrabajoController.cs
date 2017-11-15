@@ -98,14 +98,14 @@ namespace gestionmateriales.Controllers
             catch
             {
                 //TODO redirect error correspondiente
-                return RedirectToAction("Index", "OrdenTrabajo");
+                return RedirectToAction("Errpr406", "Error");
             }
 
             idOt = otEdit.idOrdenTrabajo;
 
             if(idOt < 0)
             {
-                return RedirectToAction("Index", "OrdenTrabajo");
+                return RedirectToAction("Error406", "Error");
             }
 
             return RedirectToAction("Index", "ShopCartMaterial", new { id = idOt });

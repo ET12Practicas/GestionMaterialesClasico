@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,6 +24,10 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public bool hab { get; set; }
 
+        [Required]
+
+        public DateTime fecha { get; set; }
+
         public virtual ICollection<ItemOP> itemsOP { get; set; }
 
         public OrdenPedido()
@@ -31,13 +36,14 @@ namespace gestionmateriales.Models.GestionMateriales
             this.hab = true;
         }
 
-        public OrdenPedido(int aNroOP, int aNroOT, string aDestino)
+        public OrdenPedido(int aNroOP, int aNroOT, string aDestino, DateTime aFecha)
         {
             this.hab = true;
 
             this.numOp = aNroOP;
             this.numOt = aNroOT;
             this.destino = aDestino;
+            this.fecha = aFecha;
         }
     }
 }

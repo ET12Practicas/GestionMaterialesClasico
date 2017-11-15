@@ -1,0 +1,89 @@
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.ItemOP>
+@{
+    ViewBag.Title = "Seleccion de materiales";
+}
+
+<div id="page-wrapper">
+    <br />
+    <div class="row">
+        <div class="container">
+            <h2>Selección de Materiales</h2>
+        </div>
+    </div>
+    <h5>Vale por una descripción.</h5>
+    <hr />
+    <div class="col-md-3">
+        <a id="btn_generarordenpedido" class="btn btn-primary btn-block" href="~/ShopCartMaterialPedido/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de pedido"> Generar Orden de Pedido</a>
+    </div>
+    <hr />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Material
+                        </th>
+                        <th>
+                            Stock Actual
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.codigo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.stockActual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.material.estado)
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" value="@item.cantidad" onclick="updateCant(this)" onkeypress="updateCant(this)" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Extra-small button group">
+                                    <a id="itemLink-@item.material.idMaterial" href="/ShopCartMaterialPedido/AddToCart?idOp=@ViewData["idOp"]&idMaterial=@item.material.idMaterial&itemCantidad=@item.cantidad">Agregar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $('#tabla_materiales').DataTable();
+                $('#btn_generarordenpedido').tooltip();
+
+            //update que modifica el href del link "agregar"
+            function updateCant(control) {
+                var str = control.id.split('-');
+                var strhref = "/ShopCartMaterialPedido/AddToCart?idOp=" + @ViewData["idOp"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
+                $('#itemLink-' + str[1]).attr("href", strhref);
+            }
+            </script>
+        </div>
+    </div>
+</div>

@@ -22,9 +22,7 @@ namespace gestionmateriales.Controllers
         [Route("/OrdenPedido/Agregar")]
         public ActionResult Agregar()
         {
-            //cargarDestino();
-            //cargarNumOT();
-            //cargarNumOP();
+            cargarNumOT();
             return View();
         }
 
@@ -41,7 +39,7 @@ namespace gestionmateriales.Controllers
 
             try
             {
-                db.ordenPedido.Add(new OrdenPedido {numOp = aOP.numOp, numOt = aOP.numOt, destino = aOP.destino });
+                db.ordenPedido.Add(new OrdenPedido(aOP.numOp, aOP.numOt, aOP.destino, aOP.fecha));
                 db.SaveChanges();
 
                 idOp = db.ordenPedido.SingleOrDefault(x => x.numOp == aOP.numOp).idOrdenPedido;
@@ -53,51 +51,48 @@ namespace gestionmateriales.Controllers
 
             if (idOp < 0)
             {
-                return RedirectToAction("Index", "OrdenTrabajo");
+                return RedirectToAction("Index", "OrdenPedido");
             }
 
-            return RedirectToAction("Index", "ShopCartMaterial", new { id = idOp });
+            return RedirectToAction("Index", "ShopCartMaterialPedido", new { id = idOp });
         }
 
         //GET: OrdenPedido/Editar/1
         [Route("/OrdenPedido/Editar/{id}")]
         public ActionResult Editar(int id)
         {
-            OrdenPedido pedidoSeleccionado;
-
-            try
-            {
-                pedidoSeleccionado = db.ordenPedido.Find(id);
-            }
-            catch
-            {
-                return RedirectToAction("Buscar", "OrdenPedido");
-            }
-
-            return View(pedidoSeleccionado);
+            OrdenPedido ordenSelect = db.ordenPedido.Find(id);
+            cargarNumOT(ordenSelect.numOt);
+            return View(ordenSelect);
         }
 
         //POST: OrdenPedido/Editar/1
         [HttpPost]
-        public ActionResult Editar(int id, OrdenPedido unPedido)
+        public ActionResult Editar(int id, OrdenPedido aOP)
         {
-            OrdenPedido nuevoPedido = db.ordenPedido.Find(id);
+            int idOp = -1;
+            OrdenPedido opEdit = db.ordenPedido.Find(id);
             
             try
             {
-                nuevoPedido.numOp = unPedido.numOp;
-                nuevoPedido.numOt = unPedido.numOt;
-                nuevoPedido.destino = unPedido.destino;
+                opEdit.numOp = aOP.numOp;
+                opEdit.numOt = aOP.numOt;
+                opEdit.destino = aOP.destino;
                 db.SaveChanges();
             }
             catch
             {
-                return RedirectToAction("Buscar", "OrdenPedido");
+                return RedirectToAction("Error406", "Error");
             }
 
-            ViewBag.Result = true;
+            idOp = opEdit.idOrdenPedido;
 
-            return View("Editar", nuevoPedido);
+            if (idOp < 0)
+            {
+                return RedirectToAction("Error406", "Error");
+            }
+
+            return RedirectToAction("Index","ShopCartMaterialPedido", new { id = idOp});
         }
 
         //POST: Pedido/Borrar/1
@@ -118,19 +113,9 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Index", "OrdenPedido");
         }
 
-        //private void cargarNumOP(object selectedNumOP = null)
-        //{
-        //    ViewBag.idNumOp = new SelectList(db.ordenPedido.Where(x => x.hab).ToList(), "idPedido", "numero", selectedNumOP);
-        //}
-
-        //private void cargarNumOT(object selectedNumOT = null)
-        //{
-        //    ViewBag.idNumOt = new SelectList(db.ordenTrabajo.Where(x => x.hab).ToList(), "idTrabajo", "numero", selectedNumOT);
-        //}
-
-        //private void cargarDestino(object selectedDestino = null)
-        //{
-        //    ViewBag.idDestino = new SelectList(db.ordenPedido.Where(x => x.hab).ToList(), "idDestino", "destino", selectedDestino);
-        //}
+        private void cargarNumOT(object selectedNumOT = null)
+        {
+            ViewBag.idNumOt = new SelectList(db.ordenTrabajo.Where(x => x.hab).ToList(), "idTrabajo", "numero", selectedNumOT);
+        }
     }
 }
