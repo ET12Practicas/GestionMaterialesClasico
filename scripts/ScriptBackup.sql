@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: pp67_gestionmateriales
+-- Host: win2012-01    Database: pp67_gestionmateriales
 -- ------------------------------------------------------
--- Server version	5.7.18-log
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,21 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `__migrationhistory`
---
-
-LOCK TABLES `__migrationhistory` WRITE;
-/*!40000 ALTER TABLE `__migrationhistory` DISABLE KEYS */;
-INSERT INTO `__migrationhistory` VALUES ('201710281612237_InitialCreate','gestionmateriales.Models.GestionMateriales.OficinaTecnicaEntities','‹\0\0\0\0\0\0\í]_sÜ¶\ïL¿\Ã\Í=vd\'që‘’qd;£6²4ºs¦oŠ„d&<òJò<V;ıd}\èG\êW(øÄŸ] Aò¤dübˆ\Åbñ\Ã\Ø]`ÿ÷Ÿÿ~ÿe->“4“ølyrt¼\\\ØO‚0¾?[\îó»¯ş¼üş»?ş\áôm°ı²ø¹ù\îEñ­gg\ËOy¾{µZeş\'²õ²£m\è§I–\Ü\åG~²]yA²z~|ü—\Õ\ÉÉŠPKJk±8½\Ù\Çy¸%\åô\Ïó$ö\É.\ß{\Ñe(«§%\ë’\êâ½·%\Ù\Îó\É\Ùòd9\åa\ë\å$\r½ˆdGU£«‚KV°\\¼Br¸&\Ñ\İr\á\Åq’{\Å\'¯>dd§I|¿\Ş\Ñ¼hó°#ô»;/\ÊHİ¯W\í\ç¦]<~^tq\ÕVlHùû,O¶–O^\Ô2[\É\Õ{I~\ÉdJ¥ú–J?(z]JölIH½À[.\ä¶^GiñÜjj\ÏJgBiÅ¿g‹ó}”\ïSr“=­=[\\\ïo£\Ğÿy\Ø$¿’ø,\ŞG\Ï<eŸ–	?ĞŸ®\ÓdG\Òü\á†\Ü\Õ]\nÖ©•X}%\×gµÕªU\ß/\âü\Åó\å\â=eÅ»C\n\'§u¤\äG“”v6¸ör\Úe:\Ğ)e­0!5yGüO¬¹7”Ä†N E=ß£^\Ğ\Åw:ûï“†(T,—Ş—ŸH|Ÿ¢Z\â›\å\â]ø…\Í5\ÙqH\ë\Ò:yº·g>\Z\rc?6\á.1A‰\Ô{\ïsx_¨D´e\í†D\åÙ§pW©–£¦ğ#©\Z¥š\ç]šlo’ˆ«\É\n?n¼ôä”³ûb\ìSß‚»œ\ï0À`]öQø®e(f,4LB\ß4\á\Ù<]µ\ÊE«rZ‰:\Ñ9\Í\çV:m·ìµ)şİ©™¦zœloS¢iö\å(\ÍR˜ù¿¾ö‹}\Æ0Sº\ãp›\ÕU´Gƒv\Ğ>$©\Õ\éF\r\ÓYH· :h=cŒ’{Q¤\Ã\Ö\Éñ±Q\Ãúv>y·M?$TCzñ€Õ¥]7†¯.²\â\Æ\×S\îv-¸t\ìqŸü±RœÁö[3/\n1ñ­Ë²-¨[\æ¤\"ea–\Ëû,\ËfñK@|ü¸…¯l…¸¯5‘\Ï\æ€Ãª\ç­.´g\àÔœ“M£7÷®\ë˜ı¶ÁXù»\Û7t.\à_²€aJ|¿<Vï¶‡¢}˜kZ}>J£9‰\È]\ëV\Ñq\ZN½&ñ:ñ¹]ÀÄ›\Ãó$\Î=?\×u\İc\ëx’zi8½„­÷\ÆJ²ZµiÈŠ\Ø\Ü\ê±é’½nljş&\ì8ı¬$yq\Ç6P¦|]S%±¯ö…¯¦ã‹•\Ût0\Ü\ì9jrsÏ©¶[=v¬\îÁl8¾EKq8\ì|R}pN\âl\èqz¼õB<ò;Á8Ornœ‹İ³ÇºEdB¼»Ø•C¤1R9GElnX4]²„™\ÅnB(¸Ø†[i·\ŞB\âÜ :\×OUL\î9\ì„Ç‹)\áq‘“\íÕµ#dT\Ä\æE\Ó%{<45\'ó\æ8qÿºó\Ã^¥”ñk„­›=1lu\'™J\Ş·ÀIF*RNr¹\íI&á»Š³&|¦pÇ•bòŸ:\Õc\ãd¶rç²B\ç\ì\ç­n\êñıöj7l\Æ$òa$‚bÜ´Ç“o\Ã¦›!,Y¡y]\ÌD\Ù+¤™¬ı—Ì\Ë%s3÷ükº\Ôs\É\ÜüÆ—\ÌM\ê\İz¿L¸fnğ5sÓ±fn®™¬¯8o\âw\n|1Æ£ğ\Íğu“1\ãn\á¬I\Î=s\Å\îõ\\:\rñ\ët\í$\éÀPœî˜¤Q\Ö=zjÜ§ñ@\Ş\İx\Â\à¯ä¬Ek_EvC²\ÌE‰\rŸ\İƒ+mn\rd\Ê\â/ü\0lò3\ì£ğq\Ë+ö¢\Ñmuy\Êw\×\Â\Ç\×\Ü7z®ùm¹®§^¿õg§e©\Ç\ê“A\ëNÍƒ‹[Akî•¦\îP+›‰¾œĞ¾ör<ó\Ú\ë,+b0ŠnH\Ü6Pdşm,:#«ğ]´Ct \ÃZ\Ê=\ä-\å!¼Šßˆ\ädñÚ¯®°œ{™\ïªb£]	\Ìyb\Z´\å‰YPE–ş¤´D\ÑD\Òb½\èœN^Z+Œsza\ì‡;/\ê‹TA-\æI*:Îš’KŞ‰¸u‰a8¬)iPºduº\â°fÁ6\à³s¼\è\Ïnª#®¥@‰‹Œ\ß\Ãp¨tÀh\Ä`?$*ä€‹	°(Ç®`pAYZ¬4‘B\æDÃ‡»¡}|tt\"/¶fAü©Q2:­„\Öğ³E‡8\ì4*İ©\à¸iGº·æˆ‹¡« n˜M]lE?=—^¦\\\ë0ùN\0\É1óp)…\Úsd›Ø…ƒÅ¢Èº\Ù\ÈÃ¡ığ\'\È\Ğö\'Àtµˆög\r¸2¢\êócP\Ós\r„DXQ3LN™\0•²\'\Ã\r\ê–o1\ÓQ˜ƒó\åO}\î\í…B„ù	O§È˜<Š³)\à\Ü\í@	s\á\0} ¹¥+„(.˜@~\Ñ‰À9\ác*<nõ \äj•¸±F\"\àŸ}<zPe~j=¨É£Ğƒ¨“\ÃJ·\ÇH\Ò]\ÌCf\ÇNg\Ó\Ø6\Ô	e\Ä1\è‘r,È™5©T*\çŠ¯’\ßË±$D—†¨\Ü?‡¦¯p\æ\r÷\ì;\ÌJ_\áƒ3ƒ\é\ÖIÁ÷Ş±¬Áa?\ÖK\Ø\Ão\ïùq¨\é„Å¦	‰\0\ê³~B\ã\ä†ç¸¬œ°\å\Íó0&i£\ï\è\à\ÆŞ†øq\è{\å7añ¸ \âŠÿ‘\ÚŸ\Õ^_iù5É•W_Z\ï¯l‚QÀ*’h}÷\0ôÖ›L…9@2ø\Û2ö‹B¹À­0\Â\Ö7•ìºªLC|JE¡£½(Óª¬ Tûc7l0AfL‡º9‰*Dû)r}!\àY!¢‹˜9\Ù`œ¨a¿ \'l^Ã¬`!ˆŠ|‹E\Z8¼„›ø-\r\à%\î;ô&Y™„^0öÅ©«\è6“	VË¸¼¨ˆ¶÷œ“F\ZH\0\Ü5\n`€<T\Ç?GL\Ğhƒe¢¼ \nD\ëˆ:€¹¢9\î™\Õ\Ès>I´¿Z5Œ\Ê\0öKC\Ì+\é~2P|\Ñ<\ĞWú\Ïq…\ÑL\ÜU\rC\ZtV˜\" š£—k¯\Æ÷PóJ˜F4‡\î„\ä# \É-\ÊQj\×ùÁB€üq€ :\İvBt;ƒe “‚\rlkb/\åf¦*­\Ë\È\Èi\Äqï‰Œ¼Dc)P\è\Ş*Ôa\ê\Â\è%\ÈgÁJ4{Äò\ØtC³\Ù\Ïe1(›S#ƒùXÀCùUY˜Yt\ílºò\Ø\âgm#\î8‹/~ CT¨™\×\Î\Ğ;XTewQ\ÕÇ !V_S»\ï`Áˆ†^~ªv®4\Èªmp¤±²—\ÖÍ†\Ò\Õ¥¹ZÀ¬Z¬\ìtU%×¨8]!Y8N/½\İ.Œï¹¬õ/‹u•’\ãü«µ}NŠmEc\å\'i\Ù\ÇZÊ“Ô»\'R)mšrú.L³ü—S\Ñ+Îƒ­òb\ÃClM£’™N\Â\Æ\æ\ĞT(ş_U²Ï–Ek²\ïhÏ·…]µ¼\É\ÂA­¹(§x‘—*—gØ–\î<‰ö\ÛXùY\Æ)N«¾s\ÈÓ©2§\ÑŞ¾\æÉ´¿ZPª²\èÔ¿™S\áı¶¢€p®š`\ß	jc´Š\Ù(\r¾bıVĞ§¸D4a\ÛŞŒ„v\ì<l\0w¼\ê4\ã\éc\Í}2Jó›9!•OJ(°¤\×d4P\è56\Øo\ä¢Ü±XY%\Î!\Ó\Ü>\Ñ\Ñ]\0\ê´ìƒ&\ÛO­ùÍœ\nK^À“a?š\Ó)\ïLó4\ÊF\Ëğ\ÖÙ‘\Ô\Ì5f—6\Ğ3šºSÔ’\àK\0\Õşl¡ü\Ê÷\Ï\ÕWşbN¡}Ìœ§\ÒşjNIxœ\'&\ØJ»}q\\•z[f1	›—Å…‰\Øüød&sc¨i\"×cûYŒUÄ§p\ã¤\ç/\ìº\ÖQšgg<—.Ç½=n9B\ßD£U5jœ\Ùa$-\Øgt\Ô)ñ\â	jA}?X ‘ZÀ$_ğd\ÔQ‡\Ï\Í	&7š6p©¯>\í¾\Õ£3)sÏ4@g¤ÁHb\Ç?=Šq\Ó;7M\Åş4m\í1\Ì:z8kG\âH#	S7D¬\">~GT:\ÌOŠSrg¾tmx\ÂùD‚\ÚKQ³aK\ïğv°+¼	”ik1¨ª¨\Ş	4Eõ“\\¥auœg/‹¶ªú\Ç\'³Ÿ¬xc*=…º©\Ò*v(½\r¨ô\0ÿ$N\éÀ•ó“\rõMÏ«öpg³;½‡´aªø\Ğ\êãŒ†Fo•\ï¼JŠ«üm\ês9»0%m\0\á[T8\Ö\"\é\åV‘#¡È†¦ğ„«HS(z2º¾8\ë¨Ù˜R\àzc\ãò°$b|‹8lJxş\0C3G\ÅÌ \\òH’CBóU™Y­ŠŒœşr9Ç=§\èõ<\'s-s\çI„\åĞ‹¬x+•½“j)9ª/š®…‡}\Ñ\ÔRŠ&ù’ƒñÁmFNg\Ú\î‡&ùV\ÇÁ¢\É@ƒÑ„‡ø\ŞË‰\äl¶mÀ\Øu…õ„O\Ñ!\âº\"œ¹\î¿YC3Ù¸Eb*¿\Î?‰9—H¢¦\"‘§8\0òGD3\Ùt#Q‰9–?a»\Åúö7‹9®\ã}…@\äRhEXq)¬¬=–€«O–‹\"\î&Š\à\ßË‡õ?¢£¢ü¨ü\ïy\Ò\rjûÅ¥‡w\àÕ‹ö\Ëo^.¯£\ĞËªÀğ:´ù•|\ß\ß(\Öù\äE\ëL‚\íJ®n1]PÉ²@ğª‰@†\é£üˆ\ë\Â\äY~Vµº„\î|zH“€\Ò\Ì\Ë<\'\×)ñ\Ã2oÁòxp®õ’q[\ZuhE!şì¥”\ÏTI\Ò:8«TÉ›ò\î\ÄE/g\Ë•\Õ^-.ş\ÎmŸ-\n¥‘¾Z/ş\İ\'7š\ÑÔœ!±«1\Æ1`º)\ÒñóC7\ÔÁaqõq0%f³\0©¾´§*÷ŸFB¬q2rŠfs\Ä6©©\Í.\àÓ¶}V\ÕÁ´\í¯;\Ä\ì\íi uî“¢²‡Ö‘=‚*‹,—g\ê6I\"WZ\n	&6USø\ã;z\nF¢kEe R¾¶W)\\²ù8›)\Ö2nYCô¹=\Í6Š\Ù-]! yŒ• \rl6>£\ÉÔ„9»\ÇHs²Å™NP\äe+ƒ\Ù\Ù\Ôü\r\î—A;®\İ2À\Ö*À‚¶@;\0\æ™¯\'p\Ö\Ó\å=\Ó¬&\\fXL¾µ\Çl2\İ®B¤t2#i/<œ\Ø8Ÿö ƒŒ|\Øvstt®*\Ær…‚{M%Š¼h K\à\è2ƒ;÷V\èd’Ò½‘hˆ\Í)LSB}\áL¨PÈ«Unvõ¹H\Ó\Ü\ì\×\ã\Z=l.Àl&„v\ÚòÀU\Ãl†²Z¥Ç2\Ì\È\Æù„¬‚bûã¨ˆ\íO€\Ãj\íÁœ‚ R+¥¢¾üjªT6¿+C¥Â¼½´J]{4µ?\İn£W\Ğ$Ÿ4Kq:@µX\á\íõ‚”\Z\Û\Â\à[\å€\Î1\rR\äê¹{#‡;Lq€S\ëc‘v\ãSbüÀüşv|ÁTF0@9J&M:?\×\â\åŒi\ä\çL/\ß&\Ì?e¾)ü\Z«m“‡•^ñBM˜š½\'¡ñı¡cŠ:û¬pd‰]m£”\Â\İj\0Õ„X-\Ñõb•	ıÑ¨ô\áµEÃ«Óqrp:EÚ£XfG›p\çP0\èBT\Ç\0ƒATü\Ôkş¦7Œ\Èøód›Gilı>c.9]\íN‰-(7’¢;F\Èüôd‘„>‡c\î\é\Z=x‹\à\æmW\ŞI#AG\á÷\'z€Ò¿\Ëc\é\çñ\Õ\Ñ\êt)\Ë\á$v=€V	\ÒÍ¾}‡\è\0O\á\é\î·Û¤‰\è\ç‘ş\İK\çxPz<\É\êFmT$ü}\\šz\è\05‘u\Ây—\'x\Èó\×#ù£9\Íw¼è£¶k~ızj¨ \é™~‡\Ê<P1¿=5T ·w\Ø\ât|\àI–£9a…½+d\ìÿPšF§\Û\Ó\à\ï¬\r\Ä\'²¿\é1¬]¯Œ³\Ï\éj\Õ9¦¤§jFÔ¼còH\Ö\ï_ˆv# Q9+©.8[·ú*\'?ø,“ow\n}\îA+ 4\ì_ns*MpePøF¹‘\Æï¢´\Ğ@\ä‘XJ\ØR¦òß¾\Ò±İ™‘[\Í\ÚJ+b1Ô’ö†\ÜZcU\Úi\n {	POp\Ä\n¥X?L‘\Ûı•Vš¨$†]¦-©•„R¨] 3Ø\rÖ¦j\Ô,\Ø\r¦ò\à~°b´#Xd¥2ö\Õj­zõ;8\Ş`T•>G8<\Òe	‡£“c\ë®\Õ`£8W½h\Ò?z £\ë)F#ƒd,e«\Òu\ÖJL=º«¼¨öU\è\áhL\Å„h\ÏY\Û\å\0\í\"v\ĞÏ´üPâ§­iº{\Üu¸\íH·;\ç9\Ö;\\Á\ÓXv\ë:\rùŒfÅµ™O2g!\ß%\Ğ\ÍN§2²&\Õ;Ö¦\ÒÂ²s\rKûŒù\ß©%q“\Ãg­p\ÖE\Ş„÷RŸfôq<\ë]vw\Ó=¢˜\Ã\åˆn\Ô.w †%pù\ìH\ã\Ú\İ-=\ĞFT}\âÑ±\0„·%;€Z“³\0\ê\İuG\×A+ j\å54b–›¾»‘Ÿ\×91\ï|+Oa²²\ÓUu”ª *O^®nöqq“ªú\ë\r\É\Âû–Dñ¦gL|Á^Å¾¹ˆ\ï’\Æ|&q\Ô|\"¿\ÉBrº\æ\æ\Ş\ë4\ï<?§\Å>É²0¾_.~ö¢}±VooIp_\íó\İ>§]&\Û\Û\èFa~ÓµºRx>½\Úe.ºğs¹\Î\ÉUü\Ã>Œ\Æ÷;\àªB¢°\ëÕ—zŠ±Ì‹\Ë=÷Œ\Òû$6$T‹™#7d»‹(±\ì*^{ŸI\Ş>d\ä\'r\ïù\×õÃ¥8‘\î\Å~ú&ô\îSo›\Õ4\ÚúôOŠ\á`û\å»ÿz-g\".\æ\0\0','6.1.3-40302');
-/*!40000 ALTER TABLE `__migrationhistory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `entrada`
 --
 
 LOCK TABLES `entrada` WRITE;
 /*!40000 ALTER TABLE `entrada` DISABLE KEYS */;
+INSERT INTO `entrada` VALUES (1,'2017-11-15 12:28:34',1212,'15',14,2);
 /*!40000 ALTER TABLE `entrada` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -40,6 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `itemop` WRITE;
 /*!40000 ALTER TABLE `itemop` DISABLE KEYS */;
+INSERT INTO `itemop` VALUES (1,2,12,1),(2,2,2,1),(3,1,14,1);
 /*!40000 ALTER TABLE `itemop` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +51,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `material` WRITE;
 /*!40000 ALTER TABLE `material` DISABLE KEYS */;
-INSERT INTO `material` VALUES (1,'1000','Martillo',0,30,1,1,2,'Sin Stock',NULL,1),(2,'100','Taladro',0,8,1,1,2,'Sin Stock','No funciona',1),(3,'1000','Hoja de Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(4,'1001','Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(5,'1000','Papel de Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(6,'1000','Sillas',0,11,1,1,1,'Sin Stock',NULL,1),(7,'1000','Electrodos',0,11,6,1,1,'Sin Stock',NULL,1),(8,'3232','Mesa',0,23,3,1,2,'Sin Stock',NULL,1),(9,'19191','Destornillador',0,22,1,1,2,'Sin Stock',NULL,1),(10,'19191','Pinza',0,22,1,1,2,'Sin Stock',NULL,1),(11,'23232','Soldador',0,22,1,1,2,'Sin Stock',NULL,1),(12,'292','Resistencia',0,23,1,1,1,'Sin Stock',NULL,1),(13,'292','Morsa',0,23,1,1,2,'Sin Stock',NULL,1),(14,'15','Tornillo',0,100,1,1,1,'Sin Stock',NULL,1);
+INSERT INTO `material` VALUES (1,'1000','Martillo',0,30,1,1,2,'Sin Stock',NULL,1),(2,'100','Taladro',25,8,1,1,2,'Sin Stock','No funciona',1),(3,'1000','Hoja de Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(4,'1001','Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(5,'1000','Papel de Lija',0,1000,1,1,1,'Sin Stock',NULL,1),(6,'1000','Sillas',0,11,1,1,1,'Sin Stock',NULL,1),(7,'1000','Electrodos',0,11,6,1,1,'Sin Stock',NULL,1),(8,'3232','Mesa',0,23,3,1,2,'Sin Stock',NULL,1),(9,'19191','Destornillador',0,22,1,1,2,'Sin Stock',NULL,1),(10,'19191','Pinza',0,22,1,1,2,'Sin Stock',NULL,1),(11,'23232','Soldador',0,22,1,1,2,'Sin Stock',NULL,1),(12,'292','Resistencia',0,23,1,1,1,'Sin Stock',NULL,1),(13,'292','Morsa',0,23,1,1,2,'Sin Stock',NULL,0),(14,'15','Tornillo',1278,100,1,1,1,'Sin Stock',NULL,1);
 /*!40000 ALTER TABLE `material` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,6 +61,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `ordenpedido` WRITE;
 /*!40000 ALTER TABLE `ordenpedido` DISABLE KEYS */;
+INSERT INTO `ordenpedido` VALUES (1,4,3,'lol',1,'2017-11-16 00:00:00');
 /*!40000 ALTER TABLE `ordenpedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,6 +110,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `tipoentrada` WRITE;
 /*!40000 ALTER TABLE `tipoentrada` DISABLE KEYS */;
+INSERT INTO `tipoentrada` VALUES (1,'Sobrante'),(2,'DevoluciÃ³n'),(3,'Orden de Pedido'),(4,'Orden de Trabajo'),(5,'DonaciÃ³n'),(6,'Trabajo PrÃ¡ctico');
 /*!40000 ALTER TABLE `tipoentrada` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,4 +153,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-29 18:16:57
+-- Dump completed on 2017-11-15 12:31:16
