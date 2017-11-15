@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using gestionmateriales.Models.GestionMateriales;
+using System;
 
 namespace gestionmateriales.Controllers
 {
@@ -27,7 +28,20 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Sumar(Entrada unaEntrada)
         {
-            return View("Sumar");   
+            try
+            {
+                Material unMaterial = db.materiales.Where(x => x.codigo == unaEntrada.codigo).SingleOrDefault();
+                TipoEntrada unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntrada);
+                Entrada nuevaEntrada = new Entrada(DateTime.Now, unMaterial, unMaterial.codigo, unaEntrada.cantidad, unTipoEntrada);
+                db.entradas.Add(nuevaEntrada);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error406", "Error");
+            }
+            cargarTipoEntrada();
+            return RedirectToAction("Sumar", "Stock");
         }
     
         //GET: Stock/Restar
@@ -40,7 +54,7 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
         {
-            ViewBag.idTipoEntrada = new SelectList(db.tipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
+            ViewBag.IdTipoEntrada = new SelectList(db.tipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
         }
     }
 }

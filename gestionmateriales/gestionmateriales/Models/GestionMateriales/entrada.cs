@@ -36,6 +36,17 @@ namespace gestionmateriales.Models.GestionMateriales
 
         }
 
+        public Entrada(DateTime unaFecha, Material unMaterial, string unCodigo, int unaCantidad, TipoEntrada unTipoEntrada)
+        {
+            this.fecha = unaFecha;
+            this.Material = unMaterial;
+            this.codigo = unCodigo;
+            this.cantidad = unaCantidad;
+            this.tipoEntrada = unTipoEntrada;
+
+            unMaterial.stockActual = unMaterial.stockActual + cantidad;
+        }
+
         public void ActualizarStockMaterial()
         {
             Material.stockActual = Material.stockActual + cantidad;
