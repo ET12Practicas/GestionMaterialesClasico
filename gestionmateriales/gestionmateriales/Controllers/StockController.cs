@@ -22,6 +22,13 @@ namespace gestionmateriales.Controllers
             cargarTipoEntrada();
             return View("Sumar");
         }
+
+        //POST: Stock/Sumar
+        [HttpPost]
+        public ActionResult Sumar(Entrada unaEntrada)
+        {
+            return View("Sumar");   
+        }
     
         //GET: Stock/Restar
         [Route("/Stock/Restar")]
@@ -33,7 +40,7 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
         {
-            ViewBag.TipoEntrada_Id = new SelectList(db.tipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
+            ViewBag.idTipoEntrada = new SelectList(db.tipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
         }
     }
 }
