@@ -174,6 +174,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ComprasViewModels.cs" />
     <Compile Include="Models\GestionMateriales\Entrada.cs" />
     <Compile Include="Models\GestionMateriales\ItemOP.cs" />
     <Compile Include="Models\GestionMateriales\ItemOT.cs" />
@@ -523,6 +524,7 @@
     <Content Include="Views\Home\UnAuthorized.cshtml" />
     <Content Include="Views\Material\Historial.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Compras\AprobarOP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
