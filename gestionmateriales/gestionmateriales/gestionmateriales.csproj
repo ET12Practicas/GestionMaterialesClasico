@@ -356,7 +356,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Assets\logo.png" />
-    <Content Include="Scripts\animacion.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Semantic\themes\default\assets\fonts\icons.eot" />
