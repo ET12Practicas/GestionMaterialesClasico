@@ -43,14 +43,35 @@ namespace gestionmateriales.Models.GestionMateriales
             this.codigo = unCodigo;
             this.cantidad = unaCantidad;
             this.tipoEntrada = unTipoEntrada;
-
-            unMaterial.stockActual = unMaterial.stockActual + cantidad;
         }
 
-        public void ActualizarStockMaterial()
+        public void SumarStockMaterial()
         {
             Material.stockActual = Material.stockActual + cantidad;
+            if(Material.stockActual > Material.stockMinimo)
+            {
+                Material.estado = "Stock Alto";
+            }
         }
 
+        public void RestarStockMaterial()
+        {
+            int st = Material.stockActual - cantidad;
+            if (st == 0)
+            {
+                Material.estado = "Sin Stock";
+            }
+            else 
+            {
+                if (st > 0 && st <= Material.stockMinimo)
+                {
+                    Material.estado = "Stock Bajo";
+                }
+                else
+                {
+                    Material.estado = "Stock Alto";
+                }
+            }
+        }
     }
 }

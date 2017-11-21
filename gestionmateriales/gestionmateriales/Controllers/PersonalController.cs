@@ -8,8 +8,9 @@ namespace gestionmateriales.Controllers
     public class PersonalController : Controller
     {
         // GET: Personal
-        [Route("/Personal")]
+        [Authorize (Roles="administrador, oficinatecnica, rectoria")]
         [HttpGet]
+        [Route("/Personal")]
         public ActionResult Index()
         {
             List<Personal> personas;
@@ -21,26 +22,29 @@ namespace gestionmateriales.Controllers
         }
 
         // GET: Personal/Agregar
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/Personal/Agregar")]
+        [HttpGet]
         public ActionResult Agregar()
         {
             return View("Agregar");
         }
 
         //POST: Personal/Agregar
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Agregar(Personal aPersonal)
         {
             using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
-                if (db.personal.Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
+                if (db.personal.Any(y => (y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni) && y.hab))
                 {
                     ViewBag.Result = 1;
                     return View("Agregar", aPersonal);
                 }
                 try
                 {
-                    db.personal.Add(new Personal(aPersonal.nombre, aPersonal.fichaCensal, aPersonal.dni));
+                    db.personal.Add(new Personal(aPersonal.nombre, aPersonal.dni, aPersonal.fichaCensal));
                     db.SaveChanges();
                 }
                 catch
@@ -49,12 +53,11 @@ namespace gestionmateriales.Controllers
                 }
             }
             ViewBag.Result = 0;
-            //TODO Fix: Se ve la animacion y desencadena en error de duplicados, es mejor que se limpie en form
-            //return View("Agregar", new Personal()); 
-            return RedirectToAction("Agregar","Personal");
+            return View("Agregar"); 
         }
 
         //GET: Personal/Editar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/Personal/Editar/{id}")]
         [HttpGet]
         public ActionResult Editar(int id)
@@ -75,6 +78,7 @@ namespace gestionmateriales.Controllers
         }
       
         //POST: Personal/Editar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Editar(int id, Personal aPersonal)
         {
@@ -100,12 +104,11 @@ namespace gestionmateriales.Controllers
                 }
             }
             ViewBag.Result = 0;
-            //TODO Fix: Se ve la animacion y desencadena en error de duplicados, es mejor que se limpie en form
-            //return View("Agregar", new Personal()); 
-            return RedirectToAction("Agregar", "Personal");
+            return View("Editar", nuevoPersonal); 
         }
 
         //POST: Personal/Borrar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         public ActionResult Borrar(int id)
         {
             Personal personalSeleccionado;

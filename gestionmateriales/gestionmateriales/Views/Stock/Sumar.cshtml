@@ -4,44 +4,65 @@
 }
 
 <div id="page-wrapper">
-    <br />
     <div class="container">
-        <h1>Sumar Material</h1>
+        <br />
+        <div class="row">
+            <div class="container">
+                <h2>Entrada</h2>
+            </div>
+        </div>
+        <h5>Ingresa material o herramientas al stock del depósito.</h5>
         <hr />
         <div class="col-sm-offset-2 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Sumar Material</h3>
+                    <h3 class="panel-title">Material o Herramienta</h3>
                 </div>
                 <div class="panel-body">
                     @using (@Html.BeginForm("Sumar", "Stock", FormMethod.Post))
                     {
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.codigo, "Código", new { @class = "label-control" })
-                            @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.cantidad, "Cantidad", new { @class = "label-control" })
-                            @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true" } })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tipoEntrada, "Tipo de Entrada", new { @class = "control-label" })
-                            @Html.DropDownList("IdTipoEntrada", null, htmlAttributes: new { @class = "form-control" })
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.codigo, "Código", new { @class = "col-md-5 control-label" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 45, autofocus = "true", required = "true" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cantidad, "Cantidad", new { @class = "col-md-5 control-label" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tipoEntrada, "Tipo de Entrada", new { @class = "col-md-5 control-label" })
+                                <div class="col-md-5">
+                                    @Html.DropDownList("IdTipoEntrada", null, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-md-8">
-                                <input type="reset" class="btn btn-default" value="Limpiar" />
+                            <div class="col-md-3">
+                                <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Limpiar" data-toggle="tooltip" data-placement="left" title="Vacia los campos del formulario" />
                             </div>
-                            <div class="col-xs-1 col-md-2">
-                                <input type="submit" class="btn btn-primary" value="Ingresar" />
+
+                            <div class="col-md-offset-3 col-md-3">
+                                <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Ingresar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
                             </div>
-                            <div class="col-xs-1 col-md-1">
-                                <input type="button" class="btn btn-default" onclick="location.href='Index'" value="Cancelar" />
+
+                            <div class="col-md-3">
+                                <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                             </div>
                         </div>
                     }
                 </div>
             </div>
+            <script type="text/javascript">
+                $('#btn_limpiar').tooltip();
+                $('#btn_aceptar').tooltip();
+                $('#btn_cancelar').tooltip();
+            </script>
+
         </div>
     </div>
 </div>

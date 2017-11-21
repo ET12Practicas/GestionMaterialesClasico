@@ -10,7 +10,7 @@
             <h2>Selección de Materiales</h2>
         </div>
     </div>
-    <h5>Vale por una descripción.</h5>
+    <h4>Orden de Trabajo: <strong>Número:</strong> @ViewData["numero"] - <strong>Nombre:</strong> @ViewData["nombre"]</h4>
     <hr />
     <div class="col-md-3">
         <a id="btn_generarordentrabajo" class="btn btn-primary btn-block" href="~/ShopCartMaterial/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
@@ -60,8 +60,17 @@
                                 @Html.DisplayFor(modelItem => item.material.estado)
                             </td>
                             <td>
-                                <div class="input-group input-group-sm">
-                                    <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" value="@item.cantidad" onclick="updateCant(this)" onkeypress="updateCant(this)"/>
+                                <div class="col-md-1">
+                                    <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" max="@item.material.stockActual" value="@item.cantidad" onclick="updateCant(this)" onkeyup="updateCant(this)"  />
+                                    <script type="text/javascript">
+                                        function updateCant(control) {
+                                            var str = control.id.split('-');
+                                            var strhref = "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
+                                            $('#itemLink-' + str[1]).attr("href", strhref);
+                                            console.log(strhref);
+                                            console.log($('#itemCantidad-2').val());
+                                        }
+                                    </script>
                                 </div>
                             </td>
                             <td>
@@ -77,12 +86,12 @@
                 $('#tabla_materiales').DataTable();
                 $('#btn_generarordentrabajo').tooltip();
 
-            //update que modifica el href del link "agregar"
-            function updateCant(control) {
-                var str = control.id.split('-');
-                var strhref = "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
-                $('#itemLink-' + str[1]).attr("href", strhref);
-            }
+                //update que modifica el href del link "agregar"
+                @*function updateCant(control) {
+                    var str = control.id.split('-');
+                    var strhref = "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
+                    $('#itemLink-' + str[1]).attr("href", strhref);
+                }*@
             </script>
         </div>
     </div>

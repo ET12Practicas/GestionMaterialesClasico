@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", autofocus = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -33,7 +33,7 @@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cuit, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten guiones y numeros..", pattern = "^[0-9]+$" } })
                                 </div>
-                                @Html.LabelFor(model => model.razonSocial, "Razon Social", new { @class = "col-md-2 control-label" })
+                                @Html.LabelFor(model => model.razonSocial, "Razón Social", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.razonSocial, new { htmlAttributes = new { @class = "form-control", maxlength = 15, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                                 </div>
@@ -43,20 +43,28 @@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "true", title = "Solo se admiten guiones y números.", pattern = "^[0-9]+$" } })
                                 </div>
+                                @Html.LabelFor(model => model.email, "Correo", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", maxlength = 50, required = "true", type = "email" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.direccion, "Dirección", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", maxlength = 100, required = "true" } })
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.horario, "Horario", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.horario, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "false" } })
+                                @Html.LabelFor(model => model.zona, "Zona", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.zona, new { htmlAttributes = new { @class = "form-control", maxlength = 30, required = "true" } })
                                 </div>
                             </div>
                             <div class="form-group">
+                                @Html.LabelFor(model => model.horario, "Horario Atención", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.horario, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "false" } })
+                                </div>
                                 @Html.LabelFor(model => model.nombreContacto, "Contacto", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.nombreContacto, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "false", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                                 </div>
                             </div>
@@ -75,11 +83,33 @@
                     }
                 </div>
             </div>
-            @if (ViewBag.Result == true)
+            @if (ViewBag.Result == 0)
             {
-                <div id="alert_message" class="alert alert-success">
-                    Los datos se guardaron con éxito.
-                </div>
+                <script type="text/javascript">
+                    $.notify.defaults({ globalPosition: 'bottom rigth' });
+                    $.notify(
+                        "Los datos se guardaron con éxito",
+                        "success",
+                        {
+                            position: "right bottom",
+                            globalPosition: "right bottom"
+                        }
+                    );
+                </script>
+            }
+            @if (ViewBag.Result == 1)
+            {
+                <script type="text/javascript">
+                    $.notify.defaults({ globalPosition: 'bottom rigth' });
+                    $.notify(
+                        "El CUIT ya existe, verifique el valor",
+                        "error",
+                        {
+                            position: "right bottom",
+                            globalPosition: "right bottom"
+                        }
+                    );
+                </script>
             }
         </div>
     </div>

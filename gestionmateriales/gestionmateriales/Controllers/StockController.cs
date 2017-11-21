@@ -11,13 +11,18 @@ namespace gestionmateriales.Controllers
         OficinaTecnicaEntities db = new OficinaTecnicaEntities();
 
         // GET: Stock
+        [Authorize(Roles = "administrador, oficinatecnica, deposito, rectoria")]
+        [Route("/Stock")]
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
         //GET: Stock/Sumar
+        [Authorize(Roles = "administrador, oficinatecnica, deposito")]
         [Route("/Stock/Sumar")]
+        [HttpGet]
         public ActionResult Sumar()
         {
             cargarTipoEntrada();
@@ -25,6 +30,8 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Stock/Sumar
+        [Authorize(Roles = "administrador, oficinatecnica, deposito")]
+        [Route("/Stock/Sumar")]
         [HttpPost]
         public ActionResult Sumar(Entrada unaEntrada)
         {
@@ -33,6 +40,7 @@ namespace gestionmateriales.Controllers
                 Material unMaterial = db.materiales.Where(x => x.codigo == unaEntrada.codigo).SingleOrDefault();
                 TipoEntrada unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntrada);
                 Entrada nuevaEntrada = new Entrada(DateTime.Now, unMaterial, unMaterial.codigo, unaEntrada.cantidad, unTipoEntrada);
+                nuevaEntrada.SumarStockMaterial();
                 db.entradas.Add(nuevaEntrada);
                 db.SaveChanges();
             }

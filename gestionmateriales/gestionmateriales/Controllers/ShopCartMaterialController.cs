@@ -10,14 +10,17 @@ namespace gestionmateriales.Controllers
     public class ShopCartMaterialController : Controller
     {
         // GET: ShopCartMaterial
+        [Authorize(Roles = "administrador, oficinatecnica, rectoria")]
+        [HttpGet]
         public ActionResult Index(int id)
         {            
             List<ItemOT> itemsMateriales;
+            OrdenTrabajo ot;
             using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
                 int cantMat;
                 itemsMateriales = new List<ItemOT>();
-                OrdenTrabajo ot = db.ordenTrabajo.Find(id);
+                ot = db.ordenTrabajo.Find(id);
                 var items = db.ItemOT.Where(x => x.idOrdenTrabajo == id).ToList();
                 foreach (Material mat in db.materiales.Where(x => x.hab))
                 {
@@ -26,6 +29,8 @@ namespace gestionmateriales.Controllers
                 }
             }
             ViewData["idOt"] = id;
+            ViewData["numero"] = ot.numero;
+            ViewData["nombre"] = ot.nombre;
             return View(itemsMateriales);
         }
 
@@ -40,6 +45,7 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: ShopCartMaterial/Agregar/2
+        [Authorize(Roles = "administrador, oficinatecnica")]
         public ActionResult AddToCart(int idOt, int idMaterial, int itemCantidad)
         {            
             using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
@@ -63,6 +69,8 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Index", "ShopCartMaterial", new { id = idOt });
         }
 
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [HttpGet]
         public ActionResult Generar()
         {
             return RedirectToAction("Index", "OrdenTrabajo");

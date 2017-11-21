@@ -11,7 +11,9 @@ namespace gestionmateriales.Controllers
         OficinaTecnicaEntities db = new OficinaTecnicaEntities();
         
         // GET: OrdenTrabajo
+        [Authorize(Roles = "administrador, oficinatecnica, deposito, rectoria")]
         [Route("/OrdenTrabajo")]
+        [HttpGet]
         public ActionResult Index()
         {
             List<OrdenTrabajo> ordenesTrabajo = db.ordenTrabajo.Where(x => x.hab).ToList();
@@ -19,7 +21,9 @@ namespace gestionmateriales.Controllers
         }
         
         // GET: OrdenTrabajo/Agregar
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/OrdenTrabajo/Agregar")]
+        [HttpGet]
         public ActionResult Agregar()
         {
             cargarJefeSeccion();
@@ -29,14 +33,19 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: OrdenTrabajo/Agregar
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Agregar(OrdenTrabajo aOT)
         {
             int idOt = -1;
-            
-            if(db.ordenTrabajo.Any(x => x.numero == aOT.numero))
+
+            if (db.ordenTrabajo.Any(y => y.numero == aOT.numero))
             {
-                return RedirectToAction("Index", "OrdenTrabajo");
+                ViewBag.Result = 1;
+                cargarJefeSeccion();
+                cargarResponsable();
+                cargarTurno();
+                return View("Agregar", aOT);
             }
             
             try
@@ -63,23 +72,35 @@ namespace gestionmateriales.Controllers
         }
 
         //GET: OrdenTrabajo/Editar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/OrdenTrabajo/Editar/{id}")]
-        public ActionResult Editar(int id)
+        [HttpGet]
+        public ActionResult Editar(int id, int nro, string name)
         {
             OrdenTrabajo ordenSelect = db.ordenTrabajo.Find(id);
             cargarJefeSeccion(ordenSelect.idJefeSeccion);
             cargarResponsable(ordenSelect.idResponsable);
             cargarTurno(ordenSelect.idTurno);
+            ViewData["numero"] = nro;
+            ViewData["nombre"] = name;
             return View(ordenSelect);
         }
 
         //POST: OrdenTrabajo/Editar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Editar(int id, OrdenTrabajo aOT)
         {
             int idOt = -1;
             OrdenTrabajo otEdit = db.ordenTrabajo.Find(id);
-
+            if (db.ordenTrabajo.Where(x => x.idOrdenTrabajo != id).Any(y => y.numero == aOT.numero))
+            {
+                ViewBag.Result = 1;
+                cargarJefeSeccion(otEdit.idJefeSeccion);
+                cargarResponsable(otEdit.idResponsable);
+                cargarTurno(otEdit.idTurno);
+                return View("Editar", otEdit);
+            }
             try
             {
                 Turno t = db.turnos.Find(aOT.idTurno);
@@ -92,12 +113,13 @@ namespace gestionmateriales.Controllers
                 otEdit.Turno = t;
                 otEdit.fecha = aOT.fecha;
                 otEdit.responsable = res;
+                otEdit.idResponsable = res.idPersonal;
                 otEdit.jefeSeccion = jefe;
+                otEdit.idJefeSeccion = jefe.idPersonal;
                 db.SaveChanges();
             }
             catch
             {
-                //TODO redirect error correspondiente
                 return RedirectToAction("Errpr406", "Error");
             }
 
@@ -107,7 +129,7 @@ namespace gestionmateriales.Controllers
             {
                 return RedirectToAction("Error406", "Error");
             }
-
+            
             return RedirectToAction("Index", "ShopCartMaterial", new { id = idOt });
         }
 

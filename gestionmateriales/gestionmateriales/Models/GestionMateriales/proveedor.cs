@@ -27,11 +27,19 @@ namespace gestionmateriales.Models.GestionMateriales
         public string telefono { get; set; }
 
         [Required]
+        [StringLength(50)]
+        public string email { get; set; }
+
+        [Required]
         [StringLength(15)]
         public string razonSocial { get; set; }
 
         [StringLength(45)]
         public string nombreContacto { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string zona { get; set; }
 
         [Required]
         [StringLength(20)]

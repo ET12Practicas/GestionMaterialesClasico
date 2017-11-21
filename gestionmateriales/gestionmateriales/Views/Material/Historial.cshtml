@@ -1,0 +1,72 @@
+﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.OrdenTrabajo>
+@{
+    ViewBag.Title = "Historial";
+}
+
+<div id="page-wrapper">
+    <br />
+    <div class="row">
+        <div class="container">
+            <h2>Historial</h2>
+        </div>
+    </div>
+    <h5>Ordenes de trabajo vinculadas al material:</h5>
+    <h4><strong>Código:</strong> @ViewData["codigo"] - <strong>Nombre:</strong> @ViewData["nombre"]</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tabla_historial" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Número
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Turno
+                        </th>
+                        <th>
+                            Orden de Trabajo
+                        </th>
+                        <th>
+                            Responsable
+                        </th>
+                        <th>
+                            Jefe de Sección
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.numero)
+                            </td>
+                            <td>
+                                @item.fecha.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Turno.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.responsable.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.jefeSeccion.nombre)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $('#tabla_historial').DataTable();
+            </script>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@
             <h2>Selección de Materiales</h2>
         </div>
     </div>
-    <h5>Vale por una descripción.</h5>
+    <h4>Orden de Pedido: <strong>Número:</strong> @ViewData["numero"]</h4>
     <hr />
     <div class="col-md-3">
         <a id="btn_generarordenpedido" class="btn btn-primary btn-block" href="~/ShopCartMaterialPedido/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de pedido"> Generar Orden de Pedido</a>
@@ -61,7 +61,7 @@
                             </td>
                             <td>
                                 <div class="input-group input-group-sm">
-                                    <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" value="@item.cantidad" onclick="updateCant(this)" onkeypress="updateCant(this)" />
+                                    <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" value="@item.cantidad" onclick="updateCant(this)" onkeyup="updateCant(this)" />
                                 </div>
                             </td>
                             <td>

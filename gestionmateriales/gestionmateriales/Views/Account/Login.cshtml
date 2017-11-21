@@ -4,29 +4,89 @@
     ViewBag.Title = "Iniciar sesión";
 }
 
-<div class="col-sm-offset-4 col-md-4">
-    <br><br><br>
-    <div class="panel panel-default">
-        <div class="panel-heading">Oficina Técnica</div>
-        <div class="panel-body">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuario" } })
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <img class="image" src="~/Assets/logoot.png" />
+            Oficina Técnica
+        </h2>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "ui large form", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuario" } })
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                     </div>
-                    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña" } })
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i> @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña" } })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
-                <input type="submit" class="btn ntm-lng btn-primary btn-block" value="Iniciar Sesión" />
-            }
-        </div>
+                <div class="ui fluid large teal submit button">
+                    Login
+                </div>
+            </div>
+            <div class="ui error message"></div>
+        }
     </div>
 </div>
+<style type="text/css">
+    body {
+        background-color: #DADADA;
+    }
+
+        body > .grid {
+            height: 100%;
+        }
+
+    .image {
+        margin-top: -100px;
+    }
+
+    .column {
+        max-width: 450px;
+    }
+</style>
+<script>
+    $(document)
+      .ready(function () {
+          $('.ui.form')
+            .form({
+                fields: {
+                    email: {
+                        identifier: 'email',
+                        rules: [
+                          {
+                              type: 'empty',
+                              prompt: 'Please enter your e-mail'
+                          },
+                          {
+                              type: 'email',
+                              prompt: 'Please enter a valid e-mail'
+                          }
+                        ]
+                    },
+                    password: {
+                        identifier: 'password',
+                        rules: [
+                          {
+                              type: 'empty',
+                              prompt: 'Please enter your password'
+                          },
+                          {
+                              type: 'length[6]',
+                              prompt: 'Your password must be at least 6 characters'
+                          }
+                        ]
+                    }
+                }
+            })
+          ;
+      })
+    ;
+</script>

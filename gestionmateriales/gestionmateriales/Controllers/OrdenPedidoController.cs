@@ -11,7 +11,9 @@ namespace gestionmateriales.Controllers
         OficinaTecnicaEntities db = new OficinaTecnicaEntities();
 
         // GET: OrdenPedido
+        [Authorize(Roles = "administrador, oficinatecnica, deposito, rectoria")]
         [Route("/OrdenPedido")]
+        [HttpGet]
         public ActionResult Index()
         {
             List<OrdenPedido> pedidos = db.ordenPedido.Where(x => x.hab).ToList();
@@ -19,14 +21,16 @@ namespace gestionmateriales.Controllers
         }
 
         // GET: OrdenPedido/Agregar
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/OrdenPedido/Agregar")]
+        [HttpGet]
         public ActionResult Agregar()
         {
-            cargarNumOT();
             return View();
         }
 
         //POST: OrdenPedido/1/Agregar
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Agregar(OrdenPedido aOP)
         {
@@ -34,7 +38,8 @@ namespace gestionmateriales.Controllers
 
             if(db.ordenPedido.Any(x=> x.numOp == aOP.numOp))
             {
-                return RedirectToAction("Index", "OrdenTrabajo");
+                ViewBag.Result = 1;
+                return View("Agregar", aOP);
             }
 
             try
@@ -58,21 +63,27 @@ namespace gestionmateriales.Controllers
         }
 
         //GET: OrdenPedido/Editar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/OrdenPedido/Editar/{id}")]
+        [HttpGet]
         public ActionResult Editar(int id)
         {
             OrdenPedido ordenSelect = db.ordenPedido.Find(id);
-            cargarNumOT(ordenSelect.numOt);
             return View(ordenSelect);
         }
 
         //POST: OrdenPedido/Editar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Editar(int id, OrdenPedido aOP)
         {
             int idOp = -1;
             OrdenPedido opEdit = db.ordenPedido.Find(id);
-            
+            if(db.ordenPedido.Where(x => x.idOrdenPedido != id).Any(y => y.numOp == aOP.numOp))
+            {
+                ViewBag.Result = 1;
+                return View("Editar", opEdit);
+            }
             try
             {
                 opEdit.numOp = aOP.numOp;
@@ -92,10 +103,11 @@ namespace gestionmateriales.Controllers
                 return RedirectToAction("Error406", "Error");
             }
 
-            return RedirectToAction("Index","ShopCartMaterialPedido", new { id = idOp});
+            return RedirectToAction("Index","ShopCartMaterialPedido", new { id = idOp });
         }
 
         //POST: Pedido/Borrar/1
+        [Authorize(Roles = "administrador, oficinatecnica")]
         public ActionResult Borrar(int id)
         {
             OrdenPedido pedidoSeleccionado = db.ordenPedido.Find(id);
@@ -111,11 +123,6 @@ namespace gestionmateriales.Controllers
             }
 
             return RedirectToAction("Index", "OrdenPedido");
-        }
-
-        private void cargarNumOT(object selectedNumOT = null)
-        {
-            ViewBag.idNumOt = new SelectList(db.ordenTrabajo.Where(x => x.hab).ToList(), "idTrabajo", "numero", selectedNumOT);
         }
     }
 }

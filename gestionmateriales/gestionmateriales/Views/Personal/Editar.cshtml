@@ -16,7 +16,7 @@
         <div class="col-sm-offset-2 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Editar Datos del Personal</h3>
+                    <h3 class="panel-title">Información del Personal</h3>
                 </div>
                 <div class="panel-body">
                     @using (@Html.BeginForm("Editar", "Personal", new { id = Model.idPersonal }, FormMethod.Post))
@@ -25,32 +25,32 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nombre, "Nombre y Apellido", new { @class = "col-md-4 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", autofocus = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.fichaCensal, "Ficha Censal", new { @class = "col-md-4 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.fichaCensal, new { htmlAttributes = new { @class = "form-control", min = 1, max = 999999, maxlength = 6, required = "true" } })
+                                    @Html.EditorFor(model => model.fichaCensal, new { htmlAttributes = new { @class = "form-control", min = 100000, max = 999999, maxlength = 6, required = "true" } })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.dni, "DNI", new { @class = "col-md-4 control-label" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", min = 1, max = 99999999, maxlength = 8, required = "true" } })
+                                    @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", min = 10000000, max = 99999999, maxlength = 8, required = "true" } })
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <input type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="right" title="Restaura los valores antes de los cambios" />
+                                    <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="left" title="Restaura los valores antes de los cambios" />
                                 </div>
 
                                 <div class="col-md-offset-3 col-md-3">
-                                    <input type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="right" title="Confirma la operación" />
+                                    <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
                                 </div>
 
                                 <div class="col-md-3">
-                                    <input type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                                    <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                                 </div>
                             </div>
                            
@@ -60,16 +60,38 @@
             </div>
             @if (ViewBag.Result == 0)
             {
-                <div id="alert_message" class="alert alert-success">
-                    Los datos se guardaron con éxito.
-                </div>
+                <script type="text/javascript">
+                    $.notify.defaults({ globalPosition: 'bottom rigth' });
+                    $.notify(
+                        "Los datos se guardaron con éxito",
+                        "success",
+                        {
+                            position: "right bottom",
+                            globalPosition: "right bottom"
+                        }
+                    );
+                </script>
             }
             @if (ViewBag.Result == 1)
             {
-                <div id="alert_message" class="alert alert-danger">
-                    El DNI o Ficha Censal ya existe, verifique el valor.
-                </div>
+                <script type="text/javascript">
+                    $.notify.defaults({ globalPosition: 'bottom rigth' });
+                    $.notify(
+                        "El DNI o Ficha Censal ya existe, verifique el valor",
+                        "error",
+                        {
+                            position: "right bottom",
+                            globalPosition: "right bottom"
+                        }
+                    );
+                </script>
             }
+            <script type="text/javascript">
+                $('#btn_limpiar').tooltip();
+                $('#btn_aceptar').tooltip();
+                $('#btn_cancelar').tooltip();
+            </script>
+
         </div>
     </div>
 </div>

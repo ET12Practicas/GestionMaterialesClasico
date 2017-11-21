@@ -7,7 +7,7 @@
     <br/>
     <div class="row">
         <div class="container">
-            <h2>Gestión de Pedidos</h2>
+            <h2>Ordenes de Pedidos</h2>
         </div>
         </div>
         <h5>Ordenes de pedido ingresadas.</h5>
@@ -24,16 +24,19 @@
                 <thead>
                     <tr>
                         <th>
-                            Nro Orden de Pedido
+                            Nro Ord. Pedido
                         </th>
                         <th>
-                            Nro Orden de Trabajo
+                            Nro Ord. Trabajo
+                        </th>
+                        <th>
+                            Fecha
                         </th>
                         <th>
                             Destino
                         </th>
                         <th>
-                            Fecha
+                            #items
                         </th>
                         <th>
                             <span class="glyphicon glyphicon-pencil" aria-hidden=true></span>
@@ -51,10 +54,13 @@
                                 @Html.DisplayFor(modelItem => item.numOt)
                             </td>
                             <td>
+                                @item.fecha.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.destino)
                             </td>
                             <td>
-                                @item.fecha.ToString("dd-MM-yyyy")
+                                @item.itemsOP.Count
                             </td>
                             <td>
                                 @Html.ActionLink("Editar", "Editar", new { id = item.idOrdenPedido})
