@@ -10,6 +10,8 @@ namespace gestionmateriales.Controllers
 {
     public class ComprasController : Controller
     {
+        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+
         // GET: Compras
         [Authorize(Roles = "administrador, oficinatecnica, rectoria")]
         [Route("/Compras")]
@@ -35,7 +37,17 @@ namespace gestionmateriales.Controllers
 
         public ActionResult AprobarOP(ComprasViewModels compra)
         {
-            return View();
+             //var items = from op in db.ordenPedido 
+             //            join i in db.ItemOP on op.idOrdenPedido equals i.idOrdenPedido
+             //            where op.fecha > compra.fechaInicio && op.fecha < compra.fechaFin
+             //            group op by i.idMaterialB into materialGroup
+             //            select new {materialGroup., 
+             //                        i.cantidad, 
+             //                        getStockActualById(i.idMaterial),
+             //                        getStockActualById(i.idMaterial) - i.cantidad
+             //            };
+
+            return View();                         
         }
     }
 }
