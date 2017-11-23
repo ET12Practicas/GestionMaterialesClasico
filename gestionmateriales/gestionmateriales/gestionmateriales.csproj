@@ -158,7 +158,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AyudaController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
-    <Compile Include="Controllers\ContruccionController.cs" />
+    <Compile Include="Controllers\ConstruccionController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -518,7 +518,7 @@
     <Content Include="Views\ShopCartMaterial\Index.cshtml" />
     <Content Include="Views\Error\Error406.cshtml" />
     <Content Include="Views\ShopCartMaterialPedido\Index.cshtml" />
-    <Content Include="Views\Contruccion\Index.cshtml" />
+    <Content Include="Views\Construccion\Index.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
     <Content Include="Views\Home\UnAuthorized.cshtml" />
     <Content Include="Views\Material\Historial.cshtml" />

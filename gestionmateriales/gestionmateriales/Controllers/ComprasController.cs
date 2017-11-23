@@ -37,6 +37,8 @@ namespace gestionmateriales.Controllers
 
         public ActionResult AprobarOP(ComprasViewModels compra)
         {
+            //TODO: falta implementar el mergeo de los las ordenes de pedido con el stock real
+            // es decir que se tiene que contrastar lo que se necesita con lo que hay en deposito
              //var items = from op in db.ordenPedido 
              //            join i in db.ItemOP on op.idOrdenPedido equals i.idOrdenPedido
              //            where op.fecha > compra.fechaInicio && op.fecha < compra.fechaFin

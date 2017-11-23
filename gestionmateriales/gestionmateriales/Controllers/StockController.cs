@@ -56,8 +56,9 @@ namespace gestionmateriales.Controllers
         [Route("/Stock/Restar")]
         public ActionResult Restar()
         {
-            cargarTipoEntrada();
-            return View("Restar");
+            //cargarTipoEntrada();
+            //return View("Restar");
+            return RedirectToAction("Index", "Construccion");
         }
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)

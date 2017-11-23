@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace gestionmateriales.Controllers
 {
-    public class ContruccionController : Controller
+    public class ConstruccionController : Controller
     {
         // GET: Contruccion
         [Authorize(Roles = "administrador, oficinatecnica, deposito, rectoria")]
-        [Route("/Contruccion")]
+        [Route("/Construccion")]
         [HttpGet]
         public ActionResult Index()
         {
