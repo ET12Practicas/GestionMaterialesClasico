@@ -80,7 +80,7 @@
             //update que modifica el href del link "agregar"
             function updateCant(control) {
                 var str = control.id.split('-');
-                var strhref = "/ShopCartMaterialPedido/AddToCart?idOp=" + @ViewData["idOp"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
+                var strhref = "/ottest/ShopCartMaterialPedido/AddToCart?idOp=" + @ViewData["idOp"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
                 $('#itemLink-' + str[1]).attr("href", strhref);
             }
             </script>

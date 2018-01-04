@@ -15,7 +15,7 @@
     <div class="col-md-3">
         <a id="btn_generarordentrabajo" class="btn btn-primary btn-block" href="~/ShopCartMaterial/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
     </div>
-    <hr />
+    <br />
     <br />
     <br />
     <div class="row">
@@ -65,7 +65,7 @@
                                     <script type="text/javascript">
                                         function updateCant(control) {
                                             var str = control.id.split('-');
-                                            var strhref = "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
+                                            var strhref = "/ottest/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
                                             $('#itemLink-' + str[1]).attr("href", strhref);
                                             console.log(strhref);
                                             console.log($('#itemCantidad-2').val());
