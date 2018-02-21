@@ -64,8 +64,9 @@
                                     <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" max="@item.material.stockActual" value="@item.cantidad" onclick="updateCant(this)" onkeyup="updateCant(this)"  />
                                     <script type="text/javascript">
                                         function updateCant(control) {
+                                            var baseURL = window.location.protocol + "//" + window.location.host + "/"
                                             var str = control.id.split('-');
-                                            var strhref = "/ottest/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
+                                            var strhref = baseURL + "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
                                             $('#itemLink-' + str[1]).attr("href", strhref);
                                             console.log(strhref);
                                             console.log($('#itemCantidad-2').val());

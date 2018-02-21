@@ -2,23 +2,32 @@
 using System.Web.Mvc;
 using gestionmateriales.Models.GestionMateriales;
 using System.Collections.Generic;
+using System;
 
 namespace gestionmateriales.Controllers
 {
     public class PersonalController : Controller
     {
         // GET: Personal
-        [Authorize (Roles="administrador, oficinatecnica, rectoria")]
+        [Authorize(Roles = "administrador, oficinatecnica, rectoria")]
         [HttpGet]
         [Route("/Personal")]
         public ActionResult Index()
         {
-            List<Personal> personas;
-            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
-            {
-                personas = db.personal.Where(x => x.hab == true).ToList();
-            }
-            return View("Index", personas);
+            return View("Index");
+        }
+
+        [HttpGet]
+        [Route("/Personal/GetPersonal")]
+        public JsonResult GetPersonal()
+        {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+            //personas = db.personal.Where(x => x.hab == true).ToList();
+            var personas = from per in db.personal
+                           where per.hab == true
+                           select new { per.idPersonal, per.nombre, per.dni, per.fichaCensal };
+
+            return Json(new { Name = "/GetPersonal", Response = personas, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt")}, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Personal/Agregar

@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -473,6 +475,7 @@
     <Content Include="Scripts\notify.js" />
     <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\Views\Personal\Personal.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
