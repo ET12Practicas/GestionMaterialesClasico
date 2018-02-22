@@ -1,88 +1,37 @@
-﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.Personal>
-@{
+﻿@{
     ViewBag.Title = "Personal";
 }
 
-<div id="page-wrapper">
     <br />
-    <div class="row">
-        <div class="container">
-            <h2>Gestión de Personal</h2>
-        </div>
+    <br />
+    <div class="container-fluid">
+        <h2>Gestión de Personal</h2>
+        <h6>Personal del area de taller o especialidad autorizado para solicitar y retirar materiales.</h6>
     </div>
-    <h5>Personal del area de taller o especialidad autorizado para solicitar y retirar materiales.</h5>
     <hr />
-    <div class="col-md-3">
-        <a id="btn_crearPersonal" class="btn btn-primary btn-block" href="~/Personal/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nuevo personal para solicitar y/o retirar materiales"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Nuevo Personal</a>
+    <div class="col-2">
+        <a id="btn_crearPersonal" class="btn btn-outline-primary btn-block" href="~/Personal/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nuevo personal para solicitar y/o retirar materiales"><i class="fas fa-male"></i> Nuevo Personal</a>
     </div>
     <br />
-    <br />
-    <br />
-            <table id="grdPersonal" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            idPersonal
-                        </th>
-                        <th>
-                            Nombre y Apellido
-                        </th>
-                        <th>
-                            Dni
-                        </th>
-                        <th>
-                            Ficha Censal
-                        </th>
-                        <th>
-                            Acciones
-                        </th>
-                    </tr>
-                </thead>
-                @*<tbody>*@
-                @*@foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fichaCensal)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.dni)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Editar", "Editar", new { id = item.idPersonal })
-                            </td>
-                            <td>
-
-                                <a href="" data-toggle="modal" data-target="#myModal-@item.idPersonal">Borrar</a>
-
-                                <div class="modal fade" id="myModal-@item.idPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Borrar Personal</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>¿Desea borrar la siguiente persona del sistema?</p>
-                                                <p><strong>Nombre y Apellido:</strong> @item.nombre</p>
-                                                <p><strong>Ficha Censal:</strong> @item.fichaCensal</p>
-                                                <p><strong>DNI:</strong> @item.dni</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="~/Personal/Borrar/@item.idPersonal" type="button" class="btn btn-danger">Aceptar</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </td>
-                        </tr>
-                    }*@
-                @*</tbody>*@
-            </table>
-            <script type="text/javascript" src="~/Scripts/Views/Personal/Personal.js"></script>
-        </div>
+    <table id="grdPersonal" class="table table-bordered table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    idPersonal
+                </th>
+                <th>
+                    Nombre y Apellido
+                </th>
+                <th>
+                    Dni
+                </th>
+                <th>
+                    Ficha Censal
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <script type="text/javascript" src="~/Scripts/Views/Personal/Personal.js"></script>

@@ -1,24 +1,16 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<div id="page-wrapper">
+﻿<div id="page-wrapper">
     <br />
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <h1>Oficina Técnica</h1>
-            </div>
-            <div class="col-md-offset-11">
-                <img src="~/Assets/logo.png" alt="ET12" style="width:100px;height:100px;">
-            </div>
+    <br />
+    <div class="container-fluid">
+        <div class="col-md-5">
+            <h1>Oficina Técnica</h1>
         </div>
         <hr />
         <div class="jumbotron">
             <h1>Inicio</h1>
             <p>Bienvenido a la web de la oficina técnica</p>
         </div>
-        @if(ViewBag.Notificacion == 1)
+        @if (ViewBag.Notificacion == 1)
         {
             <script type="text/javascript">
                 $.notify.defaults({ globalPosition: 'bottom rigth' });

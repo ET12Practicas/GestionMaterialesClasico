@@ -3,20 +3,16 @@
     ViewBag.Title = "Selección de Materiales";
 }
 
-<div id="page-wrapper">
+<br />
     <br />
-    <div class="row">
-        <div class="container">
-            <h2>Selección de Materiales</h2>
-        </div>
-    </div>
-    <h4>Orden de Trabajo: <strong>Número:</strong> @ViewData["numero"] - <strong>Nombre:</strong> @ViewData["nombre"]</h4>
-    <hr />
-    <div class="col-md-3">
-        <a id="btn_generarordentrabajo" class="btn btn-primary btn-block" href="~/ShopCartMaterial/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
+    <div class="container-fluid">
+        <h2>Selección de Materiales</h2>
+        <h6>Orden de Trabajo: <strong>Número:</strong> @ViewData["numero"] - <strong>Nombre:</strong> @ViewData["nombre"]</h6>
     </div>
     <br />
-    <br />
+    <div class="col-md-2">
+        <a id="btn_generarordentrabajo" class="btn btn-outline-primary btn-block" href="~/ShopCartMaterial/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
+    </div>
     <br />
     <div class="row">
         <div class="col-md-12">
@@ -84,7 +80,28 @@
                 </tbody>
             </table>
             <script type="text/javascript">
-                $('#tabla_materiales').DataTable();
+                $('#tabla_materiales').DataTable({
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay información disponible para mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "infoEmpty": "No hay materiales para mostrar",
+                        "infoFiltered": "(filtrados de _MAX_ personas totales)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Ver _MENU_ materiales por página",
+                        "loadingRecords": "Cargando...",
+                        "processing": "En proceso...",
+                        "search": "Buscar",
+                        "zeroRecords": "No hay materiales que coincidan con el filtro",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                });
                 $('#btn_generarordentrabajo').tooltip();
 
                 //update que modifica el href del link "agregar"

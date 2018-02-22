@@ -2,88 +2,106 @@
 @{
     ViewBag.Title = "Material";
 }
+<br />
+<br />
+<div class="container-fluid">
+    <h2>Gestión de Compras</h2>
+    <h6>Materiales o herramientas sin stock o por debajo del punto de reposición.</h6>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Material
+                    </th>
 
-<div id="page-wrapper">
-    <br />
-    <div class="row">
-        <div class="container">
-            <h2>Gestión de Compras</h2>
-        </div>
-    </div>
-    <h5>Materiales o herramientas sin stock o por debajo del punto de reposición.</h5>
-    <hr />
-    <div class="row">
-        <div class="col-md-12">
-            <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
-                <thead>
+                    <th>
+                        Stock Actual
+                    </th>
+                    <th>
+                        Stock Mínimo
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                    <th>
+                        Proveedor
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th>
-                            Código
-                        </th>
-                        <th>
-                            Material
-                        </th>
-
-                        <th>
-                            Stock Actual
-                        </th>
-                        <th>
-                            Stock Mínimo
-                        </th>
-                        <th>
-                            Estado
-                        </th>
-                        <th>
-                            Proveedor
-                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.codigo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stockActual)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stockMinimo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.proveedor.nombre)
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.codigo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.stockActual)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.stockMinimo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.estado)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.proveedor.nombre)
-                            </td>
-                        </tr>
+                }
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            var fecha = new Date();
+            var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
+            $(document).ready(function () {
+                $('#tabla_materiales').DataTable({
+                    dom: 'Bflrtip',
+                    buttons: [
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a PDF',
+                            filename: 'listadoCompras-' + timestamp
+                        },
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            filename: 'listadoCompras-' + timestamp
+                        }
+                    ],
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay información disponible para mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "infoEmpty": "No hay compras para mostrar",
+                        "infoFiltered": "(filtrados de _MAX_ compras totales)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Ver _MENU_ compras por página",
+                        "loadingRecords": "Cargando...",
+                        "processing": "En proceso...",
+                        "search": "Buscar",
+                        "zeroRecords": "No hay compras que coincidan con el filtro",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
                     }
-                </tbody>
-            </table>
-            <script type="text/javascript">
-                var fecha = new Date();
-                var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
-                $(document).ready(function () {
-                    $('#tabla_materiales').DataTable({
-                        dom: 'Bfrtip',
-                        buttons: [
-                            {
-                                extend: 'pdf',
-                                filename: 'listadoCompras-' + timestamp
-                            },
-                            {
-                                extend: 'excel',
-                                filename: 'listadoCompras-' + timestamp
-                            }
-                        ]
-                    });
                 });
-            </script>
-        </div>
+            });
+        </script>
     </div>
 </div>
 

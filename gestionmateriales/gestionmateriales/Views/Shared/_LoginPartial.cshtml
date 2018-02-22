@@ -1,12 +1,19 @@
 ﻿@using Microsoft.AspNet.Identity
-@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-{
-    @Html.AntiForgeryToken()
+<ul class="nav navbar-nav ml-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="~/Ayuda/Index"><i class="fas fa-question-circle"></i> Ayuda</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/Manage/Index"><i class="fas fa-user"></i> @User.Identity.GetUserName()</a>
+    </li>
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li><a href="~/Ayuda/Index"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Ayuda</a></li>
-        <li><a href="~/Manage/Index"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> @User.Identity.GetUserName()</a></li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar sesión</a></li>
-    </ul>
-}
 
+        <li class="nav-item">
+            <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+        </li>
+
+    }
+</ul>

@@ -3,20 +3,17 @@
     ViewBag.Title = "Orden de Pedido";
 }
 
-<div id="page-wrapper">
+<br />
     <br/>
-    <div class="row">
-        <div class="container">
+        <div class="container-fluid">
             <h2>Ordenes de Pedidos</h2>
+            <h6>Ordenes de pedido ingresadas.</h6>
         </div>
-        </div>
-        <h5>Ordenes de pedido ingresadas.</h5>
+        
     <hr />
-    <div class="col-md-3">
-        <a id="btn_CrearOrdenPedido" class="btn btn-primary btn-block" href="~/OrdenPedido/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de pedido">Nueva Orden de Pedido</a>
+    <div class="col-md-2">
+        <a id="btn_CrearOrdenPedido" class="btn btn-outline-primary" href="~/OrdenPedido/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de pedido">Nueva Orden de Pedido</a>
     </div>
-    <br />
-    <br />
     <br />
     <div class="row">
         <div class="col-md-12">
@@ -70,9 +67,29 @@
                 </tbody>
     </table>
     <script type="text/javascript">
-        $('#tabla_ordenPedido').DataTable();
+        $('#tabla_ordenPedido').DataTable({
+            "language": {
+                "decimal": "",
+                "emptyTable": "No hay información disponible para mostrar",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                "infoEmpty": "No hay ordenes de pedido para mostrar",
+                "infoFiltered": "(filtrados de _MAX_ ordenes de pedido totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Ver _MENU_ ordenes de pedido por página",
+                "loadingRecords": "Cargando...",
+                "processing": "En proceso...",
+                "search": "Buscar",
+                "zeroRecords": "No hay ordenes de pedido que coincidan con el filtro",
+                "paginate": {
+                    "first": "Primera",
+                    "last": "Última",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
         $('#btn_CrearOrdenPedido').tooltip();
     </script>
             </div>
     </div>
-</div>

@@ -12,52 +12,6 @@ $(document).ready(function () {
 
     requestPersonal.done(function (data) {
         //console.log(data.Response);
-        //tablaPersonal = $('#tablePersonal').DataTable({
-        //    "dom": 'lrtip',
-        //    "aaData": data.Response,
-        //    "aoColumnDefs": [{
-        //        "targets": [0, 4],
-        //        "visible": true,
-        //        "sType": "html",
-        //    }],
-        //    "aoColumns": [
-        //        {
-        //            "data": "idPersonal"
-        //        },
-        //        {
-        //            "data": "nombre"
-        //        },
-        //        {
-        //            "data": "dni"
-        //        },
-        //        {
-        //            "data": "fichaCensal"
-        //        },
-        //        {
-        //            "data": "hab"
-        //        }
-        //    ],
-        //    "language": {
-        //        "decimal": "",
-        //        "emptyTable": "No hay información disponible para mostrar",
-        //        "info": " _TOTAL_",
-        //        "infoEmpty": "No hay reservas para mostrar",
-        //        "infoFiltered": "(filtrados de _MAX_ reservas totales)",
-        //        "infoPostFix": "",
-        //        "thousands": ",",
-        //        "lengthMenu": "Ver _MENU_ reservas por página de ",
-        //        "loadingRecords": "Cargando...",
-        //        "processing": "En proceso...",
-        //        "search": "Buscar",
-        //        "zeroRecords": "No hay reservas que coincidan con el filtro",
-        //        "paginate": {
-        //            "first": "Primera",
-        //            "last": "Última",
-        //            "next": "Siguiente",
-        //            "previous": "Anterior"
-        //        }
-        //    }
-        //});
         tablaPersonal = $('#grdPersonal').DataTable({
             //"dom": "lfrtip",
             "aaData": data.Response,
@@ -84,10 +38,10 @@ $(document).ready(function () {
                     "mRender": function (dato, type, row) {
                         //console.log(row);
 
-                        var editarHtml = '<div title="Editar Personal" class="col-xs-offset-3 col-xs-4"><a href="/Personal/Editar/' + row.idPersonal + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></div>';
+                        var editarHtml = '<div class="row"><div title="Editar Personal" class="col-2 offset-1"><a href="/Personal/Editar/' + row.idPersonal + '"><i class="fas fa-pencil-alt"></i></a></div>';
 
-                        var borrarHtml = '<div title="Borrar Personal" class="col-xs-4"><a href="" data-toggle="modal" data-target="#myModal-' + row.idPersonal + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a><div class="modal fade" id= "myModal-' + row.idPersonal + '" tabindex= "-1" role= "dialog" aria- labelledby="myModalLabel" >' +
-                            '<div class="modal-dialog modal-sm" role="document">'+
+                        var borrarHtml = '<div title="Borrar Personal" class="offset-1"><a href="" data-toggle="modal" data-target="#myModal-' + row.idPersonal + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id= "myModal-' + row.idPersonal + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                            '<div class="modal-dialog modal-dialog-centered" role="document">'+
                                     '<div class="modal-content">'+
                                         '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Personal</h4></div>'+
                                             '<div class="modal-body">' +
@@ -99,11 +53,30 @@ $(document).ready(function () {
                                         '<div class="modal-footer">' +
                                         '<a href="/Personal/Borrar/'+ row.idPersonal + '" type="button" class="btn btn-danger">Aceptar</a>' +
                                         '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-                                        '</div></div></div></div></div>';
+                                        '</div></div></div></div></div></div>';
                         return editarHtml + borrarHtml;
                     }
+                }],
+            "language": {
+                "decimal": "",
+                "emptyTable": "No hay información disponible para mostrar",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                "infoEmpty": "No hay personas para mostrar",
+                "infoFiltered": "(filtrados de _MAX_ personas totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Ver _MENU_ personas por página",
+                "loadingRecords": "Cargando...",
+                "processing": "En proceso...",
+                "search": "Buscar",
+                "zeroRecords": "No hay personas que coincidan con el filtro",
+                "paginate": {
+                    "first": "Primera",
+                    "last": "Última",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
                 }
-            ]
+            }
         });
     });
 
