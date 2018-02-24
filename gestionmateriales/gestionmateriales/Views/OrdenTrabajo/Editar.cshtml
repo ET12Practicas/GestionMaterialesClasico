@@ -2,83 +2,82 @@
 @{
     ViewBag.Title = "OrdenTrabajo";
 }
-<div id="page-wrapper">
-    <br />
-    <div class="row">
-        <div class="container">
-            <h2>Editar Orden de Trabajo de Aplicación</h2>
+<br />
+<br />
+<div class="container-fluid">
+    <h2>Editar Orden de Trabajo de Aplicación</h2>
+    <h6>Modifica los campos de una orden trabajo de aplicación existente.</h6>
+</div>
+<br />
+<div class="offset-1 col-md-10">
+    <div class="card">
+        <div class="card-header">
+            Orden de Trabajo de Aplicación
         </div>
-    </div>
-    <h5>Modifica los campos de una orden trabajo de aplicación existente.</h5>
-    <hr />
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Orden de Trabajo de Aplicación</h3>
-            </div>
-            <div class="panel-body">
-                @using (@Html.BeginForm("Editar", "OrdenTrabajo", new { id = Model.idOrdenTrabajo }, FormMethod.Post))
-                {
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.numero, "Número", new { @class = "col-md-2 control-label" })
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", min = 1, autofocus="true", required = "true" } })
-                            </div>
-                            @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "col-md-2 control-label" })
-                            <div class="col-md-5">
-                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true" } })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Turno, "Turno", new { @class = "col-md-2 control-label" })
-                            <div class="col-md-3">
-                                @Html.DropDownList("idTurno", null, htmlAttributes: new { @class = "form-control" })
-                            </div>
-                            @Html.LabelFor(model => model.fecha, "Fecha", new { @class = "col-md-2 control-label" })
-                            <div class="col-md-5">
-                                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", required = "true", type = "date", @Value = Model.fecha.ToString("yyyy-MM-dd") } })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.responsable, "Responsable", new { @class = "col-md-2 control-label" })
-                            <div class="col-md-4">
-                                @Html.DropDownList("idResponsable", null, htmlAttributes: new { @class = "form-control" })
-                            </div>
-                            @Html.LabelFor(model => model.jefeSeccion, "Jefe de Sección", new { @class = "col-md-2 control-label" })
-                            <div class="col-md-4">
-                                @Html.DropDownList("idJefeSeccion", null, htmlAttributes: new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <input type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="right" title="Restaura los valores antes de los cambios" />
-                            </div>
-                            <div class="col-md-offset-3 col-md-3">
-                                <input type="submit" class="btn btn-primary btn-block" value="Editar Materiales" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
-                            </div>
-                        </div>
-
-                    </div>
-                }
-            </div>
-            @if (ViewBag.Result == 1)
+        <div class="card-body">
+            @using (@Html.BeginForm("Editar", "OrdenTrabajo", new { id = Model.idOrdenTrabajo }, FormMethod.Post))
             {
-                <script type="text/javascript">
-                    $.notify.defaults({ globalPosition: 'bottom rigth' });
-                    $.notify(
-                        "El número de orden de trabajo ya existe, verifique el valor",
-                        "error",
-                        {
-                            position: "right bottom",
-                            globalPosition: "right bottom"
-                        }
-                    );
-                </script>
+            <div class="form-horizontal">
+                <div class="form row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.numero, "Número", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", min = 1, autofocus = "true", required = "true" } })
+                    </div>
+                    <div class="form-group col-md-6">
+
+                        @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true" } })
+                    </div>
+                </div>
+                <div class="form row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.Turno, "Turno", new { @class = "control-label" })
+                        @Html.DropDownList("idTurno", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.fecha, "Fecha", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", required = "true", type = "date" } })
+                    </div>
+                </div>
+                <div class="form row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.responsable, "Responsable", new { @class = "control-label" })
+                        @Html.DropDownList("idResponsable", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.jefeSeccion, "Jefe de Sección", new { @class = "control-label" })
+                        @Html.DropDownList("idJefeSeccion", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="right" title="Restaura los valores antes de los cambios" />
+                    </div>
+                    <div class="offset-3 col-md-3">
+                        <input type="submit" class="btn btn-primary btn-block" value="Editar Materiales" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                    </div>
+                </div>
+
+            </div>
             }
         </div>
+        @if (ViewBag.Result == 1)
+        {
+            <script type="text/javascript">
+                $.notify.defaults({ globalPosition: 'bottom rigth' });
+                $.notify(
+                    "El número de orden de trabajo ya existe, verifique el valor",
+                    "error",
+                    {
+                        position: "right bottom",
+                        globalPosition: "right bottom"
+                    }
+                );
+            </script>
+        }
     </div>
 </div>

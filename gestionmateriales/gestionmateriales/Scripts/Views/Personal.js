@@ -84,3 +84,68 @@ $(document).ready(function () {
         alert(data.Response);
     });
 })
+
+//function AddNuevoPersonal() {
+//    //console.log($('#txtPersonalNombre').val());
+//    var requestPersonal = $.post( baseURL + "Personal/AddPersonal", 
+//        {
+//            nombre: $('#txtPersonalNombre').val(),
+//            fichaCensal: $('#txtPersonalFichaCensal').val(),
+//            dni: $('#txtPersonalDni').val()
+//    });
+
+//    requestPersonal.done(function (data) {
+//        //console.log('ok');
+//        refreshDatatablePersonal();
+//        $('#txtPersonalNombre').val('');
+//        $('#txtPersonalFichaCensal').val('');
+//        $('#txtPersonalDni').val('');
+//    });
+
+//    requestPersonal.fail(function (data) {
+//        alert(data);
+//    });
+//}
+
+//function refreshDatatablePersonal() {
+//    $.ajax({
+//        url: baseURL + "Personal/GetPersonal",
+//        type: 'GET',
+//        contentType: "application/json; charset=utf-8",
+//        success: function (data) {
+//            console.log(data.Response);
+//            tablaPersonal.clear();
+//            tablaPersonal.rows.add(data.Response);
+//            tablaPersonal.draw();
+//        }
+//    });
+//}
+
+//function EditPersonal(IdPersonal, Nombre, FichaCensal, Dni) {
+//    //console.log('dasaaaaad');
+//    $('#txtPersonalNombre').val(Nombre);
+//    $('#txtPersonalFichaCensal').val(FichaCensal);
+//    $('#txtPersonalDni').val(Dni);
+//}
+
+//function EditarPesonal() {
+//    var requestPersonal = $.post(baseURL + "Personal/EditPersonal",
+//        {
+//            idPersonal: IdPersonal,
+//            nombre: $('#txtPersonalNombre').val(),
+//            fichaCensal: $('#txtPersonalFichaCensal').val(),
+//            dni: $('#txtPersonalDni').val()
+//        });
+
+//    requestPersonal.done(function (data) {
+//        //console.log('ok');
+//        refreshDatatablePersonal();
+//        $('#txtPersonalNombre').val('');
+//        $('#txtPersonalFichaCensal').val('');
+//        $('#txtPersonalDni').val('');
+//    });
+
+//    requestPersonal.fail(function (data) {
+//        alert(data);
+//    });
+//}

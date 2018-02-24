@@ -3,128 +3,121 @@
     ViewBag.Title = "Proveedor";
 }
 
-<div id="page-wrapper">
-    <div class="container">
-        <br />
-        <div class="row">
-            <div class="container">
-                <h2>Gestión de Proveedores</h2>
-            </div>
+<br />
+<br />
+<div class="container-fluid">
+    <h2>Gestión de Proveedores</h2>
+    <h6>Agrega nuevo proveedor para comprar materiales o herramientas</h6>
+</div>
+<br />
+<div class="col-md-8 offset-2">
+    <div class="card">
+        <div class="card-header">
+            Información Proveedor
         </div>
-        <h5>Agrega nuevo proveedor para comprar materiales o herramientas</h5>
-        <hr />
-        <div class="col-sm-offset-1 col-md-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Información Proveedor</h3>
-                </div>
-                <div class="panel-body">
-                    @using (@Html.BeginForm("Agregar", "Proveedor", FormMethod.Post))
-                    {
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", autofocus = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.cuit, "CUIT", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cuit, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten guiones y numeros..", pattern = "^[0-9]+$" } })
-                                </div>
-                                @Html.LabelFor(model => model.razonSocial, "Razón Social", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.razonSocial, new { htmlAttributes = new { @class = "form-control", maxlength = 15, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.telefono, "Teléfono", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "true", title = "Solo se admiten guiones y números.", pattern = "^[0-9]+$" } })
-                                </div>
-                                @Html.LabelFor(model => model.email, "Correo", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", maxlength = 50, required = "true", type = "email" } })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.direccion, "Dirección", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", maxlength = 100, required = "true" } })
-                                </div>
-                                @Html.LabelFor(model => model.zona, "Zona", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.zona, new { htmlAttributes = new { @class = "form-control", maxlength = 30, required = "true" } })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.horario, "Horario Atención", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.horario, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "false" } })
-                                </div>
-                                @Html.LabelFor(model => model.nombreContacto, "Contacto", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.nombreContacto, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "false", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Limpiar" data-toggle="tooltip" data-placement="left" title="Vacia los campos del formulario" />
-                                </div>
-                                <div class="col-md-offset-3 col-md-3">
-                                    <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
-                                </div>
-                                <div class="col-md-3">
-                                    <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
-                                </div>
-                            </div>
+        <div class="card-body">
+            @using (@Html.BeginForm("Agregar", "Proveedor", FormMethod.Post))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", autofocus = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                    </div>
+                    <div class="form row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.cuit, "CUIT", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.cuit, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", title = "Solo se admiten guiones y numeros..", pattern = "^[0-9]+$" } })
                         </div>
-                    }
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.razonSocial, "Razón Social", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.razonSocial, new { htmlAttributes = new { @class = "form-control", maxlength = 15, required = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                        </div>
+                    </div>
+                    <div class="form row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.telefono, "Teléfono", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "true", title = "Solo se admiten guiones y números.", pattern = "^[0-9]+$" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.email, "Correo", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", maxlength = 50, required = "true", type = "email" } })
+                        </div>
+                    </div>
+                    <div class="form row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.direccion, "Dirección", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", maxlength = 100, required = "true" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.zona, "Zona", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.zona, new { htmlAttributes = new { @class = "form-control", maxlength = 30, required = "true" } })
+                        </div>
+                    </div>
+                    <div class="form row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.horario, "Horario Atención", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.horario, new { htmlAttributes = new { @class = "form-control", maxlength = 20, required = "false" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.nombreContacto, "Contacto", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.nombreContacto, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "false", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" } })
+                        </div>
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="col-3">
+                            <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Limpiar" data-toggle="tooltip" data-placement="left" title="Vacia los campos del formulario" />
+                        </div>
+                        <div class="offset-3 col-3">
+                            <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
+                        </div>
+                        <div class="col-3">
+                            <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            @if (ViewBag.Result == 0)
-            {
-                <script type="text/javascript">
-                    $('#nombre').val('');
-                    $('#cuit').val('');
-                    $('#razonSocial').val('');
-                    $('#telefono').val('');
-                    $('#email').val('');
-                    $('#direccion').val('');
-                    $('#zona').val('');
-                    $('#horario').val('');
-                    $('#nombreContacto').val('');
-                    $.notify.defaults({ globalPosition: 'bottom rigth' });
-                    $.notify(
-                        "Los datos se guardaron con éxito",
-                        "success",
-                        {
-                            position: "right bottom",
-                            globalPosition: "right bottom"
-                        }
-                    );
-                </script>
             }
-            @if (ViewBag.Result == 1)
-            {
-                <script type="text/javascript">
-                    $.notify.defaults({ globalPosition: 'bottom rigth' });
-                    $.notify(
-                        "El CUIT ya existe, verifique el valor",
-                        "error",
-                        {
-                            position: "right bottom",
-                            globalPosition: "right bottom"
-                        }
-                    );
-                </script>
-            }
-            <script type="text/javascript">
-                $('#btn_limpiar').tooltip();
-                $('#btn_aceptar').tooltip();
-                $('#btn_cancelar').tooltip();
-            </script>
         </div>
     </div>
+    @if (ViewBag.Result == 0)
+    {
+        <script type="text/javascript">
+            $('#nombre').val('');
+            $('#cuit').val('');
+            $('#razonSocial').val('');
+            $('#telefono').val('');
+            $('#email').val('');
+            $('#direccion').val('');
+            $('#zona').val('');
+            $('#horario').val('');
+            $('#nombreContacto').val('');
+            $.notify.defaults({ globalPosition: 'bottom rigth' });
+            $.notify(
+                "Los datos se guardaron con éxito",
+                "success",
+                {
+                    position: "right bottom",
+                    globalPosition: "right bottom"
+                }
+            );
+        </script>
+    }
+    @if (ViewBag.Result == 1)
+    {
+        <script type="text/javascript">
+            $.notify.defaults({ globalPosition: 'bottom rigth' });
+            $.notify(
+                "El CUIT ya existe, verifique el valor",
+                "error",
+                {
+                    position: "right bottom",
+                    globalPosition: "right bottom"
+                }
+            );
+        </script>
+    }
+    <script type="text/javascript">
+        $('#btn_limpiar').tooltip();
+        $('#btn_aceptar').tooltip();
+        $('#btn_cancelar').tooltip();
+    </script>
 </div>

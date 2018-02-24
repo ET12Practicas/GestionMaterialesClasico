@@ -19,7 +19,11 @@ namespace gestionmateriales.Models.GestionMateriales
 
         [Required]
         [StringLength(15)]
-        public string codigo { get; set; }
+        public string codigoMaterial { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string codigoDocumento { get; set; }
 
         [Required]
         public int idMaterial { get; set; }
@@ -36,11 +40,12 @@ namespace gestionmateriales.Models.GestionMateriales
 
         }
 
-        public Entrada(DateTime unaFecha, Material unMaterial, string unCodigo, int unaCantidad, TipoEntrada unTipoEntrada)
+        public Entrada(DateTime unaFecha, Material unMaterial, string unCodigoMaterial, string unCodigoDocumento, int unaCantidad, TipoEntrada unTipoEntrada)
         {
             this.fecha = unaFecha;
             this.Material = unMaterial;
-            this.codigo = unCodigo;
+            this.codigoMaterial = unCodigoMaterial;
+            this.codigoDocumento = unCodigoDocumento;
             this.cantidad = unaCantidad;
             this.tipoEntrada = unTipoEntrada;
         }

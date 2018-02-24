@@ -3,118 +3,110 @@
     ViewBag.Title = "Material";
 }
 
-<div id="page-wrapper">
-    <div class="container">
-        <br />
-        <div class="row">
-            <div class="container">
-                <h2>Gestión de Materiales</h2>
-            </div>
+<br />
+<br />
+<div class="container-fluid">
+    <h2>Gestión de Materiales</h2>
+    <h6>Agrega materiales o herramientas utilizadas para taller o reparaciones edilicias</h6>
+</div>
+
+<br />
+<div class="offset-2 col-md-8">
+    <div class="card">
+        <div class="card-header">
+            Nuevo Material
         </div>
-        <h5>Agrega materiales o herramientas utilizadas para taller o reparaciones edilicias</h5>
-        <hr />
-        <div class="col-md-offset-1 col-md-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Nuevo Material</h3>
-                </div>
-                <div class="panel-body">
-                    @using (@Html.BeginForm("Agregar", "Material", FormMethod.Post))
-                    {
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.codigo, "Código", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 15, autofocus = "true", required = "true" } })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 75, required = "true" } })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.unidad, "Unidad", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("idUnidad", null, htmlAttributes: new { @class = "form-control" })
-                                </div>
-                                @Html.LabelFor(model => model.stockMinimo, "Stock Mínimo", new { @class = "col-md-3 control-label" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.stockMinimo, new { htmlAttributes = new { @class = "form-control", min = 1, required = "true" } })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.tipoMaterial, "Tipo", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("idTipoMaterial", null, htmlAttributes: new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.proveedor, "Proveedor", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("idProveedor", null, htmlAttributes: new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.detalle, "Detalle", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.TextAreaFor(model => model.detalle, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 100 })
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Limpiar" data-toggle="tooltip" data-placement="left" title="Vacia los campos del formulario" />
-                                </div>
-                                <div class="col-md-offset-3 col-md-3">
-                                    <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
-                                </div>
-                                <div class="col-md-3">
-                                    <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='Index'" value="Cancelar" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
-                                </div>
-                            </div>
+        <div class="card-body">
+            @using (@Html.BeginForm("Agregar", "Material", FormMethod.Post))
+            {
+                <div class="form-horizontal">
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            @Html.LabelFor(model => model.codigo, "Código", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 15, autofocus = "true", required = "true" } })
                         </div>
-                    }
+                        <div class="form-group col-6">
+                            @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 75, required = "true" } })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            @Html.LabelFor(model => model.unidad, "Unidad", new { @class = "control-label" })
+                            @Html.DropDownList("idUnidad", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-4">
+                            @Html.LabelFor(model => model.stockMinimo, "Stock Mínimo", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.stockMinimo, new { htmlAttributes = new { @class = "form-control", min = 1, required = "true" } })
+                        </div>
+                        <div class="form-group col-4">
+                            @Html.LabelFor(model => model.stockActual, "Stock Actual", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.stockActual, new { htmlAttributes = new { @class = "form-control", min = 1, required = "true" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tipoMaterial, "Tipo", new { @class = "control-label" })
+                        @Html.DropDownList("idTipoMaterial", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.proveedor, "Proveedor", new { @class = "control-label" })
+                        @Html.DropDownList("idProveedor", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.detalle, "Detalle", new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.detalle, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 100 })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Limpiar" data-toggle="tooltip" data-placement="left" title="Vacia los campos del formulario" />
+                        </div>
+                        <div class="offset-3 col-md-3">
+                            <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
+                        </div>
+                        <div class="col-md-3">
+                            <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            @if (ViewBag.Result == 0)
-            {
-                <script type="text/javascript">
-                    $('#nombre').val('');
-                    $('#codigo').val('');
-                    $('#stockMinimo').val('');
-                    $('#detalle').val('');
-                    $.notify.defaults({ globalPosition: 'bottom rigth' });
-                    $.notify(
-                        "Los datos se guardaron con éxito",
-                        "success",
-                        {
-                            position: "right bottom",
-                            globalPosition: "right bottom"
-                        }
-                    );
-                </script>
             }
-            @if (ViewBag.Result == 1)
-            {
-                <script type="text/javascript">
-                    $.notify.defaults({ globalPosition: 'bottom rigth' });
-                    $.notify(
-                        "El Código ya existe, verifique el valor",
-                        "error",
-                        {
-                            position: "right bottom",
-                            globalPosition: "right bottom"
-                        }
-                    );
-                </script>
-            }
-            <script type="text/javascript">
-                $('#btn_limpiar').tooltip();
-                $('#btn_aceptar').tooltip();
-                $('#btn_cancelar').tooltip();
-            </script>
         </div>
     </div>
+    @if (ViewBag.Result == 0)
+    {
+        <script type="text/javascript">
+            $('#nombre').val('');
+            $('#codigo').val('');
+            $('#stockMinimo').val('');
+            $('#detalle').val('');
+            $.notify.defaults({ globalPosition: 'bottom rigth' });
+            $.notify(
+                "Los datos se guardaron con éxito",
+                "success",
+                {
+                    position: "right bottom",
+                    globalPosition: "right bottom"
+                }
+            );
+        </script>
+    }
+    @if (ViewBag.Result == 1)
+    {
+        <script type="text/javascript">
+            $.notify.defaults({ globalPosition: 'bottom rigth' });
+            $.notify(
+                "El Código ya existe, verifique el valor",
+                "error",
+                {
+                    position: "right bottom",
+                    globalPosition: "right bottom"
+                }
+            );
+        </script>
+    }
+    <script type="text/javascript">
+        $('#btn_limpiar').tooltip();
+        $('#btn_aceptar').tooltip();
+        $('#btn_cancelar').tooltip();
+    </script>
 </div>
 

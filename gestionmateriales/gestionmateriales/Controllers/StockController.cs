@@ -37,9 +37,9 @@ namespace gestionmateriales.Controllers
         {
             try
             {
-                Material unMaterial = db.materiales.Where(x => x.codigo == unaEntrada.codigo).SingleOrDefault();
+                Material unMaterial = db.materiales.Where(x => x.codigo == unaEntrada.codigoMaterial).SingleOrDefault();
                 TipoEntrada unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntrada);
-                Entrada nuevaEntrada = new Entrada(DateTime.Now, unMaterial, unMaterial.codigo, unaEntrada.cantidad, unTipoEntrada);
+                Entrada nuevaEntrada = new Entrada(DateTime.Now, unMaterial, unMaterial.codigo, unaEntrada.codigoDocumento, unaEntrada.cantidad, unTipoEntrada);
                 nuevaEntrada.SumarStockMaterial();
                 db.entradas.Add(nuevaEntrada);
                 db.SaveChanges();
@@ -57,8 +57,8 @@ namespace gestionmateriales.Controllers
         public ActionResult Restar()
         {
             //cargarTipoEntrada();
-            //return View("Restar");
-            return RedirectToAction("Index", "Construccion");
+            return View("Restar");
+            //return RedirectToAction("Index", "Construccion");
         }
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)

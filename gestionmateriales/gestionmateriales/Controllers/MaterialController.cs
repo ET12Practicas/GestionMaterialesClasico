@@ -50,7 +50,7 @@ namespace gestionmateriales.Controllers
                 Unidad u = db.unidades.Find(aMat.idUnidad);
                 Proveedor p = db.proveedores.Find(aMat.idProveedor);
                 TipoMaterial tm = db.tipoMaterial.Find(aMat.idTipoMaterial);
-                db.materiales.Add(new Material(aMat.codigo, aMat.nombre, aMat.stockMinimo, aMat.detalle, u, p, tm));
+                db.materiales.Add(new Material(aMat.codigo, aMat.nombre, aMat.stockActual, aMat.stockMinimo, aMat.detalle, u, p, tm));
                 db.SaveChanges();
             }
             catch
@@ -97,6 +97,7 @@ namespace gestionmateriales.Controllers
                 materialEdit.codigo = unMaterial.codigo;
                 materialEdit.idUnidad = unMaterial.idUnidad;
                 materialEdit.stockMinimo = unMaterial.stockMinimo;
+                materialEdit.stockActual = unMaterial.stockActual;
                 materialEdit.idProveedor = unMaterial.idProveedor; ;
                 materialEdit.idTipoMaterial = unMaterial.idTipoMaterial;
                 materialEdit.detalle = unMaterial.detalle;
@@ -134,11 +135,12 @@ namespace gestionmateriales.Controllers
         [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/Material/Historial/{id}")]
         [HttpGet]
-        public ActionResult Historial(int id, string cod, string name)
+        public ActionResult Historial(int id)
         {
             List<OrdenTrabajo> ordenesTrabajo = db.ordenTrabajo.Where(x => x.itemsOT.Any(y => y.idMaterial == id)).ToList();
-            ViewData["codigo"] = cod;
-            ViewData["nombre"] = name;
+            var material = db.materiales.FirstOrDefault(x => x.idMaterial == id);
+            ViewData["codigo"] = material.codigo;
+            ViewData["nombre"] = material.nombre;
             return View("Historial", ordenesTrabajo);
         }
 
@@ -155,6 +157,30 @@ namespace gestionmateriales.Controllers
         private void cargarUnidad(object selectedUnidad = null)
         {
             ViewBag.idUnidad = new SelectList(db.unidades.ToList(), "idUnidad", "nombre", selectedUnidad);
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/Material/GetMaterial/{id}")]
+        [HttpGet]
+        public JsonResult GetMaterial(string codigo)
+        {
+            var material = from mat in db.materiales
+                           where mat.codigo.ToUpper().Equals(codigo.ToUpper())
+                           select new { mat.codigo, mat.nombre };
+
+            return Json(new { Name = "/GetMaterial", Response = material, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/Material/GetMateriales")]
+        [HttpGet]
+        public JsonResult GetMateriales()
+        {
+            var materiales = from m in db.materiales
+                           where m.hab == true
+                           select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, m.detalle, m.unidad, m.proveedor, m.tipoMaterial };
+
+            return Json(new { Name = "/GetMateriales", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -60,7 +60,7 @@ namespace gestionmateriales.Models.GestionMateriales
             this.entradas = new HashSet<Entrada>();
             this.salidas = new HashSet<Salida>();
         }
-        public Material(string aCodigo, string aNombre, int aStockMinimo, string aDetalle, Unidad aUnidad, Proveedor aProveedor, TipoMaterial aTipoMaterial)
+        public Material(string aCodigo, string aNombre, int aStockActual, int aStockMinimo, string aDetalle, Unidad aUnidad, Proveedor aProveedor, TipoMaterial aTipoMaterial)
         {
             this.hab = true;
             this.estado = "Sin Stock";
@@ -69,6 +69,7 @@ namespace gestionmateriales.Models.GestionMateriales
             this.codigo = aCodigo;
             this.nombre = aNombre;
             this.stockMinimo = aStockMinimo;
+            this.stockActual = aStockActual;
             this.detalle = aDetalle;
 
             this.idUnidad = aUnidad.idUnidad;
