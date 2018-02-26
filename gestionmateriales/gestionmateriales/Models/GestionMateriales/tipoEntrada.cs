@@ -14,6 +14,9 @@ namespace gestionmateriales.Models.GestionMateriales
         [StringLength(35)]
         public string nombre { get; set; }
 
+        [Required]
+        public int idSector { get; set; }
+
         public TipoEntrada()
         {
 

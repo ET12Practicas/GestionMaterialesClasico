@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using gestionmateriales.Models.GestionMateriales;
@@ -14,13 +15,21 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<Proveedor> proveedores;
-            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
-            {
-                proveedores = db.proveedores.Where(x => x.hab).ToList();
-            }
-            return View(proveedores);
+            return View("Index");
         }
+
+        [Route("/Proveedor/GetProveedores")]
+        [HttpGet]
+        public JsonResult GetProveedores()
+        {
+            var db = new OficinaTecnicaEntities();
+            var proveedores = from p in db.proveedores
+                              where p.hab == true
+                              select new { p.idProveedor, p.nombre, p.cuit, p.razonSocial, p.zona, p.direccion, p.telefono, p.email, p.horario, p.nombreContacto };
+
+            return Json(new { Name = "/GetProveedores", Response = proveedores, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
 
         [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/Proveedor/Agregar")]

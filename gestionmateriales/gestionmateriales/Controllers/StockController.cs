@@ -63,7 +63,7 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
         {
-            ViewBag.IdTipoEntrada = new SelectList(db.tipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
+            ViewBag.IdTipoEntrada = new SelectList(db.tipoEntrada.Where(x => x.idSector == 0).ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
         }
     }
 }

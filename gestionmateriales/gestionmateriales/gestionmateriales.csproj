@@ -177,6 +177,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802261130165_Initial.cs" />
+    <Compile Include="Migrations\201802261130165_Initial.Designer.cs">
+      <DependentUpon>201802261130165_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ComprasViewModels.cs" />
     <Compile Include="Models\GestionMateriales\Entrada.cs" />
@@ -451,6 +456,9 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\Fuse\css\fuzzycomplete.min.css" />
+    <Content Include="Scripts\Fuse\fuse.min.js" />
+    <Content Include="Scripts\Fuse\js\fuzzycomplete.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -493,6 +501,8 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Material.js" />
     <Content Include="Scripts\Views\Personal.js" />
+    <Content Include="Scripts\Views\Proveedor.js" />
+    <Content Include="Scripts\Views\Stock.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -565,6 +575,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802261130165_Initial.resx">
+      <DependentUpon>201802261130165_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

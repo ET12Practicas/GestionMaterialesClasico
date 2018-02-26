@@ -182,5 +182,17 @@ namespace gestionmateriales.Controllers
 
             return Json(new { Name = "/GetMateriales", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/Material/GetMateriales")]
+        [HttpGet]
+        public JsonResult GetMaterialesShort()
+        {
+            var materiales = from m in db.materiales
+                             where m.hab == true
+                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual };
+
+            return Json(new { Name = "/GetMaterialesShort", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
