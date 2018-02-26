@@ -53,18 +53,23 @@ namespace gestionmateriales.Controllers
                 }
                 try
                 {
-                    db.proveedores.Add(new Proveedor
-                    {
-                        nombre = unProveedor.nombre,
-                        cuit = unProveedor.cuit,
-                        razonSocial = unProveedor.razonSocial,
-                        direccion = unProveedor.direccion,
-                        zona = unProveedor.zona,
-                        horario = unProveedor.horario,
-                        telefono = unProveedor.telefono,
-                        email = unProveedor.email,
-                        nombreContacto = unProveedor.nombreContacto
-                    });
+                    var p = new Proveedor();
+                    p.nombre = unProveedor.nombre;
+                    p.cuit = unProveedor.cuit;
+                    p.razonSocial = unProveedor.razonSocial;
+                    p.direccion = unProveedor.direccion;
+                    p.zona = unProveedor.zona;
+                    p.horario = unProveedor.horario;
+                    p.telefono = unProveedor.telefono;
+                    p.email = unProveedor.email;
+                    p.nombreContacto = unProveedor.nombreContacto;
+                    p.CREATED_BY = User.Identity.Name;
+                    p.CREATION_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                    p.CREATION_IP = Request.UserHostAddress;
+                    p.LAST_UPDATED_BY = User.Identity.Name;
+                    p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                    p.LAST_UPDATED_IP = Request.UserHostAddress;
+                    db.proveedores.Add(p);
                     db.SaveChanges();
                 }
                 catch
@@ -102,29 +107,30 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, Proveedor unProveedor)
         {
-            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
+            var db = new OficinaTecnicaEntities();
+            Proveedor p = db.proveedores.Find(id);
+            if (db.proveedores.Where(x => x.idProveedor != id && x.hab).Any(y => y.cuit == unProveedor.cuit))
             {
-                Proveedor nuevoProveedor = db.proveedores.Find(id);
-                if (db.proveedores.Where(x => x.idProveedor != id && x.hab).Any(y => y.cuit == unProveedor.cuit))
-                {
-                    ViewBag.Result = 1;
-                    return View("Editar", unProveedor);
-                }
-                try
-                {
-                    nuevoProveedor.nombre = unProveedor.nombre;
-                    nuevoProveedor.cuit = unProveedor.cuit;
-                    nuevoProveedor.razonSocial = unProveedor.razonSocial;
-                    nuevoProveedor.horario = unProveedor.horario;
-                    nuevoProveedor.telefono = unProveedor.telefono;
-                    nuevoProveedor.nombreContacto = unProveedor.nombreContacto;
-                    nuevoProveedor.direccion = unProveedor.direccion;
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    return RedirectToAction("Error406", "Error");
-                }
+                ViewBag.Result = 1;
+                return View("Editar", unProveedor);
+            }
+            try
+            {
+                p.nombre = unProveedor.nombre;
+                p.cuit = unProveedor.cuit;
+                p.razonSocial = unProveedor.razonSocial;
+                p.horario = unProveedor.horario;
+                p.telefono = unProveedor.telefono;
+                p.nombreContacto = unProveedor.nombreContacto;
+                p.direccion = unProveedor.direccion;
+                p.LAST_UPDATED_BY = User.Identity.Name;
+                p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                p.LAST_UPDATED_IP = Request.UserHostAddress;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error406", "Error");
             }
             ViewBag.Result = 0;
             return View("Editar", unProveedor);
@@ -134,19 +140,20 @@ namespace gestionmateriales.Controllers
         [Authorize(Roles = "administrador, oficinatecnica")]
         public ActionResult Borrar(int id)
         {
-            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
-            {
-                Proveedor proveedorSeleccionado = db.proveedores.Find(id);
+            var db = new OficinaTecnicaEntities();
+            Proveedor p = db.proveedores.Find(id);
 
-                try
-                {
-                    proveedorSeleccionado.hab = false;
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    return RedirectToAction("Error406", "Error");
-                }
+            try
+            {
+                p.hab = false;
+                p.LAST_UPDATED_BY = User.Identity.Name;
+                p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                p.LAST_UPDATED_IP = Request.UserHostAddress;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error406", "Error");
             }
             return RedirectToAction("Index", "Proveedor");
         }

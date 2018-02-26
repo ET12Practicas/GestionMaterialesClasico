@@ -27,7 +27,7 @@ namespace gestionmateriales.Controllers
             bool notif = false;
             using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
-                notif = db.materiales.Where(x => x.hab).Any(y => y.stockActual <= y.stockMinimo);
+                notif = db.materiales.Any(y => y.hab && y.stockActual <= y.stockMinimo);
             }
             return notif;
         }

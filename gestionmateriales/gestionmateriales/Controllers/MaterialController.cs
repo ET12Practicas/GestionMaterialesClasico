@@ -8,16 +8,13 @@ namespace gestionmateriales.Controllers
 {
     public class MaterialController : Controller
     {
-        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-        
         // GET: Material
         [Authorize(Roles = "administrador, oficinatecnica, rectoria, deposito")]
         [Route("/Material")]
         [HttpGet]
         public ActionResult Index()
         {
-            List<Material> materiales = db.materiales.Where(x => x.hab).ToList();
-            return View(materiales);
+            return View("Index");
         }
 
         //GET: Material/Agregar
@@ -31,12 +28,13 @@ namespace gestionmateriales.Controllers
             cargarTipoMaterial();
             return View("Agregar");
         }
-                
+
         //POST: Material/Agregar
         [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Agregar(Material aMat)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             if (db.materiales.Any(x => x.codigo == aMat.codigo && x.hab))
             {
                 ViewBag.Result = 1;
@@ -50,7 +48,15 @@ namespace gestionmateriales.Controllers
                 Unidad u = db.unidades.Find(aMat.idUnidad);
                 Proveedor p = db.proveedores.Find(aMat.idProveedor);
                 TipoMaterial tm = db.tipoMaterial.Find(aMat.idTipoMaterial);
-                db.materiales.Add(new Material(aMat.codigo, aMat.nombre, aMat.stockActual, aMat.stockMinimo, aMat.detalle, u, p, tm));
+
+                Material m = new Material(aMat.codigo, aMat.nombre, aMat.stockActual, aMat.stockMinimo, aMat.detalle, u, p, tm);
+                m.CREATED_BY = User.Identity.Name;
+                m.CREATION_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.CREATION_IP = Request.UserHostAddress;
+                m.LAST_UPDATED_BY = User.Identity.Name;
+                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.LAST_UPDATED_IP = Request.UserHostAddress;
+                db.materiales.Add(m);
                 db.SaveChanges();
             }
             catch
@@ -69,60 +75,69 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Editar(int id)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             Material materialSelect;
             materialSelect = db.materiales.Find(id);
             cargarProveedor(materialSelect.idProveedor);
             cargarUnidad(materialSelect.idUnidad);
             cargarTipoMaterial(materialSelect.idTipoMaterial);
-            return View(materialSelect);
+            return View("Editar", materialSelect);
         }
-      
+
         //POST: Material/Editar/1
         [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Editar(int id, Material unMaterial)
         {
-            Material materialEdit = db.materiales.Find(id);
-            if (db.materiales.Where(x => x.idMaterial != id && x.hab).Any(y => y.codigo == materialEdit.codigo))
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+            Material m = db.materiales.Find(id);
+            if (db.materiales.Where(x => x.idMaterial != id && x.hab).Any(y => y.codigo == m.codigo))
             {
                 ViewBag.Result = 1;
-                cargarProveedor(materialEdit.idProveedor);
-                cargarUnidad(materialEdit.idUnidad);
-                cargarTipoMaterial(materialEdit.idTipoMaterial);
-                return View("Editar", materialEdit);
+                cargarProveedor(m.idProveedor);
+                cargarUnidad(m.idUnidad);
+                cargarTipoMaterial(m.idTipoMaterial);
+                return View("Editar", m);
             }
             try
             {
-                materialEdit.nombre = unMaterial.nombre;
-                materialEdit.codigo = unMaterial.codigo;
-                materialEdit.idUnidad = unMaterial.idUnidad;
-                materialEdit.stockMinimo = unMaterial.stockMinimo;
-                materialEdit.stockActual = unMaterial.stockActual;
-                materialEdit.idProveedor = unMaterial.idProveedor; ;
-                materialEdit.idTipoMaterial = unMaterial.idTipoMaterial;
-                materialEdit.detalle = unMaterial.detalle;
+                m.nombre = unMaterial.nombre;
+                m.codigo = unMaterial.codigo;
+                m.idUnidad = unMaterial.idUnidad;
+                m.stockMinimo = unMaterial.stockMinimo;
+                m.stockActual = unMaterial.stockActual;
+                m.idProveedor = unMaterial.idProveedor; ;
+                m.idTipoMaterial = unMaterial.idTipoMaterial;
+                m.detalle = unMaterial.detalle;
+                m.LAST_UPDATED_BY = User.Identity.Name;
+                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }
             catch
             {
                 return RedirectToAction("Error406", "Error");
             }
-            cargarProveedor(materialEdit.idProveedor);
-            cargarUnidad(materialEdit.idUnidad);
-            cargarTipoMaterial(materialEdit.idTipoMaterial);
+            cargarProveedor(m.idProveedor);
+            cargarUnidad(m.idUnidad);
+            cargarTipoMaterial(m.idTipoMaterial);
             ViewBag.Result = 0;
-            return View("Editar", materialEdit);
+            return View("Editar", m);
         }
-        
+
         //POST: Material/Borrar/1
         [Authorize(Roles = "administrador, oficinatecnica")]
         public ActionResult Borrar(int id)
         {
-            Material nuevoMaterial = db.materiales.Find(id);
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+            Material m = db.materiales.Find(id);
 
             try
             {
-                nuevoMaterial.hab = false;
+                m.hab = false;
+                m.LAST_UPDATED_BY = User.Identity.Name;
+                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }
             catch
@@ -137,6 +152,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Historial(int id)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             List<OrdenTrabajo> ordenesTrabajo = db.ordenTrabajo.Where(x => x.itemsOT.Any(y => y.idMaterial == id)).ToList();
             var material = db.materiales.FirstOrDefault(x => x.idMaterial == id);
             ViewData["codigo"] = material.codigo;
@@ -146,16 +162,19 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoMaterial(object selectedTipoMaterial = null)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             ViewBag.idTipoMaterial = new SelectList(db.tipoMaterial.ToList(), "idTipoMaterial", "nombre", selectedTipoMaterial);
         }
 
         private void cargarProveedor(object selectedProveedor = null)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             ViewBag.idProveedor = new SelectList(db.proveedores.Where(x => x.hab).ToList(), "idProveedor", "nombre", selectedProveedor);
         }
 
         private void cargarUnidad(object selectedUnidad = null)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             ViewBag.idUnidad = new SelectList(db.unidades.ToList(), "idUnidad", "nombre", selectedUnidad);
         }
 
@@ -164,6 +183,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetMaterial(string codigo)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             var material = from mat in db.materiales
                            where mat.codigo.ToUpper().Equals(codigo.ToUpper())
                            select new { mat.codigo, mat.nombre };
@@ -176,18 +196,20 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetMateriales()
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             var materiales = from m in db.materiales
-                           where m.hab == true
-                           select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, m.detalle, m.unidad, m.proveedor, m.tipoMaterial };
+                             where m.hab == true
+                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, m.detalle, m.unidad, m.proveedor, m.tipoMaterial };
 
             return Json(new { Name = "/GetMateriales", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "administrador, oficinatecnica")]
-        [Route("/Material/GetMateriales")]
+        [Route("/Material/GetMaterialesShort")]
         [HttpGet]
         public JsonResult GetMaterialesShort()
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             var materiales = from m in db.materiales
                              where m.hab == true
                              select new { m.idMaterial, m.codigo, m.nombre, m.stockActual };
