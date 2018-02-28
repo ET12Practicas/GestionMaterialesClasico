@@ -199,7 +199,7 @@ namespace gestionmateriales.Controllers
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             var materiales = from m in db.materiales
                              where m.hab == true
-                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, m.detalle, m.unidad, m.proveedor, m.tipoMaterial };
+                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, m.detalle, unidad = m.unidad.nombre, proveedor = m.proveedor.nombre, tipoMaterial = m.tipoMaterial.nombre };
 
             return Json(new { Name = "/GetMateriales", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }

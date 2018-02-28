@@ -7,13 +7,13 @@ namespace gestionmateriales.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class seguridad : IMigrationMetadata
+    public sealed partial class atributosSeguridad : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(seguridad));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(atributosSeguridad));
         
         string IMigrationMetadata.Id
         {
-            get { return "201802261825493_seguridad"; }
+            get { return "201802271237523_atributosSeguridad"; }
         }
         
         string IMigrationMetadata.Source

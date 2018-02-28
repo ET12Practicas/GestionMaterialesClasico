@@ -52,7 +52,7 @@ namespace gestionmateriales.Models.GestionMateriales
         /// Fecha de creacion
         /// </summary>
         [Required]
-        [StringLength(50)]
+        [StringLength(20)]
         public string CREATION_DATE { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace gestionmateriales.Models.GestionMateriales
         /// Fecha de la ultima modificacion 
         /// </summary>
         [Required]
-        [StringLength(50)]
+        [StringLength(20)]
         public string LAST_UPDATED_DATE { get; set; }
 
         /// <summary>

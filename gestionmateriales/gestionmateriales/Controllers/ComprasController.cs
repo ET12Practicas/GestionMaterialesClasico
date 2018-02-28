@@ -17,10 +17,8 @@ namespace gestionmateriales.Controllers
         [Route("/Compras")]
         [HttpGet]
         public ActionResult Index()
-        {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            List<Material> materiales = db.materiales.Where(x => x.hab && x.stockActual <= x.stockMinimo).ToList();
-            return View("Index", materiales);
+        {           
+            return View("Index");
         }
         
         //GET: AprobarOP
@@ -50,6 +48,17 @@ namespace gestionmateriales.Controllers
              //            };
 
             return View();                         
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [HttpGet]
+        public JsonResult GetCompras()
+        {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+            var materiales = from m in db.materiales
+                             where m.hab == true && m.stockActual <= m.stockMinimo
+                             select new { m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, proveedor = m.proveedor.nombre };
+            return Json(new { Name = "/GetCompras", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
     }
 }

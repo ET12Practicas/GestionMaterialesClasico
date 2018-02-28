@@ -11,7 +11,7 @@
 <br />
 <div class="row">
     <div class="col-md-12">
-        <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
+        <table id="grdCompras" class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th>
@@ -35,70 +35,104 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.codigo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.stockActual)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.stockMinimo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.estado)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.proveedor.nombre)
-                        </td>
-                    </tr>
-                }
-            </tbody>
+            @*<tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.codigo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stockActual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stockMinimo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.estado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.proveedor.nombre)
+                            </td>
+                        </tr>
+                    }
+                </tbody>*@
         </table>
         <script type="text/javascript">
             var fecha = new Date();
             var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
+            var baseURL = window.location.protocol + "//" + window.location.host + "/"
+
             $(document).ready(function () {
-                $('#tabla_materiales').DataTable({
-                    dom: 'Bflrtip',
-                    buttons: [
-                        {
-                            extend: 'pdf',
-                            text: 'Exportar a PDF',
-                            filename: 'listadoCompras-' + timestamp
+                var request = $.ajax({
+                    url: baseURL + "/Compras/GetCompras",
+                    type: 'GET',
+                    contentType: 'application/json; charset=utf-8'
+                });
+
+                request.done(function (data) {
+                    //console.log(data.Response);
+                    $('#grdCompras').DataTable({
+                        "dom": 'Bflrtip',
+                        "aaData": data.Response,
+                        "aoColumns": [{
+                            "data": "codigo"
                         },
                         {
-                            extend: 'excel',
-                            text: 'Exportar a Excel',
-                            filename: 'listadoCompras-' + timestamp
+                            "data": "nombre"
+                        },
+                        {
+                            "data": "stockActual"
+                        },
+                        {
+                            "data": "stockMinimo"
+                        },
+                        {
+                            "data": "estado"
+                        },
+                        {
+                            "data": "proveedor"
+                        }],
+                        "buttons": [
+                            {
+                                extend: 'pdf',
+                                text: 'Exportar a PDF',
+                                filename: 'listadoCompras-' + timestamp
+                            },
+                            {
+                                extend: 'excel',
+                                text: 'Exportar a Excel',
+                                filename: 'listadoCompras-' + timestamp
+                            }
+                        ],
+                        "language": {
+                            "decimal": "",
+                            "emptyTable": "No hay información disponible para mostrar",
+                            "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                            "infoEmpty": "No hay compras para mostrar",
+                            "infoFiltered": "(filtrados de _MAX_ compras totales)",
+                            "infoPostFix": "",
+                            "thousands": ",",
+                            "lengthMenu": "Ver _MENU_ compras por página",
+                            "loadingRecords": "Cargando...",
+                            "processing": "En proceso...",
+                            "search": "Buscar",
+                            "zeroRecords": "No hay compras que coincidan con el filtro",
+                            "paginate": {
+                                "first": "Primera",
+                                "last": "Última",
+                                "next": "Siguiente",
+                                "previous": "Anterior"
+                            }
                         }
-                    ],
-                    "language": {
-                        "decimal": "",
-                        "emptyTable": "No hay información disponible para mostrar",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                        "infoEmpty": "No hay compras para mostrar",
-                        "infoFiltered": "(filtrados de _MAX_ compras totales)",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "Ver _MENU_ compras por página",
-                        "loadingRecords": "Cargando...",
-                        "processing": "En proceso...",
-                        "search": "Buscar",
-                        "zeroRecords": "No hay compras que coincidan con el filtro",
-                        "paginate": {
-                            "first": "Primera",
-                            "last": "Última",
-                            "next": "Siguiente",
-                            "previous": "Anterior"
-                        }
-                    }
+                    });
+                });
+
+                request.fail(function (data) {
+                    alert(data.Response);
                 });
             });
         </script>

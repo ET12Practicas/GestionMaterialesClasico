@@ -179,9 +179,13 @@
     <Compile Include="Migrations\201802261130165_Initial.Designer.cs">
       <DependentUpon>201802261130165_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802261825493_seguridad.cs" />
-    <Compile Include="Migrations\201802261825493_seguridad.Designer.cs">
-      <DependentUpon>201802261825493_seguridad.cs</DependentUpon>
+    <Compile Include="Migrations\201802271237523_atributosSeguridad.cs" />
+    <Compile Include="Migrations\201802271237523_atributosSeguridad.Designer.cs">
+      <DependentUpon>201802271237523_atributosSeguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802282234165_cambioFechaOTA.cs" />
+    <Compile Include="Migrations\201802282234165_cambioFechaOTA.Designer.cs">
+      <DependentUpon>201802282234165_cambioFechaOTA.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -582,8 +586,11 @@
     <EmbeddedResource Include="Migrations\201802261130165_Initial.resx">
       <DependentUpon>201802261130165_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802261825493_seguridad.resx">
-      <DependentUpon>201802261825493_seguridad.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802271237523_atributosSeguridad.resx">
+      <DependentUpon>201802271237523_atributosSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802282234165_cambioFechaOTA.resx">
+      <DependentUpon>201802282234165_cambioFechaOTA.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -17,18 +17,6 @@ namespace gestionmateriales.Controllers
             return View("Index");
         }
 
-        [HttpGet]
-        [Route("/Personal/GetPersonal")]
-        public JsonResult GetPersonal()
-        {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            var personas = from per in db.personal
-                           where per.hab == true
-                           select new { per.idPersonal, per.nombre, per.dni, per.fichaCensal };
-
-            return Json(new { Name = "/GetPersonal", Response = personas, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt")}, JsonRequestBehavior.AllowGet);
-        }
-
         // GET: Personal/Agregar
         [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/Personal/Agregar")]
@@ -142,6 +130,18 @@ namespace gestionmateriales.Controllers
                 return RedirectToAction("Error406", "Error");
             }
             return RedirectToAction("Index", "Personal");
+        }
+
+        [HttpGet]
+        [Route("/Personal/GetPersonal")]
+        public JsonResult GetPersonal()
+        {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+            var personas = from per in db.personal
+                           where per.hab == true
+                           select new { per.idPersonal, per.nombre, per.dni, per.fichaCensal };
+
+            return Json(new { Name = "/GetPersonal", Response = personas, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
     }
 }

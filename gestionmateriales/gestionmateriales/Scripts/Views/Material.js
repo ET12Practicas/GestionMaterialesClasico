@@ -60,9 +60,9 @@ $(document).ready(function () {
                             '<div class="col-md-6">' +
                             '<p><strong>Código:</strong> ' + row.codigo + '</p>' +
                             '<p><strong>Material:</strong> ' + row.nombre + '</p>' +
-                            '<p><strong>Tipo:</strong> ' + row.tipoMaterial.nombre + '</p>' +
-                            '<p><strong>Unidad:</strong> ' + row.unidad.nombre + '</p>' +
-                            '<p><strong>Proveedor:</strong> ' + row.proveedor.nombre + '</p>' +
+                            '<p><strong>Tipo:</strong> ' + row.tipoMaterial + '</p>' +
+                            '<p><strong>Unidad:</strong> ' + row.unidad + '</p>' +
+                            '<p><strong>Proveedor:</strong> ' + row.proveedor + '</p>' +
                             '</div>' +
                             '<div class="col-md-6 ml-auto">' +
                             '<p><strong>Stock Actual:</strong> ' + row.stockActual + '</p>' +
