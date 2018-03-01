@@ -17,12 +17,12 @@ namespace gestionmateriales.Controllers
         [Route("/Compras")]
         [HttpGet]
         public ActionResult Index()
-        {           
+        {
             return View("Index");
         }
-        
+
         //GET: AprobarOP
-        [Authorize (Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/AprobarOP")]
         [HttpGet]
         public ActionResult AprobarOP()
@@ -37,17 +37,17 @@ namespace gestionmateriales.Controllers
         {
             //TODO: falta implementar el mergeo de los las ordenes de pedido con el stock real
             // es decir que se tiene que contrastar lo que se necesita con lo que hay en deposito
-             //var items = from op in db.ordenPedido 
-             //            join i in db.ItemOP on op.idOrdenPedido equals i.idOrdenPedido
-             //            where op.fecha > compra.fechaInicio && op.fecha < compra.fechaFin
-             //            group op by i.idMaterialB into materialGroup
-             //            select new {materialGroup., 
-             //                        i.cantidad, 
-             //                        getStockActualById(i.idMaterial),
-             //                        getStockActualById(i.idMaterial) - i.cantidad
-             //            };
+            //var items = from op in db.ordenPedido 
+            //            join i in db.ItemOP on op.idOrdenPedido equals i.idOrdenPedido
+            //            where op.fecha > compra.fechaInicio && op.fecha < compra.fechaFin
+            //            group op by i.idMaterialB into materialGroup
+            //            select new {materialGroup., 
+            //                        i.cantidad, 
+            //                        getStockActualById(i.idMaterial),
+            //                        getStockActualById(i.idMaterial) - i.cantidad
+            //            };
 
-            return View();                         
+            return View();
         }
 
         [Authorize(Roles = "administrador, oficinatecnica")]
@@ -59,6 +59,15 @@ namespace gestionmateriales.Controllers
                              where m.hab == true && m.stockActual <= m.stockMinimo
                              select new { m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, proveedor = m.proveedor.nombre };
             return Json(new { Name = "/GetCompras", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [HttpGet]
+        public JsonResult GetCantidadCompras()
+        {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+            int cantidad = db.materiales.Where(x => x.hab == true && x.stockActual <= x.stockMinimo).Count();
+            return Json(new { Name = "/GetCantidadCompras", Response = cantidad, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
     }
 }

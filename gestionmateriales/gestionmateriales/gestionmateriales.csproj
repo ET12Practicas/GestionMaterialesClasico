@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201802282234165_cambioFechaOTA.Designer.cs">
       <DependentUpon>201802282234165_cambioFechaOTA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803010105264_atributoSeguridadNull.cs" />
+    <Compile Include="Migrations\201803010105264_atributoSeguridadNull.Designer.cs">
+      <DependentUpon>201803010105264_atributoSeguridadNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ComprasViewModels.cs" />
@@ -591,6 +595,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802282234165_cambioFechaOTA.resx">
       <DependentUpon>201802282234165_cambioFechaOTA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803010105264_atributoSeguridadNull.resx">
+      <DependentUpon>201803010105264_atributoSeguridadNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -52,40 +52,36 @@ namespace gestionmateriales.Models.GestionMateriales
         /// <summary>
         /// Usuario que creo la entrada
         /// </summary>
-        [Required]
+        [StringLength(50)]
         public string CREATED_BY { get; set; }
 
         /// <summary>
         /// Fecha de creacion
         /// </summary>
-        [Required]
         [StringLength(20)]
         public string CREATION_DATE { get; set; }
 
         /// <summary>
         /// Ip desde que se creo la entrada
         /// </summary>
-        [Required]
         [StringLength(20)]
         public string CREATION_IP { get; set; }
 
         /// <summary>
         /// Ultimo usuario que modifico la entrada
         /// </summary>
-        [Required]
+        [StringLength(50)]
         public string LAST_UPDATED_BY { get; set; }
 
         /// <summary>
         /// Fecha de la ultima modificacion 
         /// </summary>
-        [Required]
         [StringLength(20)]
         public string LAST_UPDATED_DATE { get; set; }
 
         /// <summary>
         /// Ultima Ip desde que se modifico la entrada
         /// </summary>
-        [Required]
         [StringLength(20)]
         public string LAST_UPDATED_IP { get; set; }
 

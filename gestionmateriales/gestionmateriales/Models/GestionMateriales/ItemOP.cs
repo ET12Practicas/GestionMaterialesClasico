@@ -7,7 +7,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
     public class ItemOP
     {
-         [Key]
+        [Key]
         [Required]
         public int idItemOP { get; set; }
 

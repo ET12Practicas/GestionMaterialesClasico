@@ -10,19 +10,5 @@
             <h1>Inicio</h1>
             <p>Bienvenido a la web de la oficina técnica</p>
         </div>
-        @if (ViewBag.Notificacion == 1)
-        {
-            <script type="text/javascript">
-                $.notify.defaults({ globalPosition: 'bottom rigth' });
-                $.notify(
-                    "Hay compras disponibles",
-                    "info",
-                    {
-                        position: "right bottom",
-                        globalPosition: "right bottom"
-                    }
-                );
-            </script>
-        }
     </div>
 </div>

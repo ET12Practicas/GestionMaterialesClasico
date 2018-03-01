@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGS - ET12</title>
+    <title>Titán - ET12</title>
 
     <!--JQuery-->
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></!--script-->
@@ -40,10 +40,10 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-file-alt"></i> Documentos</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="~/OrdenTrabajo/Index">Orden de Trabajo de Aplicacion</a>
-                    <@*a class="dropdown-item" href="~/Construccion/Index">Orden de Pedido</a>
-                    <a class="dropdown-item" href="~/Construccion/Index">Trabajo Práctico</a>
-                    <a class="dropdown-item" href="~/Construccion/Index">Donación</a>
-                    <a class="dropdown-item" href="~/Construccion/Index">Sobrante</a>*@
+                    @*<a class="dropdown-item" href="~/Construccion/Index">Orden de Pedido</a>
+                        <a class="dropdown-item" href="~/Construccion/Index">Trabajo Práctico</a>
+                        <a class="dropdown-item" href="~/Construccion/Index">Donación</a>
+                        <a class="dropdown-item" href="~/Construccion/Index">Sobrante</a>*@
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -55,7 +55,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-shopping-cart"></i> Compras</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-shopping-cart"></i> Compras <span id="comprasPendientes" class="notif badge badge-info"></span></a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="~/Compras/Index">Materiales a Comprar</a>
                 </div>
@@ -78,8 +78,28 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year Oficina Técnica - SGS Versión @ViewContext.Controller.GetType().Assembly.GetName().Version</p>
+            <p>&copy; @DateTime.Now.Year Oficina Técnica - Titán @ViewContext.Controller.GetType().Assembly.GetName().Version</p>
         </footer>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var baseURL = window.location.protocol + "//" + window.location.host + "/"
+            var request = $.ajax({
+                url: baseURL + "Compras/GetCantidadCompras",
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8'
+            });
+
+            request.done(function (data) {
+                //console.log(data.Response);
+                $('#comprasPendientes').text(data.Response);
+            });
+
+            request.fail(function (data) {
+                alert(data.Response);
+            });
+        });
+    </script>
 </body>
 </html>

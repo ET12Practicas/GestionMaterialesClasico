@@ -51,10 +51,10 @@ namespace gestionmateriales.Controllers
 
                 Material m = new Material(aMat.codigo, aMat.nombre, aMat.stockActual, aMat.stockMinimo, aMat.detalle, u, p, tm);
                 m.CREATED_BY = User.Identity.Name;
-                m.CREATION_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.CREATION_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 m.CREATION_IP = Request.UserHostAddress;
                 m.LAST_UPDATED_BY = User.Identity.Name;
-                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.materiales.Add(m);
                 db.SaveChanges();
@@ -99,25 +99,25 @@ namespace gestionmateriales.Controllers
                 cargarTipoMaterial(m.idTipoMaterial);
                 return View("Editar", m);
             }
-            try
-            {
+            //try
+            //{
                 m.nombre = unMaterial.nombre;
                 m.codigo = unMaterial.codigo;
                 m.idUnidad = unMaterial.idUnidad;
                 m.stockMinimo = unMaterial.stockMinimo;
                 m.stockActual = unMaterial.stockActual;
-                m.idProveedor = unMaterial.idProveedor; ;
+                m.idProveedor = unMaterial.idProveedor;
                 m.idTipoMaterial = unMaterial.idTipoMaterial;
                 m.detalle = unMaterial.detalle;
                 m.LAST_UPDATED_BY = User.Identity.Name;
-                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
-            }
-            catch
-            {
-                return RedirectToAction("Error406", "Error");
-            }
+            //}
+            //catch
+            //{
+            //    return RedirectToAction("Error406", "Error");
+            //}
             cargarProveedor(m.idProveedor);
             cargarUnidad(m.idUnidad);
             cargarTipoMaterial(m.idTipoMaterial);
@@ -136,7 +136,7 @@ namespace gestionmateriales.Controllers
             {
                 m.hab = false;
                 m.LAST_UPDATED_BY = User.Identity.Name;
-                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }
