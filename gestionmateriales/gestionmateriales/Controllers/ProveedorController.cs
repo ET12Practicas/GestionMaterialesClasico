@@ -64,10 +64,10 @@ namespace gestionmateriales.Controllers
                     p.email = unProveedor.email;
                     p.nombreContacto = unProveedor.nombreContacto;
                     p.CREATED_BY = User.Identity.Name;
-                    p.CREATION_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                    p.CREATION_DATE = DateTime.Now;
                     p.CREATION_IP = Request.UserHostAddress;
                     p.LAST_UPDATED_BY = User.Identity.Name;
-                    p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                    p.LAST_UPDATED_DATE = DateTime.Now;
                     p.LAST_UPDATED_IP = Request.UserHostAddress;
                     db.proveedores.Add(p);
                     db.SaveChanges();
@@ -124,7 +124,7 @@ namespace gestionmateriales.Controllers
                 p.nombreContacto = unProveedor.nombreContacto;
                 p.direccion = unProveedor.direccion;
                 p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                p.LAST_UPDATED_DATE = DateTime.Now;
                 p.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }
@@ -147,7 +147,7 @@ namespace gestionmateriales.Controllers
             {
                 p.hab = false;
                 p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                p.LAST_UPDATED_DATE = DateTime.Now;
                 p.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }

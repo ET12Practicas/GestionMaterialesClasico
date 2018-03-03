@@ -30,8 +30,7 @@ namespace gestionmateriales.Models.GestionMateriales
         /// <summary>
         /// Usuario que creo la entrada
         /// </summary>
-        [StringLength(50)]
-        public string CREATED_BY { get; set; }
+        public DateTime CREATED_BY { get; set; }
 
         /// <summary>
         /// Fecha de creacion
@@ -54,8 +53,7 @@ namespace gestionmateriales.Models.GestionMateriales
         /// <summary>
         /// Fecha de la ultima modificacion 
         /// </summary>
-        [StringLength(20)]
-        public string LAST_UPDATED_DATE { get; set; }
+        public DateTime LAST_UPDATED_DATE { get; set; }
 
         /// <summary>
         /// Ultima Ip desde que se modifico la entrada

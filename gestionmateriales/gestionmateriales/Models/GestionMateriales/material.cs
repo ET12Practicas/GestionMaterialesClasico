@@ -61,8 +61,7 @@ namespace gestionmateriales.Models.GestionMateriales
         /// <summary>
         /// Fecha de creacion
         /// </summary>
-        [StringLength(20)]
-        public string CREATION_DATE { get; set; }
+        public DateTime CREATION_DATE { get; set; }
 
         /// <summary>
         /// Ip desde que se creo la entrada
@@ -79,8 +78,7 @@ namespace gestionmateriales.Models.GestionMateriales
         /// <summary>
         /// Fecha de la ultima modificacion 
         /// </summary>
-        [StringLength(20)]
-        public string LAST_UPDATED_DATE { get; set; }
+        public DateTime LAST_UPDATED_DATE { get; set; }
 
         /// <summary>
         /// Ultima Ip desde que se modifico la entrada

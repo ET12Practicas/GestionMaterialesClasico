@@ -3,7 +3,7 @@ namespace gestionmateriales.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -12,12 +12,18 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idEntrada = c.Int(nullable: false, identity: true),
-                        fecha = c.DateTime(nullable: false, precision: 0),
+                        fecha = c.DateTime(nullable: false),
                         cantidad = c.Int(nullable: false),
-                        codigoMaterial = c.String(nullable: false, maxLength: 15, storeType: "nvarchar"),
-                        codigoDocumento = c.String(nullable: false, maxLength: 15, storeType: "nvarchar"),
+                        codigoMaterial = c.String(nullable: false, maxLength: 15),
+                        codigoDocumento = c.String(nullable: false, maxLength: 15),
                         idMaterial = c.Int(nullable: false),
                         idTipoEntrada = c.Int(nullable: false),
+                        CREATED_BY = c.String(maxLength: 50),
+                        CREATION_DATE = c.DateTime(nullable: false),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
                     })
                 .PrimaryKey(t => t.idEntrada)
                 .ForeignKey("dbo.Material", t => t.idMaterial, cascadeDelete: true)
@@ -30,16 +36,22 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idMaterial = c.Int(nullable: false, identity: true),
-                        codigo = c.String(nullable: false, maxLength: 15, storeType: "nvarchar"),
-                        nombre = c.String(nullable: false, maxLength: 75, storeType: "nvarchar"),
+                        codigo = c.String(nullable: false, maxLength: 15),
+                        nombre = c.String(nullable: false, maxLength: 75),
                         stockActual = c.Int(nullable: false),
                         stockMinimo = c.Int(nullable: false),
                         idUnidad = c.Int(nullable: false),
                         idProveedor = c.Int(nullable: false),
                         idTipoMaterial = c.Int(nullable: false),
-                        estado = c.String(nullable: false, maxLength: 12, storeType: "nvarchar"),
-                        detalle = c.String(maxLength: 100, storeType: "nvarchar"),
+                        estado = c.String(nullable: false, maxLength: 12),
+                        detalle = c.String(maxLength: 100),
                         hab = c.Boolean(nullable: false),
+                        CREATED_BY = c.String(maxLength: 50),
+                        CREATION_DATE = c.DateTime(nullable: false),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
                     })
                 .PrimaryKey(t => t.idMaterial)
                 .ForeignKey("dbo.Proveedor", t => t.idProveedor, cascadeDelete: true)
@@ -54,16 +66,22 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idProveedor = c.Int(nullable: false, identity: true),
-                        nombre = c.String(nullable: false, maxLength: 45, storeType: "nvarchar"),
-                        direccion = c.String(nullable: false, maxLength: 100, storeType: "nvarchar"),
-                        cuit = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
-                        telefono = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
-                        email = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
-                        razonSocial = c.String(nullable: false, maxLength: 15, storeType: "nvarchar"),
-                        nombreContacto = c.String(maxLength: 45, storeType: "nvarchar"),
-                        zona = c.String(nullable: false, maxLength: 30, storeType: "nvarchar"),
-                        horario = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        nombre = c.String(nullable: false, maxLength: 45),
+                        direccion = c.String(nullable: false, maxLength: 100),
+                        cuit = c.String(nullable: false, maxLength: 20),
+                        telefono = c.String(nullable: false, maxLength: 20),
+                        email = c.String(nullable: false, maxLength: 50),
+                        razonSocial = c.String(nullable: false, maxLength: 15),
+                        nombreContacto = c.String(maxLength: 45),
+                        zona = c.String(nullable: false, maxLength: 30),
+                        horario = c.String(nullable: false, maxLength: 20),
                         hab = c.Boolean(nullable: false),
+                        CREATED_BY = c.String(maxLength: 50),
+                        CREATION_DATE = c.DateTime(nullable: false),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
                     })
                 .PrimaryKey(t => t.idProveedor);
             
@@ -72,8 +90,14 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idSalida = c.Int(nullable: false, identity: true),
-                        fecha = c.DateTime(nullable: false, precision: 0),
+                        fecha = c.DateTime(nullable: false),
                         cantidad = c.Int(nullable: false),
+                        CREATED_BY = c.String(maxLength: 50),
+                        CREATION_DATE = c.DateTime(nullable: false),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
                         Material_idMaterial = c.Int(),
                         Personal_idPersonal = c.Int(),
                     })
@@ -88,10 +112,16 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idPersonal = c.Int(nullable: false, identity: true),
-                        nombre = c.String(nullable: false, maxLength: 60, storeType: "nvarchar"),
+                        nombre = c.String(nullable: false, maxLength: 60),
                         dni = c.Int(nullable: false),
                         fichaCensal = c.Int(nullable: false),
                         hab = c.Boolean(nullable: false),
+                        CREATED_BY = c.String(maxLength: 50),
+                        CREATION_DATE = c.DateTime(nullable: false),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
                     })
                 .PrimaryKey(t => t.idPersonal);
             
@@ -100,7 +130,7 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idTipoMaterial = c.Int(nullable: false, identity: true),
-                        nombre = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        nombre = c.String(nullable: false, maxLength: 20),
                     })
                 .PrimaryKey(t => t.idTipoMaterial);
             
@@ -109,7 +139,7 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idUnidad = c.Int(nullable: false, identity: true),
-                        nombre = c.String(nullable: false, maxLength: 15, storeType: "nvarchar"),
+                        nombre = c.String(nullable: false, maxLength: 15),
                     })
                 .PrimaryKey(t => t.idUnidad);
             
@@ -118,7 +148,7 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idTipoEntrada = c.Int(nullable: false, identity: true),
-                        nombre = c.String(nullable: false, maxLength: 35, storeType: "nvarchar"),
+                        nombre = c.String(nullable: false, maxLength: 35),
                         idSector = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.idTipoEntrada);
@@ -145,9 +175,15 @@ namespace gestionmateriales.Migrations
                         idOrdenPedido = c.Int(nullable: false, identity: true),
                         numOp = c.Int(nullable: false),
                         numOt = c.Int(nullable: false),
-                        destino = c.String(nullable: false, maxLength: 150, storeType: "nvarchar"),
+                        destino = c.String(nullable: false, maxLength: 150),
                         hab = c.Boolean(nullable: false),
-                        fecha = c.DateTime(nullable: false, precision: 0),
+                        fecha = c.DateTime(nullable: false),
+                        CREATED_BY = c.DateTime(nullable: false),
+                        CREATION_DATE = c.String(maxLength: 20),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
                     })
                 .PrimaryKey(t => t.idOrdenPedido);
             
@@ -172,12 +208,18 @@ namespace gestionmateriales.Migrations
                     {
                         idOrdenTrabajo = c.Int(nullable: false, identity: true),
                         numero = c.Int(nullable: false),
-                        nombre = c.String(nullable: false, maxLength: 70, storeType: "nvarchar"),
+                        nombre = c.String(nullable: false, maxLength: 70),
                         idTurno = c.Int(nullable: false),
-                        fecha = c.DateTime(nullable: false, precision: 0),
+                        fecha = c.DateTime(nullable: false),
                         idJefeSeccion = c.Int(nullable: false),
                         idResponsable = c.Int(nullable: false),
                         hab = c.Boolean(nullable: false),
+                        CREATED_BY = c.String(maxLength: 50),
+                        CREATION_DATE = c.DateTime(nullable: false),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
                         jefeSeccion_idPersonal = c.Int(),
                         responsable_idPersonal = c.Int(),
                     })
@@ -194,7 +236,7 @@ namespace gestionmateriales.Migrations
                 c => new
                     {
                         idTurno = c.Int(nullable: false, identity: true),
-                        nombre = c.String(nullable: false, maxLength: 7, storeType: "nvarchar"),
+                        nombre = c.String(nullable: false, maxLength: 7),
                     })
                 .PrimaryKey(t => t.idTurno);
             

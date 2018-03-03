@@ -93,7 +93,8 @@
 
             request.done(function (data) {
                 //console.log(data.Response);
-                $('#comprasPendientes').text(data.Response);
+                if (data.Response != '0') 
+                    $('#comprasPendientes').text(data.Response);
             });
 
             request.fail(function (data) {

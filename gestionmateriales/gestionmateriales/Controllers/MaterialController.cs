@@ -51,10 +51,10 @@ namespace gestionmateriales.Controllers
 
                 Material m = new Material(aMat.codigo, aMat.nombre, aMat.stockActual, aMat.stockMinimo, aMat.detalle, u, p, tm);
                 m.CREATED_BY = User.Identity.Name;
-                m.CREATION_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                m.CREATION_DATE = DateTime.Now;
                 m.CREATION_IP = Request.UserHostAddress;
                 m.LAST_UPDATED_BY = User.Identity.Name;
-                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                m.LAST_UPDATED_DATE = DateTime.Now;
                 m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.materiales.Add(m);
                 db.SaveChanges();
@@ -110,7 +110,7 @@ namespace gestionmateriales.Controllers
                 m.idTipoMaterial = unMaterial.idTipoMaterial;
                 m.detalle = unMaterial.detalle;
                 m.LAST_UPDATED_BY = User.Identity.Name;
-                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                m.LAST_UPDATED_DATE = DateTime.Now;
                 m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             //}
@@ -136,7 +136,7 @@ namespace gestionmateriales.Controllers
             {
                 m.hab = false;
                 m.LAST_UPDATED_BY = User.Identity.Name;
-                m.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                m.LAST_UPDATED_DATE = DateTime.Now;
                 m.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }

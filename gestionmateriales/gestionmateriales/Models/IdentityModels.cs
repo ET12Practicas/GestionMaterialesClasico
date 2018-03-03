@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using AspNet.Identity.MySQL;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace gestionmateriales.Models
 {
@@ -18,16 +18,16 @@ namespace gestionmateriales.Models
         }
     }
 
-    public class ApplicationDbContext : MySQLDatabase
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(string connectionName)
-            : base(connectionName)
+        public ApplicationDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
         public static ApplicationDbContext Create()
         {
-            return new ApplicationDbContext("DefaultConnection");
+            return new ApplicationDbContext();
         }
     }
 }

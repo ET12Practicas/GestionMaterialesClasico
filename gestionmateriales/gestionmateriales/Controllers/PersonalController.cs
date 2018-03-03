@@ -45,10 +45,10 @@ namespace gestionmateriales.Controllers
                 p.dni = aPersonal.dni;
                 p.fichaCensal = aPersonal.fichaCensal;
                 p.CREATED_BY = User.Identity.Name;
-                p.CREATION_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                p.CREATION_DATE = DateTime.Now;
                 p.CREATION_IP = Request.UserHostAddress;
                 p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                p.LAST_UPDATED_DATE = DateTime.Now;
                 p.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.personal.Add(p);
                 db.SaveChanges();
@@ -100,7 +100,7 @@ namespace gestionmateriales.Controllers
                 p.dni = aPersonal.dni;
                 p.fichaCensal = aPersonal.fichaCensal;
                 p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                p.LAST_UPDATED_DATE = DateTime.Now;
                 p.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }
@@ -121,7 +121,7 @@ namespace gestionmateriales.Controllers
             {
                 p.hab = false;
                 p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                p.LAST_UPDATED_DATE = DateTime.Now;
                 p.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
             }
