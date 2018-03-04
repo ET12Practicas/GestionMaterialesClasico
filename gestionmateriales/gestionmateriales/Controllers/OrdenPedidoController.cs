@@ -44,7 +44,7 @@ namespace gestionmateriales.Controllers
 
             try
             {
-                db.ordenPedido.Add(new OrdenPedido(aOP.numOp, aOP.numOt, aOP.destino, aOP.fecha));
+                db.ordenPedido.Add(new OrdenPedido(aOP.numOp, aOP.numOta, aOP.destino, aOP.fecha));
                 db.SaveChanges();
 
                 idOp = db.ordenPedido.SingleOrDefault(x => x.numOp == aOP.numOp).idOrdenPedido;
@@ -87,7 +87,7 @@ namespace gestionmateriales.Controllers
             try
             {
                 opEdit.numOp = aOP.numOp;
-                opEdit.numOt = aOP.numOt;
+                opEdit.numOta = aOP.numOta;
                 opEdit.destino = aOP.destino;
                 db.SaveChanges();
             }

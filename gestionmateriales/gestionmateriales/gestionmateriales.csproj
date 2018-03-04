@@ -159,7 +159,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
-    <Compile Include="Controllers\OrdenTrabajoController.cs" />
+    <Compile Include="Controllers\OrdenTrabajoAplicacionController.cs" />
     <Compile Include="Controllers\OrdenPedidoController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
@@ -169,18 +169,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803030328060_initial.cs" />
-    <Compile Include="Migrations\201803030328060_initial.Designer.cs">
-      <DependentUpon>201803030328060_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201803032324496_initial.cs" />
+    <Compile Include="Migrations\201803032324496_initial.Designer.cs">
+      <DependentUpon>201803032324496_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ComprasViewModels.cs" />
     <Compile Include="Models\GestionMateriales\Entrada.cs" />
     <Compile Include="Models\GestionMateriales\ItemOP.cs" />
-    <Compile Include="Models\GestionMateriales\ItemOT.cs" />
+    <Compile Include="Models\GestionMateriales\ItemOTA.cs" />
     <Compile Include="Models\GestionMateriales\Material.cs" />
-    <Compile Include="Models\GestionMateriales\OrdenTrabajo.cs" />
+    <Compile Include="Models\GestionMateriales\OrdenTrabajoAplicacion.cs" />
     <Compile Include="Models\GestionMateriales\OficinaTecnicaEntities.cs" />
     <Compile Include="Models\GestionMateriales\OrdenPedido.cs" />
     <Compile Include="Models\GestionMateriales\Personal.cs" />
@@ -209,6 +209,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\signin.css" />
+    <Content Include="Scripts\animate.css" />
+    <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -484,8 +486,6 @@
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\notify.js" />
-    <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
@@ -530,11 +530,11 @@
     <Content Include="Views\Proveedor\Editar.cshtml" />
     <Content Include="Views\Proveedor\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
-    <Content Include="Views\OrdenTrabajo\Index.cshtml" />
-    <Content Include="Views\OrdenTrabajo\Agregar.cshtml" />
+    <Content Include="Views\OrdenTrabajoAplicacion\Index.cshtml" />
+    <Content Include="Views\OrdenTrabajoAplicacion\Agregar.cshtml" />
     <Content Include="Views\Stock\Index.cshtml" />
     <Content Include="Views\Stock\Sumar.cshtml" />
-    <Content Include="Views\OrdenTrabajo\Editar.cshtml" />
+    <Content Include="Views\OrdenTrabajoAplicacion\Editar.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\ShopCartMaterial\Index.cshtml" />
@@ -569,8 +569,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803030328060_initial.resx">
-      <DependentUpon>201803030328060_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803032324496_initial.resx">
+      <DependentUpon>201803032324496_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

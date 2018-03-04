@@ -10,13 +10,13 @@
     <h6>Ingresa material o herramientas al stock del depósito.</h6>
 </div>
 <br />
-    <div class="offset-2 col-md-8">
-        <div class="card">
-            <div class="card-header">
-                Material o Herramienta
-            </div>
-            <div class="card-body">
-                @using (@Html.BeginForm("Sumar", "Stock", FormMethod.Post))
+<div class="offset-2 col-md-8">
+    <div class="card">
+        <div class="card-header">
+            Material o Herramienta
+        </div>
+        <div class="card-body">
+            @using (@Html.BeginForm("Sumar", "Stock", FormMethod.Post))
             {
                 <div class="form row">
                     <div class="form-group col-5">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group offset-1 col-4">
                         @Html.LabelFor(model => model.cantidad, "Cantidad a Ingresar", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true" } })
+                        @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", id = "cantidadMaterial" } })
                         <br />
                         @Html.LabelFor(model => model.tipoEntrada, "Tipo de Entrada", new { @class = "control-label" })
                         @Html.DropDownList("IdTipoEntrada", null, htmlAttributes: new { @class = "form-control" })
@@ -38,7 +38,7 @@
                 <div class="form row">
                     <div class="form-group offset-6 col-4">
                         @Html.LabelFor(model => model.codigoDocumento, "Código Documento", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true" } })
+                        @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", id = "codigoDocumento" } })
                     </div>
                 </div>
                 <br />
@@ -50,11 +50,41 @@
                         <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='/Home/Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                     </div>
                 </div>
-        }
+            }
 
-                <link rel="stylesheet" href="~/Scripts/Fuse/css/fuzzycomplete.min.css">
-                <script type="text/javascript" src="~/Scripts/Fuse/fuse.min.js"></script>
-                <script type="text/javascript" src="~/Scripts/Fuse/js/fuzzycomplete.min.js"></script>
-                <script type="text/javascript" src="~/Scripts/Views/Stock.js"></script>
-            </div>
+            @if (ViewBag.Result == 0)
+            {
+
+                <script type="text/javascript">
+                    $('#cantidadMaterial').val('');
+                    $('#codigoMaterial').text('');
+                    $('#codigoDocumento').val('');
+                    $.notify(
+                        {
+                            message: 'Los datos se guardaron con éxito'
+                        },
+                        {
+                            type: 'success',
+                            animate: {
+                                enter: 'animated bounceInDown',
+                                exit: 'animated bounceOutUp'
+                            },
+                            placement: {
+                                from: 'top',
+                                align: 'center'
+                            },
+                            offset: {
+                                y: 75
+                            },
+                            delay : 1000
+                        }
+                    );
+                </script>
+            }
+            
+            <link rel="stylesheet" href="~/Scripts/Fuse/css/fuzzycomplete.min.css">
+            <script type="text/javascript" src="~/Scripts/Fuse/fuse.min.js"></script>
+            <script type="text/javascript" src="~/Scripts/Fuse/js/fuzzycomplete.min.js"></script>
+            <script type="text/javascript" src="~/Scripts/Views/Stock.js"></script>
         </div>
+    </div>

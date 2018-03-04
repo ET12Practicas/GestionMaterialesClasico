@@ -15,7 +15,7 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int numOp { get; set; }
 
-        public int numOt { get; set; }
+        public int numOta { get; set; }
 
         [Required]
         [StringLength(150)]
@@ -74,7 +74,7 @@ namespace gestionmateriales.Models.GestionMateriales
             this.hab = true;
 
             this.numOp = aNroOP;
-            this.numOt = aNroOT;
+            this.numOta = aNroOT;
             this.destino = aDestino;
             this.fecha = aFecha;
         }

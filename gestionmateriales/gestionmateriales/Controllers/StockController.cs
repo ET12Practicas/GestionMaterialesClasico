@@ -31,7 +31,6 @@ namespace gestionmateriales.Controllers
 
         //POST: Stock/Sumar
         [Authorize(Roles = "administrador, oficinatecnica, deposito")]
-        [Route("/Stock/Sumar")]
         [HttpPost]
         public ActionResult Sumar(Entrada unaEntrada)
         {
@@ -40,6 +39,12 @@ namespace gestionmateriales.Controllers
                 Material unMaterial = db.materiales.Where(x => x.codigo == unaEntrada.codigoMaterial).SingleOrDefault();
                 TipoEntrada unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntrada);
                 Entrada nuevaEntrada = new Entrada(DateTime.Now, unMaterial, unMaterial.codigo, unaEntrada.codigoDocumento, unaEntrada.cantidad, unTipoEntrada);
+                nuevaEntrada.CREATED_BY = User.Identity.Name;
+                nuevaEntrada.CREATION_DATE = DateTime.Now;
+                nuevaEntrada.CREATION_IP = Request.UserHostAddress;
+                nuevaEntrada.LAST_UPDATED_BY = User.Identity.Name;
+                nuevaEntrada.LAST_UPDATED_DATE = DateTime.Now;
+                nuevaEntrada.LAST_UPDATED_IP = Request.UserHostAddress;
                 nuevaEntrada.SumarStockMaterial();
                 db.entradas.Add(nuevaEntrada);
                 db.SaveChanges();
@@ -48,8 +53,9 @@ namespace gestionmateriales.Controllers
             {
                 return RedirectToAction("Error406", "Error");
             }
+            ViewBag.Result = 0;
             cargarTipoEntrada();
-            return RedirectToAction("Sumar", "Stock");
+            return View("Sumar");
         }
     
         //GET: Stock/Restar

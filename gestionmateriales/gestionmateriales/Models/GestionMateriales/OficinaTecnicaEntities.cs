@@ -22,7 +22,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public DbSet<Personal> personal { get; set; }
 
-        public DbSet<OrdenTrabajo> ordenTrabajo { get; set; }
+        public DbSet<OrdenTrabajoAplicacion> ordenTrabajoAplicacion { get; set; }
 
         public DbSet<OrdenPedido> ordenPedido { get; set; }
 
@@ -32,7 +32,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public DbSet<Turno> turnos { get; set; }
 
-        public DbSet<ItemOT> ItemOT { get; set; }
+        public DbSet<ItemOTA> ItemOTA { get; set; }
 
         public DbSet<ItemOP> ItemOP { get; set; }
     }

@@ -55,13 +55,24 @@
     @if (ViewBag.Result == 0)
     {
         <script type="text/javascript">
-            $.notify.defaults({ globalPosition: 'bottom rigth' });
             $.notify(
-                "Los datos se guardaron con éxito",
-                "success",
                 {
-                    position: "right bottom",
-                    globalPosition: "right bottom"
+                    message: 'Los datos se guardaron con éxito'
+                },
+                {
+                    type: 'success',
+                    animate: {
+                        enter: 'animated bounceInDown',
+                        exit: 'animated bounceOutUp'
+                    },
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    },
+                    offset: {
+                        y: 75
+                    },
+                    delay: 1000
                 }
             );
         </script>
@@ -69,13 +80,24 @@
     @if (ViewBag.Result == 1)
     {
         <script type="text/javascript">
-            $.notify.defaults({ globalPosition: 'bottom rigth' });
             $.notify(
-                "El DNI o Ficha Censal ya existe, verifique el valor",
-                "error",
                 {
-                    position: "right bottom",
-                    globalPosition: "right bottom"
+                    message: 'El DNI o Ficha Censal ya existe, verifique el valor'
+                },
+                {
+                    type: 'danger',
+                    animate: {
+                        enter: 'animated bounceInDown',
+                        exit: 'animated bounceOutUp'
+                    },
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    },
+                    offset: {
+                        y: 75
+                    },
+                    delay: 1000
                 }
             );
         </script>

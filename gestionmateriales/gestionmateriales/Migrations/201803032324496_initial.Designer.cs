@@ -13,7 +13,7 @@ namespace gestionmateriales.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201803030328060_initial"; }
+            get { return "201803032324496_initial"; }
         }
         
         string IMigrationMetadata.Source

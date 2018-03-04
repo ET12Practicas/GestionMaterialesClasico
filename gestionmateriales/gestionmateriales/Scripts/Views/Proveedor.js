@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
 
     request.done(function (data) {
-        console.log(data.Response);
+        //console.log(data.Response);
         tablaProveedores = $('#grdProveedores').DataTable({
             //"dom": "lfrtip",
             "aaData": data.Response,

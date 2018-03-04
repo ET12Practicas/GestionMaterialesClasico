@@ -14,18 +14,18 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Index(int id)
         {            
-            List<ItemOT> itemsMateriales;
-            OrdenTrabajo ot;
+            List<ItemOTA> itemsMateriales;
+            OrdenTrabajoAplicacion ot;
             using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
                 int cantMat;
-                itemsMateriales = new List<ItemOT>();
-                ot = db.ordenTrabajo.Find(id);
-                var items = db.ItemOT.Where(x => x.idOrdenTrabajo == id).ToList();
+                itemsMateriales = new List<ItemOTA>();
+                ot = db.ordenTrabajoAplicacion.Find(id);
+                var items = db.ItemOTA.Where(x => x.idOrdenTrabajoAplicacion == id).ToList();
                 foreach (Material mat in db.materiales.Where(x => x.hab))
                 {
                     cantMat = getCantidadByIdMaterial(items, mat.idMaterial);
-                    itemsMateriales.Add(new ItemOT { idOrdenTrabajo = ot.idOrdenTrabajo, ordenTrabajo = ot, idMaterial = mat.idMaterial, material = mat, cantidad = cantMat });
+                    itemsMateriales.Add(new ItemOTA { idOrdenTrabajoAplicacion = ot.idOrdenTrabajoAplicacion, ordenTrabajoAplicacion = ot, idMaterial = mat.idMaterial, material = mat, cantidad = cantMat });
                 }
             }
             ViewData["idOt"] = id;
@@ -34,9 +34,9 @@ namespace gestionmateriales.Controllers
             return View(itemsMateriales);
         }
 
-        private int getCantidadByIdMaterial(List<ItemOT> items, int idMaterial)
+        private int getCantidadByIdMaterial(List<ItemOTA> items, int idMaterial)
         {
-            ItemOT item = items.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
+            ItemOTA item = items.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
             if (item != null)
             {
                 return item.cantidad;
@@ -50,15 +50,15 @@ namespace gestionmateriales.Controllers
         {            
             using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
-                OrdenTrabajo ot = db.ordenTrabajo.Find(idOt);
+                OrdenTrabajoAplicacion ot = db.ordenTrabajoAplicacion.Find(idOt);
                 Material mat = db.materiales.Find(idMaterial);
-                if (!ot.itemsOT.Any(x => x.idMaterial == idMaterial))
+                if (!ot.itemsOTA.Any(x => x.idMaterial == idMaterial))
                 {
-                    ot.itemsOT.Add(new ItemOT { idOrdenTrabajo = ot.idOrdenTrabajo, ordenTrabajo = ot, idMaterial = idMaterial, material = mat, cantidad = itemCantidad });
+                    ot.itemsOTA.Add(new ItemOTA { idOrdenTrabajoAplicacion = ot.idOrdenTrabajoAplicacion, ordenTrabajoAplicacion = ot, idMaterial = idMaterial, material = mat, cantidad = itemCantidad });
                 }
                 else
                 {
-                    ItemOT item = ot.itemsOT.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
+                    ItemOTA item = ot.itemsOTA.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
                     if (item != null)
                     {
                         item.cantidad = itemCantidad;
@@ -73,7 +73,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Generar()
         {
-            return RedirectToAction("Index", "OrdenTrabajo");
+            return RedirectToAction("Index", "OrdenTrabajoAplicacion");
         }
     }
 }

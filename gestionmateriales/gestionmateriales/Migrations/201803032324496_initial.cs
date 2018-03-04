@@ -174,7 +174,7 @@ namespace gestionmateriales.Migrations
                     {
                         idOrdenPedido = c.Int(nullable: false, identity: true),
                         numOp = c.Int(nullable: false),
-                        numOt = c.Int(nullable: false),
+                        numOta = c.Int(nullable: false),
                         destino = c.String(nullable: false, maxLength: 150),
                         hab = c.Boolean(nullable: false),
                         fecha = c.DateTime(nullable: false),
@@ -191,22 +191,22 @@ namespace gestionmateriales.Migrations
                 "dbo.ItemOT",
                 c => new
                     {
-                        idItemOT = c.Int(nullable: false, identity: true),
+                        idItemOTA = c.Int(nullable: false, identity: true),
                         cantidad = c.Int(nullable: false),
                         idMaterial = c.Int(nullable: false),
-                        idOrdenTrabajo = c.Int(nullable: false),
+                        idOrdenTrabajoAplicacion = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.idItemOT)
+                .PrimaryKey(t => t.idItemOTA)
                 .ForeignKey("dbo.Material", t => t.idMaterial, cascadeDelete: true)
-                .ForeignKey("dbo.OrdenTrabajo", t => t.idOrdenTrabajo, cascadeDelete: true)
+                .ForeignKey("dbo.OrdenTrabajoAplicacion", t => t.idOrdenTrabajoAplicacion, cascadeDelete: true)
                 .Index(t => t.idMaterial)
-                .Index(t => t.idOrdenTrabajo);
+                .Index(t => t.idOrdenTrabajoAplicacion);
             
             CreateTable(
-                "dbo.OrdenTrabajo",
+                "dbo.OrdenTrabajoAplicacion",
                 c => new
                     {
-                        idOrdenTrabajo = c.Int(nullable: false, identity: true),
+                        idOrdenTrabajoAplicacion = c.Int(nullable: false, identity: true),
                         numero = c.Int(nullable: false),
                         nombre = c.String(nullable: false, maxLength: 70),
                         idTurno = c.Int(nullable: false),
@@ -223,7 +223,7 @@ namespace gestionmateriales.Migrations
                         jefeSeccion_idPersonal = c.Int(),
                         responsable_idPersonal = c.Int(),
                     })
-                .PrimaryKey(t => t.idOrdenTrabajo)
+                .PrimaryKey(t => t.idOrdenTrabajoAplicacion)
                 .ForeignKey("dbo.Personal", t => t.jefeSeccion_idPersonal)
                 .ForeignKey("dbo.Personal", t => t.responsable_idPersonal)
                 .ForeignKey("dbo.Turno", t => t.idTurno, cascadeDelete: true)
@@ -244,10 +244,10 @@ namespace gestionmateriales.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.ItemOT", "idOrdenTrabajo", "dbo.OrdenTrabajo");
-            DropForeignKey("dbo.OrdenTrabajo", "idTurno", "dbo.Turno");
-            DropForeignKey("dbo.OrdenTrabajo", "responsable_idPersonal", "dbo.Personal");
-            DropForeignKey("dbo.OrdenTrabajo", "jefeSeccion_idPersonal", "dbo.Personal");
+            DropForeignKey("dbo.ItemOT", "idOrdenTrabajoAplicacion", "dbo.OrdenTrabajoAplicacion");
+            DropForeignKey("dbo.OrdenTrabajoAplicacion", "idTurno", "dbo.Turno");
+            DropForeignKey("dbo.OrdenTrabajoAplicacion", "responsable_idPersonal", "dbo.Personal");
+            DropForeignKey("dbo.OrdenTrabajoAplicacion", "jefeSeccion_idPersonal", "dbo.Personal");
             DropForeignKey("dbo.ItemOT", "idMaterial", "dbo.Material");
             DropForeignKey("dbo.ItemOP", "idOrdenPedido", "dbo.OrdenPedido");
             DropForeignKey("dbo.ItemOP", "idMaterial", "dbo.Material");
@@ -258,10 +258,10 @@ namespace gestionmateriales.Migrations
             DropForeignKey("dbo.Salida", "Material_idMaterial", "dbo.Material");
             DropForeignKey("dbo.Material", "idProveedor", "dbo.Proveedor");
             DropForeignKey("dbo.Entrada", "idMaterial", "dbo.Material");
-            DropIndex("dbo.OrdenTrabajo", new[] { "responsable_idPersonal" });
-            DropIndex("dbo.OrdenTrabajo", new[] { "jefeSeccion_idPersonal" });
-            DropIndex("dbo.OrdenTrabajo", new[] { "idTurno" });
-            DropIndex("dbo.ItemOT", new[] { "idOrdenTrabajo" });
+            DropIndex("dbo.OrdenTrabajoAplicacion", new[] { "responsable_idPersonal" });
+            DropIndex("dbo.OrdenTrabajoAplicacion", new[] { "jefeSeccion_idPersonal" });
+            DropIndex("dbo.OrdenTrabajoAplicacion", new[] { "idTurno" });
+            DropIndex("dbo.ItemOT", new[] { "idOrdenTrabajoAplicacion" });
             DropIndex("dbo.ItemOT", new[] { "idMaterial" });
             DropIndex("dbo.ItemOP", new[] { "idOrdenPedido" });
             DropIndex("dbo.ItemOP", new[] { "idMaterial" });
@@ -273,7 +273,7 @@ namespace gestionmateriales.Migrations
             DropIndex("dbo.Entrada", new[] { "idTipoEntrada" });
             DropIndex("dbo.Entrada", new[] { "idMaterial" });
             DropTable("dbo.Turno");
-            DropTable("dbo.OrdenTrabajo");
+            DropTable("dbo.OrdenTrabajoAplicacion");
             DropTable("dbo.ItemOT");
             DropTable("dbo.OrdenPedido");
             DropTable("dbo.ItemOP");
