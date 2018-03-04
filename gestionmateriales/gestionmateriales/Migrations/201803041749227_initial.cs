@@ -92,38 +92,32 @@ namespace gestionmateriales.Migrations
                         idSalida = c.Int(nullable: false, identity: true),
                         fecha = c.DateTime(nullable: false),
                         cantidad = c.Int(nullable: false),
+                        codigoMaterial = c.String(nullable: false, maxLength: 15),
+                        codigoDocumento = c.String(nullable: false, maxLength: 15),
+                        idMaterial = c.Int(nullable: false),
+                        idTipoSalida = c.Int(nullable: false),
                         CREATED_BY = c.String(maxLength: 50),
                         CREATION_DATE = c.DateTime(nullable: false),
                         CREATION_IP = c.String(maxLength: 20),
                         LAST_UPDATED_BY = c.String(maxLength: 50),
                         LAST_UPDATED_DATE = c.DateTime(nullable: false),
                         LAST_UPDATED_IP = c.String(maxLength: 20),
-                        Material_idMaterial = c.Int(),
-                        Personal_idPersonal = c.Int(),
                     })
                 .PrimaryKey(t => t.idSalida)
-                .ForeignKey("dbo.Material", t => t.Material_idMaterial)
-                .ForeignKey("dbo.Personal", t => t.Personal_idPersonal)
-                .Index(t => t.Material_idMaterial)
-                .Index(t => t.Personal_idPersonal);
+                .ForeignKey("dbo.Material", t => t.idMaterial, cascadeDelete: true)
+                .ForeignKey("dbo.TipoSalida", t => t.idTipoSalida, cascadeDelete: true)
+                .Index(t => t.idMaterial)
+                .Index(t => t.idTipoSalida);
             
             CreateTable(
-                "dbo.Personal",
+                "dbo.TipoSalida",
                 c => new
                     {
-                        idPersonal = c.Int(nullable: false, identity: true),
-                        nombre = c.String(nullable: false, maxLength: 60),
-                        dni = c.Int(nullable: false),
-                        fichaCensal = c.Int(nullable: false),
-                        hab = c.Boolean(nullable: false),
-                        CREATED_BY = c.String(maxLength: 50),
-                        CREATION_DATE = c.DateTime(nullable: false),
-                        CREATION_IP = c.String(maxLength: 20),
-                        LAST_UPDATED_BY = c.String(maxLength: 50),
-                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
-                        LAST_UPDATED_IP = c.String(maxLength: 20),
+                        idTipoSalida = c.Int(nullable: false, identity: true),
+                        nombre = c.String(nullable: false, maxLength: 35),
+                        idSector = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.idPersonal);
+                .PrimaryKey(t => t.idTipoSalida);
             
             CreateTable(
                 "dbo.TipoMaterial",
@@ -232,6 +226,24 @@ namespace gestionmateriales.Migrations
                 .Index(t => t.responsable_idPersonal);
             
             CreateTable(
+                "dbo.Personal",
+                c => new
+                    {
+                        idPersonal = c.Int(nullable: false, identity: true),
+                        nombre = c.String(nullable: false, maxLength: 60),
+                        dni = c.Int(nullable: false),
+                        fichaCensal = c.Int(nullable: false),
+                        hab = c.Boolean(nullable: false),
+                        CREATED_BY = c.String(maxLength: 50),
+                        CREATION_DATE = c.DateTime(nullable: false),
+                        CREATION_IP = c.String(maxLength: 20),
+                        LAST_UPDATED_BY = c.String(maxLength: 50),
+                        LAST_UPDATED_DATE = c.DateTime(nullable: false),
+                        LAST_UPDATED_IP = c.String(maxLength: 20),
+                    })
+                .PrimaryKey(t => t.idPersonal);
+            
+            CreateTable(
                 "dbo.Turno",
                 c => new
                     {
@@ -254,8 +266,8 @@ namespace gestionmateriales.Migrations
             DropForeignKey("dbo.Entrada", "idTipoEntrada", "dbo.TipoEntrada");
             DropForeignKey("dbo.Material", "idUnidad", "dbo.Unidad");
             DropForeignKey("dbo.Material", "idTipoMaterial", "dbo.TipoMaterial");
-            DropForeignKey("dbo.Salida", "Personal_idPersonal", "dbo.Personal");
-            DropForeignKey("dbo.Salida", "Material_idMaterial", "dbo.Material");
+            DropForeignKey("dbo.Salida", "idTipoSalida", "dbo.TipoSalida");
+            DropForeignKey("dbo.Salida", "idMaterial", "dbo.Material");
             DropForeignKey("dbo.Material", "idProveedor", "dbo.Proveedor");
             DropForeignKey("dbo.Entrada", "idMaterial", "dbo.Material");
             DropIndex("dbo.OrdenTrabajoAplicacion", new[] { "responsable_idPersonal" });
@@ -265,14 +277,15 @@ namespace gestionmateriales.Migrations
             DropIndex("dbo.ItemOT", new[] { "idMaterial" });
             DropIndex("dbo.ItemOP", new[] { "idOrdenPedido" });
             DropIndex("dbo.ItemOP", new[] { "idMaterial" });
-            DropIndex("dbo.Salida", new[] { "Personal_idPersonal" });
-            DropIndex("dbo.Salida", new[] { "Material_idMaterial" });
+            DropIndex("dbo.Salida", new[] { "idTipoSalida" });
+            DropIndex("dbo.Salida", new[] { "idMaterial" });
             DropIndex("dbo.Material", new[] { "idTipoMaterial" });
             DropIndex("dbo.Material", new[] { "idProveedor" });
             DropIndex("dbo.Material", new[] { "idUnidad" });
             DropIndex("dbo.Entrada", new[] { "idTipoEntrada" });
             DropIndex("dbo.Entrada", new[] { "idMaterial" });
             DropTable("dbo.Turno");
+            DropTable("dbo.Personal");
             DropTable("dbo.OrdenTrabajoAplicacion");
             DropTable("dbo.ItemOT");
             DropTable("dbo.OrdenPedido");
@@ -280,7 +293,7 @@ namespace gestionmateriales.Migrations
             DropTable("dbo.TipoEntrada");
             DropTable("dbo.Unidad");
             DropTable("dbo.TipoMaterial");
-            DropTable("dbo.Personal");
+            DropTable("dbo.TipoSalida");
             DropTable("dbo.Salida");
             DropTable("dbo.Proveedor");
             DropTable("dbo.Material");

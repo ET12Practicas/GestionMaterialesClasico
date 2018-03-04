@@ -30,6 +30,8 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public DbSet<TipoEntrada> tipoEntrada { get; set; }
 
+        public DbSet<TipoSalida> tipoSalida { get; set; }
+
         public DbSet<Turno> turnos { get; set; }
 
         public DbSet<ItemOTA> ItemOTA { get; set; }

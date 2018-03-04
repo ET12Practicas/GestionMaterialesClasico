@@ -17,8 +17,26 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int cantidad { get; set; }
 
+        [Required]
+        [StringLength(15)]
+        public string codigoMaterial { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string codigoDocumento { get; set; }
+
+        [Required]
+        public int idMaterial { get; set; }
+
+        public virtual Material Material { get; set; }
+
+        [Required]
+        public int idTipoSalida { get; set; }
+
+        public virtual TipoSalida tipoSalida { get; set; }
+
         /// <summary>
-        /// Usuario que creo la entrada
+        /// Usuario que creo la salida
         /// </summary>
         [StringLength(50)]
         public string CREATED_BY { get; set; }
@@ -29,13 +47,13 @@ namespace gestionmateriales.Models.GestionMateriales
         public DateTime CREATION_DATE { get; set; }
 
         /// <summary>
-        /// Ip desde que se creo la entrada
+        /// Ip desde que se creo la salida
         /// </summary>
         [StringLength(20)]
         public string CREATION_IP { get; set; }
 
         /// <summary>
-        /// Ultimo usuario que modifico la entrada
+        /// Ultimo usuario que modifico la salida
         /// </summary>
         [StringLength(50)]
         public string LAST_UPDATED_BY { get; set; }
@@ -51,26 +69,42 @@ namespace gestionmateriales.Models.GestionMateriales
         [StringLength(20)]
         public string LAST_UPDATED_IP { get; set; }
 
-        public virtual Material Material { get; set; }
-
-        public virtual Personal Personal { get; set; }
-
         public Salida()
         {
             cantidad = 0;
         }
 
-        public void ActualizarStockMaterial()
+        public void RestarStockMaterial()
         {
-            if (Material.stockActual - cantidad >= 0)
+            int nuevoStock = Material.stockActual - cantidad;
+
+            Material.stockActual = nuevoStock;
+
+            if (Material.stockActual == 0)
             {
-                Material.stockActual = Material.stockActual - cantidad;
+                Material.estado = "Sin Stock";
             }
             else
             {
-                throw new InvalidOperationException("No hay stock suficiente del material.");
+                if (Material.stockActual < Material.stockMinimo)
+                {
+                    Material.estado = "Stock Bajo";
+                }
+                else
+                {
+                    Material.estado = "Stock Alto";
+                }
             }
         }
 
+        public bool HayStockMaterial()
+        {
+            if (Material.stockActual - cantidad < 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
