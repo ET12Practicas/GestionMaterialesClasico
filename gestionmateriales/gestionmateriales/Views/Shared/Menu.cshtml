@@ -1,0 +1,55 @@
+﻿@model IEnumerable<gestionmateriales.Models.MenuItem>
+
+@foreach (var item in Model)
+{
+    if (item.isParent == false && item.parentId == 0)
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action(item.action, item.controller)"><i class="@item.imageClass"></i> @item.nameOption</a>
+        </li>
+    }
+    else
+    {
+        if (item.isParent == true && item.parentId == 0)
+        {
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="@item.imageClass"></i> @item.nameOption @if (item.Id == 30) { <span id="comprasPendientes" class="notif badge badge-info"></span> }</a>
+            <div class="dropdown-menu">
+                @foreach (var child in Model.Where(p => p.parentId == item.Id))
+                {
+                    <a class="dropdown-item" href="@Url.Action(child.action, child.controller)">@child.nameOption </a>
+                }
+            </div>
+        </li>
+        }
+    }
+}
+@*<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-file-alt"></i> Documentos</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="~/OrdenTrabajoAplicacion/Index">Orden de Trabajo de Aplicacion</a>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-sync"></i> Stock</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="~/Stock/Sumar">Ingreso</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-shopping-cart"></i> Compras <span id="comprasPendientes" class="notif badge badge-info"></span></a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="~/Compras/Index">Materiales a Comprar</a>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="~/Material/Index"><i class="fas fa-wrench"></i> Materiales</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/Proveedor/Index"><i class="fas fa-truck"></i> Proveedores</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/Personal/Index"><i class="fas fa-male"></i> Personal</a>
+    </li>*@

@@ -1,0 +1,108 @@
+﻿<br />
+<br />
+<div class="container-fluid">
+    <h2>Historial Ingresos</h2>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <table id="grdIngresos" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nro. Operación
+                    </th>
+                    <th>
+                        Código Material
+                    </th>
+                    <th>
+                        Material
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Tipo de Entrada
+                    </th>
+                    <th>
+                        Cod. Documento
+                    </th>
+                    <th>
+                        Usuario
+                    </th>
+                    <th>
+                        Fecha - Hora
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <script>
+            var baseURL = window.location.protocol + "//" + window.location.host + "/"
+
+            var requestMaterial = $.ajax({
+                url: baseURL + "/Stock/GetHistorialIngresos",
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8'
+            });
+
+            requestMaterial.done(function (data) {
+                //console.log(data.Response);
+                tablaMateriales = $('#grdIngresos').DataTable({
+                    //"dom": "lfrtip",
+                    "aaData": data.Response,
+                    "aoColumns": [
+                        {
+                            "data": "numero"
+                        },
+                        {
+                            "data": "codMaterial"
+                        },
+                        {
+                            "data": "material"
+                        },
+                        {
+                            "data": "cantidad"
+                        },
+                        {
+                            "data": "tipoEntrada"
+                        },
+                        {
+                            "data": "codDocumento"
+                        },
+                        {
+                            "data": "usuario"
+                        },
+                        {
+                            "data": "timestamp"
+                        }
+                    ],
+                    "order": [7, "desc"],
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay información disponible para mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "infoEmpty": "No hay ingresos para mostrar",
+                        "infoFiltered": "(filtrados de _MAX_ ingresos totales)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Ver _MENU_ ingresos por página",
+                        "loadingRecords": "Cargando...",
+                        "processing": "En proceso...",
+                        "search": "Buscar",
+                        "zeroRecords": "No hay ingresos que coincidan con el filtro",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                });
+            });
+
+            requestMaterial.fail(function (data) {
+                alert(data.Response);
+            });
+        </script>
+    </div>
+</div>

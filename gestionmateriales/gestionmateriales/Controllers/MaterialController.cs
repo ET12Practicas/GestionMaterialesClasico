@@ -9,7 +9,7 @@ namespace gestionmateriales.Controllers
     public class MaterialController : Controller
     {
         // GET: Material
-        [Authorize(Roles = "administrador, oficinatecnica, rectoria, deposito")]
+        [Authorize(Roles = "administrador, oficinatecnica, rectoria, deposito, compras")]
         [Route("/Material")]
         [HttpGet]
         public ActionResult Index()
@@ -18,7 +18,7 @@ namespace gestionmateriales.Controllers
         }
 
         //GET: Material/Agregar
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [Route("/Material/Agregar")]
         [HttpGet]
         public ActionResult Agregar()
@@ -30,7 +30,7 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Material/Agregar
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [HttpPost]
         public ActionResult Agregar(Material aMat)
         {
@@ -70,7 +70,7 @@ namespace gestionmateriales.Controllers
             return View("Agregar");
         }
 
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [Route("/Material/Editar/{id}")]
         [HttpGet]
         public ActionResult Editar(int id)
@@ -85,7 +85,7 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Material/Editar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [HttpPost]
         public ActionResult Editar(int id, Material unMaterial)
         {
@@ -126,7 +126,7 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Material/Borrar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         public ActionResult Borrar(int id)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
@@ -147,7 +147,7 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Index", "Material");
         }
 
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [Route("/Material/Historial/{id}")]
         [HttpGet]
         public ActionResult Historial(int id)
@@ -178,7 +178,7 @@ namespace gestionmateriales.Controllers
             ViewBag.idUnidad = new SelectList(db.unidades.ToList(), "idUnidad", "nombre", selectedUnidad);
         }
 
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
         [Route("/Material/GetMaterial/{id}")]
         [HttpGet]
         public JsonResult GetMaterial(string codigo)
@@ -191,7 +191,7 @@ namespace gestionmateriales.Controllers
             return Json(new { Name = "/GetMaterial", Response = material, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
         [Route("/Material/GetMateriales")]
         [HttpGet]
         public JsonResult GetMateriales()
@@ -204,7 +204,7 @@ namespace gestionmateriales.Controllers
             return Json(new { Name = "/GetMateriales", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
         [Route("/Material/GetMaterialesShort")]
         [HttpGet]
         public JsonResult GetMaterialesShort()

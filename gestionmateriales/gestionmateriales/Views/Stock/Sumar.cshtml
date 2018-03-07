@@ -6,7 +6,7 @@
 <br />
 <br />
 <div class="container-fluid">
-    <h2>Entrada</h2>
+    <h2>Ingreso</h2>
     <h6>Ingresa material o herramientas al stock del depósito.</h6>
 </div>
 <br />
@@ -38,7 +38,7 @@
                 <div class="form row">
                     <div class="form-group offset-6 col-4">
                         @Html.LabelFor(model => model.codigoDocumento, "Código Documento", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", id = "codigoDocumento" } })
+                        @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 15, required = "true", id = "codigoDocumento" } })
                     </div>
                 </div>
                 <br />
@@ -76,15 +76,16 @@
                             offset: {
                                 y: 75
                             },
-                            delay : 1000
+                            delay: 1000
                         }
                     );
                 </script>
             }
-            
+
             <link rel="stylesheet" href="~/Scripts/Fuse/css/fuzzycomplete.min.css">
             <script type="text/javascript" src="~/Scripts/Fuse/fuse.min.js"></script>
             <script type="text/javascript" src="~/Scripts/Fuse/js/fuzzycomplete.min.js"></script>
             <script type="text/javascript" src="~/Scripts/Views/Stock.js"></script>
         </div>
     </div>
+</div>

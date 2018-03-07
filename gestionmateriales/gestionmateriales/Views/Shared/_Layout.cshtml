@@ -36,40 +36,8 @@
     <nav class="navbar navbar-expand-sm bg-secondary navbar-dark fixed-top">
         <a class="navbar-brand" href="~/Home/Index"><i class="fas fa-home"></i></a>
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-file-alt"></i> Documentos</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="~/OrdenTrabajoAplicacion/Index">Orden de Trabajo de Aplicacion</a>
-                    @*<a class="dropdown-item" href="~/Construccion/Index">Orden de Pedido</a>
-                        <a class="dropdown-item" href="~/Construccion/Index">Trabajo Práctico</a>
-                        <a class="dropdown-item" href="~/Construccion/Index">Donación</a>
-                        <a class="dropdown-item" href="~/Construccion/Index">Sobrante</a>*@
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-sync"></i> Stock</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="~/Stock/Sumar">Ingreso</a>
-                    @*<a class="dropdown-item" href="~/Stock/Restar">Egreso</a>*@
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-shopping-cart"></i> Compras <span id="comprasPendientes" class="notif badge badge-info"></span></a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="~/Compras/Index">Materiales a Comprar</a>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="~/Material/Index"><i class="fas fa-wrench"></i> Materiales</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/Proveedor/Index"><i class="fas fa-truck"></i> Proveedores</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/Personal/Index"><i class="fas fa-male"></i> Personal</a>
-            </li>
+            
+            @{ Html.RenderAction("Menu", "Home"); }
         </ul>
         @Html.Partial("_LoginPartial")
     </nav>
