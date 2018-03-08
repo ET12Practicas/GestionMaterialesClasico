@@ -21,12 +21,12 @@
                 <div class="form row">
                     <div class="form-group col-md-6">
                         @Html.LabelFor(model => model.numero, "Número", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", min = 1, autofocus = "true", required = "true" } })
+                        @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", min = 1, autofocus = "true", required = "true", autocomplete = "off" } })
                     </div>
                     <div class="form-group col-md-6">
 
                         @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true" } })
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true", autocomplete = "off" } })
                     </div>
                 </div>
                 <div class="form row">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         @Html.LabelFor(model => model.fecha, "Fecha", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", required = "true", type = "date" } })
+                        @Html.EditorFor(model => model.fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", required = "true", type = "date", autocomplete = "off" } })
                     </div>
                 </div>
                 <div class="form row">

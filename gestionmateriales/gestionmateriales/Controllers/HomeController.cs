@@ -60,7 +60,7 @@ namespace gestionmateriales.Controllers
                 menu.Add(new MenuItem { Id = 21, nameOption = "Ingreso", controller = "Stock", action = "Sumar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 22, nameOption = "Egreso", controller = "Stock", action = "Restar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 23, nameOption = "Historial Ingreso", controller = "Stock", action = "HistorialIngresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
-                menu.Add(new MenuItem { Id = 24, nameOption = "Historia Egreso", controller = "Stock", action = "HistorialEgresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
+                menu.Add(new MenuItem { Id = 24, nameOption = "Historial Egreso", controller = "Stock", action = "HistorialEgresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 40, nameOption = "Material", controller = "Material", action = "Index", imageClass = "fas fa-wrench", estatus = true, isParent = false, parentId = 0 });
             }
 

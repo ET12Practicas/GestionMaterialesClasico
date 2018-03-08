@@ -10,7 +10,7 @@ namespace gestionmateriales.Controllers
     public class ProveedorController : Controller
     {        
         // GET: Proveedor
-        [Authorize(Roles = "administrador, oficinatecnica, rectoria")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras, rectoria")]
         [Route("/Proveedor")]
         [HttpGet]
         public ActionResult Index()
@@ -31,7 +31,7 @@ namespace gestionmateriales.Controllers
         }
 
 
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [Route("/Proveedor/Agregar")]
         [HttpGet]
         public ActionResult Agregar()
@@ -40,7 +40,7 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Proveedor/1/Agregar
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [HttpPost]
         public ActionResult Agregar(Proveedor unProveedor)
         {
@@ -82,7 +82,7 @@ namespace gestionmateriales.Controllers
         }
 
         //GET: Proveedor/Editar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [Route("/Proveedor/Editar/{id}")]
         [HttpGet]
         public ActionResult Editar(int id)
@@ -103,7 +103,7 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Proveedor/Editar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [HttpPost]
         public ActionResult Editar(int id, Proveedor unProveedor)
         {
@@ -137,7 +137,7 @@ namespace gestionmateriales.Controllers
         }
 
         //POST: Proveedor/Borrar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         public ActionResult Borrar(int id)
         {
             var db = new OficinaTecnicaEntities();

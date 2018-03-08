@@ -13,7 +13,7 @@ namespace gestionmateriales.Controllers
         OficinaTecnicaEntities db = new OficinaTecnicaEntities();
 
         // GET: Compras
-        [Authorize(Roles = "administrador, oficinatecnica, rectoria")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras, rectoria")]
         [Route("/Compras")]
         [HttpGet]
         public ActionResult Index()
@@ -21,36 +21,7 @@ namespace gestionmateriales.Controllers
             return View("Index");
         }
 
-        //GET: AprobarOP
-        [Authorize(Roles = "administrador, oficinatecnica")]
-        [Route("/AprobarOP")]
-        [HttpGet]
-        public ActionResult AprobarOP()
-        {
-            return View();
-        }
-
-        //POST: AprobarOP
-        [HttpPost]
-
-        public ActionResult AprobarOP(ComprasViewModels compra)
-        {
-            //TODO: falta implementar el mergeo de los las ordenes de pedido con el stock real
-            // es decir que se tiene que contrastar lo que se necesita con lo que hay en deposito
-            //var items = from op in db.ordenPedido 
-            //            join i in db.ItemOP on op.idOrdenPedido equals i.idOrdenPedido
-            //            where op.fecha > compra.fechaInicio && op.fecha < compra.fechaFin
-            //            group op by i.idMaterialB into materialGroup
-            //            select new {materialGroup., 
-            //                        i.cantidad, 
-            //                        getStockActualById(i.idMaterial),
-            //                        getStockActualById(i.idMaterial) - i.cantidad
-            //            };
-
-            return View();
-        }
-
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [HttpGet]
         public JsonResult GetCompras()
         {
@@ -61,7 +32,7 @@ namespace gestionmateriales.Controllers
             return Json(new { Name = "/GetCompras", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [HttpGet]
         public JsonResult GetCantidadCompras()
         {
