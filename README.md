@@ -1,18 +1,27 @@
 ![](http://i66.tinypic.com/2nhjju9.png)
 
-## Software Oficina Técnica
+## Sistema Titán
 
 ### Documentos
- - Orden de Trabajo de Aplicación: Relacionar los documentos Orden de Trabajo con cada material solicitado.
- - Orden de Pedido: Relacionar los documentos Orden de Pedido con una Orden de Trabajo (opcional) y materiales
+ - Orden de Trabajo de Aplicación: Pedido de materiales del docente de taller para realizar un trabajo practico detallando materiales y su cantidad.
 
 ### Stock
- - Entrada: Registrar la entrada de material al stock actual, ya sea por parte de compra o por retiro del depósito.
- - Salida: Registrar la salida de material del stock actual por orden de trabajo.
+ - Ingreso: Registrar la entrada de material al stock actual, ya sea por parte de compras o depósito. Las opciones depende del rol del usuario.
+ - Engreso: Registrar la salida de material del stock actual del depósito.
+ - Historico Ingresos: Visualiza todos los ingresos de materiales al depósito.
+ - Historico Egresos: Visualiza todos los egresos de materiales al depósito.
 
-### Modulos
- - Proveedor: Almacenar información relativa al proveedor por cada material y compra realizada.
- - Materiales: Realizar el alta, busqueda y proveer de stock mínimo para cada material y mantener actualizado el stock actual.
- - Personal: Almacenar y relacionar el personal que retira el material del depósito.
+### Compras
+ - Materiales a Comprar: Visualiza aquellos materiales en donde su nivel de stock es menor al punto de reposición.
 
-© 2017 - ET N°12 DE 1 Libertador General José de San Martín
+### Materiales
+ - Almacenar aquellos materiales y herramientas que figuran en depósito- Tambien posee un historico para visualizar las ordenes de trabajo de aplicación en la cual fue utilizado.
+ 
+### Proveedores
+ - Almacenar información relativa al proveedor de cada material y compra realizada.
+ 
+ ### Personal
+ - Almacenar y relacionar el personal docente de taller que retira el material del depósito.
+
+
+© 2018 Oficina Técnica - ET N°12 DE 1 Libertador General José de San Martín
