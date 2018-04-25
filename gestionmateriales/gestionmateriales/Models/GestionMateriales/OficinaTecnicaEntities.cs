@@ -1,8 +1,9 @@
-﻿using System.Data.Entity;
+﻿using AspNet.Identity.MySQL;
+using System.Data.Entity;
 
 namespace gestionmateriales.Models.GestionMateriales
 {
-    public class OficinaTecnicaEntities : DbContext
+    public class OficinaTecnicaEntities : DbContext//MySQLDatabase
     {
         public OficinaTecnicaEntities()
             : base("OtEntities")
