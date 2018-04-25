@@ -1,4 +1,5 @@
-﻿var baseURL = window.location.protocol + "//" + window.location.host + "/"
+﻿var appName = location.pathname.split('/')[1];
+var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
 var tablaPersonal;
 
 $(document).ready(function () {
@@ -38,7 +39,7 @@ $(document).ready(function () {
                     "mRender": function (dato, type, row) {
                         //console.log(row);
 
-                        var editarHtml = '<div class="row"><div title="Editar Personal" class="col-2 offset-1"><a href="/Personal/Editar/' + row.idPersonal + '"><i class="fas fa-pencil-alt"></i></a></div>';
+                        var editarHtml = '<div class="row"><div title="Editar Personal" class="col-2 offset-1"><a href="' + baseURL + 'Personal/Editar/' + row.idPersonal + '"><i class="fas fa-pencil-alt"></i></a></div>';
 
                         var borrarHtml = '<div title="Borrar Personal" class="offset-1"><a href="" data-toggle="modal" data-target="#myModal-' + row.idPersonal + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id= "myModal-' + row.idPersonal + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">'+
@@ -51,7 +52,7 @@ $(document).ready(function () {
                                             '<p><strong>DNI:</strong> ' + row.dni + '</p>' +
                                             '</div>' +
                                         '<div class="modal-footer">' +
-                                        '<a href="/Personal/Borrar/'+ row.idPersonal + '" type="button" class="btn btn-danger">Aceptar</a>' +
+                                        '<a href="' + baseURL + 'Personal/Borrar/'+ row.idPersonal + '" type="button" class="btn btn-danger">Aceptar</a>' +
                                         '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
                                         '</div></div></div></div></div></div>';
                         return editarHtml + borrarHtml;

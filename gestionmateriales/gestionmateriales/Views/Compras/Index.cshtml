@@ -39,7 +39,8 @@
         <script type="text/javascript">
             var fecha = new Date();
             var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
-            var baseURL = window.location.protocol + "//" + window.location.host + "/"
+            var appName = location.pathname.split('/')[1];
+            var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
 
             $(document).ready(function () {
                 var request = $.ajax({

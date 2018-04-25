@@ -1,4 +1,5 @@
-﻿var baseURL = window.location.protocol + "//" + window.location.host + "/"
+﻿var appName = location.pathname.split('/')[1];
+var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
 var tablaProveedores;
 
 $(document).ready(function () {
@@ -80,7 +81,7 @@ $(document).ready(function () {
                             '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
                             '</div></div></div></div></div>';
 
-                        var editarHtml = '<div title="Editar" class="offset-1"><a href="/Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i></a></div>';
+                        var editarHtml = '<div title="Editar" class="offset-1"><a href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i></a></div>';
 
                         var borrarHtml = '<div title="Borrar" class="offset-1">' +
                             '<a href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
@@ -96,7 +97,7 @@ $(document).ready(function () {
                             '<p> <strong>Dirección:</strong> ' + row.direccion + '</p > ' +
                             '</div>' +
                             '<div class="modal-footer">' +
-                            '<a href="/Proveedor/Borrar/' + row.idProveedor + '" type="button" class="btn btn-danger">Aceptar</a>' +
+                            '<a href="' + baseURL + 'Proveedor/Borrar/' + row.idProveedor + '" type="button" class="btn btn-danger">Aceptar</a>' +
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
                             '</div></div></div></div></div></div>';
                         return verDetalleHtml + editarHtml + borrarHtml;

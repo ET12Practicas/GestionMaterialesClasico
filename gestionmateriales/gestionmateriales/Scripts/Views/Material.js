@@ -1,4 +1,5 @@
-﻿var baseURL = window.location.protocol + "//" + window.location.host + "/"
+﻿var appName = location.pathname.split('/')[1]
+var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
 var tablaMateriales;
 
 $(document).ready(function () {
@@ -77,9 +78,9 @@ $(document).ready(function () {
                             '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
                             '</div></div></div></div></div>';
 
-                        var historialHtml = '<div title="Historial" class="offset-1"><a href="/Material/Historial/' + row.idMaterial + '"><i class="far fa-clock"></i></a></div>';
+                        var historialHtml = '<div title="Historial" class="offset-1"><a href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="far fa-clock"></i></a></div>';
 
-                        var editarHtml = '<div title="Editar" class="offset-1"><a href="/Material/Editar/' + row.idMaterial + '"><i class="fas fa-pencil-alt"></i></a></div>';
+                        var editarHtml = '<div title="Editar" class="offset-1"><a href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="fas fa-pencil-alt"></i></a></div>';
 
                         var borrarHtml = '<div title="Borrar" class="offset-1">' +
                             '<a href="" data-toggle="modal" data-target="#myModal-' + row.idMaterial + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id="myModal-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
@@ -93,7 +94,7 @@ $(document).ready(function () {
                             '<p> <strong>Stock Actual:</strong> ' + row.stockActual + '</p > ' +
                             '</div>' +
                             '<div class="modal-footer">' +
-                            '<a href="/Material/Borrar/' + row.idMaterial + '" type="button" class="btn btn-danger">Aceptar</a>' +
+                            '<a href="' + baseURL + 'Material/Borrar/' + row.idMaterial + '" type="button" class="btn btn-danger">Aceptar</a>' +
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
                             '</div></div></div></div></div></div>';
                         return verDetalleHtml + historialHtml + editarHtml + borrarHtml;

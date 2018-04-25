@@ -31,6 +31,9 @@
 
     <!--Iconos-->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <!--Hoja de estilo global-->
+    <link rel="stylesheet" href="~/Content/global.css"/>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-secondary navbar-dark fixed-top">
@@ -52,7 +55,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var baseURL = window.location.protocol + "//" + window.location.host + "/"
+            var appName = location.pathname.split('/')[1];
+            var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
             var request = $.ajax({
                 url: baseURL + "Compras/GetCantidadCompras",
                 type: 'GET',

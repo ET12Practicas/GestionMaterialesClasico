@@ -3,7 +3,8 @@
     $('#btn_aceptar').tooltip();
     $('#btn_cancelar').tooltip();
 
-    var baseURL = window.location.protocol + "//" + window.location.host + "/"
+    var appName = location.pathname.split('/')[1];
+    var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
     var request = $.ajax({
         url: baseURL + "Material/GetMaterialesShort",
         type: 'GET',
