@@ -40,7 +40,11 @@
             var fecha = new Date();
             var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
             var appName = location.pathname.split('/')[1];
-            var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
+            var baseURL = window.location.protocol + "//" + window.location.host + "/";
+
+            if (appName == 'ottest')
+                baseURL = baseURL + appName + "/";
+
             //console.log(appName);
             $(document).ready(function () {
                 var request = $.ajax({
