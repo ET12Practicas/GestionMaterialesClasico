@@ -41,10 +41,10 @@
             var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
             var appName = location.pathname.split('/')[1];
             var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
-
+            //console.log(appName);
             $(document).ready(function () {
                 var request = $.ajax({
-                    url: baseURL + "/Compras/GetCompras",
+                    url: baseURL + "Compras/GetCompras",
                     type: 'GET',
                     contentType: 'application/json; charset=utf-8'
                 });

@@ -1,12 +1,15 @@
 ﻿var appName = location.pathname.split('/')[1]
-var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
+var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaMateriales;
 
 $(document).ready(function () {
     $('#btn_agregarmaterial').tooltip();
 
+    if (appName == 'ottest')
+        baseURL = baseURL + appName + "/";
+
     var requestMaterial = $.ajax({
-        url: baseURL + "/Material/GetMateriales",
+        url: baseURL + "Material/GetMateriales",
         type: 'GET',
         contentType: 'application/json; charset=utf-8'
     });

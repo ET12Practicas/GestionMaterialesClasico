@@ -1,9 +1,12 @@
 ﻿var appName = location.pathname.split('/')[1];
-var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
+var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaProveedores;
 
 $(document).ready(function () {
     $('#btnCrearProveedor').tooltip();
+
+    if (appName == 'ottest')
+        baseURL = baseURL + appName + "/";
 
     var request = $.ajax({
         url: baseURL + "Proveedor/GetProveedores",
