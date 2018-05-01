@@ -1,20 +1,20 @@
-﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.ItemOTA>
+﻿@model IEnumerable<gestionmateriales.Models.OficinaTecnica.GestionMateriales.ItemOrdenTrabajoAplicacion>
 @{
     ViewBag.Title = "Selección de Materiales";
 }
 
 <br />
-    <br />
-    <div class="container-fluid">
-        <h2>Selección de Materiales</h2>
-        <h6>Orden de Trabajo: <strong>Número:</strong> @ViewData["numero"] - <strong>Nombre:</strong> @ViewData["nombre"]</h6>
-    </div>
-    <br />
-    <div class="col-md-2">
-        <a id="btn_generarordentrabajo" class="btn btn-outline-primary btn-block" href="~/ShopCartMaterial/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
-    </div>
-    <br />
-    <div class="row">
+<br />
+<div class="container-fluid">
+    <h2>Selección de Materiales</h2>
+    <h6>Orden de Trabajo: <strong>Número:</strong> @ViewData["numero"] - <strong>Nombre:</strong> @ViewData["nombre"]</h6>
+</div>
+<br />
+<div class="col-md-2">
+    <a id="btn_generarordentrabajo" class="btn btn-outline-primary btn-block" href="~/ShopCartMaterial/Generar" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
+</div>
+<br />
+<div class="row ">
         <div class="col-md-12">
             <table id="tabla_materiales" class="table table-bordered table-striped table-hover">
                 <thead>
@@ -29,13 +29,10 @@
                             Stock Actual
                         </th>
                         <th>
-                            Estado
-                        </th>
-                        <th>
                             Cantidad
                         </th>
                         <th>
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            Opciones
                         </th>
                     </tr>
                 </thead>
@@ -53,28 +50,25 @@
                                 @Html.DisplayFor(modelItem => item.material.stockActual)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.material.estado)
-                            </td>
-                            <td>
-                                <div class="col-md-1">
-                                    <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" max="@item.material.stockActual" value="@item.cantidad" onclick="updateCant(this)" onkeyup="updateCant(this)"  />
-                                    <script type="text/javascript">
+                                <input id="itemCantidad-@item.material.idMaterial" type="number" min="0" max="@item.material.stockActual" value="@item.cantidad" onclick="updateCant(this)" onkeyup="updateCant(this)" />
+                                <script type="text/javascript">
                                         function updateCant(control) {
                                             var appName = location.pathname.split('/')[1];
-                                            var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
+                                            var baseURL = window.location.protocol + "//" + window.location.host + "/";
+
+                                            if (appName == 'ottest')
+                                                baseURL = baseURL + appName + "/";
+
                                             var str = control.id.split('-');
                                             var strhref = baseURL + "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
                                             $('#itemLink-' + str[1]).attr("href", strhref);
-                                            console.log(strhref);
-                                            console.log($('#itemCantidad-2').val());
                                         }
-                                    </script>
-                                </div>
+                                </script>
                             </td>
                             <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Extra-small button group">
-                                    <a id="itemLink-@item.material.idMaterial" href="/ShopCartMaterial/AddToCart?idOt=@ViewData["idOt"]&idMaterial=@item.material.idMaterial&itemCantidad=@item.cantidad">Agregar</a>
-                                </div>
+                                @*<div class="btn-group btn-group-sm" role="group" aria-label="Extra-small button group">*@
+                                <a title="Agregar" class="btn btn-outline-dark" id="itemLink-@item.material.idMaterial" href="/ShopCartMaterial/AddToCart?idOt=@ViewData["idOt"]&idMaterial=@item.material.idMaterial&itemCantidad=@item.cantidad"><i class="fas fa-plus"></i></a>
+                                @*</div>*@
                             </td>
                         </tr>
                     }
@@ -104,14 +98,6 @@
                     }
                 });
                 $('#btn_generarordentrabajo').tooltip();
-
-                //update que modifica el href del link "agregar"
-                @*function updateCant(control) {
-                    var str = control.id.split('-');
-                    var strhref = "/ShopCartMaterial/AddToCart?idOt=" + @ViewData["idOt"] + "&idMaterial=" + str[1] + "&itemCantidad=" + control.value;
-                    $('#itemLink-' + str[1]).attr("href", strhref);
-                }*@
             </script>
         </div>
     </div>
-</div>

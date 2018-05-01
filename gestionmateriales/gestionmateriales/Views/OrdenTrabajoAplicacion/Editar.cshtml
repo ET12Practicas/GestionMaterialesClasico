@@ -1,4 +1,4 @@
-@model gestionmateriales.Models.GestionMateriales.OrdenTrabajoAplicacion
+@model gestionmateriales.Models.OficinaTecnica.Documentos.OrdenTrabajoAplicacion
 @{
     ViewBag.Title = "OrdenTrabajo";
 }
@@ -17,52 +17,52 @@
         <div class="card-body">
             @using (@Html.BeginForm("Editar", "OrdenTrabajoAplicacion", new { id = Model.idOrdenTrabajoAplicacion }, FormMethod.Post))
             {
-            <div class="form-horizontal">
-                <div class="form row">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.numero, "Número", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", min = 1, autofocus = "true", required = "true", autocomplete = "off" } })
-                    </div>
-                    <div class="form-group col-md-6">
+                <div class="form-horizontal">
+                    <div class="form row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.numero, "Número", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", min = 1, autofocus = "true", required = "true", autocomplete = "off" } })
+                        </div>
+                        <div class="form-group col-md-6">
 
-                        @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true", autocomplete = "off" } })
+                            @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 70, required = "true", autocomplete = "off" } })
+                        </div>
                     </div>
-                </div>
-                <div class="form row">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.Turno, "Turno", new { @class = "control-label" })
-                        @Html.DropDownList("idTurno", null, htmlAttributes: new { @class = "form-control" })
+                    <div class="form row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.turno, "Turno", new { @class = "control-label" })
+                            @Html.DropDownList("idTurno", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.fecha, "Fecha", new { @class = "control-label" })
+                            @Html.EditorFor(model => model.fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", required = "true", type = "date", autocomplete = "off" } })
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.fecha, "Fecha", new { @class = "control-label" })
-                        @Html.EditorFor(model => model.fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", required = "true", type = "date", autocomplete = "off" } })
+                    <div class="form row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.responsable, "Responsable", new { @class = "control-label" })
+                            @Html.DropDownList("idResponsable", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.jefeSeccion, "Jefe de Sección", new { @class = "control-label" })
+                            @Html.DropDownList("idJefeSeccion", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form row">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.responsable, "Responsable", new { @class = "control-label" })
-                        @Html.DropDownList("idResponsable", null, htmlAttributes: new { @class = "form-control" })
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="right" title="Restaura los valores antes de los cambios" />
+                        </div>
+                        <div class="offset-3 col-md-3">
+                            <input type="submit" class="btn btn-primary btn-block" value="Editar Materiales" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.jefeSeccion, "Jefe de Sección", new { @class = "control-label" })
-                        @Html.DropDownList("idJefeSeccion", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="right" title="Restaura los valores antes de los cambios" />
-                    </div>
-                    <div class="offset-3 col-md-3">
-                        <input type="submit" class="btn btn-primary btn-block" value="Editar Materiales" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
-                    </div>
-                </div>
 
-            </div>
+                </div>
             }
         </div>
         @if (ViewBag.Result == 1)

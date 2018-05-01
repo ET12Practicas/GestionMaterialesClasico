@@ -31,13 +31,17 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public DateTime fecha { get; set; }
 
         [Required]
+        [NotMapped]
         public int idJefeSeccion { get; set; }
 
+        [Required]
         public virtual Personal jefeSeccion { get; set; }
 
         [Required]
+        [NotMapped]
         public int idResponsable { get; set; }
 
+        [Required]
         public virtual Personal responsable { get; set; }
 
         public virtual ICollection<ItemOrdenTrabajoAplicacion> itemsOTA { get; set; }

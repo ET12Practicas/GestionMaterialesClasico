@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using gestionmateriales.Models.OficinaTecnica;
@@ -91,9 +92,15 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Editar(int id, int nro, string name)
         {
-            OrdenTrabajoAplicacion ordenSelect = db.ordenTrabajoAplicacion.Find(id);
-            cargarJefeSeccion(ordenSelect.idJefeSeccion);
-            cargarResponsable(ordenSelect.idResponsable);
+            //OrdenTrabajoAplicacion ordenSelect = db.ordenTrabajoAplicacion.Find(id);
+            var ordenSelect = db.ordenTrabajoAplicacion
+                .Where(x => x.idOrdenTrabajoAplicacion == id)
+                .Include(x => x.jefeSeccion)
+                .Include(x => x.responsable)
+                .FirstOrDefault();
+
+            cargarJefeSeccion(ordenSelect.jefeSeccion.idPersonal);
+            cargarResponsable(ordenSelect.responsable.idPersonal);
             cargarTurno(ordenSelect.idTurno);
             ViewData["numero"] = nro;
             ViewData["nombre"] = name;
