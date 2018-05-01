@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
-using gestionmateriales.Models;
+using gestionmateriales.Models.OficinaTecnica;
 
 namespace gestionmateriales.Controllers
 {
@@ -28,7 +27,7 @@ namespace gestionmateriales.Controllers
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             var materiales = from m in db.materiales
                              where m.hab == true && m.stockActual <= m.stockMinimo
-                             select new { m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, proveedor = m.proveedor.nombre };
+                             select new { m.codigo, m.nombre, m.stockActual, m.stockMinimo, proveedor = m.proveedor.nombre };
             return Json(new { Name = "/GetCompras", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 

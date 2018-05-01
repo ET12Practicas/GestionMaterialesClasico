@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
-
+using gestionmateriales.Models.OficinaTecnica;
+using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 
 namespace gestionmateriales.Controllers
 {
@@ -29,7 +29,6 @@ namespace gestionmateriales.Controllers
 
             return Json(new { Name = "/GetProveedores", Response = proveedores, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
-
 
         [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [Route("/Proveedor/Agregar")]

@@ -1,4 +1,4 @@
-﻿@model gestionmateriales.Models.GestionMateriales.Entrada
+﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.EntradaMaterial
 @{
     ViewBag.Title = "Stock";
 }
@@ -31,8 +31,8 @@
                         @Html.LabelFor(model => model.cantidad, "Cantidad a Ingresar", new { @class = "control-label" })
                         @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", id = "cantidadMaterial", autocomplete = "off" } })
                         <br />
-                        @Html.LabelFor(model => model.tipoEntrada, "Tipo de Entrada", new { @class = "control-label" })
-                        @Html.DropDownList("IdTipoEntrada", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.LabelFor(model => model.tipoEntradaMaterial, "Tipo de Entrada", new { @class = "control-label" })
+                        @Html.DropDownList("IdTipoEntradaMaterial", null, htmlAttributes: new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form row">

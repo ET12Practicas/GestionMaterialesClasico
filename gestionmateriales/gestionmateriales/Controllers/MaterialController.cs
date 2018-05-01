@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica;
+using gestionmateriales.Models.OficinaTecnica.Documentos;
+using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica.Tipos;
 
 namespace gestionmateriales.Controllers
 {
@@ -76,12 +79,13 @@ namespace gestionmateriales.Controllers
         public ActionResult Editar(int id)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            Material materialSelect;
-            materialSelect = db.materiales.Find(id);
-            cargarProveedor(materialSelect.idProveedor);
-            cargarUnidad(materialSelect.idUnidad);
-            cargarTipoMaterial(materialSelect.idTipoMaterial);
-            return View("Editar", materialSelect);
+            Material material = db.materiales.Find(id);
+
+            cargarProveedor(material.proveedor.idProveedor);
+            cargarUnidad(material.unidad.idUnidad);
+            cargarTipoMaterial(material.tipoMaterial.idTipoMaterial);
+
+            return View("Editar", material);
         }
 
         //POST: Material/Editar/1
@@ -90,39 +94,47 @@ namespace gestionmateriales.Controllers
         public ActionResult Editar(int id, Material unMaterial)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            Material m = db.materiales.Find(id);
-            if (db.materiales.Where(x => x.idMaterial != id && x.hab).Any(y => y.codigo == m.codigo))
+            Material material = db.materiales.Find(id);
+
+            if (db.materiales.Where(x => x.idMaterial != id && x.hab).Any(y => y.codigo == material.codigo))
             {
                 ViewBag.Result = 1;
-                cargarProveedor(m.idProveedor);
-                cargarUnidad(m.idUnidad);
-                cargarTipoMaterial(m.idTipoMaterial);
-                return View("Editar", m);
+                cargarProveedor(material.idProveedor);
+                cargarUnidad(material.idUnidad);
+                cargarTipoMaterial(material.idTipoMaterial);
+                return View("Editar", material);
             }
-            //try
-            //{
-                m.nombre = unMaterial.nombre;
-                m.codigo = unMaterial.codigo;
-                m.idUnidad = unMaterial.idUnidad;
-                m.stockMinimo = unMaterial.stockMinimo;
-                m.stockActual = unMaterial.stockActual;
-                m.idProveedor = unMaterial.idProveedor;
-                m.idTipoMaterial = unMaterial.idTipoMaterial;
-                m.detalle = unMaterial.detalle;
-                m.LAST_UPDATED_BY = User.Identity.Name;
-                m.LAST_UPDATED_DATE = DateTime.Now;
-                m.LAST_UPDATED_IP = Request.UserHostAddress;
+
+            Unidad unidad = db.unidades.Find(unMaterial.idUnidad);
+            Proveedor proveedor = db.proveedores.Find(unMaterial.idProveedor);
+            TipoMaterial tipoMaterial = db.tipoMaterial.Find(unMaterial.idTipoMaterial);
+
+            try
+            {
+                material.nombre = unMaterial.nombre;
+                material.codigo = unMaterial.codigo;
+                material.unidad = unidad;
+                material.stockMinimo = unMaterial.stockMinimo;
+                material.stockActual = unMaterial.stockActual;
+                material.proveedor = proveedor;
+                material.tipoMaterial = tipoMaterial;
+                material.detalle = unMaterial.detalle;
+                material.LAST_UPDATED_BY = User.Identity.Name;
+                material.LAST_UPDATED_DATE = DateTime.Now;
+                material.LAST_UPDATED_IP = Request.UserHostAddress;
                 db.SaveChanges();
-            //}
-            //catch
-            //{
-            //    return RedirectToAction("Error406", "Error");
-            //}
-            cargarProveedor(m.idProveedor);
-            cargarUnidad(m.idUnidad);
-            cargarTipoMaterial(m.idTipoMaterial);
+            }
+            catch
+            {
+                return RedirectToAction("Error406", "Error");
+            }
+
+            cargarProveedor(material.proveedor.idProveedor);
+            cargarUnidad(material.unidad.idUnidad);
+            cargarTipoMaterial(material.tipoMaterial.idTipoMaterial);
+
             ViewBag.Result = 0;
-            return View("Editar", m);
+            return View("Editar", material);
         }
 
         //POST: Material/Borrar/1
@@ -199,7 +211,7 @@ namespace gestionmateriales.Controllers
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             var materiales = from m in db.materiales
                              where m.hab == true
-                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.estado, m.detalle, unidad = m.unidad.nombre, proveedor = m.proveedor.nombre, tipoMaterial = m.tipoMaterial.nombre };
+                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.detalle, unidad = m.unidad.nombre, proveedor = m.proveedor.nombre, tipoMaterial = m.tipoMaterial.nombre };
 
             return Json(new { Name = "/GetMateriales", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }

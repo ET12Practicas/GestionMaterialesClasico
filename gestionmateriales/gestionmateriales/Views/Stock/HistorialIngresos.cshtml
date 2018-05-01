@@ -38,16 +38,19 @@
         </table>
         <script>
             var appName = location.pathname.split('/')[1];
-            var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
+            var baseURL = window.location.protocol + "//" + window.location.host + "/";
+
+            if (appName == 'ottest')
+                baseURL = baseURL + appName + "/";
 
             var requestMaterial = $.ajax({
-                url: baseURL + "/Stock/GetHistorialIngresos",
+                url: baseURL + "Stock/GetHistorialIngresos",
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8'
             });
 
             requestMaterial.done(function (data) {
-                //console.log(data.Response);
+                console.log(data.Response);
                 tablaMateriales = $('#grdIngresos').DataTable({
                     //"dom": "lfrtip",
                     "aaData": data.Response,
@@ -74,7 +77,10 @@
                             "data": "usuario"
                         },
                         {
-                            "data": "timestamp"
+                            "mRender": function (data, type, row) {
+                                var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
+                                return value.toLocaleString();
+                            }
                         }
                     ],
                     "order": [7, "desc"],

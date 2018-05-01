@@ -1,10 +1,9 @@
-﻿using System;
+﻿using gestionmateriales.Models.OficinaTecnica;
+using gestionmateriales.Models.OficinaTecnica.Documentos;
+using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
-
 
 namespace gestionmateriales.Controllers
 {
@@ -15,28 +14,28 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Index(int id)
         {
-            List<ItemOP> itemsMateriales;
+            List<ItemOrdenPedido> itemsMateriales;
             OrdenPedido op;
             using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
             {
                 int cantMat;
-                itemsMateriales = new List<ItemOP>();
+                itemsMateriales = new List<ItemOrdenPedido>();
                 op = db.ordenPedido.Find(id);
                 var items = db.ItemOP.Where(x => x.idOrdenPedido == id).ToList();
                 foreach (Material mat in db.materiales.Where(x => x.hab))
                 {
                     cantMat = getCantidadByIdMaterial(items, mat.idMaterial);
-                    itemsMateriales.Add(new ItemOP { idOrdenPedido = op.idOrdenPedido, ordenPedido = op, idMaterial = mat.idMaterial, material = mat, cantidad = cantMat });
+                    itemsMateriales.Add(new ItemOrdenPedido { idOrdenPedido = op.idOrdenPedido, ordenPedido = op, idMaterial = mat.idMaterial, material = mat, cantidad = cantMat });
                 }
             }
             ViewData["idOp"] = id;
-            ViewData["numero"] = op.numOp;
+            ViewData["numero"] = op.numeroOrdenPedido;
             return View(itemsMateriales);
         }
 
-        private int getCantidadByIdMaterial(List<ItemOP> items, int idMaterial)
+        private int getCantidadByIdMaterial(List<ItemOrdenPedido> items, int idMaterial)
         {
-            ItemOP item = items.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
+            ItemOrdenPedido item = items.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
             if (item != null)
             {
                 return item.cantidad;
@@ -54,11 +53,11 @@ namespace gestionmateriales.Controllers
                 Material mat = db.materiales.Find(idMaterial);
                 if (!op.itemsOP.Any(x => x.idMaterial == idMaterial))
                 {
-                    op.itemsOP.Add(new ItemOP { idOrdenPedido = op.idOrdenPedido, ordenPedido = op, idMaterial = idMaterial, material = mat, cantidad = itemCantidad });
+                    op.itemsOP.Add(new ItemOrdenPedido { idOrdenPedido = op.idOrdenPedido, ordenPedido = op, idMaterial = idMaterial, material = mat, cantidad = itemCantidad });
                 }
                 else
                 {
-                    ItemOP item = op.itemsOP.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
+                    ItemOrdenPedido item = op.itemsOP.Where(x => x.idMaterial == idMaterial).FirstOrDefault();
                     if (item != null)
                     {
                         item.cantidad = itemCantidad;

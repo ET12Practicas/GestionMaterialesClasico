@@ -38,10 +38,13 @@
         </table>
         <script>
             var appName = location.pathname.split('/')[1];
-            var baseURL = window.location.protocol + "//" + window.location.host + "/" + appName + "/";
+            var baseURL = window.location.protocol + "//" + window.location.host + "/";
+
+            if (appName == 'ottest')
+                baseURL = baseURL + appName + "/";
 
             var requestMaterial = $.ajax({
-                url: baseURL + "/Stock/GetHistorialEgresos",
+                url: baseURL + "Stock/GetHistorialEgresos",
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8'
             });
@@ -74,7 +77,10 @@
                             "data": "usuario"
                         },
                         {
-                            "data": "timestamp"
+                            "mRender": function (data, type, row) {
+                                var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
+                                return value.toLocaleString();
+                            }
                         }
                     ],
                     "order": [7, "desc"],

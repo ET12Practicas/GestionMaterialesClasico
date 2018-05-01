@@ -1,9 +1,11 @@
-﻿using System;
+﻿using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica.Tipos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace gestionmateriales.Models.GestionMateriales
+namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
     [Table("OrdenTrabajoAplicacion")]
     public class OrdenTrabajoAplicacion
@@ -22,7 +24,7 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int idTurno { get; set; }
         
-        public virtual Turno Turno { get; set; }
+        public virtual Turno turno { get; set; }
 
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
@@ -38,7 +40,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public virtual Personal responsable { get; set; }
 
-        public virtual ICollection<ItemOTA> itemsOTA { get; set; }
+        public virtual ICollection<ItemOrdenTrabajoAplicacion> itemsOTA { get; set; }
 
         [Required]
         public bool hab { get; set; }
@@ -79,7 +81,7 @@ namespace gestionmateriales.Models.GestionMateriales
 
         public OrdenTrabajoAplicacion()
         {
-            this.itemsOTA = new HashSet<ItemOTA>();
+            this.itemsOTA = new HashSet<ItemOrdenTrabajoAplicacion>();
             this.hab = true;
         }
 
@@ -90,7 +92,7 @@ namespace gestionmateriales.Models.GestionMateriales
             this.fecha = aFecha;
 
             this.idTurno = aTurno.idTurno;
-            this.Turno = aTurno;
+            this.turno = aTurno;
 
             this.idJefeSeccion = aJefeSeccion.idPersonal;
             this.jefeSeccion = aJefeSeccion;

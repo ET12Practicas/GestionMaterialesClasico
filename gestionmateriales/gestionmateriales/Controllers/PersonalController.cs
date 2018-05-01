@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
-using System.Collections.Generic;
 using System;
+using gestionmateriales.Models.OficinaTecnica;
+using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 
 namespace gestionmateriales.Controllers
 {

@@ -18,9 +18,10 @@ $(document).ready(function () {
         //console.log(data.Response);
         tablaProveedores = $('#grdProveedores').DataTable({
             //"dom": "lfrtip",
+            "autoWidth": false, 
             "aaData": data.Response,
             "aoColumnDefs": [{
-                "targets": [0, 9, 10],
+                "targets": [0, 3, 4, 5, 9, 10],
                 "visible": false,
                 "sType": "html",
                 "aTargets": [8]
@@ -30,9 +31,11 @@ $(document).ready(function () {
                     "data": "idProveedor"
                 },
                 {
+                    "sWidth": "25%",
                     "data": "nombre"
                 },
                 {
+                    "sWidth": "10%",
                     "data": "cuit"
                 },
                 {
@@ -45,17 +48,20 @@ $(document).ready(function () {
                     "data": "direccion"
                 },
                 {
+                    "sWidth": "10%",
                     "data": "telefono"
                 },
                 {
+                    "sWidth": "20%",
                     "data": "email"
                 },
                 {
+                    "sWidth": "10%",
                     "mRender": function (dato, type, row) {
                         //console.log(row);
 
-                        var verDetalleHtml = '<div class="row"><div title="Ver Detalle" class="col-2 offset-1>' +
-                            '<a href="" data-toggle="modal" data-target="#myModal-ver-' + row.idProveedor + '"><i class="fas fa-eye"></i></a>' +
+                        var verDetalleHtml = 
+                            '<a title="Ver Detalle" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-ver-' + row.idProveedor + '"><i class="fas fa-eye"></i> </a>' +
                             '<div class="modal fade" id="myModal-ver-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
@@ -82,12 +88,12 @@ $(document).ready(function () {
                             '</div>' +
                             '<div class="modal-footer">' +
                             '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
-                            '</div></div></div></div></div>';
+                            '</div></div></div></div></div> ';
 
-                        var editarHtml = '<div title="Editar" class="offset-1"><a href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i></a></div>';
+                        var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i> </a></div> ';
 
-                        var borrarHtml = '<div title="Borrar" class="offset-1">' +
-                            '<a href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                        var borrarHtml = 
+                            '<a title="Borrar" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="fas fa-trash-alt"></i> </a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Proveedor</h4></div>' +

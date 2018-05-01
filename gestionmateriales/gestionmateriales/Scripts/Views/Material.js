@@ -18,41 +18,57 @@ $(document).ready(function () {
         //console.log(data.Response);
         tablaMateriales = $('#grdMateriales').DataTable({
             //"dom": "lfrtip",
+            "autoWidth": false, 
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0, 6, 8, 9, 10],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [7]
+                "aTargets": [6, 7]
             }],
             "aoColumns": [
                 {
                     "data": "idMaterial"
                 },
                 {
+                    "sWidth": "7%",
                     "data": "codigo"
                 },
                 {
+                    "sWidth": "20%",
                     "data": "nombre"
                 },
                 {
+                    "sWidth": "10%",
                     "data": "stockActual"
                 },
                 {
+                    "sWidth": "10%",
                     "data": "stockMinimo"
                 },
                 {
-                    "data": "estado"
+                    "sWidth": "7%",
+                    "mRender": function (dato, type, row) {
+                        if (row.stockActual == 0) {
+                            return 'SIN STOCK';
+                        }
+                        if (row.stockActual > row.stockMinimo) {
+                            return 'ALTO';
+                        }
+                        else {
+                            return 'BAJO';
+                        }
+                    }
                 },
                 {
                     "data": "detalle"
                 },
                 {
+                    "sWidth": "11%",
                     "mRender": function (dato, type, row) {
-                        //console.log(row);
-                        //
-                        var verDetalleHtml = '<div class="row"><div title="Ver Detalle" class="col-2 offset-1>' +
-                            '<a href="" data-toggle="modal" data-target="#myModal-ver-' + row.idMaterial + '"><i class="fas fa-eye"></i></a>' +
+                        
+                        var verDetalleHtml = 
+                            '<a title="Ver Detalle" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-ver-' + row.idMaterial + '"><i class="fas fa-eye"></i> </a>' +
                             '<div class="modal fade" id="myModal-ver-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
@@ -79,14 +95,14 @@ $(document).ready(function () {
                             '</div>' +
                             '<div class="modal-footer">' +
                             '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
-                            '</div></div></div></div></div>';
+                            '</div></div></div></div></div> ';
 
-                        var historialHtml = '<div title="Historial" class="offset-1"><a href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="far fa-clock"></i></a></div>';
+                        var historialHtml = '<a title="Ver Historial" class="btn btn-outline-dark" href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="far fa-clock"></i> </a> ';
 
-                        var editarHtml = '<div title="Editar" class="offset-1"><a href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="fas fa-pencil-alt"></i></a></div>';
+                        var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="fas fa-pencil-alt"></i> </a> ';
 
-                        var borrarHtml = '<div title="Borrar" class="offset-1">' +
-                            '<a href="" data-toggle="modal" data-target="#myModal-' + row.idMaterial + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id="myModal-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                        var borrarHtml = 
+                            '<a title="Borrar" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-' + row.idMaterial + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id="myModal-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Material</h4></div>' +
@@ -99,7 +115,7 @@ $(document).ready(function () {
                             '<div class="modal-footer">' +
                             '<a href="' + baseURL + 'Material/Borrar/' + row.idMaterial + '" type="button" class="btn btn-danger">Aceptar</a>' +
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-                            '</div></div></div></div></div></div>';
+                            '</div></div></div></div></div>';
                         return verDetalleHtml + historialHtml + editarHtml + borrarHtml;
                     }
                 },

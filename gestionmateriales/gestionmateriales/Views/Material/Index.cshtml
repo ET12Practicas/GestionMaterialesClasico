@@ -1,134 +1,48 @@
-﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.Material>
-@{
+﻿@{
     ViewBag.Title = "Material";
 }
 <br />
-    <br />
-        <div class="container-fluid">
-            <h2>Gestión de Materiales</h2>
-            <h6>Materiales o herramientas utilizadas para taller o reparaciones edilicias.</h6>
-        </div>
-    <hr />
-    <div class="col-2">
-        <a id="btn_agregarmaterial" class="btn btn-outline-primary btn-block" href="~/Material/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agrega materiales o herramientas utilizadas para taller o reparaciones edilicias"><i class="fas fa-wrench"></i> Nuevo Material</a>
+<br />
+<div class="container-fluid">
+    <h2>Gestión de Materiales</h2>
+    <h6>Materiales o herramientas utilizadas para taller o reparaciones edilicias.</h6>
+</div>
+<hr />
+<div class="col-2">
+    <a id="btn_agregarmaterial" class="btn btn-outline-primary btn-block" href="~/Material/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agrega materiales o herramientas utilizadas para taller o reparaciones edilicias"><i class="fas fa-wrench"></i> Nuevo Material</a>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <table id="grdMateriales" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Material
+                    </th>
+                    <th>
+                        Stock Actual
+                    </th>
+                    <th>
+                        Stock Mínimo
+                    </th>
+                    <th>
+                        Stock
+                    </th>
+                    <th></th>
+                    <th>
+                        Opciones
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+        <script type="text/javascript" src="~/Scripts/Views/Material.js"></script>
     </div>
-    <br />
-    <div class="row">
-        <div class="col-md-12">
-            <table id="grdMateriales" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            Código
-                        </th>
-                        <th>
-                            Material
-                        </th>
-                        <th>
-                            Stock Actual
-                        </th>
-                        <th>
-                            Stock Mínimo
-                        </th>
-                        <th>
-                            Estado
-                        </th>
-                        <th></th>
-                        <th>
-                            Opciones
-                        </th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                @*<tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.codigo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.stockActual)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.stockMinimo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.estado)
-                            </td>
-                            <td>
-                                <a href="" data-toggle="modal" data-target="#myModal-ver-@item.idMaterial">Ver</a>
-
-                                <div class="modal fade" id="myModal-ver-@item.idMaterial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Material</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <p><strong>Código:</strong> @item.codigo</p>
-                                                        <p><strong>Material:</strong> @item.nombre</p>
-                                                        <p><strong>Tipo:</strong> @item.tipoMaterial.nombre</p>
-                                                        <p><strong>Unidad:</strong> @item.unidad.nombre</p>
-                                                        <p><strong>Proveedor:</strong> @item.proveedor.nombre</p>
-                                                    </div>
-                                                    <div class="col-md-6 ml-auto">
-                                                        <p><strong>Stock Actual:</strong> @item.stockActual</p>
-                                                        <p><strong>Stock Mínimo:</strong> @item.stockMinimo</p>
-                                                        <p><strong>Estado del Stock:</strong> @item.estado</p>
-                                                        <p><strong>Detalle:</strong> @item.detalle</p>
-                                                    </div>
-                                                </div>
-                                                <br />
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                @Html.ActionLink("Historial", "Historial", new { id = item.idMaterial, cod = item.codigo, name = item.nombre })
-                            </td>
-                            <td>
-                                @Html.ActionLink("Editar", "Editar", new { id = item.idMaterial })
-                            </td>
-                            <td>
-                                <a href="" data-toggle="modal" data-target="#myModal-@item.idMaterial">Borrar</a>
-
-                                <div class="modal fade" id="myModal-@item.idMaterial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Borrar Material</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>¿Desea borrar el siguiente material del sistema?</p>
-                                                <p><strong>Código:</strong> @item.codigo</p>
-                                                <p><strong>Material:</strong> @item.nombre</p>
-                                                <p><strong>Stock Actual:</strong> @item.stockActual</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="~/Material/Borrar/@item.idMaterial" type="button" class="btn btn-danger">Aceptar</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>*@
-            </table>
-            <script type="text/javascript" src="~/Scripts/Views/Material.js"></script>
-        </div>
-    </div>
+</div>

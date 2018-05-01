@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica;
+using gestionmateriales.Models.OficinaTecnica.Documentos;
 
 namespace gestionmateriales.Controllers
 {
@@ -36,7 +37,7 @@ namespace gestionmateriales.Controllers
         {
             int idOp = -1;
 
-            if(db.ordenPedido.Any(x=> x.numOp == aOP.numOp))
+            if(db.ordenPedido.Any(x=> x.numeroOrdenPedido == aOP.numeroOrdenPedido))
             {
                 ViewBag.Result = 1;
                 return View("Agregar", aOP);
@@ -44,10 +45,10 @@ namespace gestionmateriales.Controllers
 
             try
             {
-                db.ordenPedido.Add(new OrdenPedido(aOP.numOp, aOP.numOta, aOP.destino, aOP.fecha));
+                db.ordenPedido.Add(new OrdenPedido(aOP.numeroOrdenPedido, aOP.numeroOrdenTrabajoAplicacion, aOP.destino, aOP.fecha));
                 db.SaveChanges();
 
-                idOp = db.ordenPedido.SingleOrDefault(x => x.numOp == aOP.numOp).idOrdenPedido;
+                idOp = db.ordenPedido.SingleOrDefault(x => x.numeroOrdenPedido == aOP.numeroOrdenPedido).idOrdenPedido;
             }
             catch
             {
@@ -79,15 +80,15 @@ namespace gestionmateriales.Controllers
         {
             int idOp = -1;
             OrdenPedido opEdit = db.ordenPedido.Find(id);
-            if(db.ordenPedido.Where(x => x.idOrdenPedido != id).Any(y => y.numOp == aOP.numOp))
+            if(db.ordenPedido.Where(x => x.idOrdenPedido != id).Any(y => y.numeroOrdenPedido == aOP.numeroOrdenPedido))
             {
                 ViewBag.Result = 1;
                 return View("Editar", opEdit);
             }
             try
             {
-                opEdit.numOp = aOP.numOp;
-                opEdit.numOta = aOP.numOta;
+                opEdit.numeroOrdenPedido = aOP.numeroOrdenPedido;
+                opEdit.numeroOrdenTrabajoAplicacion = aOP.numeroOrdenTrabajoAplicacion;
                 opEdit.destino = aOP.destino;
                 db.SaveChanges();
             }

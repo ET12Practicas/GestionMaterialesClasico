@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using gestionmateriales.Models.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica;
+using gestionmateriales.Models.OficinaTecnica.Documentos;
+using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica.Tipos;
 
 namespace gestionmateriales.Controllers
 {
@@ -51,7 +54,7 @@ namespace gestionmateriales.Controllers
             try
             {
                 OrdenTrabajoAplicacion unaOTA = new OrdenTrabajoAplicacion();
-                unaOTA.Turno = db.turnos.Find(aOT.idTurno);
+                unaOTA.turno = db.turnos.Find(aOT.idTurno);
                 unaOTA.jefeSeccion = db.personal.Find(aOT.idJefeSeccion);
                 unaOTA.responsable = db.personal.Find(aOT.idResponsable);
                 unaOTA.numero = aOT.numero;
@@ -121,7 +124,7 @@ namespace gestionmateriales.Controllers
                 otEdit.numero = aOT.numero;
                 otEdit.nombre = aOT.nombre;
                 otEdit.idTurno = t.idTurno;
-                otEdit.Turno = t;
+                otEdit.turno = t;
                 otEdit.fecha = aOT.fecha;
                 otEdit.responsable = res;
                 otEdit.idResponsable = res.idPersonal;

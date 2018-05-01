@@ -1,4 +1,4 @@
-﻿@model gestionmateriales.Models.GestionMateriales.Salida
+﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.SalidaMaterial
 @{
     ViewBag.Title = "Stock";
 }
@@ -31,8 +31,8 @@
                         @Html.LabelFor(model => model.cantidad, "Cantidad a Egresar", new { @class = "control-label" })
                         @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", id = "cantidadMaterial", autocomplete = "off" } })
                         <br />
-                        @Html.LabelFor(model => model.tipoSalida, "Tipo de Engreso", new { @class = "control-label" })
-                        @Html.DropDownList("IdTipoSalida", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.LabelFor(model => model.tipoSalidaMaterial, "Tipo de Engreso", new { @class = "control-label" })
+                        @Html.DropDownList("IdTipoSalidaMaterial", null, htmlAttributes: new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form row">
@@ -44,7 +44,7 @@
                 <br />
                 <div class="row">
                     <div class="offset-6 col-md-3">
-                        <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Ingresar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
+                        <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Egresar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
                     </div>
                     <div class="col-md-3">
                         <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='/Home/Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />

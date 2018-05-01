@@ -1,5 +1,4 @@
-﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.Material>
-@{
+﻿@{
     ViewBag.Title = "Material";
 }
 <br />
@@ -28,7 +27,7 @@
                         Stock Mínimo
                     </th>
                     <th>
-                        Estado
+                        Stock
                     </th>
                     <th>
                         Proveedor
@@ -57,7 +56,11 @@
                     //console.log(data.Response);
                     $('#grdCompras').DataTable({
                         "dom": 'Bflrtip',
+                        "autoWidth": false, 
                         "aaData": data.Response,
+                        "aoColumnDefs": [{
+                            "aTargets": [4]
+                        }],
                         "aoColumns": [{
                             "data": "codigo"
                         },
@@ -71,7 +74,17 @@
                             "data": "stockMinimo"
                         },
                         {
-                            "data": "estado"
+                            "mRender": function (dato, type, row) {
+                                if (row.stockActual == 0) {
+                                    return 'SIN STOCK';
+                                }
+                                if (row.stockActual > row.stockMinimo) {
+                                    return 'ALTO';
+                                }
+                                else {
+                                    return 'BAJO';
+                                }
+                            }
                         },
                         {
                             "data": "proveedor"

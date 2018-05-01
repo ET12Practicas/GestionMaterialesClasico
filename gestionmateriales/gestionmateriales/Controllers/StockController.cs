@@ -1,17 +1,20 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
-using gestionmateriales.Models.GestionMateriales;
 using System;
+using gestionmateriales.Models.OficinaTecnica;
+using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica.Tipos;
+using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace gestionmateriales.Controllers
 {
+    [Route("Stock/[action]")]
     public class StockController : Controller
     {
-        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/Sumar")]
+        
         [HttpGet]
         public ActionResult Sumar()
         {
@@ -20,26 +23,48 @@ namespace gestionmateriales.Controllers
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/Sumar")]
         [HttpPost]
-        public ActionResult Sumar(Entrada unaEntrada)
+        public ActionResult Sumar(EntradaMaterial unaEntrada)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+
+            Material unMaterial = db.materiales
+                .Where(x => x.codigo == unaEntrada.codigoMaterial && x.hab)
+                .Include(x => x.proveedor)
+                .Include(x => x.tipoMaterial)
+                .Include(x => x.unidad)
+                .Include(x => x.entradas)
+                .Include(x => x.salidas)
+                .FirstOrDefault();
+
+            TipoEntradaMaterial unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntradaMaterial);
+            
             try
             {
-                Material unMaterial = db.materiales.Where(x => x.codigo == unaEntrada.codigoMaterial).SingleOrDefault();
-                TipoEntrada unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntrada);
-                Entrada nuevaEntrada = new Entrada(DateTime.Now, unMaterial, unMaterial.codigo, unaEntrada.codigoDocumento, unaEntrada.cantidad, unTipoEntrada);
-                nuevaEntrada.CREATED_BY = User.Identity.Name;
-                nuevaEntrada.CREATION_DATE = DateTime.Now;
-                nuevaEntrada.CREATION_IP = Request.UserHostAddress;
-                nuevaEntrada.LAST_UPDATED_BY = User.Identity.Name;
-                nuevaEntrada.LAST_UPDATED_DATE = DateTime.Now;
-                nuevaEntrada.LAST_UPDATED_IP = Request.UserHostAddress;
-                nuevaEntrada.SumarStockMaterial();
+                //actualizo el stock de la entrada para el material indicado
+                unMaterial.stockActual += unaEntrada.cantidad;
+
+                EntradaMaterial nuevaEntrada = new EntradaMaterial()
+                {
+                    fecha = DateTime.Now,
+                    codigoDocumento = unaEntrada.codigoDocumento,
+                    codigoMaterial = unMaterial.codigo,
+                    cantidad = unaEntrada.cantidad,
+                    material = unMaterial,
+                    tipoEntradaMaterial = unTipoEntrada,
+
+                    CREATED_BY = User.Identity.Name,
+                    CREATION_DATE = DateTime.Now,
+                    CREATION_IP = Request.UserHostAddress,
+                    LAST_UPDATED_BY = User.Identity.Name,
+                    LAST_UPDATED_DATE = DateTime.Now,
+                    LAST_UPDATED_IP = Request.UserHostAddress,
+                };
+
                 db.entradas.Add(nuevaEntrada);
                 db.SaveChanges();
             }
-            catch
+            catch (Exception ex)
             {
                 return RedirectToAction("Error406", "Error");
             }
@@ -49,7 +74,6 @@ namespace gestionmateriales.Controllers
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/Restar")]
         [HttpGet]
         public ActionResult Restar()
         {
@@ -58,28 +82,42 @@ namespace gestionmateriales.Controllers
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/Restar")]
         [HttpPost]
-        public ActionResult Restar(Salida unaSalida)
+        public ActionResult Restar(SalidaMaterial unaSalida)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+
+            Material unMaterial = db.materiales
+                   .Where(x => x.codigo == unaSalida.codigoMaterial && x.hab)
+                   .Include(x => x.proveedor)
+                   .Include(x => x.tipoMaterial)
+                   .Include(x => x.unidad)
+                   .Include(x => x.entradas)
+                   .Include(x => x.salidas)
+                   .FirstOrDefault();
+
+            TipoSalidaMaterial unTipoSalida = db.tipoSalida.Find(unaSalida.idTipoSalidaMaterial);
+
             try
             {
-                Material unMaterial = db.materiales.Where(x => x.codigo == unaSalida.codigoMaterial).SingleOrDefault();
-                TipoSalida unTipoSalida = db.tipoSalida.Find(unaSalida.idTipoSalida);
-                Salida nuevaSalida = new Salida();
-                nuevaSalida.fecha = DateTime.Now;
-                nuevaSalida.Material = unMaterial;
-                nuevaSalida.codigoMaterial = unMaterial.codigo;
-                nuevaSalida.codigoDocumento = unaSalida.codigoDocumento;
-                nuevaSalida.cantidad = unaSalida.cantidad;
-                nuevaSalida.tipoSalida = unTipoSalida;
-                nuevaSalida.CREATED_BY = User.Identity.Name;
-                nuevaSalida.CREATION_DATE = DateTime.Now;
-                nuevaSalida.CREATION_IP = Request.UserHostAddress;
-                nuevaSalida.LAST_UPDATED_BY = User.Identity.Name;
-                nuevaSalida.LAST_UPDATED_DATE = DateTime.Now;
-                nuevaSalida.LAST_UPDATED_IP = Request.UserHostAddress;
-                if (nuevaSalida.HayStockMaterial())
+                SalidaMaterial nuevaSalida = new SalidaMaterial()
+                {
+                    fecha = DateTime.Now,
+                    material = unMaterial,
+                    codigoMaterial = unMaterial.codigo,
+                    codigoDocumento = unaSalida.codigoDocumento,
+                    cantidad = unaSalida.cantidad,
+                    tipoSalidaMaterial = unTipoSalida,
+
+                    CREATED_BY = User.Identity.Name,
+                    CREATION_DATE = DateTime.Now,
+                    CREATION_IP = Request.UserHostAddress,
+                    LAST_UPDATED_BY = User.Identity.Name,
+                    LAST_UPDATED_DATE = DateTime.Now,
+                    LAST_UPDATED_IP = Request.UserHostAddress
+                };
+
+                if (nuevaSalida.HayStock())
                 {
                     nuevaSalida.RestarStockMaterial();
                     db.salidas.Add(nuevaSalida);
@@ -92,7 +130,7 @@ namespace gestionmateriales.Controllers
                     return View("Restar");
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return RedirectToAction("Error406", "Error");
             }
@@ -102,7 +140,6 @@ namespace gestionmateriales.Controllers
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/HistorialIngresos")]
         [HttpGet]
         public ActionResult HistorialIngresos()
         {
@@ -110,17 +147,28 @@ namespace gestionmateriales.Controllers
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/HistorialEgresos")]
         [HttpGet]
         public JsonResult GetHistorialEgresos()
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+
             var historialEgresos = from egr in db.salidas
-                                   select new { numero = egr.idSalida, codMaterial = egr.codigoMaterial, material = egr.Material.nombre, cantidad = egr.cantidad, tipoSalida = egr.tipoSalida.nombre, codDocumento = egr.codigoDocumento, usuario = egr.LAST_UPDATED_BY, timestamp = egr.LAST_UPDATED_DATE.ToString() };
+                                   select new
+                                   {
+                                       numero = egr.idSalidaMaterial,
+                                       codMaterial = egr.codigoMaterial,
+                                       material = egr.material.nombre,
+                                       cantidad = egr.cantidad,
+                                       tipoSalida = egr.tipoSalidaMaterial.nombre,
+                                       codDocumento = egr.codigoDocumento,
+                                       usuario = egr.LAST_UPDATED_BY,
+                                       timestamp = egr.LAST_UPDATED_DATE
+                                   };
+
             return Json(new { Name = "/GetHistorialEgresos", Response = historialEgresos, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/HistorialEgresos")]
         [HttpGet]
         public ActionResult HistorialEgresos()
         {
@@ -128,33 +176,47 @@ namespace gestionmateriales.Controllers
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]
-        [Route("/Stock/HistorialIngresos")]
         [HttpGet]
         public JsonResult GetHistorialIngresos()
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+
             var historialIngresos = from ing in db.entradas
-                                    select new { numero = ing.idEntrada, codMaterial = ing.codigoMaterial, material = ing.Material.nombre, cantidad = ing.cantidad, tipoEntrada = ing.tipoEntrada.nombre, codDocumento = ing.codigoDocumento, usuario = ing.LAST_UPDATED_BY, timestamp = ing.LAST_UPDATED_DATE.ToString() };
+                                    select new
+                                    {
+                                        numero = ing.idEntradaMaterial,
+                                        codMaterial = ing.codigoMaterial,
+                                        material = ing.material.nombre,
+                                        cantidad = ing.cantidad,
+                                        tipoEntrada = ing.tipoEntradaMaterial.nombre,
+                                        codDocumento = ing.codigoDocumento,
+                                        usuario = ing.LAST_UPDATED_BY,
+                                        timestamp = ing.LAST_UPDATED_DATE
+                                    };
+
             return Json(new { Name = "/GetHistorialIngresos", Response = historialIngresos, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 
         private void cargarTipoSalida(object selectedTipoSalida = null)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             if (User.IsInRole("administrador"))
-                ViewBag.IdTipoSalida = new SelectList(db.tipoSalida.ToList(), "idTipoSalida", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("deposito"))
-                ViewBag.IdTipoSalida = new SelectList(db.tipoSalida.Where(x => x.idSector == 1).ToList(), "idTipoSalida", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.idSector == 1).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("compras"))
-                ViewBag.IdTipoSalida = new SelectList(db.tipoSalida.Where(x => x.idSector == 0).ToList(), "idTipoSalida", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.idSector == 0).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
         }
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
         {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             if (User.IsInRole("administrador"))
-                ViewBag.IdTipoEntrada = new SelectList(db.tipoEntrada.ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             if (User.IsInRole("deposito"))
-                ViewBag.IdTipoEntrada = new SelectList(db.tipoEntrada.Where(x => x.idSector == 1).ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.idSector == 1).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             if (User.IsInRole("compras"))
-                ViewBag.IdTipoEntrada = new SelectList(db.tipoEntrada.Where(x => x.idSector == 0).ToList(), "idTipoEntrada", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.idSector == 0).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
         }
     }
 }

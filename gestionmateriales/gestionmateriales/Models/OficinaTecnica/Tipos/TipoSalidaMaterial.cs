@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace gestionmateriales.Models.GestionMateriales
+namespace gestionmateriales.Models.OficinaTecnica.Tipos
 {
-    [Table("TipoSalida")]
-    public class TipoSalida
+    [Table("TipoSalidaMaterial")]
+    public class TipoSalidaMaterial
     {
         [Key]
         [Required]
-        public int idTipoSalida { get; set; }
+        public int idTipoSalidaMaterial { get; set; }
 
         [Required]
         [StringLength(35)]
@@ -21,7 +21,7 @@ namespace gestionmateriales.Models.GestionMateriales
         [Required]
         public int idSector { get; set; }
 
-        public TipoSalida()
+        public TipoSalidaMaterial()
         {
 
         }
