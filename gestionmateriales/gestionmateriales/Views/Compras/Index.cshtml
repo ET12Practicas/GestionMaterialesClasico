@@ -1,134 +1,128 @@
 ﻿@{
     ViewBag.Title = "Material";
 }
-<br />
-<br />
 <div class="container-fluid">
-    <h2>Gestión de Compras</h2>
-    <h6>Materiales o herramientas sin stock o por debajo del punto de reposición.</h6>
-</div>
-<br />
-<div class="row">
-    <div class="col-md-12">
-        <table id="grdCompras" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Material
-                    </th>
+    <h1 class="display-4">Compras</h1>
+    <p>Materiales o herramientas sin stock o por debajo del punto de reposición</p>
+    <hr />
+    <table id="grdCompras" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Código
+                </th>
+                <th>
+                    Material
+                </th>
 
-                    <th>
-                        Stock Actual
-                    </th>
-                    <th>
-                        Stock Mínimo
-                    </th>
-                    <th>
-                        Stock
-                    </th>
-                    <th>
-                        Proveedor
-                    </th>
-                </tr>
-            </thead>
-        </table>
-        <script type="text/javascript">
-            var fecha = new Date();
-            var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
-            var appName = location.pathname.split('/')[1];
-            var baseURL = window.location.protocol + "//" + window.location.host + "/";
+                <th>
+                    Stock Actual
+                </th>
+                <th>
+                    Stock Mínimo
+                </th>
+                <th>
+                    Stock
+                </th>
+                <th>
+                    Proveedor
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <script type="text/javascript">
+        var fecha = new Date();
+        var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
+        var appName = location.pathname.split('/')[1];
+        var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
-            if (appName == 'ottest')
-                baseURL = baseURL + appName + "/";
+        if (appName == 'ottest')
+            baseURL = baseURL + appName + "/";
 
-            //console.log(appName);
-            $(document).ready(function () {
-                var request = $.ajax({
-                    url: baseURL + "Compras/GetCompras",
-                    type: 'GET',
-                    contentType: 'application/json; charset=utf-8'
-                });
+        //console.log(appName);
+        $(document).ready(function () {
+            var request = $.ajax({
+                url: baseURL + "Compras/GetCompras",
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8'
+            });
 
-                request.done(function (data) {
-                    //console.log(data.Response);
-                    $('#grdCompras').DataTable({
-                        "dom": 'Bflrtip',
-                        "autoWidth": false,
-                        "aaData": data.Response,
-                        "aoColumnDefs": [{
-                            "aTargets": [4]
-                        }],
-                        "aoColumns": [{
-                            "data": "codigo"
-                        },
-                        {
-                            "data": "nombre"
-                        },
-                        {
-                            "data": "stockActual"
-                        },
-                        {
-                            "data": "stockMinimo"
-                        },
-                        {
-                            "mRender": function (dato, type, row) {
-                                if (row.stockActual == 0) {
-                                    return 'SIN STOCK';
-                                }
-                                if (row.stockActual > row.stockMinimo) {
-                                    return 'ALTO';
-                                }
-                                else {
-                                    return 'BAJO';
-                                }
+            request.done(function (data) {
+                //console.log(data.Response);
+                $('#grdCompras').DataTable({
+                    "dom": 'Bflrtip',
+                    "autoWidth": false,
+                    "aaData": data.Response,
+                    "aoColumnDefs": [{
+                        "aTargets": [4]
+                    }],
+                    "aoColumns": [{
+                        "data": "codigo"
+                    },
+                    {
+                        "data": "nombre"
+                    },
+                    {
+                        "data": "stockActual"
+                    },
+                    {
+                        "data": "stockMinimo"
+                    },
+                    {
+                        "mRender": function (dato, type, row) {
+                            if (row.stockActual == 0) {
+                                return 'SIN STOCK';
                             }
-                        },
-                        {
-                            "data": "proveedor"
-                        }],
-                        "buttons": [
-                            {
-                                extend: 'pdf',
-                                text: 'Exportar a PDF',
-                                filename: 'listadoCompras-' + timestamp
-                            },
-                            {
-                                extend: 'excel',
-                                text: 'Exportar a Excel',
-                                filename: 'listadoCompras-' + timestamp
+                            if (row.stockActual > row.stockMinimo) {
+                                return 'ALTO';
                             }
-                        ],
-                        "language": {
-                            "decimal": "",
-                            "emptyTable": "No hay información disponible para mostrar",
-                            "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                            "infoEmpty": "No hay compras para mostrar",
-                            "infoFiltered": "(filtrados de _MAX_ compras totales)",
-                            "infoPostFix": "",
-                            "thousands": ",",
-                            "lengthMenu": "Ver _MENU_ compras por página",
-                            "loadingRecords": "Cargando...",
-                            "processing": "En proceso...",
-                            "search": "Buscar",
-                            "zeroRecords": "No hay compras que coincidan con el filtro",
-                            "paginate": {
-                                "first": "Primera",
-                                "last": "Última",
-                                "next": "Siguiente",
-                                "previous": "Anterior"
+                            else {
+                                return 'BAJO';
                             }
                         }
-                    });
-                });
-
-                request.fail(function (data) {
-                    alert(data.Response);
+                    },
+                    {
+                        "data": "proveedor"
+                    }],
+                    "buttons": [
+                        {
+                            extend: 'pdf',
+                            text: 'Exportar a PDF',
+                            filename: 'listadoCompras-' + timestamp
+                        },
+                        {
+                            extend: 'excel',
+                            text: 'Exportar a Excel',
+                            filename: 'listadoCompras-' + timestamp
+                        }
+                    ],
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay información disponible para mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "infoEmpty": "No hay compras para mostrar",
+                        "infoFiltered": "(filtrados de _MAX_ compras totales)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Ver _MENU_ compras por página",
+                        "loadingRecords": "Cargando...",
+                        "processing": "En proceso...",
+                        "search": "Buscar",
+                        "zeroRecords": "No hay compras que coincidan con el filtro",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
                 });
             });
-        </script>
-    </div>
+
+            request.fail(function (data) {
+                alert(data.Response);
+            });
+        });
+    </script>
 </div>
 

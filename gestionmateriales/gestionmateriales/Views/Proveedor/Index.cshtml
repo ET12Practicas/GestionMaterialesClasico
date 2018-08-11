@@ -1,16 +1,15 @@
-﻿<br />
-<br />
-<div class="container-fluid">
-    <h2>Gestión de Proveedores</h2>
-    <h6>Empresa o negocio donde se compran materiales o herramientas.</h6>
-</div>
-<hr />
-<div class="col-md-2">
-    <a id="btnCrearProveedor" class="btn btn-outline-primary btn-block" href="~/Proveedor/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agrega nuevo proveedor para comprar materiales o herramientas"><i class="fas fa-truck"></i> Nuevo Proveedor</a>
-</div>
-<br />
-<div class="row">
-    <div class="col-md-12">
+﻿<div class="container-fluid">
+    <h1 class="display-4">Proveedores</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Empresa o negocio donde se compran materiales o herramientas</p>
+        </div>
+        <div class="offset-md-4 col-md-2">
+            <a id="btnCrearProveedor" class="btn btn-outline-primary btn-block" href="~/Proveedor/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agrega nuevo proveedor para comprar materiales o herramientas"><i class="fas fa-truck"></i> Nuevo Proveedor</a>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
         <table id="grdProveedores" class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
@@ -47,6 +46,6 @@
                 </tr>
             </thead>
         </table>
-        <script type="text/javascript" src="~/Scripts/Views/Proveedor.js"></script>
     </div>
+    <script type="text/javascript" src="~/Scripts/Views/Proveedor.js"></script>
 </div>
