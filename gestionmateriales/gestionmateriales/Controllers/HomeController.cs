@@ -41,7 +41,10 @@ namespace gestionmateriales.Controllers
             if (User.IsInRole("administrador"))
             {
                 menu.Add(new MenuItem { Id = 10, nameOption = "Documentos", controller = "", action = "", imageClass = "fas fa-file-alt", estatus = true, isParent = true, parentId = 0 });
+                menu.Add(new MenuItem { Id = 11, nameOption = "Orden de Trabajo", controller = "OrdenTrabajo", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 10 });
                 menu.Add(new MenuItem { Id = 11, nameOption = "Orden de Trabajo de Aplicación", controller = "OrdenTrabajoAplicacion", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 10 });
+                menu.Add(new MenuItem { Id = 11, nameOption = "Orden de Pedido", controller = "OrdenPedido", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 10 });
+                menu.Add(new MenuItem { Id = 11, nameOption = "Orden de Compra", controller = "OrdenCompra", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 10 });
                 menu.Add(new MenuItem { Id = 20, nameOption = "Stock", controller = "", action = "", imageClass = "fas fa-sync", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 21, nameOption = "Ingreso", controller = "Stock", action = "Sumar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 22, nameOption = "Egreso", controller = "Stock", action = "Restar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
