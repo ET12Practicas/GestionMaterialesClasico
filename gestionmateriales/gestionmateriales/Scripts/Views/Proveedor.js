@@ -118,6 +118,7 @@ $(document).ready(function () {
                 {
                     "data": "nombreContacto"
                 }],
+            "order": [1, "asc"],
             "language": {
                 "decimal": "",
                 "emptyTable": "No hay información disponible para mostrar",

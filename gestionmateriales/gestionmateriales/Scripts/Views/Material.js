@@ -129,6 +129,7 @@ $(document).ready(function () {
                     "data": "tipoMaterial"
                 }
             ],
+            "order": [2, "asc"],
             "language": {
                 "decimal": "",
                 "emptyTable": "No hay información disponible para mostrar",

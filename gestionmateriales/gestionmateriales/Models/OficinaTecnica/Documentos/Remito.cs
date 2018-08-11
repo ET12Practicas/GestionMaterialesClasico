@@ -1,44 +1,33 @@
-﻿using gestionmateriales.Models.OficinaTecnica.Tipos;
+﻿using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
-namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
+namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
-    [Table("EntradaMaterial")]
-    public class EntradaMaterial
+    [Table("Remito")]
+    public class Remito
     {
         [Key]
         [Required]
-        public int idEntradaMaterial { get; set; }
+        public int IdRemito { get; set; }
+
+        [Required]
+        public string numero { get; set; }
 
         [Required]
         public DateTime fecha { get; set; }
 
         [Required]
-        public int cantidad { get; set; }
+        public virtual Proveedor proveedor { get; set; }
+
+        public virtual ICollection<ItemRemito> itemsRemito { get; set; }
 
         [Required]
-        [StringLength(15)]
-        public string codigoMaterial { get; set; }
-
-        [Required]
-        [StringLength(15)]
-        public string codigoDocumento { get; set; }
-
-        [Required]
-        [NotMapped]
-        public int idMaterial { get; set; }
-
-        [Required]
-        public virtual Material material { get; set; }
-
-        [Required]
-        [NotMapped]
-        public int idTipoEntradaMaterial { get; set; }
-
-        [Required]
-        public virtual TipoEntradaMaterial tipoEntradaMaterial { get; set; }
+        public bool hab { get; set; }
 
         /// <summary>
         /// Usuario que creo la entrada
@@ -74,14 +63,10 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
         [StringLength(20)]
         public string LAST_UPDATED_IP { get; set; }
 
-        public EntradaMaterial()
+        public Remito()
         {
-
-        }
-
-        public void SumarStockMaterial()
-        {
-            material.stockActual += cantidad;
+            this.itemsRemito = new HashSet<ItemRemito>();
+            this.hab = true;
         }
     }
 }

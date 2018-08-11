@@ -1,44 +1,55 @@
-﻿using gestionmateriales.Models.OficinaTecnica.Tipos;
+﻿using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using gestionmateriales.Models.OficinaTecnica.Tipos;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
-namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
+namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
-    [Table("EntradaMaterial")]
-    public class EntradaMaterial
+    [Table("OrdenTrabajo")]
+    public class OrdenTrabajo
     {
         [Key]
         [Required]
-        public int idEntradaMaterial { get; set; }
+        public int idOrdenTrabajo { get; set; }
 
         [Required]
+        public int numero { get; set; }
+
+        [Required]
+        [StringLength(70)]
+        public string nombre { get; set; }
+
+        [Required]
+        public int idTurno { get; set; }
+
+        public virtual Turno turno { get; set; }
+
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime fecha { get; set; }
 
         [Required]
-        public int cantidad { get; set; }
+        [NotMapped]
+        public int idJefeSeccion { get; set; }
 
         [Required]
-        [StringLength(15)]
-        public string codigoMaterial { get; set; }
-
-        [Required]
-        [StringLength(15)]
-        public string codigoDocumento { get; set; }
+        public virtual Personal jefeSeccion { get; set; }
 
         [Required]
         [NotMapped]
-        public int idMaterial { get; set; }
+        public int idResponsable { get; set; }
 
         [Required]
-        public virtual Material material { get; set; }
+        public virtual Personal responsable { get; set; }
+
+        public virtual ICollection<ItemOrdenTrabajo> itemsOT { get; set; }
 
         [Required]
-        [NotMapped]
-        public int idTipoEntradaMaterial { get; set; }
-
-        [Required]
-        public virtual TipoEntradaMaterial tipoEntradaMaterial { get; set; }
+        public bool hab { get; set; }
 
         /// <summary>
         /// Usuario que creo la entrada
@@ -74,14 +85,10 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
         [StringLength(20)]
         public string LAST_UPDATED_IP { get; set; }
 
-        public EntradaMaterial()
+        public OrdenTrabajo()
         {
-
-        }
-
-        public void SumarStockMaterial()
-        {
-            material.stockActual += cantidad;
+            this.itemsOT = new HashSet<ItemOrdenTrabajo>();
+            this.hab = true;
         }
     }
 }

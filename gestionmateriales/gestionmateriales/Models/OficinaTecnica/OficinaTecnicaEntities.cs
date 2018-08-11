@@ -26,7 +26,11 @@ namespace gestionmateriales.Models.OficinaTecnica
 
         public DbSet<OrdenTrabajoAplicacion> ordenTrabajoAplicacion { get; set; }
 
+        public DbSet<OrdenTrabajo> ordenTrabajo { get; set; }
+
         public DbSet<OrdenPedido> ordenPedido { get; set; }
+
+        public DbSet<OrdenCompra> ordenCompra { get; set; }
 
         public DbSet<TipoMaterial> tipoMaterial { get; set; }
 
@@ -38,6 +42,10 @@ namespace gestionmateriales.Models.OficinaTecnica
 
         public DbSet<ItemOrdenTrabajoAplicacion> ItemOTA { get; set; }
 
+        public DbSet<ItemOrdenTrabajo> ItemOT { get; set; }
+
         public DbSet<ItemOrdenPedido> ItemOP { get; set; }
+
+        public DbSet<ItemOrdenCompra> ItemOC { get; set; }
     }
 }

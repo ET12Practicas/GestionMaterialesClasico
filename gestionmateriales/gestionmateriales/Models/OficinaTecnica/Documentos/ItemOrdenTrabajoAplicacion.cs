@@ -1,8 +1,8 @@
-﻿using gestionmateriales.Models.OficinaTecnica.Documentos;
+﻿using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
+namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
     [Table("ItemOrdenTrabajoAplicacion")]
     public class ItemOrdenTrabajoAplicacion
@@ -15,12 +15,14 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
         public int cantidad { get; set; }
 
         [Required]
+        [NotMapped]
         public int idMaterial { get; set; }
 
         [Required]
         public Material material { get; set; }
 
         [Required]
+        [NotMapped]
         public int idOrdenTrabajoAplicacion { get; set; }
 
         [Required]
@@ -28,20 +30,7 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
 
         public ItemOrdenTrabajoAplicacion()
         {
-        }
 
-        public ItemOrdenTrabajoAplicacion(int idOta, int idMat, int cant)
-        {
-            this.idItemOrdenTrabajoAplicacion = idOta;
-            this.idMaterial = idMat;
-            this.cantidad = cant;
-        }
-
-        public ItemOrdenTrabajoAplicacion(OrdenTrabajoAplicacion aOrden, Material aMaterial, int cant)
-        {
-            this.ordenTrabajoAplicacion = aOrden;
-            this.material = aMaterial;
-            this.cantidad = cantidad;
         }
     }
 }

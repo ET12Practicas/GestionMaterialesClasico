@@ -15,7 +15,7 @@ $(document).ready(function () {
     });
 
     requestPersonal.done(function (data) {
-        console.log(data.Response);
+        //console.log(data.Response);
         tablaPersonal = $('#grdPersonal').DataTable({
             //"dom": "lfrtip",
             "autoWidth": false, 

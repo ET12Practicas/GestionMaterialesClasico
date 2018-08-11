@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using gestionmateriales.Models.OficinaTecnica;
@@ -142,7 +143,7 @@ namespace gestionmateriales.Controllers
         public ActionResult Borrar(int id)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            Material m = db.materiales.Find(id);
+            Material m = db.materiales.Where(x => x.idMaterial == id).Include(x => x.proveedor).Include(x => x.unidad).Include(x => x.tipoMaterial).FirstOrDefault();
 
             try
             {

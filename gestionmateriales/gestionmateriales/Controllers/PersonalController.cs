@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System;
 using gestionmateriales.Models.OficinaTecnica;
 using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using System.Web;
 
 namespace gestionmateriales.Controllers
 {
@@ -31,31 +32,37 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Agregar(Personal aPersonal)
         {
-            var db = new OficinaTecnicaEntities();
-            if (db.personal.Any(y => (y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni) && y.hab))
+            using (var db = new OficinaTecnicaEntities())
             {
-                ViewBag.Result = 1;
-                return View("Agregar", aPersonal);
-            }
-            try
-            {
-                //db.personal.Add(new Personal(aPersonal.nombre, aPersonal.dni, aPersonal.fichaCensal));
-                var p = new Personal();
-                p.nombre = aPersonal.nombre;
-                p.dni = aPersonal.dni;
-                p.fichaCensal = aPersonal.fichaCensal;
-                p.CREATED_BY = User.Identity.Name;
-                p.CREATION_DATE = DateTime.Now;
-                p.CREATION_IP = Request.UserHostAddress;
-                p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now;
-                p.LAST_UPDATED_IP = Request.UserHostAddress;
-                db.personal.Add(p);
-                db.SaveChanges();
-            }
-            catch
-            {
-                return RedirectToAction("Error406", "Error");
+                if (db.personal.Any(y => (y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni) && y.hab))
+                {
+                    ViewBag.Result = 1;
+                    return View("Agregar", aPersonal);
+                }
+
+                try
+                {
+                    var p = new Personal
+                    {
+                        nombre = aPersonal.nombre,
+                        dni = aPersonal.dni,
+                        fichaCensal = aPersonal.fichaCensal,
+                        CREATED_BY = User.Identity.Name,
+                        CREATION_DATE = DateTime.Now,
+                        CREATION_IP = Request.UserHostAddress,
+                        LAST_UPDATED_BY = User.Identity.Name,
+                        LAST_UPDATED_DATE = DateTime.Now,
+                        LAST_UPDATED_IP = Request.UserHostAddress
+                    };
+                    db.personal.Add(p);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    //System.IO.File.WriteAllText(@"F:\logs\log.txt", ex.ToString());
+                    return RedirectToAction("Error406", "Error");
+
+                }
             }
             ViewBag.Result = 0;
             return View("Agregar");

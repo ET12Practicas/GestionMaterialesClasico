@@ -28,6 +28,7 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
         /// <summary>
         /// Documento Nacional de Identidad
         /// </summary>
+        [Required]
         public int dni { get; set; }
 
         /// <summary>
@@ -81,14 +82,6 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
         /// </summary>
         public Personal()
         {
-            this.hab = true;
-        }
-
-        public Personal(string aNombre, int aDni, int aFichaCensal)
-        {
-            this.nombre = aNombre;
-            this.dni = aDni;
-            this.fichaCensal = aFichaCensal;
             this.hab = true;
         }
     }
