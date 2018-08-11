@@ -5,7 +5,7 @@
     if (item.isParent == false && item.parentId == 0)
     {
         <li class="nav-item">
-            <a class="nav-link" href="@Url.Action(item.action, item.controller)"><i class="@item.imageClass"></i> @item.nameOption</a>
+            <a class="nav-link" href="@Url.Action(item.action, item.controller)"><i class="@item.imageClass"></i> <span>@item.nameOption</span></a>
         </li>
     }
     else
@@ -13,7 +13,7 @@
         if (item.isParent == true && item.parentId == 0)
         {
         <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="@item.imageClass"></i> @item.nameOption @if (item.Id == 30) { <span id="comprasPendientes" class="notif badge badge-info"></span> }</a>
+            <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="@item.imageClass"></i> <span>@item.nameOption</span> @*@if (item.Id == 30) { <span id="comprasPendientes" class="notif badge badge-info"></span> }*@</a>
             <div class="dropdown-menu">
                 @foreach (var child in Model.Where(p => p.parentId == item.Id))
                 {

@@ -2,89 +2,84 @@
 @{
     ViewBag.Title = "Historial";
 }
-<br />
-<br />
 <div class="container-fluid">
-    <h2>Historial</h2>
-    <h6>Ordenes de trabajo vinculadas a un material</h6>
-    <br />
-    <h5><strong>Código:</strong> @ViewData["codigo"] - <strong>Nombre:</strong> @ViewData["nombre"]</h5>
-    <br />
+    <h1 class="display-4">Materiales</h1>
+    <p>Historial de ordenes de trabajo vinculadas al material</p>
+    <hr />
+    <p>Código: <strong>@ViewData["codigo"]</strong> - Nombre: <strong>@ViewData["nombre"]</strong></p>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <table id="tabla_historial" class="table table-bordered table-striped table-hover">
-            <thead>
+<div class="col-md-12">
+    <table id="tabla_historial" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Número
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Turno
+                </th>
+                <th>
+                    Orden de Trabajo
+                </th>
+                <th>
+                    Responsable
+                </th>
+                <th>
+                    Jefe de Sección
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>
-                        Número
-                    </th>
-                    <th>
-                        Fecha
-                    </th>
-                    <th>
-                        Turno
-                    </th>
-                    <th>
-                        Orden de Trabajo
-                    </th>
-                    <th>
-                        Responsable
-                    </th>
-                    <th>
-                        Jefe de Sección
-                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numero)
+                    </td>
+                    <td>
+                        @item.fecha.ToString("dd-MM-yyyy")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.turno.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.responsable.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.jefeSeccion.nombre)
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.numero)
-                        </td>
-                        <td>
-                            @item.fecha.ToString("dd-MM-yyyy")
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.turno.nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.responsable.nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.jefeSeccion.nombre)
-                        </td>
-                    </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        $('#tabla_historial').DataTable({
+            "language": {
+                "decimal": "",
+                "emptyTable": "No hay información disponible para mostrar",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                "infoEmpty": "No hay materiales para mostrar",
+                "infoFiltered": "(filtrados de _MAX_ personas totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Ver _MENU_ materiales por página",
+                "loadingRecords": "Cargando...",
+                "processing": "En proceso...",
+                "search": "Buscar",
+                "zeroRecords": "No hay materiales que coincidan con el filtro",
+                "paginate": {
+                    "first": "Primera",
+                    "last": "Última",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
                 }
-            </tbody>
-        </table>
-        <script type="text/javascript">
-            $('#tabla_historial').DataTable({
-                "language": {
-                    "decimal": "",
-                    "emptyTable": "No hay información disponible para mostrar",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                    "infoEmpty": "No hay materiales para mostrar",
-                    "infoFiltered": "(filtrados de _MAX_ personas totales)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Ver _MENU_ materiales por página",
-                    "loadingRecords": "Cargando...",
-                    "processing": "En proceso...",
-                    "search": "Buscar",
-                    "zeroRecords": "No hay materiales que coincidan con el filtro",
-                    "paginate": {
-                        "first": "Primera",
-                        "last": "Última",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
-            });
-        </script>
-    </div>
+            }
+        });
+    </script>
 </div>

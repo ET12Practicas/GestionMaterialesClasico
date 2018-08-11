@@ -64,7 +64,7 @@ $(document).ready(function () {
                     "data": "detalle"
                 },
                 {
-                    "sWidth": "11%",
+                    "sWidth": "14%",
                     "mRender": function (dato, type, row) {
                         
                         var verDetalleHtml = 

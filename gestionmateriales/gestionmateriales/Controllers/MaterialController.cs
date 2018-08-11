@@ -166,7 +166,7 @@ namespace gestionmateriales.Controllers
         public ActionResult Historial(int id)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            List<OrdenTrabajoAplicacion> ordenesTrabajo = db.ordenTrabajoAplicacion.Where(x => x.itemsOTA.Any(y => y.idMaterial == id)).ToList();
+            List<OrdenTrabajoAplicacion> ordenesTrabajo = db.ordenTrabajoAplicacion.Where(x => x.itemsOTA.Any(y => y.material.idMaterial == id)).ToList();
             var material = db.materiales.FirstOrDefault(x => x.idMaterial == id);
             ViewData["codigo"] = material.codigo;
             ViewData["nombre"] = material.nombre;

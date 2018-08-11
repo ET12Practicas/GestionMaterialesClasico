@@ -2,17 +2,17 @@
     ViewBag.Title = "Personal";
 }
 
-    <br />
-    <br />
-    <div class="container-fluid">
-        <h2>Gestión de Personal</h2>
-        <h6>Personal del area de taller o especialidad autorizado para solicitar y retirar materiales.</h6>
+<div class="container-fluid">
+    <h1 class="display-4">Personal</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Personal del area de taller o especialidad autorizado para solicitar y retirar materiales.</p>
+        </div>
+        <div class="offset-md-4 col-md-2">
+            <a id="btn_crearPersonal" class="btn btn-outline-primary btn-block" href="~/Personal/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nuevo personal para solicitar y/o retirar materiales"><i class="fas fa-male"></i> Nuevo Personal</a>
+        </div>
     </div>
     <hr />
-    <div class="col-2">
-        <a id="btn_crearPersonal" class="btn btn-outline-primary btn-block" href="~/Personal/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nuevo personal para solicitar y/o retirar materiales"><i class="fas fa-male"></i> Nuevo Personal</a>
-    </div>
-    <br />
     <table id="grdPersonal" class="table table-bordered table-striped table-hover table-condensed">
         <thead>
             <tr>
@@ -34,4 +34,5 @@
             </tr>
         </thead>
     </table>
-    <script type="text/javascript" src="~/Scripts/Views/Personal.js"></script>
+</div>
+<script type="text/javascript" src="~/Scripts/Views/Personal.js"></script>
