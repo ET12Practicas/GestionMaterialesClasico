@@ -24,7 +24,7 @@
         //    $('#verMaterial').html('<p>No existe el material con el código del material ingresado.</p>');
         //}
         var fuseOptions = { keys: ["nombre", "codigo"] };
-        var options = { display: "nombre", key: "codigo", resultsLimit: 10, fuseOptions: fuseOptions };
+        var options = { display: "nombre", key: "codigo", resultsLimit: 7, fuseOptions: fuseOptions };
         $("#materialPicker").fuzzyComplete(data.Response, options);
         
         //Visualiza el detalle del material seleccionado
@@ -40,6 +40,6 @@
 });
 
 $('.output').on('DOMSubtreeModified', function () {
-    console.log($('#codigoMaterial').text());
+    //console.log($('#codigoMaterial').text());
     $('#codMaterial').val($('#codigoMaterial').text());
 })
