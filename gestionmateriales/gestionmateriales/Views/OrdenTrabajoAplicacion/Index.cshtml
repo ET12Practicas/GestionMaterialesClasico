@@ -3,19 +3,18 @@
     ViewBag.Title = "OrdenTrabajo";
 }
 
-<br />
-<br />
 <div class="container-fluid">
-    <h2>Ordenes de Trabajo de Aplicación</h2>
-    <h6>Ordenes de trabajo ingresadas.</h6>
-</div>
-<br />
-<div class="col-md-2">
-    <a id="btn_nuevarordentrabajo" class="btn btn-outline-primary" href="~/OrdenTrabajoAplicacion/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Genera una nueva orden de trabajo de aplicación"><i class="fas fa-file-alt"></i> Nueva Orden de Trabajo de Aplicación</a>
-</div>
-<br />
-<div class="row">
-    <div class="col-md-12">
+    <h1 class="display-4">Orden de Trabajo de Aplicación</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Ordenes de trabajo de aplicación</p>
+        </div>
+        <div class="offset-4 col-md-2">
+            <a id="btn_nuevarordentrabajo" class="btn btn-block btn-outline-primary" href="~/OrdenTrabajoAplicacion/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Genera una nueva orden de trabajo de aplicación"><i class="fas fa-file-alt"></i> Nueva Orden</a>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
         <table id="tabla_ordenpedido" class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
@@ -83,15 +82,15 @@
                     "decimal": "",
                     "emptyTable": "No hay información disponible para mostrar",
                     "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                    "infoEmpty": "No hay ordenes de trabajo para mostrar",
-                    "infoFiltered": "(filtrados de _MAX_ ordenes de trabajo totales)",
+                    "infoEmpty": "No hay ordenes para mostrar",
+                    "infoFiltered": "(filtrados de _MAX_ ordenes totales)",
                     "infoPostFix": "",
                     "thousands": ",",
-                    "lengthMenu": "Ver _MENU_ ordenes de trabajo por página",
+                    "lengthMenu": "Ver _MENU_ ordenes por página",
                     "loadingRecords": "Cargando...",
                     "processing": "En proceso...",
                     "search": "Buscar",
-                    "zeroRecords": "No hay ordenes de trabajo que coincidan con el filtro",
+                    "zeroRecords": "No hay ordenes que coincidan con el filtro",
                     "paginate": {
                         "first": "Primera",
                         "last": "Última",

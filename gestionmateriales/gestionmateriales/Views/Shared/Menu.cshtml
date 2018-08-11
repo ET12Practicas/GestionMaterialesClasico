@@ -15,6 +15,11 @@
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="@item.imageClass"></i> <span>@item.nameOption</span> @*@if (item.Id == 30) { <span id="comprasPendientes" class="notif badge badge-info"></span> }*@</a>
             <div class="dropdown-menu">
+                @if (item.nameOption == "Documentos") 
+                {
+                    <h6 class="dropdown-header">Orden de:</h6>
+                }
+
                 @foreach (var child in Model.Where(p => p.parentId == item.Id))
                 {
                     <a class="dropdown-item" href="@Url.Action(child.action, child.controller)">@child.nameOption </a>

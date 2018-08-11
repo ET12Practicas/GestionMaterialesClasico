@@ -21,7 +21,7 @@ namespace gestionmateriales.Controllers
                 int cantMat;
                 itemsMateriales = new List<ItemOrdenTrabajoAplicacion>();
                 ot = db.ordenTrabajoAplicacion.Find(id);
-                var items = db.ItemOTA.Where(x => x.idOrdenTrabajoAplicacion == id).ToList();
+                var items = db.ItemOTA.Where(x => x.ordenTrabajoAplicacion.idOrdenTrabajoAplicacion == id).ToList();
                 foreach (Material mat in db.materiales.Where(x => x.hab))
                 {
                     cantMat = getCantidadByIdMaterial(items, mat.idMaterial);
