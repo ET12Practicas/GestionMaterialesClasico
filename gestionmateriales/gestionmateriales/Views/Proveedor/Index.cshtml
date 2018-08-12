@@ -22,30 +22,49 @@
                         CUIT
                     </th>
                     <th>
-                        Razón Social
-                    </th>
-                    <th>
-                        Zona
-                    </th>
-                    <th>
-                        Dirección
-                    </th>
-                    <th>
                         Teléfono
                     </th>
                     <th>
                         Email
                     </th>
                     <th>
-                        Acciones
-                    </th>
-                    <th>
-                    </th>
-                    <th>
+                        Opciones
                     </th>
                 </tr>
             </thead>
         </table>
     </div>
+
+    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Proveedor</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Proveedor:</strong> <span id="proNombre"></span></p>
+                            <p><strong>Razón Social:</strong> <span id="proRazonSocial"></span></p>
+                            <p><strong>CUIT:</strong> <span id="proCuit"></span></p>
+                        </div>
+                        <div class="col-md-6 ml-auto">
+                            <p><strong>Teléfono:</strong> <span id="proTelefono"></span></p>
+                            <p><strong>Correo:</strong> <span id="proCorreo"></span></p>
+                            <p><strong>Dirección:</strong> <span id="proDireccion"></span></p>
+                            <p><strong>Zona:</strong> <span id="proZona"></span></p>
+                            <p><strong>Horario:</strong> <span id="proHorario"></span></p>
+                            <p><strong>Contacto:</strong> <span id="proContacto"></span></p>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="~/Scripts/Views/Proveedor.js"></script>
 </div>

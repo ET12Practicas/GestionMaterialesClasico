@@ -11,6 +11,7 @@ $(document).ready(function () {
     var request = $.ajax({
         url: baseURL + "Proveedor/GetProveedores",
         type: 'GET',
+        data: { desde: 0, hasta : 200 },
         contentType: 'application/json; charset=utf-8'
     });
 
@@ -21,10 +22,10 @@ $(document).ready(function () {
             "autoWidth": false, 
             "aaData": data.Response,
             "aoColumnDefs": [{
-                "targets": [0, 3, 4, 5, 9, 10],
+                "targets": [0],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [8]
+                "aTargets": [5]
             }],
             "aoColumns": [
                 {
@@ -37,15 +38,6 @@ $(document).ready(function () {
                 {
                     "sWidth": "10%",
                     "data": "cuit"
-                },
-                {
-                    "data": "razonSocial"
-                },
-                {
-                    "data": "zona"
-                },
-                {
-                    "data": "direccion"
                 },
                 {
                     "sWidth": "10%",
@@ -61,34 +53,35 @@ $(document).ready(function () {
                         //console.log(row);
 
                         var verDetalleHtml = 
-                            '<a title="Ver Detalle" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-ver-' + row.idProveedor + '"><i class="fas fa-eye"></i> </a>' +
-                            '<div class="modal fade" id="myModal-ver-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
-                            '<div class="modal-dialog modal-dialog-centered" role="document">' +
-                            '<div class="modal-content">' +
-                            '<div class="modal-header">' +
-                            '<h4 class="modal-title" id="myModalLabel">Proveedor</h4>' +
-                            '</div>' +
-                            '<div class="modal-body">' +
-                            '<div class="row">' +
-                            '<div class="col-md-6">' +
-                            '<p><strong>Proveedor:</strong> ' + row.nombre + '</p>' +
-                            '<p><strong>Razón Social:</strong> ' + row.razonSocial + '</p>' +
-                            '<p><strong>CUIT:</strong> ' + row.cuit + '</p>' +
-                            '</div>' +
-                            '<div class="col-md-6 ml-auto">' +
-                            '<p><strong>Teléfono:</strong> ' + row.telefono + '</p>' +
-                            '<p><strong>Correo:</strong> ' + row.email + '</p > ' +
-                            '<p><strong>Dirección:</strong> ' + row.direccion + '</p > ' +
-                            '<p><strong>Zona:</strong> ' + row.zona + '</p > ' +
-                            '<p><strong>Horario:</strong> ' + row.horario + '</p > ' +
-                            '<p><strong>Contacto:</strong> ' + row.nombreContacto + '</p > ' +
-                            '</div>' +
-                            '</div>' +
-                            '<br />' +
-                            '</div>' +
-                            '<div class="modal-footer">' +
-                            '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
-                            '</div></div></div></div></div> ';
+                            '<button type="button" title="Detalle" class="btn btn-outline-dark" href="" id="matDet-' + row.idProveedor + '" onclick="getProveedorDetalle(this);"><i class="fas fa-eye"></i></button> ';
+                            //'<a title="Ver Detalle" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-ver-' + row.idProveedor + '"><i class="fas fa-eye"></i> </a>' +
+                            //'<div class="modal fade" id="myModal-ver-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                            //'<div class="modal-dialog modal-dialog-centered" role="document">' +
+                            //'<div class="modal-content">' +
+                            //'<div class="modal-header">' +
+                            //'<h4 class="modal-title" id="myModalLabel">Proveedor</h4>' +
+                            //'</div>' +
+                            //'<div class="modal-body">' +
+                            //'<div class="row">' +
+                            //'<div class="col-md-6">' +
+                            //'<p><strong>Proveedor:</strong> ' + row.nombre + '</p>' +
+                            //'<p><strong>Razón Social:</strong> ' + row.razonSocial + '</p>' +
+                            //'<p><strong>CUIT:</strong> ' + row.cuit + '</p>' +
+                            //'</div>' +
+                            //'<div class="col-md-6 ml-auto">' +
+                            //'<p><strong>Teléfono:</strong> ' + row.telefono + '</p>' +
+                            //'<p><strong>Correo:</strong> ' + row.email + '</p > ' +
+                            //'<p><strong>Dirección:</strong> ' + row.direccion + '</p > ' +
+                            //'<p><strong>Zona:</strong> ' + row.zona + '</p > ' +
+                            //'<p><strong>Horario:</strong> ' + row.horario + '</p > ' +
+                            //'<p><strong>Contacto:</strong> ' + row.nombreContacto + '</p > ' +
+                            //'</div>' +
+                            //'</div>' +
+                            //'<br />' +
+                            //'</div>' +
+                            //'<div class="modal-footer">' +
+                            //'<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
+                            //'</div></div></div></div></div> ';
 
                         var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i> </a></div> ';
 
@@ -111,12 +104,6 @@ $(document).ready(function () {
                             '</div></div></div></div></div></div>';
                         return verDetalleHtml + editarHtml + borrarHtml;
                     }
-                },
-                {
-                    "data": "horario"
-                },
-                {
-                    "data": "nombreContacto"
                 }],
             "order": [1, "asc"],
             "language": {
@@ -146,3 +133,34 @@ $(document).ready(function () {
         alert(data.Response);
     });
 })
+
+function getProveedorDetalle(data) {
+
+    var id = data.id.split('-')[1];
+
+    var requestProveedor = $.ajax({
+        url: baseURL + "Proveedor/GetProveedor",
+        type: 'GET',
+        data: { idProveedor: id },
+        contentType: 'application/json; charset=utf-8',
+        failure: function () {
+            alert('No se puede traer el detalle del material o harramienta.');
+        }
+    });
+
+    requestProveedor.done(function (data) {
+        //console.log(data.Response[0]);
+        $('#proNombre').html(data.Response[0].nombre);
+        $('#proRazonSocial').html(data.Response[0].razonSocial);
+        $('#proCuit').html(data.Response[0].cuit);
+        $('#proTelefono').html(data.Response[0].telefono);
+        $('#proCorreo').html(data.Response[0].correo);
+
+        $('#proDireccion').html(data.Response[0].direccion);
+        $('#proZona').html(data.Response[0].zona);
+        $('#proHorario').html(data.Response[0].horario);
+        $('#proContacto').html(data.Response[0].contacto);
+
+        $('#modalDetalle').modal("show");
+    });
+}

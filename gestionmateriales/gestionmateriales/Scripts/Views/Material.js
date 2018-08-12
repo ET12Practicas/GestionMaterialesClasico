@@ -155,7 +155,6 @@ function loadMateriales(from, end) {
     });
 }
 
-//$('button[id^=matDet]').click(function () {
 function getMaterialDetalle(data) {
 
     var id = data.id.split('-')[1];
