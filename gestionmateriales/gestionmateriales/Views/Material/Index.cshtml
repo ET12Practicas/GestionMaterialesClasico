@@ -1,8 +1,4 @@
-﻿@{
-    ViewBag.Title = "Materiales";
-}
-
-<div class="container-fluid">
+﻿<div class="container-fluid">
     <h1 class="display-4">Materiales</h1>
     <div class="row">
         <div class="col-md-6">
@@ -14,35 +10,62 @@
     </div>
     <hr />
     <div class="row">
-            <table id="grdMateriales" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            Código
-                        </th>
-                        <th>
-                            Material
-                        </th>
-                        <th>
-                            Stock Actual
-                        </th>
-                        <th>
-                            Stock Mínimo
-                        </th>
-                        <th>
-                            Stock
-                        </th>
-                        <th></th>
-                        <th>
-                            Opciones
-                        </th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-            </table>
-            <script type="text/javascript" src="~/Scripts/Views/Material.js"></script>
+        <table id="grdMateriales" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Material
+                    </th>
+                    <th>
+                        Stock Actual
+                    </th>
+                    <th>
+                        Stock Mínimo
+                    </th>
+                    <th>
+                        Stock
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <script type="text/javascript" src="~/Scripts/Views/Material.js"></script>
+    </div>
+
+    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Material</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Código:</strong> <span id="matCodigo"></span></p>
+                            <p><strong>Material:</strong> <span id="matNombre"></span></p>
+                            <p><strong>Tipo:</strong> <span id="matTipo"></span></p>
+                            <p><strong>Unidad:</strong> <span id="matUnidad"></span></p>
+                            <p><strong>Proveedor:</strong> <span id="matProveedor"></span></p>
+                        </div>
+                        <div class="col-md-6 ml-auto">
+                            <p><strong>Stock Actual:</strong> <span id="matStockActual"></span></p>
+                            <p><strong>Stock Mínimo:</strong> <span id="matStockMinimo"></span></p>
+                            <p><strong>Estado del Stock:</strong> <span id="matStockEstado"></span></p>
+                            <p><strong>Detalle:</strong> <span id="matDetalle"></span></p>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

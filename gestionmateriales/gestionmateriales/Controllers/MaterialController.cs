@@ -191,15 +191,28 @@ namespace gestionmateriales.Controllers
             ViewBag.idUnidad = new SelectList(db.unidades.ToList(), "idUnidad", "nombre", selectedUnidad);
         }
 
+        //[Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
+        //[Route("/Material/GetMaterial/{id}")]
+        //[HttpGet]
+        //public JsonResult GetMaterial(string codigo)
+        //{
+        //    OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+        //    var material = from mat in db.materiales
+        //                   where mat.codigo.ToUpper().Equals(codigo.ToUpper())
+        //                   select new { mat.codigo, mat.nombre };
+
+        //    return Json(new { Name = "/GetMaterial", Response = material, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        //}
+
         [Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
         [Route("/Material/GetMaterial/{id}")]
         [HttpGet]
-        public JsonResult GetMaterial(string codigo)
+        public JsonResult GetMaterial(int IdMaterial)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            var material = from mat in db.materiales
-                           where mat.codigo.ToUpper().Equals(codigo.ToUpper())
-                           select new { mat.codigo, mat.nombre };
+            var material = from m in db.materiales
+                           where m.idMaterial == IdMaterial && m.hab == true
+                           select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.detalle, unidad = m.unidad.nombre, proveedor = m.proveedor.nombre, tipoMaterial = m.tipoMaterial.nombre };
 
             return Json(new { Name = "/GetMaterial", Response = material, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
@@ -207,12 +220,15 @@ namespace gestionmateriales.Controllers
         [Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
         [Route("/Material/GetMateriales")]
         [HttpGet]
-        public JsonResult GetMateriales()
+        public JsonResult GetMateriales(int desde, int hasta)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             var materiales = from m in db.materiales
                              where m.hab == true
-                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.detalle, unidad = m.unidad.nombre, proveedor = m.proveedor.nombre, tipoMaterial = m.tipoMaterial.nombre };
+                             //select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo, m.detalle, unidad = m.unidad.nombre, proveedor = m.proveedor.nombre, tipoMaterial = m.tipoMaterial.nombre };
+                             select new { m.idMaterial, m.codigo, m.nombre, m.stockActual, m.stockMinimo };
+
+            //materiales = materiales.Take(7);
 
             return Json(new { Name = "/GetMateriales", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }

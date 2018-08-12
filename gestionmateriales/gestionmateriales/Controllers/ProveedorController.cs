@@ -18,18 +18,6 @@ namespace gestionmateriales.Controllers
             return View("Index");
         }
 
-        [Route("/Proveedor/GetProveedores")]
-        [HttpGet]
-        public JsonResult GetProveedores()
-        {
-            var db = new OficinaTecnicaEntities();
-            var proveedores = from p in db.proveedores
-                              where p.hab == true
-                              select new { p.idProveedor, p.nombre, p.cuit, p.razonSocial, p.zona, p.direccion, p.telefono, p.email, p.horario, p.nombreContacto };
-
-            return Json(new { Name = "/GetProveedores", Response = proveedores, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
-        }
-
         [Authorize(Roles = "administrador, oficinatecnica, compras")]
         [Route("/Proveedor/Agregar")]
         [HttpGet]
@@ -156,5 +144,30 @@ namespace gestionmateriales.Controllers
             }
             return RedirectToAction("Index", "Proveedor");
         }
+
+        [Route("/Proveedor/GetProveedores")]
+        [HttpGet]
+        public JsonResult GetProveedores()
+        {
+            var db = new OficinaTecnicaEntities();
+            var proveedores = from p in db.proveedores
+                              where p.hab == true
+                              select new { p.idProveedor, p.nombre, p.cuit, p.razonSocial, p.zona, p.direccion, p.telefono, p.email, p.horario, p.nombreContacto };
+
+            return Json(new { Name = "/GetProveedores", Response = proveedores, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("/Proveedor/GetProveedores")]
+        [HttpGet]
+        public JsonResult GetProveedor(int IdProveedor)
+        {
+            var db = new OficinaTecnicaEntities();
+            var proveedores = from p in db.proveedores
+                              where p.hab == true
+                              select new { p.idProveedor, p.nombre, p.cuit, p.razonSocial, p.zona, p.direccion, p.telefono, p.email, p.horario, p.nombreContacto };
+
+            return Json(new { Name = "/GetProveedores", Response = proveedores, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
