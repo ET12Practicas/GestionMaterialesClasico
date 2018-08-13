@@ -1,13 +1,7 @@
-﻿@model IEnumerable<gestionmateriales.Models.GestionMateriales.OrdenPedido>
-@{
-    ViewBag.Title = "Orden de Pedido";
-}
-
-<br />
-    <br/>
+﻿
         <div class="container-fluid">
-            <h2>Ordenes de Pedidos</h2>
-            <h6>Ordenes de pedido ingresadas.</h6>
+            <h1 class="display-4">Ordenes de Pedidos</h1>
+            <p>Ordenes de pedido ingresadas</p>
         </div>
         
     <hr />
@@ -15,7 +9,7 @@
         <a id="btn_CrearOrdenPedido" class="btn btn-outline-primary" href="~/OrdenPedido/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agregar nueva orden de pedido">Nueva Orden de Pedido</a>
     </div>
     <br />
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-12">
             <table id="tabla_ordenPedido" class="table table-bordered table-striped table-hover">
                 <thead>
@@ -92,4 +86,4 @@
         $('#btn_CrearOrdenPedido').tooltip();
     </script>
             </div>
-    </div>
+    </div>*@

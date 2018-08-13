@@ -11,19 +11,29 @@ using gestionmateriales.Models.OficinaTecnica.Tipos;
 namespace gestionmateriales.Controllers
 {
     public class OrdenTrabajoAplicacionController : Controller
-    {
-        OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-        
+    {        
         // GET: OrdenTrabajo
         [Authorize(Roles = "administrador, oficinatecnica, deposito, rectoria")]
         [Route("/OrdenTrabajoAplicacion")]
         [HttpGet]
         public ActionResult Index()
         {
-            List<OrdenTrabajoAplicacion> ordenesTrabajo = db.ordenTrabajoAplicacion.Where(x => x.hab).ToList();
-            return View(ordenesTrabajo);
+            //List<OrdenTrabajoAplicacion> ordenesTrabajo = db.ordenTrabajoAplicacion.Where(x => x.hab).ToList();
+            return View("Index");
         }
-        
+
+        [Authorize(Roles = "administrador, oficinatecnica, deposito, rectoria")]
+        [Route("/OrdenTrabajoAplicacion/GetOTA")]
+        [HttpGet]
+        public JsonResult GetOTA()
+        {
+            var db = new OficinaTecnicaEntities();
+            var ota = from o in db.ordenTrabajoAplicacion
+                      where o.hab == true
+                      select new { id = o.idOrdenTrabajoAplicacion, num = o.numero, fecha = o.fecha, turno = o.turno.nombre, nombre = o.nombre, res = o.responsable.nombre, jds = o.jefeSeccion.nombre, cant = o.itemsOTA.Count };
+            return Json(new { Name = "/GetOTA", Response = ota, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: OrdenTrabajo/Agregar
         [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/OrdenTrabajoAplicacion/Agregar")]
@@ -42,6 +52,7 @@ namespace gestionmateriales.Controllers
         public ActionResult Agregar(OrdenTrabajoAplicacion aOT)
         {
             int idOt = -1;
+            var db = new OficinaTecnicaEntities();
 
             if (db.ordenTrabajoAplicacion.Any(y => y.numero == aOT.numero))
             {
@@ -83,16 +94,16 @@ namespace gestionmateriales.Controllers
                 return RedirectToAction("Error406", "Error");
             }
 
-            return RedirectToAction("Index", "ShopCartMaterial", new { id = idOt });
+            return RedirectToAction("Materiales", new { id = idOt });
         }
 
         //GET: OrdenTrabajo/Editar/1
         [Authorize(Roles = "administrador, oficinatecnica")]
         [Route("/OrdenTrabajoAplicacion/Editar/{id}")]
         [HttpGet]
-        public ActionResult Editar(int id, int nro, string name)
+        public ActionResult Editar(int id)
         {
-            //OrdenTrabajoAplicacion ordenSelect = db.ordenTrabajoAplicacion.Find(id);
+            var db = new OficinaTecnicaEntities();
             var ordenSelect = db.ordenTrabajoAplicacion
                 .Where(x => x.idOrdenTrabajoAplicacion == id)
                 .Include(x => x.jefeSeccion)
@@ -102,8 +113,8 @@ namespace gestionmateriales.Controllers
             cargarJefeSeccion(ordenSelect.jefeSeccion.idPersonal);
             cargarResponsable(ordenSelect.responsable.idPersonal);
             cargarTurno(ordenSelect.idTurno);
-            ViewData["numero"] = nro;
-            ViewData["nombre"] = name;
+            ViewData["numero"] = ordenSelect.numero;
+            ViewData["nombre"] = ordenSelect.nombre;
             return View(ordenSelect);
         }
 
@@ -112,6 +123,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, OrdenTrabajoAplicacion aOT)
         {
+            var db = new OficinaTecnicaEntities();
             int idOt = -1;
             OrdenTrabajoAplicacion otEdit = db.ordenTrabajoAplicacion.Find(id);
             if (db.ordenTrabajoAplicacion.Where(x => x.idOrdenTrabajoAplicacion != id).Any(y => y.numero == aOT.numero))
@@ -150,23 +162,102 @@ namespace gestionmateriales.Controllers
             {
                 return RedirectToAction("Error406", "Error");
             }
-            
-            return RedirectToAction("Index", "ShopCartMaterial", new { id = idOt });
+
+            ViewData["IdOT"] = idOt;
+
+            return RedirectToAction("Materiales", new { id = idOt });
         }
 
         private void cargarTurno(object selectedTurno = null)
         {
+            var db = new OficinaTecnicaEntities();
             ViewBag.idTurno = new SelectList(db.turnos.ToList(), "idTurno", "nombre", selectedTurno);
         }
 
         private void cargarJefeSeccion(object selectedJefeSeccion = null)
         {
+            var db = new OficinaTecnicaEntities();
             ViewBag.idJefeSeccion = new SelectList(db.personal.Where(x => x.hab).ToList(), "idPersonal", "nombre", selectedJefeSeccion);
         }
 
         private void cargarResponsable(object selectedResponsable = null)
         {
+            var db = new OficinaTecnicaEntities();
             ViewBag.idResponsable = new SelectList(db.personal.Where(x => x.hab).ToList(), "idPersonal", "nombre", selectedResponsable);
+        }
+
+        // GET: OrdenTrabajo
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/OrdenTrabajoAplicacion/Materiales/{id}")]
+        [HttpGet]
+        public ActionResult Materiales(int id)
+        {
+            var db = new OficinaTecnicaEntities();
+            var ot = db.ordenTrabajoAplicacion.FirstOrDefault(x => x.idOrdenTrabajoAplicacion == id);
+            if (ot == null) throw new Exception("La OTA no existe");
+            ViewData["idOt"] = id;
+            ViewData["numero"] = ot.numero;
+            ViewData["nombre"] = ot.nombre;
+            return View("Materiales");
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/OrdenTrabajoAplicacion/GetMateriales/{id}")]
+        [HttpGet]
+        public JsonResult GetMateriales(int id)
+        {
+            var db = new OficinaTecnicaEntities();
+            int cantMat;
+            var itemsMateriales = new List<object>();
+            var ot = db.ordenTrabajoAplicacion.Find(id);
+            var items = db.ItemOTA.Where(x => x.ordenTrabajoAplicacion.idOrdenTrabajoAplicacion == id).ToList();
+            foreach (Material mat in db.materiales.Where(x => x.hab))
+            {
+                cantMat = getCantidadByIdMaterial(items, mat.idMaterial);
+                itemsMateriales.Add(new { idOT = ot.idOrdenTrabajoAplicacion, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, stkMat = mat.stockActual, cant = cantMat });
+            }
+
+            return Json(new { Name = "/GetMateriales", Response = itemsMateriales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
+        private int getCantidadByIdMaterial(List<ItemOrdenTrabajoAplicacion> items, int idMaterial)
+        {
+            ItemOrdenTrabajoAplicacion item = items.FirstOrDefault(x => x.material.idMaterial == idMaterial);
+            if (item != null)
+                return item.cantidad;
+            return 0;
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/OrdenTrabajoAplicacion/AddItemMaterial")]
+        [HttpPost]
+        public ActionResult AddItemMaterial(int id, int idMaterial, int cant)
+        {
+            var db = new OficinaTecnicaEntities();
+            var ot = db.ordenTrabajoAplicacion.Find(id);
+            var mat = db.materiales.Find(idMaterial);
+            try
+            {
+                if (!ot.itemsOTA.Any(x => x.material.idMaterial == idMaterial))
+                {
+                    ot.itemsOTA.Add(new ItemOrdenTrabajoAplicacion { idOrdenTrabajoAplicacion = ot.idOrdenTrabajoAplicacion, ordenTrabajoAplicacion = ot, idMaterial = idMaterial, material = mat, cantidad = cant });
+                }
+                else
+                {
+                    var item = ot.itemsOTA.Where(x => x.material.idMaterial == idMaterial).FirstOrDefault();
+                    if (item != null)
+                    {
+                        item.cantidad = cant;
+                    }
+                }
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString());
+            }
+
+            return Json("das");
         }
     }
 }

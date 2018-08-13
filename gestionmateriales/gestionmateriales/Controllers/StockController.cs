@@ -64,7 +64,7 @@ namespace gestionmateriales.Controllers
                 db.entradas.Add(nuevaEntrada);
                 db.SaveChanges();
             }
-            catch (Exception ex)
+            catch
             {
                 return RedirectToAction("Error406", "Error");
             }
@@ -130,7 +130,7 @@ namespace gestionmateriales.Controllers
                     return View("Restar");
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 return RedirectToAction("Error406", "Error");
             }

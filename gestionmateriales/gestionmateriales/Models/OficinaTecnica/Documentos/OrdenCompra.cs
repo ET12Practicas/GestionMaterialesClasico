@@ -1,4 +1,5 @@
-﻿using System;
+﻿using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,10 +19,19 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int numero { get; set; }
 
         [Required]
+        public Proveedor proveedor { get; set; }
+
+        [Required]
         public DateTime fecha { get; set; }
 
         [Required]
-        public string destino { get; set; }
+        public Personal responsable { get; set; }
+
+        [Required]
+        public double total { get; set; }
+
+        [Required]
+        public string chequeNro { get; set; }
 
         [Required]
         public bool hab { get; set; }

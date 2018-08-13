@@ -165,11 +165,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\OrdenCompraController.cs" />
     <Compile Include="Controllers\OrdenTrabajoAplicacionController.cs" />
     <Compile Include="Controllers\OrdenPedidoController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
-    <Compile Include="Controllers\ShopCartMaterialController.cs" />
     <Compile Include="Controllers\ShopCartMaterialPedidoController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1923,6 +1923,8 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Material.js" />
+    <Content Include="Scripts\Views\MaterialesOTA.js" />
+    <Content Include="Scripts\Views\OrdenTrabajoAplicacion.js" />
     <Content Include="Scripts\Views\Personal.js" />
     <Content Include="Scripts\Views\Proveedor.js" />
     <Content Include="Scripts\Views\Stock.js" />
@@ -1965,7 +1967,6 @@
     <Content Include="Views\OrdenTrabajoAplicacion\Editar.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
-    <Content Include="Views\ShopCartMaterial\Index.cshtml" />
     <Content Include="Views\Error\Error406.cshtml" />
     <Content Include="Views\ShopCartMaterialPedido\Index.cshtml" />
     <Content Include="Views\Construccion\Index.cshtml" />
@@ -1988,6 +1989,8 @@
     <Content Include="Views\Stock\HistorialIngresos.cshtml" />
     <Content Include="Views\Stock\Restar.cshtml" />
     <Content Include="Views\Stock\Sumar.cshtml" />
+    <Content Include="Views\OrdenCompra\Index.cshtml" />
+    <Content Include="Views\OrdenTrabajoAplicacion\Materiales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

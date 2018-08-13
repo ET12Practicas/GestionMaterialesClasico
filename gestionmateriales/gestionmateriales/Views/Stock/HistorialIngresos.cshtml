@@ -75,7 +75,7 @@
                         {
                             "mRender": function (data, type, row) {
                                 var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
-                                return value.toLocaleString();
+                                return value.toLocaleString().split(' ')[0];
                             }
                         }
                     ],

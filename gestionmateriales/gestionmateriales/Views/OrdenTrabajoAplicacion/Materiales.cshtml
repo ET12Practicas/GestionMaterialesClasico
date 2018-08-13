@@ -1,0 +1,41 @@
+﻿<div class="container-fluid">
+    <h1 class="display-4">Orden de Trabajo de Aplicación</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Número: <strong>@ViewData["numero"]</strong> - Nombre: <strong>@ViewData["nombre"]</strong></p>
+        </div>
+        <div class="offset-md-3 col-md-3">
+            <a id="btn_generarordentrabajo" class="btn btn-outline-primary btn-block" href="~/OrdenTrabajoAplicacion" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
+        </div>
+    </div>
+    <hr />
+    <input type="hidden" id="IdOT" value="@ViewData["IdOT"]"/>
+    <div class="row">
+        <table id="grdMateriales" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Material
+                    </th>
+                    <th>
+                        Stock Actual
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <script type="text/javascript" src="~/Scripts/Views/MaterialesOTA.js"></script>
+    </div>
+</div>

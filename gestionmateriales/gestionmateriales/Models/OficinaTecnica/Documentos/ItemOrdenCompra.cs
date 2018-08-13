@@ -12,6 +12,9 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int idItemOrdenCompra { get; set; }
 
         [Required]
+        public int numero { get; set; }
+
+        [Required]
         public int cantidad { get; set; }
 
         //[Required]
@@ -20,6 +23,15 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
 
         [Required]
         public Material material { get; set; }
+
+        [Required]
+        public string destino { get; set; }
+
+        [Required]
+        public double precioUnitario { get; set; }
+
+        [Required]
+        public double precioParcial { get; set; }
 
         //[Required]
         //[NotMapped]
