@@ -95,7 +95,9 @@ function addItemOTA(data) {
     var idOT = data.id.split('-')[1];
     var idMaterial = data.id.split('-')[2];
     var cant = $('#iCant-' + idOT + '-' + idMaterial).val();
-    //console.log(cant);
+    console.log(idOT);
+    console.log(idMaterial);
+    console.log(cant);
 
     var request = $.ajax({
         url: baseURL + "OrdenTrabajoAplicacion/AddItemMaterial",

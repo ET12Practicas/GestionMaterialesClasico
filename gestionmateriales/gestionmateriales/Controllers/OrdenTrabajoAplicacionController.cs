@@ -234,22 +234,36 @@ namespace gestionmateriales.Controllers
         public ActionResult AddItemMaterial(int id, int idMaterial, int cant)
         {
             var db = new OficinaTecnicaEntities();
-            var ot = db.ordenTrabajoAplicacion.Find(id);
+            var ot = db.ordenTrabajoAplicacion.Where(x => x.idOrdenTrabajoAplicacion == id).Include(x => x.itemsOTA).SingleOrDefault();
+            if (ot == null) throw new Exception("No existe la orden de trabajo");
+            //var ot = db.ordenTrabajoAplicacion.Find(id);
             var mat = db.materiales.Find(idMaterial);
+            if (mat == null) throw new Exception("No el material");
             try
             {
-                if (!ot.itemsOTA.Any(x => x.material.idMaterial == idMaterial))
+                //if (!ot.itemsOTA.Any(x => x.ordenTrabajoAplicacion.idOrdenTrabajoAplicacion == id && x.material.idMaterial == idMaterial))
+                //{
+                //    ot.itemsOTA.Add(new ItemOrdenTrabajoAplicacion { idOrdenTrabajoAplicacion = ot.idOrdenTrabajoAplicacion, ordenTrabajoAplicacion = ot, idMaterial = idMaterial, material = mat, cantidad = cant });
+                //}
+                //else
+                //{
+                //    var item = ot.itemsOTA.FirstOrDefault(x => x.ordenTrabajoAplicacion.idOrdenTrabajoAplicacion == id && x.material.idMaterial == idMaterial);
+                //    if (item != null)
+                //    {
+                //        item.cantidad = cant;
+                //    }
+                //}
+
+                var itemOTA = ot.itemsOTA.FirstOrDefault(x => x.material.idMaterial == idMaterial);
+                if (itemOTA != null)
                 {
-                    ot.itemsOTA.Add(new ItemOrdenTrabajoAplicacion { idOrdenTrabajoAplicacion = ot.idOrdenTrabajoAplicacion, ordenTrabajoAplicacion = ot, idMaterial = idMaterial, material = mat, cantidad = cant });
+                    itemOTA.cantidad = cant;
                 }
                 else
                 {
-                    var item = ot.itemsOTA.Where(x => x.material.idMaterial == idMaterial).FirstOrDefault();
-                    if (item != null)
-                    {
-                        item.cantidad = cant;
-                    }
+                    ot.itemsOTA.Add(new ItemOrdenTrabajoAplicacion { ordenTrabajoAplicacion = ot, material = mat, cantidad = cant });
                 }
+
                 db.SaveChanges();
             }
             catch (Exception e)
