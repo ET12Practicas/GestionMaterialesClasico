@@ -15,18 +15,10 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int cantidad { get; set; }
 
         [Required]
-        [NotMapped]
-        public int idMaterial { get; set; }
+        public virtual Material material { get; set; }
 
         [Required]
-        public Material material { get; set; }
-
-        [Required]
-        [NotMapped]
-        public int idOrdenTrabajoAplicacion { get; set; }
-
-        [Required]
-        public OrdenTrabajoAplicacion ordenTrabajoAplicacion { get; set; }
+        public virtual OrdenTrabajoAplicacion ordenTrabajoAplicacion { get; set; }
 
         public ItemOrdenTrabajoAplicacion()
         {
