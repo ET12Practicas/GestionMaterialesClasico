@@ -1925,6 +1925,7 @@
     <Content Include="Scripts\Views\Material.js" />
     <Content Include="Scripts\Views\MaterialesOTA.js" />
     <Content Include="Scripts\Views\OrdenTrabajoAplicacion.js" />
+    <Content Include="Scripts\Views\OTADetalle.js" />
     <Content Include="Scripts\Views\Personal.js" />
     <Content Include="Scripts\Views\Proveedor.js" />
     <Content Include="Scripts\Views\Stock.js" />
@@ -1991,6 +1992,7 @@
     <Content Include="Views\Stock\Sumar.cshtml" />
     <Content Include="Views\OrdenCompra\Index.cshtml" />
     <Content Include="Views\OrdenTrabajoAplicacion\Materiales.cshtml" />
+    <Content Include="Views\OrdenTrabajoAplicacion\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

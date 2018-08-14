@@ -13,8 +13,8 @@ namespace gestionmateriales.Controllers
         public ActionResult Index()
         {
             ViewBag.Notificacion = 0;
-            if (hayMaterialParaComprar())
-                ViewBag.Notificacion = 1;
+            //if (hayMaterialParaComprar())
+            //    ViewBag.Notificacion = 1;
             return View("Index");
         }
 

@@ -241,19 +241,6 @@ namespace gestionmateriales.Controllers
             if (mat == null) throw new Exception("No el material");
             try
             {
-                //if (!ot.itemsOTA.Any(x => x.ordenTrabajoAplicacion.idOrdenTrabajoAplicacion == id && x.material.idMaterial == idMaterial))
-                //{
-                //    ot.itemsOTA.Add(new ItemOrdenTrabajoAplicacion { idOrdenTrabajoAplicacion = ot.idOrdenTrabajoAplicacion, ordenTrabajoAplicacion = ot, idMaterial = idMaterial, material = mat, cantidad = cant });
-                //}
-                //else
-                //{
-                //    var item = ot.itemsOTA.FirstOrDefault(x => x.ordenTrabajoAplicacion.idOrdenTrabajoAplicacion == id && x.material.idMaterial == idMaterial);
-                //    if (item != null)
-                //    {
-                //        item.cantidad = cant;
-                //    }
-                //}
-
                 var itemOTA = ot.itemsOTA.FirstOrDefault(x => x.material.idMaterial == idMaterial);
                 if (itemOTA != null)
                 {
@@ -272,6 +259,35 @@ namespace gestionmateriales.Controllers
             }
 
             return Json("das");
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/OrdenTrabajoAplicacion/Detalle/{id}")]
+        [HttpGet]
+        public ActionResult Detalle(int id)
+        {
+            var db = new OficinaTecnicaEntities();
+            var ota = db.ordenTrabajoAplicacion.FirstOrDefault(x => x.idOrdenTrabajoAplicacion == id);
+            if (ota == null) throw new Exception("No existe orden de trabajo de aplicacion");
+            return View("Detalle", ota);
+        }
+
+        [Authorize(Roles = "administrador, oficinatecnica")]
+        [Route("/OrdenTrabajoAplicacion/GetItemsOTA/{id}")]
+        [HttpGet]
+        public JsonResult GetItemsOTA(int id)
+        {
+            var db = new OficinaTecnicaEntities();
+            var ota = db.ordenTrabajoAplicacion.Where(x => x.idOrdenTrabajoAplicacion == id).Include(x => x.itemsOTA).SingleOrDefault();
+            if (ota == null) throw new Exception("No existe orden trabajo aplicacion");
+
+            var itemsOTA = from i in ota.itemsOTA
+                           select new { cant = i.cantidad, mat = i.material.nombre, fecha = String.Empty };
+
+            //var res = new { num = ota.numero, nom = ota.nombre, turno = ota.turno.nombre, fecha = ota.fecha,
+            //    res = ota.responsable.nombre, jds = ota.jefeSeccion.nombre, items = itemsOTA };
+
+            return Json(new { Name = "/GetItemsOTA", Response = itemsOTA, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
     }
 }

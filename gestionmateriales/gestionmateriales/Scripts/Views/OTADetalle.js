@@ -7,70 +7,49 @@ $(document).ready(function () {
         baseURL = baseURL + appName + "/";
 
     var request = $.ajax({
-        url: baseURL + "OrdenTrabajoAplicacion/GetOTA",
+        url: baseURL + "OrdenTrabajoAplicacion/GetItemsOTA",
         type: 'GET',
+        data: { id: $('#IdOTA').val() },
         contentType: 'application/json; charset=utf-8'
     });
 
     request.done(function (data) {
         //console.log(data.Response);
-        tablaMateriales = $('#grdOTA').DataTable({
+        tablaMateriales = $('#grdItemsOTA').DataTable({
             //"dom": "lfrtip",
             "autoWidth": false,
             "aaData": data.Response,
             "aoColumnDefs": [{
-                "targets": [0],
+                "targets": [],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [2, 9]
+                "aTargets": [2]
             }],
             "aoColumns": [
-                {
-                    "data": "id"
-                },
-                {
-                    "sWidth": "5%",
-                    "data": "num"
-                },
-                {
-                    "sWidth": "5%",
-                    "mRender": function (data, type, row) {
-                        var value = new Date(parseInt(row.fecha.replace(/(^.*\()|([+-].*$)/g, '')));
-                        return value.toLocaleString().split(' ')[0];
-                    }
-                },
-                {
-                    "sWidth": "5%",
-                    "data": "turno"
-                },
-                {
-                    "sWidth": "40%",
-                    "data": "nombre"
-                },
-                {
-                    "sWidth": "15%",
-                    "data": "res"
-                },
-                {
-                    "sWidth": "15%",
-                    "data": "jds"
-                },
                 {
                     "sWidth": "5%",
                     "data": "cant"
                 },
                 {
-                    "sWidth": "10%",
-                    "mRender": function (dato, type, row) {
-                        var editar = '<a title="Editar" class="btn btn-outline-dark btn-sm" href="' + baseURL + 'OrdenTrabajoAplicacion/Editar/' + row.id + '"><i class="fas fa-pencil-alt"></i> </a> ';
-
-                        var detalle = '<a title="Ver Detalle" class="btn btn-outline-dark btn-sm" href="' + baseURL + 'OrdenTrabajoAplicacion/Detalle/' + row.id + '"><i class="fas fa-eye"></i> </a> ';
-
-                        return detalle + editar;
+                    "sWidth": "60%",
+                    "data": "mat"
+                },
+                {
+                    "sWidth": "5%",
+                    "mRender": function (data, type, row) {
+                        //console.log(row.fecha);
+                        if (row.fecha != '') {
+                            var value = new Date(parseInt(row.fecha.replace(/(^.*\()|([+-].*$)/g, '')));
+                            return value.toLocaleString().split(' ')[0];
+                        }
+                        return '';
                     }
-                }                
+                }
             ],
-            "order": [2, "asc"],
+            "order": [1, "asc"],
+            "searching": false,
+            "info": false,
+            "paging": false,
             "language": {
                 "decimal": "",
                 "emptyTable": "No hay información disponible para mostrar",
@@ -94,3 +73,24 @@ $(document).ready(function () {
         });
     });
 });
+
+
+//var doc = new jsPDF();
+
+//var specialElementHandlers = {
+//    '#editor': function (element, renderer) {
+//        return true;
+//    },
+//    '.controls': function (element, renderer) {
+//        return true;
+//    }
+//};
+
+
+//$('#cmd').click(function () {
+//    doc.fromHTML($('#content').get(0), 15, 15, {
+//        'width': 170,
+//        'elementHandlers': specialElementHandlers
+//    });
+//    doc.save('sample-file.pdf');
+//});

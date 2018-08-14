@@ -1,0 +1,53 @@
+﻿@model gestionmateriales.Models.OficinaTecnica.Documentos.OrdenTrabajoAplicacion
+
+<div id="content" class="container-fluid">
+    <input type="hidden" id="IdOTA" value="@Model.idOrdenTrabajoAplicacion" />
+    <div class="row">
+        <div class="col-10">
+            <h1 class="display-4">Orden de Trabajo de Aplicación</h1>
+        </div>
+        @*<div class="col-2">
+            <button id="cmd">Generate PDF</button>
+        </div>*@
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-3">
+            <p>Trabajo Práctico: <strong>@Model.nombre</strong></p>
+        </div>
+        <div class="offset-6 col-3">
+            <p>Número: <strong>@Model.numero</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <p>MEP: <strong>@Model.responsable.nombre</strong></p>
+        </div>
+        <div class="col-3">
+            <p>Jefe de Sección: <strong>@Model.jefeSeccion.nombre</strong></p>
+        </div>
+        <div class="offset-3 col-3">
+            <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
+        </div>
+    </div>
+    <hr />
+    <p><strong>Detalle de retiro de materiales</strong></p>
+    <div class="row">
+        <table id="grdItemsOTA" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>
+                        Material
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+</div>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>*@
+<script type="text/javascript" src="~/Scripts/Views/OTADetalle.js"></script>
