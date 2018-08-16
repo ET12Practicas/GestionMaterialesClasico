@@ -1,4 +1,5 @@
 ﻿using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,18 +16,13 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int cantidad { get; set; }
 
         [Required]
-        [NotMapped]
-        public int idMaterial { get; set; }
+        public virtual Material material { get; set; }
 
         [Required]
-        public Material material { get; set; }
+        public DateTime fechaRetiro { get; set; }
 
         [Required]
-        [NotMapped]
-        public int idOrdenTrabajo{ get; set; }
-
-        [Required]
-        public OrdenTrabajo ordenTrabajo { get; set; }
+        public virtual OrdenTrabajo ordenTrabajo { get; set; }
 
         public ItemOrdenTrabajo()
         {

@@ -20,31 +20,41 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int numero { get; set; }
 
         [Required]
-        [StringLength(70)]
-        public string nombre { get; set; }
+        [StringLength(100)]
+        public string encabezado { get; set; }
 
         [Required]
-        public int idTurno { get; set; }
-
-        public virtual Turno turno { get; set; }
+        [StringLength(100)]
+        public string destino { get; set; }
 
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime fecha { get; set; }
 
         [Required]
-        [NotMapped]
-        public int idJefeSeccion { get; set; }
+        [StringLength(100)]
+        public string descripcionTarea { get; set; }
+
+        [Required]
+        public virtual TipoOrdenTrabajo tipoOrdenTrabajo { get; set; }
+
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime fechainiciada { get; set; }
+
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime fechaTerminada { get; set; }
+
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime fechaIngresoDeposito { get; set; }
 
         [Required]
         public virtual Personal jefeSeccion { get; set; }
 
         [Required]
-        [NotMapped]
-        public int idResponsable { get; set; }
-
-        [Required]
-        public virtual Personal responsable { get; set; }
+        public virtual Personal solicitante { get; set; }
 
         public virtual ICollection<ItemOrdenTrabajo> itemsOT { get; set; }
 

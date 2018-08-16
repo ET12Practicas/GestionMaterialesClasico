@@ -168,6 +168,7 @@
     <Compile Include="Controllers\OrdenCompraController.cs" />
     <Compile Include="Controllers\OrdenTrabajoAplicacionController.cs" />
     <Compile Include="Controllers\OrdenPedidoController.cs" />
+    <Compile Include="Controllers\OrdenTrabajoController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\ShopCartMaterialPedidoController.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Models\OficinaTecnica\GestionMateriales\SalidaMaterial.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\TipoEntradaMaterial.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\TipoMaterial.cs" />
+    <Compile Include="Models\OficinaTecnica\Tipos\TipoOrdenTrabajo.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\TipoSalidaMaterial.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\Turno.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\Unidad.cs" />
@@ -1993,6 +1995,7 @@
     <Content Include="Views\OrdenCompra\Index.cshtml" />
     <Content Include="Views\OrdenTrabajoAplicacion\Materiales.cshtml" />
     <Content Include="Views\OrdenTrabajoAplicacion\Detalle.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
