@@ -210,9 +210,8 @@
     <Content Include="Assets\asilva.jpg" />
     <Content Include="Assets\gcolombre.jpg" />
     <Content Include="Assets\gsuarez.jpg" />
-    <Content Include="Assets\logoot.png" />
     <Content Include="Assets\contruccion.png" />
-    <Content Include="Assets\sgslogo.png" />
+    <Content Include="Assets\logoTitan.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -1831,7 +1830,7 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Assets\logo.png" />
+    <Content Include="Assets\logoet12.png" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
@@ -1896,10 +1895,7 @@
     <Content Include="Content\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\vendor\jquery\jquery.min.map" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.map" />
-    <None Include="Properties\PublishProfiles\deployRemoto.pubxml" />
-    <None Include="Properties\PublishProfiles\deployServerET12.pubxml" />
     <Content Include="Scripts\fontAwesome.js" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\win2012-01.pubxml" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />

@@ -11,6 +11,7 @@ namespace gestionmateriales.Models.OficinaTecnica.Tipos
     public class TipoOrdenTrabajo
     { 
         [Required]
+        [Key]
         public int idTipoOrdenTrabajo { get; set; }
 
         [Required]

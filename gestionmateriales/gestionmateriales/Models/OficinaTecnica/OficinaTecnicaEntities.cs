@@ -32,6 +32,8 @@ namespace gestionmateriales.Models.OficinaTecnica
 
         public DbSet<OrdenCompra> ordenCompra { get; set; }
 
+        public DbSet<TipoOrdenTrabajo> tipoOrdenTrabajo { get; set; }
+
         public DbSet<TipoMaterial> tipoMaterial { get; set; }
 
         public DbSet<TipoEntradaMaterial> tipoEntrada { get; set; }
