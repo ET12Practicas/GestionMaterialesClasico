@@ -1,114 +1,117 @@
 ﻿<div class="container-fluid">
     <h1 class="display-4">Historial Salidas</h1>
 
-    <hr />
-    <div class="row">
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <table id="grdEgresos" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Nro. Operación
+                        </th>
+                        <th>
+                            Código Material
+                        </th>
+                        <th>
+                            Material
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Tipo de Salida
+                        </th>
+                        <th>
+                            Cod. Documento
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Fecha - Hora
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="card-footer"></div>
+    </div>
 
-        <table id="grdEgresos" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        Nro. Operación
-                    </th>
-                    <th>
-                        Código Material
-                    </th>
-                    <th>
-                        Material
-                    </th>
-                    <th>
-                        Cantidad
-                    </th>
-                    <th>
-                        Tipo de Salida
-                    </th>
-                    <th>
-                        Cod. Documento
-                    </th>
-                    <th>
-                        Usuario
-                    </th>
-                    <th>
-                        Fecha - Hora
-                    </th>
-                </tr>
-            </thead>
-        </table>
-        <script>
-            var appName = location.pathname.split('/')[1];
-            var baseURL = window.location.protocol + "//" + window.location.host + "/";
+    <script>
+        var appName = location.pathname.split('/')[1];
+        var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
-            if (appName == 'ottest')
-                baseURL = baseURL + appName + "/";
+        if (appName == 'ottest')
+            baseURL = baseURL + appName + "/";
 
-            var requestMaterial = $.ajax({
-                url: baseURL + "Stock/GetHistorialEgresos",
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8'
-            });
+        var requestMaterial = $.ajax({
+            url: baseURL + "Stock/GetHistorialEgresos",
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8'
+        });
 
-            requestMaterial.done(function (data) {
-                //console.log(data.Response);
-                tablaMateriales = $('#grdEgresos').DataTable({
-                    //"dom": "lfrtip",
-                    "aaData": data.Response,
-                    "aoColumns": [
-                        {
-                            "data": "numero"
-                        },
-                        {
-                            "data": "codMaterial"
-                        },
-                        {
-                            "data": "material"
-                        },
-                        {
-                            "data": "cantidad"
-                        },
-                        {
-                            "data": "tipoSalida"
-                        },
-                        {
-                            "data": "codDocumento"
-                        },
-                        {
-                            "data": "usuario"
-                        },
-                        {
-                            "mRender": function (data, type, row) {
-                                var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
-                                return value.toLocaleString().split(' ')[0];
-                            }
-                        }
-                    ],
-                    "order": [7, "desc"],
-                    "language": {
-                        "decimal": "",
-                        "emptyTable": "No hay información disponible para mostrar",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                        "infoEmpty": "No hay Egresos para mostrar",
-                        "infoFiltered": "(filtrados de _MAX_ Egresos totales)",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "Ver _MENU_ Egresos por página",
-                        "loadingRecords": "Cargando...",
-                        "processing": "En proceso...",
-                        "search": "Buscar",
-                        "zeroRecords": "No hay Egresos que coincidan con el filtro",
-                        "paginate": {
-                            "first": "Primera",
-                            "last": "Última",
-                            "next": "Siguiente",
-                            "previous": "Anterior"
+        requestMaterial.done(function (data) {
+            //console.log(data.Response);
+            tablaMateriales = $('#grdEgresos').DataTable({
+                //"dom": "lfrtip",
+                "aaData": data.Response,
+                "aoColumns": [
+                    {
+                        "data": "numero"
+                    },
+                    {
+                        "data": "codMaterial"
+                    },
+                    {
+                        "data": "material"
+                    },
+                    {
+                        "data": "cantidad"
+                    },
+                    {
+                        "data": "tipoSalida"
+                    },
+                    {
+                        "data": "codDocumento"
+                    },
+                    {
+                        "data": "usuario"
+                    },
+                    {
+                        "mRender": function (data, type, row) {
+                            var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
+                            return value.toLocaleString().split(' ')[0];
                         }
                     }
-                });
+                ],
+                "order": [7, "desc"],
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "No hay información disponible para mostrar",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty": "No hay Egresos para mostrar",
+                    "infoFiltered": "(filtrados de _MAX_ Egresos totales)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Ver _MENU_ Egresos por página",
+                    "loadingRecords": "Cargando...",
+                    "processing": "En proceso...",
+                    "search": "Buscar",
+                    "zeroRecords": "No hay Egresos que coincidan con el filtro",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Última",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
             });
+        });
 
-            requestMaterial.fail(function (data) {
-                alert(data.Response);
-            });
-        </script>
-    </div>
+        requestMaterial.fail(function (data) {
+            alert(data.Response);
+        });
+    </script>
 </div>
 

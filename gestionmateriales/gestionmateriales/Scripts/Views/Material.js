@@ -13,6 +13,18 @@ function loadMateriales(from, end) {
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
 
+    var requestFecha = $.ajax({
+        url: baseURL + "Material/GetLastUpdated",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+            var fecha = value.toLocaleString();//.split(' ')[0];
+            //console.log(fecha);
+            $('#lastUpdated').text('Última modificación ' + fecha);
+        }
+    });
+
     var requestMaterial = $.ajax({
         url: baseURL + "Material/GetMateriales",
         type: 'GET',
@@ -105,7 +117,7 @@ function loadMateriales(from, end) {
                 "infoFiltered": "(filtrados de _MAX_ materiales totales)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Ver _MENU_ materiales por página",
+                "lengthMenu": "_MENU_",
                 "loadingRecords": "Cargando...",
                 "processing": "En proceso...",
                 "search": "Buscar",

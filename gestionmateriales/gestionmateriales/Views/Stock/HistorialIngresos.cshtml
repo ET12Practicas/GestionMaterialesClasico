@@ -1,37 +1,41 @@
 ﻿<div class="container-fluid">
     <h1 class="display-4">Historial Entradas</h1>
-    <hr />
-    <div class="row">
-        <table id="grdIngresos" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        Nro. Operación
-                    </th>
-                    <th>
-                        Código Material
-                    </th>
-                    <th>
-                        Material
-                    </th>
-                    <th>
-                        Cantidad
-                    </th>
-                    <th>
-                        Tipo de Entrada
-                    </th>
-                    <th>
-                        Cod. Documento
-                    </th>
-                    <th>
-                        Usuario
-                    </th>
-                    <th>
-                        Fecha - Hora
-                    </th>
-                </tr>
-            </thead>
-        </table>
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <table id="grdIngresos" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Nro. Operación
+                        </th>
+                        <th>
+                            Código Material
+                        </th>
+                        <th>
+                            Material
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Tipo de Entrada
+                        </th>
+                        <th>
+                            Cod. Documento
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Fecha - Hora
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="card-footer"></div>
+    </div>
         <script>
             var appName = location.pathname.split('/')[1];
             var baseURL = window.location.protocol + "//" + window.location.host + "/";
@@ -108,4 +112,3 @@
             });
         </script>
     </div>
-</div>

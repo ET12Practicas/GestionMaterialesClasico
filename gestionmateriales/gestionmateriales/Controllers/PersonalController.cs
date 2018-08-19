@@ -1,154 +1,160 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
-using System;
 using gestionmateriales.Models.OficinaTecnica;
 using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
-using System.Web;
+using gestionmateriales.Repository.Contracts;
+using gestionmateriales.Repository.Implementation;
 
 namespace gestionmateriales.Controllers
 {
+    [Authorize(Roles = "administrador, oficinatecnica")]
+    [Route("/Personal")]
     public class PersonalController : Controller
     {
-        // GET: Personal
+        private IPersonalRepository personalRepository;
+
+        public PersonalController()
+        {
+            this.personalRepository = new PersonalRepository(new OficinaTecnicaEntities());
+        }
+
         [Authorize(Roles = "administrador, oficinatecnica, rectoria")]
         [HttpGet]
-        [Route("/Personal")]
         public ActionResult Index()
         {
             return View("Index");
         }
 
-        // GET: Personal/Agregar
-        [Authorize(Roles = "administrador, oficinatecnica")]
-        [Route("/Personal/Agregar")]
         [HttpGet]
         public ActionResult Agregar()
         {
             return View("Agregar");
         }
 
-        //POST: Personal/Agregar
-        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Agregar(Personal aPersonal)
         {
-            using (var db = new OficinaTecnicaEntities())
+            if (personalRepository.GetAll().Any(x => (x.fichaCensal == aPersonal.fichaCensal || x.dni == aPersonal.dni) && x.hab))
             {
-                if (db.personal.Any(y => (y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni) && y.hab))
-                {
-                    ViewBag.Result = 1;
-                    return View("Agregar", aPersonal);
-                }
+                ViewBag.Result = 1;
 
-                try
-                {
-                    var p = new Personal
-                    {
-                        nombre = aPersonal.nombre,
-                        dni = aPersonal.dni,
-                        fichaCensal = aPersonal.fichaCensal,
-                        CREATED_BY = User.Identity.Name,
-                        CREATION_DATE = DateTime.Now,
-                        CREATION_IP = Request.UserHostAddress,
-                        LAST_UPDATED_BY = User.Identity.Name,
-                        LAST_UPDATED_DATE = DateTime.Now,
-                        LAST_UPDATED_IP = Request.UserHostAddress
-                    };
-                    db.personal.Add(p);
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    //System.IO.File.WriteAllText(@"F:\logs\log.txt", ex.ToString());
-                    return RedirectToAction("Error406", "Error");
-
-                }
+                return View("Agregar", aPersonal);
             }
+
+            try
+            {
+                personalRepository.Add(new Personal
+                {
+                    nombre = aPersonal.nombre,
+                    dni = aPersonal.dni,
+                    fichaCensal = aPersonal.fichaCensal,
+                    CREATED_BY = User.Identity.Name,
+                    CREATION_DATE = DateTime.Now,
+                    CREATION_IP = Request.UserHostAddress,
+                    LAST_UPDATED_BY = User.Identity.Name,
+                    LAST_UPDATED_DATE = DateTime.Now,
+                    LAST_UPDATED_IP = Request.UserHostAddress
+                });
+            }
+            catch
+            {
+                return RedirectToAction("Error406", "Error");
+            }
+
             ViewBag.Result = 0;
+
             return View("Agregar");
         }
 
-        //GET: Personal/Editar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
-        [Route("/Personal/Editar/{id}")]
         [HttpGet]
         public ActionResult Editar(int id)
         {
-            Personal personalSeleccionado;
-            using (OficinaTecnicaEntities db = new OficinaTecnicaEntities())
-            {               
-                try
-                {
-                    personalSeleccionado = db.personal.Find(id);
-                }
-                catch
-                {
-                    return RedirectToAction("Error406", "Error");
-                }
-            }
-            return View("Editar", personalSeleccionado);
+            var unPersonal = personalRepository.GetById(id);
+
+            if (unPersonal == null) throw new Exception("No existe el personal");
+
+            return View("Editar", unPersonal);
         }
 
-        //POST: Personal/Editar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
         [HttpPost]
         public ActionResult Editar(int id, Personal aPersonal)
         {
-            var db = new OficinaTecnicaEntities();
-            Personal p = db.personal.Find(id);
-            if (db.personal.Where(x => x.idPersonal != id && x.hab).Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
+            Personal personal = personalRepository.GetById(id);
+
+            if (personal == null) throw new Exception("No existe el personal");
+
+            if (personalRepository.Find(x => x.idPersonal != id && x.hab).Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
             {
                 ViewBag.Result = 1;
-                return View("Editar", p);
+
+                return View("Editar", personal);
             }
+
             try
             {
-                p.nombre = aPersonal.nombre;
-                p.dni = aPersonal.dni;
-                p.fichaCensal = aPersonal.fichaCensal;
-                p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now;
-                p.LAST_UPDATED_IP = Request.UserHostAddress;
-                db.SaveChanges();
+                personal.nombre = aPersonal.nombre;
+
+                personal.dni = aPersonal.dni;
+
+                personal.fichaCensal = aPersonal.fichaCensal;
+
+                personal.LAST_UPDATED_BY = User.Identity.Name;
+
+                personal.LAST_UPDATED_DATE = DateTime.Now;
+
+                personal.LAST_UPDATED_IP = Request.UserHostAddress;
+
+                personalRepository.Edit(personal);
             }
             catch
             {
                 return RedirectToAction("Error406", "Error");
             }
+            
             ViewBag.Result = 0;
-            return View("Editar", p);
+
+            return View("Editar", personal);
         }
-        //POST: Personal/Borrar/1
-        [Authorize(Roles = "administrador, oficinatecnica")]
+        
         public ActionResult Borrar(int id)
         {
-            var db = new OficinaTecnicaEntities();
-            Personal p = db.personal.Find(id);
+            Personal personal = personalRepository.GetById(id);
+
             try
             {
-                p.hab = false;
-                p.LAST_UPDATED_BY = User.Identity.Name;
-                p.LAST_UPDATED_DATE = DateTime.Now;
-                p.LAST_UPDATED_IP = Request.UserHostAddress;
-                db.SaveChanges();
+                personal.hab = false;
+
+                personal.LAST_UPDATED_BY = User.Identity.Name;
+
+                personal.LAST_UPDATED_DATE = DateTime.Now;
+
+                personal.LAST_UPDATED_IP = Request.UserHostAddress;
+
+                personalRepository.Remove(personal);
             }
             catch
             {
                 return RedirectToAction("Error406", "Error");
             }
+
             return RedirectToAction("Index", "Personal");
         }
 
-        [HttpGet]
-        [Route("/Personal/GetPersonal")]
-        public JsonResult GetPersonal()
+        [HttpGet]        
+        public JsonResult GetAll()
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            var personas = from per in db.personal
-                           where per.hab == true
-                           select new { per.idPersonal, per.nombre, per.dni, per.fichaCensal };
+            var personas = personalRepository.Find(x => x.hab).Select(x => new { x.idPersonal, x.nombre, x.dni, x.fichaCensal });
 
-            return Json(new { Name = "/GetPersonal", Response = personas, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+            return Json(new { Response = personas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetLastUpdated()
+        {
+            var fecha = personalRepository.Find(x => x.hab).OrderBy(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
+
+            return Json(new { Response = fecha }, JsonRequestBehavior.AllowGet);
         }
     }
 }

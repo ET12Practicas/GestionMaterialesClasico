@@ -8,6 +8,19 @@ $(document).ready(function () {
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
 
+
+    var requestFecha = $.ajax({
+        url: baseURL + "Proveedor/GetLastUpdated",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+            var fecha = value.toLocaleString();//.split(' ')[0];
+            //console.log(fecha);
+            $('#lastUpdated').text('Última modificación ' + fecha);
+        }
+    });
+
     var request = $.ajax({
         url: baseURL + "Proveedor/GetProveedores",
         type: 'GET',
@@ -50,38 +63,9 @@ $(document).ready(function () {
                 {
                     "sWidth": "10%",
                     "mRender": function (dato, type, row) {
-                        //console.log(row);
 
                         var verDetalleHtml = 
                             '<button type="button" title="Detalle" class="btn btn-outline-dark" href="" id="matDet-' + row.idProveedor + '" onclick="getProveedorDetalle(this);"><i class="fas fa-eye"></i></button> ';
-                            //'<a title="Ver Detalle" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-ver-' + row.idProveedor + '"><i class="fas fa-eye"></i> </a>' +
-                            //'<div class="modal fade" id="myModal-ver-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
-                            //'<div class="modal-dialog modal-dialog-centered" role="document">' +
-                            //'<div class="modal-content">' +
-                            //'<div class="modal-header">' +
-                            //'<h4 class="modal-title" id="myModalLabel">Proveedor</h4>' +
-                            //'</div>' +
-                            //'<div class="modal-body">' +
-                            //'<div class="row">' +
-                            //'<div class="col-md-6">' +
-                            //'<p><strong>Proveedor:</strong> ' + row.nombre + '</p>' +
-                            //'<p><strong>Razón Social:</strong> ' + row.razonSocial + '</p>' +
-                            //'<p><strong>CUIT:</strong> ' + row.cuit + '</p>' +
-                            //'</div>' +
-                            //'<div class="col-md-6 ml-auto">' +
-                            //'<p><strong>Teléfono:</strong> ' + row.telefono + '</p>' +
-                            //'<p><strong>Correo:</strong> ' + row.email + '</p > ' +
-                            //'<p><strong>Dirección:</strong> ' + row.direccion + '</p > ' +
-                            //'<p><strong>Zona:</strong> ' + row.zona + '</p > ' +
-                            //'<p><strong>Horario:</strong> ' + row.horario + '</p > ' +
-                            //'<p><strong>Contacto:</strong> ' + row.nombreContacto + '</p > ' +
-                            //'</div>' +
-                            //'</div>' +
-                            //'<br />' +
-                            //'</div>' +
-                            //'<div class="modal-footer">' +
-                            //'<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
-                            //'</div></div></div></div></div> ';
 
                         var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i> </a></div> ';
 
@@ -114,7 +98,7 @@ $(document).ready(function () {
                 "infoFiltered": "(filtrados de _MAX_ proveedores totales)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Ver _MENU_ proveedores por página",
+                "lengthMenu": "_MENU_",
                 "loadingRecords": "Cargando...",
                 "processing": "En proceso...",
                 "search": "Buscar",
@@ -149,7 +133,6 @@ function getProveedorDetalle(data) {
     });
 
     requestProveedor.done(function (data) {
-        //console.log(data.Response[0]);
         $('#proNombre').html(data.Response[0].nombre);
         $('#proRazonSocial').html(data.Response[0].razonSocial);
         $('#proCuit').html(data.Response[0].cuit);

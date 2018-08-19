@@ -7,11 +7,20 @@ using gestionmateriales.Models.OficinaTecnica;
 using gestionmateriales.Models.OficinaTecnica.Documentos;
 using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 using gestionmateriales.Models.OficinaTecnica.Tipos;
+using gestionmateriales.Repository.Contracts;
+using gestionmateriales.Repository.Implementation;
 
 namespace gestionmateriales.Controllers
 {
     public class MaterialController : Controller
     {
+        private IMaterialRepository materialRepository;
+
+        public MaterialController()
+        {
+            this.materialRepository = new MaterialRepository(new OficinaTecnicaEntities());
+        }
+
         // GET: Material
         [Authorize(Roles = "administrador, oficinatecnica, rectoria, deposito, compras")]
         [Route("/Material")]
@@ -244,6 +253,14 @@ namespace gestionmateriales.Controllers
                              select new { m.idMaterial, m.codigo, m.nombre, m.stockActual };
 
             return Json(new { Name = "/GetMaterialesShort", Response = materiales, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetLastUpdated()
+        {
+            var fecha = materialRepository.Find(x => x.hab).OrderBy(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
+
+            return Json(new { Response = fecha }, JsonRequestBehavior.AllowGet);
         }
     }
 }

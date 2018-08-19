@@ -69,13 +69,13 @@ namespace gestionmateriales.Controllers
 
             if (User.IsInRole("compras"))
             {
-                menu.Add(new MenuItem { Id = 20, nameOption = "Stock", controller = "", action = "", imageClass = "fa-fwfas fa-sync", estatus = true, isParent = true, parentId = 0 });
+                menu.Add(new MenuItem { Id = 20, nameOption = "Stock", controller = "", action = "", imageClass = "fa-fw fas fa-sync", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 21, nameOption = "Entrada", controller = "Stock", action = "Sumar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 23, nameOption = "Historial Ingreso", controller = "Stock", action = "HistorialIngresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 30, nameOption = "Compras", controller = "", action = "", imageClass = "fa-fw fas fa-shopping-cart", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 31, nameOption = "Necesidades", controller = "Compras", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 30 });
                 menu.Add(new MenuItem { Id = 32, nameOption = "Orden de Compra", controller = "OrdenCompra", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 30 });
-                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "fa-fwfas fa-wrench", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "fa-fw fas fa-wrench", estatus = true, isParent = false, parentId = 0 });
                 menu.Add(new MenuItem { Id = 50, nameOption = "Proveedores", controller = "Proveedor", action = "Index", imageClass = "fa-fw fas fa-truck", estatus = true, isParent = false, parentId = 0 });
             }
 

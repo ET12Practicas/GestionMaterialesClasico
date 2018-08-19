@@ -8,8 +8,19 @@ $(document).ready(function () {
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
 
+    var requestFecha = $.ajax({
+        url: baseURL + "Personal/GetLastUpdated",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+            var fecha = value.toLocaleString();//.split(' ')[0];
+            $('#lastUpdated').text('Última modificación ' + fecha);
+        }
+    });
+       
     var requestPersonal = $.ajax({
-        url: baseURL + "Personal/GetPersonal",
+        url: baseURL + "Personal/GetAll",
         type: 'GET',
         contentType: 'application/json; charset=utf-8'
     });
@@ -18,7 +29,7 @@ $(document).ready(function () {
         //console.log(data.Response);
         tablaPersonal = $('#grdPersonal').DataTable({
             //"dom": "lfrtip",
-            "autoWidth": false, 
+            "autoWidth": false,
             "columnDefs": [
                 { width: 100, targets: 4 }
             ],
@@ -75,7 +86,7 @@ $(document).ready(function () {
                 "infoFiltered": "(filtrados de _MAX_ personas totales)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Ver _MENU_ personas por página",
+                "lengthMenu": "_MENU_",
                 "loadingRecords": "Cargando...",
                 "processing": "En proceso...",
                 "search": "Buscar",

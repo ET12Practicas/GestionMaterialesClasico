@@ -1,37 +1,37 @@
-﻿@{
-    ViewBag.Title = "Material";
-}
-<div class="container-fluid">
+﻿<div class="container-fluid">
     <h1 class="display-4">Necesidades</h1>
     <p>Materiales o herramientas sin stock o por debajo del punto de reposición</p>
-    <hr />
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <table id="grdCompras" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Material
+                        </th>
+
+                        <th>
+                            Stock Actual
+                        </th>
+                        <th>
+                            Stock Mínimo
+                        </th>
+                        <th>
+                            Stock
+                        </th>
+                        <th>
+                            Proveedor
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 </div>
-<table id="grdCompras" class="table table-bordered table-striped table-hover">
-    <thead>
-        <tr>
-            <th>
-                Código
-            </th>
-            <th>
-                Material
-            </th>
-
-            <th>
-                Stock Actual
-            </th>
-            <th>
-                Stock Mínimo
-            </th>
-            <th>
-                Stock
-            </th>
-            <th>
-                Proveedor
-            </th>
-        </tr>
-    </thead>
-</table>
-
 <script type="text/javascript">
     var fecha = new Date();
     var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
@@ -106,7 +106,7 @@
                     "infoFiltered": "(filtrados de _MAX_ compras totales)",
                     "infoPostFix": "",
                     "thousands": ",",
-                    "lengthMenu": "Ver _MENU_ compras por página",
+                    "lengthMenu": "_MENU_",
                     "loadingRecords": "Cargando...",
                     "processing": "En proceso...",
                     "search": "Buscar",

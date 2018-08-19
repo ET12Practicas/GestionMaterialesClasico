@@ -8,30 +8,37 @@
             <a id="btnCrearProveedor" class="btn btn-outline-primary btn-block" href="~/Proveedor/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agrega nuevo proveedor para comprar materiales o herramientas"><i class="fas fa-truck"></i> Nuevo Proveedor</a>
         </div>
     </div>
-    <hr />
-    <table id="grdProveedores" class="table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-                <th>
-                </th>
-                <th>
-                    Nombre
-                </th>
-                <th>
-                    CUIT
-                </th>
-                <th>
-                    Teléfono
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Opciones
-                </th>
-            </tr>
-        </thead>
-    </table>
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <table id="grdProveedores" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            CUIT
+                        </th>
+                        <th>
+                            Teléfono
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Opciones
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div id="lastUpdated"></div>
+        </div>
+    </div>
 
     <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-dialog-centered" role="document">

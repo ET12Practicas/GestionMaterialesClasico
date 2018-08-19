@@ -4,11 +4,20 @@ using System.Linq;
 using System.Web.Mvc;
 using gestionmateriales.Models.OficinaTecnica;
 using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
+using gestionmateriales.Repository.Contracts;
+using gestionmateriales.Repository.Implementation;
 
 namespace gestionmateriales.Controllers
 {
     public class ProveedorController : Controller
-    {        
+    {
+        private IProveedorRepository proveedorRepository;
+
+        public ProveedorController()
+        {
+            proveedorRepository = new ProveedorRepository(new OficinaTecnicaEntities());
+        }
+
         // GET: Proveedor
         [Authorize(Roles = "administrador, oficinatecnica, compras, rectoria")]
         [Route("/Proveedor")]
@@ -171,5 +180,12 @@ namespace gestionmateriales.Controllers
             return Json(new { Name = "/GetProveedor", Response = proveedor, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetLastUpdated()
+        {
+            var fecha = proveedorRepository.Find(x => x.hab).OrderBy(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
+
+            return Json(new { Response = fecha }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
