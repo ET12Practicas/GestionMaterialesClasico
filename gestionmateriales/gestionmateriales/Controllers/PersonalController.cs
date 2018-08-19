@@ -16,7 +16,7 @@ namespace gestionmateriales.Controllers
 
         public PersonalController()
         {
-            this.personalRepository = new PersonalRepository(new OficinaTecnicaEntities());
+            personalRepository = new PersonalRepository(new OficinaTecnicaEntities());
         }
 
         [Authorize(Roles = "administrador, oficinatecnica, rectoria")]

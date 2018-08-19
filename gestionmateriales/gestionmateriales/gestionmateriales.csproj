@@ -2010,7 +2010,6 @@
     <Content Include="Views\Home\UnAuthorized.cshtml" />
     <Content Include="Views\Material\Historial.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
-    <Content Include="Views\Compras\AprobarOP.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
