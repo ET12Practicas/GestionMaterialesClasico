@@ -61,7 +61,7 @@ $(document).ready(function () {
                     "data": "email"
                 },
                 {
-                    "sWidth": "10%",
+                    "sWidth": "15%",
                     "mRender": function (dato, type, row) {
 
                         var verDetalleHtml = 

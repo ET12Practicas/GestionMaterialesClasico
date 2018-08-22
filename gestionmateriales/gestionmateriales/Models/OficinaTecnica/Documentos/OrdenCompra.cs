@@ -16,10 +16,13 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int IdOrdenCompra { get; set; }
 
         [Required]
-        public int numero { get; set; }
+        public int numeroInterno { get; set; }
 
         [Required]
         public Proveedor proveedor { get; set; }
+
+        [Required]
+        public int numeroFactura { get; set; }
 
         [Required]
         public DateTime fecha { get; set; }
@@ -41,13 +44,13 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         /// <summary>
         /// Usuario que creo la entrada
         /// </summary>
-        public DateTime CREATED_BY { get; set; }
+        [StringLength(20)]
+        public string CREATED_BY { get; set; }
 
         /// <summary>
         /// Fecha de creacion
         /// </summary>
-        [StringLength(20)]
-        public string CREATION_DATE { get; set; }
+        public DateTime CREATION_DATE { get; set; }
 
         /// <summary>
         /// Ip desde que se creo la entrada
