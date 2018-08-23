@@ -4,7 +4,7 @@ var tablaMateriales;
 
 $(document).ready(function () {
     loadMateriales(0, 200);
-})
+});
 
 
 function loadMateriales(from, end) {
@@ -26,9 +26,8 @@ function loadMateriales(from, end) {
     });
 
     var requestMaterial = $.ajax({
-        url: baseURL + "Material/GetMateriales",
+        url: baseURL + "Material/GetAll",
         type: 'GET',
-        data: { desde: from, hasta: end },
         contentType: 'application/json; charset=utf-8'
     });
 
@@ -133,22 +132,20 @@ function loadMateriales(from, end) {
     });
 
     requestMaterial.fail(function (data) {
-        alert(data.Response);
+        console.log(data.Response);
+        alert('No se pueden cargar el listado de materiales');
     });
 }
 
 function getMaterialDetalle(data) {
 
-    var id = data.id.split('-')[1];
+    var idMaterial = data.id.split('-')[1];
 
     var requestMaterial = $.ajax({
-        url: baseURL + "Material/GetMaterial",
+        url: baseURL + "Material/GetById",
         type: 'GET',
-        data: { idMaterial: id },
+        data: { id: idMaterial },
         contentType: 'application/json; charset=utf-8',
-        failure: function () {
-            alert('No se puede traer el detalle del material o harramienta.');
-        }
     });
 
     requestMaterial.done(function (data) {
@@ -177,5 +174,10 @@ function getMaterialDetalle(data) {
 
         $('#matStockEstado').html(estado);
         $('#modalDetalle').modal("show");
+    });
+
+    requestMaterial.fail(function (data) {
+        console.log(data.Response);
+        alert('No se pueden cargar el material');
     });
 }

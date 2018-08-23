@@ -22,9 +22,8 @@ $(document).ready(function () {
     });
 
     var request = $.ajax({
-        url: baseURL + "Proveedor/GetProveedores",
+        url: baseURL + "Proveedor/GetAll",
         type: 'GET',
-        data: { desde: 0, hasta : 200 },
         contentType: 'application/json; charset=utf-8'
     });
 
@@ -32,7 +31,7 @@ $(document).ready(function () {
         //console.log(data.Response);
         tablaProveedores = $('#grdProveedores').DataTable({
             //"dom": "lfrtip",
-            "autoWidth": false, 
+            "autoWidth": false,
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
@@ -64,12 +63,12 @@ $(document).ready(function () {
                     "sWidth": "15%",
                     "mRender": function (dato, type, row) {
 
-                        var verDetalleHtml = 
+                        var verDetalleHtml =
                             '<button type="button" title="Detalle" class="btn btn-outline-dark" href="" id="matDet-' + row.idProveedor + '" onclick="getProveedorDetalle(this);"><i class="fas fa-eye"></i></button> ';
 
                         var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i> </a></div> ';
 
-                        var borrarHtml = 
+                        var borrarHtml =
                             '<a title="Borrar" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="fas fa-trash-alt"></i> </a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
@@ -114,16 +113,17 @@ $(document).ready(function () {
     });
 
     request.fail(function (data) {
-        alert(data.Response);
+        console.log(data.Response);
+        alert('No se pueden cargar el listado de proveedores');
     });
-})
+});
 
 function getProveedorDetalle(data) {
 
     var id = data.id.split('-')[1];
 
     var requestProveedor = $.ajax({
-        url: baseURL + "Proveedor/GetProveedor",
+        url: baseURL + "Proveedor/GetById",
         type: 'GET',
         data: { idProveedor: id },
         contentType: 'application/json; charset=utf-8',

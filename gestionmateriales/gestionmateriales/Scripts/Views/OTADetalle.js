@@ -72,6 +72,11 @@ $(document).ready(function () {
             }
         });
     });
+
+    request.fail(function (data) {
+        console.log(data.Response);
+        alert('No se pueden cargar los items OTA');
+    });
 });
 
 

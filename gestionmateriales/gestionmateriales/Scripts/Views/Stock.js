@@ -17,12 +17,6 @@
 
     request.done(function (data) {
         //console.log(data.Response);
-        //if (data.Response != '') {
-        //    $('#verMaterial').html('<p><strong>Código: </strong>' + data.Response[0].codigo + '<br /><strong>Material: </strong>' + data.Response[0].nombre + '</p>');
-        //}
-        //else {
-        //    $('#verMaterial').html('<p>No existe el material con el código del material ingresado.</p>');
-        //}
         var fuseOptions = { keys: ["nombre", "codigo"] };
         var options = { display: "nombre", key: "codigo", resultsLimit: 7, fuseOptions: fuseOptions };
         $("#materialPicker").fuzzyComplete(data.Response, options);
@@ -35,7 +29,8 @@
     });
 
     request.fail(function (data) {
-        alert(data.Response);
+        console.log(data.Response);
+        alert('No se pueden cargar el stock de materiales');
     });
 });
 

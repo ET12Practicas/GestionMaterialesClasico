@@ -8,34 +8,36 @@
             <a id="btn_generarordentrabajo" class="btn btn-outline-primary btn-block" href="~/OrdenTrabajoAplicacion" role="button" data-toggle="tooltip" data-placement="right" title="Genera orden de trabajo de aplicación"> Generar Orden de Trabajo</a>
         </div>
     </div>
-    <hr />
+    <br />
     <input type="hidden" id="IdOT" value="@ViewData["IdOT"]"/>
-    <div class="row">
-        <table id="grdMateriales" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Material
-                    </th>
-                    <th>
-                        Stock Actual
-                    </th>
-                    <th>
-                        Cantidad
-                    </th>
-                    <th>
-                        Opciones
-                    </th>
-                </tr>
-            </thead>
-        </table>
-        <script type="text/javascript" src="~/Scripts/Views/MaterialesOTA.js"></script>
+    <div class="card">
+        <div class="card-body">
+            <table id="grdMateriales" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Material
+                        </th>
+                        <th>
+                            Stock Actual
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Opciones
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            <script type="text/javascript" src="~/Scripts/Views/MaterialesOTA.js"></script>
+        </div>
     </div>
 </div>

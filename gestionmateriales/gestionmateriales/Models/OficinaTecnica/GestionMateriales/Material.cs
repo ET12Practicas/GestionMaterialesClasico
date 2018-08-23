@@ -96,24 +96,9 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
         {
             this.entradas = new HashSet<EntradaMaterial>();
             this.salidas = new HashSet<SalidaMaterial>();
-        }
 
-        public Material(string aCodigo, string aNombre, int aStockActual, int aStockMinimo, string aDetalle, Unidad aUnidad, Proveedor aProveedor, TipoMaterial aTipoMaterial)
-        {
-            this.hab = true;
-
-            this.codigo = aCodigo;
-            this.nombre = aNombre;
-            this.stockMinimo = aStockMinimo;
-            this.stockActual = aStockActual;
-            this.detalle = aDetalle;
-
-            this.idUnidad = aUnidad.idUnidad;
-            this.unidad = aUnidad;
-            this.idProveedor = aProveedor.idProveedor;
-            this.proveedor = aProveedor;
-            this.idTipoMaterial = aTipoMaterial.idTipoMaterial;
-            this.tipoMaterial = aTipoMaterial;
+            hab = true;
+            detalle = "Sin detalle";
         }
     }
 }

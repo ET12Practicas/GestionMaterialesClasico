@@ -88,6 +88,11 @@ $(document).ready(function () {
             }
         });
     });
+
+    requestMaterial.fail(function (data) {
+        console.log(data.Response);
+        alert('No se pueden cargar el listado de materiales');
+    });
 });
 
 function addItemOTA(data) {
@@ -131,9 +136,10 @@ function addItemOTA(data) {
                 delay: 500
             }
         );
-    })
+    });
 
     request.fail(function () {
-        alert('Error agregando el item material');
+        console.log(data.Response);
+        alert('No se pueden cargar el listado de items OTA');
     });
 }

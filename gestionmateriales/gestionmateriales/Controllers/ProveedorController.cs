@@ -160,7 +160,7 @@ namespace gestionmateriales.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetProveedores(int desde, int hasta)
+        public JsonResult GetAll()
         {
             var proveedores = proveedorRepository.Find(x => x.hab)
                 .Select(p => new { p.idProveedor, p.nombre, p.cuit, p.telefono, p.email });
@@ -169,7 +169,7 @@ namespace gestionmateriales.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetProveedor(int IdProveedor)
+        public JsonResult GetById(int IdProveedor)
         {
             var proveedor = proveedorRepository.Find(x => x.idProveedor == IdProveedor && x.hab)
                 .Select(p => new { p.idProveedor, p.nombre, p.cuit, p.razonSocial, p.zona, p.direccion, p.telefono, p.email, p.horario, p.nombreContacto });

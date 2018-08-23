@@ -93,4 +93,9 @@ $(document).ready(function () {
             }
         });
     });
+
+    request.fail(function (data) {
+        console.log(data.Response);
+        alert('No se pueden cargar el listado de orden de trabajo de aplicación');
+    });
 });

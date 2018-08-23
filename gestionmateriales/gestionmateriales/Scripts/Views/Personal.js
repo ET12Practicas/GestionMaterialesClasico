@@ -18,7 +18,7 @@ $(document).ready(function () {
             $('#lastUpdated').text('Última modificación ' + fecha);
         }
     });
-       
+
     var requestPersonal = $.ajax({
         url: baseURL + "Personal/GetAll",
         type: 'GET',
@@ -102,6 +102,7 @@ $(document).ready(function () {
     });
 
     requestPersonal.fail(function (data) {
-        alert(data.Response);
+        console.log(data.Response);
+        alert('No se pueden cargar el listado de personal');
     });
-})
+});
