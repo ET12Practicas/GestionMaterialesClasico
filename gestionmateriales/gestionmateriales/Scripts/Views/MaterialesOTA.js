@@ -74,7 +74,7 @@ $(document).ready(function () {
                 "infoFiltered": "(filtrados de _MAX_ materiales totales)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Ver _MENU_ materiales por página",
+                "lengthMenu": "_MENU_",
                 "loadingRecords": "Cargando...",
                 "processing": "En proceso...",
                 "search": "Buscar",
