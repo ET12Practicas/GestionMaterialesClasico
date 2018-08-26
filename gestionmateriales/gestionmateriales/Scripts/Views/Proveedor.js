@@ -3,7 +3,7 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaProveedores;
 
 $(document).ready(function () {
-    $('#btnCrearProveedor').tooltip();
+    //$('#btnCrearProveedor').tooltip();
 
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
@@ -60,16 +60,20 @@ $(document).ready(function () {
                     "data": "email"
                 },
                 {
-                    "sWidth": "15%",
+                    "sWidth": "10%",
                     "mRender": function (dato, type, row) {
 
-                        var verDetalleHtml =
-                            '<button type="button" title="Detalle" class="btn btn-outline-dark" href="" id="matDet-' + row.idProveedor + '" onclick="getProveedorDetalle(this);"><i class="fas fa-eye"></i></button> ';
+                        var ini = '<div class="row">';
 
-                        var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fas fa-pencil-alt"></i> </a></div> ';
+                        var cab = '<div class="col-4">';
+
+                        var verDetalleHtml =
+                            '<a title="Detalle" href="#" id="matDet-' + row.idProveedor + '" onclick="getProveedorDetalle(this);"><i class="fal fa-eye fa-2x"></i></a>';
+
+                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fal fa-pencil-alt fa-2x"></i> </a>';
 
                         var borrarHtml =
-                            '<a title="Borrar" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="fas fa-trash-alt"></i> </a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                            '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="fal fa-trash-alt fa-2x"></i> </a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Proveedor</h4></div>' +
@@ -85,7 +89,9 @@ $(document).ready(function () {
                             '<a href="' + baseURL + 'Proveedor/Borrar/' + row.idProveedor + '" type="button" class="btn btn-danger">Aceptar</a>' +
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
                             '</div></div></div></div></div></div>';
-                        return verDetalleHtml + editarHtml + borrarHtml;
+
+                        var end = '</div>';
+                        return ini + cab + verDetalleHtml + end + cab + editarHtml + end + cab + borrarHtml + end + end;
                     }
                 }],
             "order": [1, "asc"],

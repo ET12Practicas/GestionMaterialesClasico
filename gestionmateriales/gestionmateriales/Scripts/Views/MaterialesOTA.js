@@ -3,7 +3,7 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
 $(document).ready(function () {
     //console.log($('#IdOT').val());
-    $('#btn_nuevarordentrabajo').tooltip();
+    //$('#btn_nuevarordentrabajo').tooltip();
 
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
@@ -100,9 +100,9 @@ function addItemOTA(data) {
     var idOT = data.id.split('-')[1];
     var idMaterial = data.id.split('-')[2];
     var cant = $('#iCant-' + idOT + '-' + idMaterial).val();
-    console.log(idOT);
-    console.log(idMaterial);
-    console.log(cant);
+    //console.log(idOT);
+    //console.log(idMaterial);
+    //console.log(cant);
 
     var request = $.ajax({
         url: baseURL + "OrdenTrabajoAplicacion/AddItemMaterial",

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 
 function loadMateriales(from, end) {
-    $('#btn_agregarmaterial').tooltip();
+    //$('#btn_agregarmaterial').tooltip();
 
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
@@ -67,29 +67,38 @@ function loadMateriales(from, end) {
                     "sWidth": "7%",
                     "mRender": function (dato, type, row) {
                         if (row.stockActual == 0) {
-                            return 'SIN STOCK';
+                            //return 'SIN STOCK';
+                            //return '<span class="badge badge-danger">Sin Stock</span>';
+                            return '<span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Sin stock</span>';
                         }
                         if (row.stockActual > row.stockMinimo) {
-                            return 'ALTO';
+                            //return 'ALTO';
+                            //return '<span class="badge badge-success">Alto</span>';
+                            return '<span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Alto</span>';
                         }
                         else {
-                            return 'BAJO';
+                            //return 'BAJO';
+                            //return '<span class="badge badge-warning">Bajo</span>';
+                            return '<span class="badge bgc-yellow-50 c-yellow-700 p-10 lh-0 tt-c badge-pill">Bajo</span>';
                         }
                     }
                 },
                 {
-                    "sWidth": "14%",
+                    "sWidth": "10%",
                     "mRender": function (dato, type, row) {
+                        var cab = '<div class="row">';
+
+                        var head = '<div class="col-3">';
 
                         var verDetalleHtml =
-                            '<button type="button" title="Detalle" class="btn btn-outline-dark" href="" id="matDet-' + row.idMaterial + '" onclick="getMaterialDetalle(this);"><i class="fas fa-eye"></i></button> ';
+                            '<a title="Detalle" href="#" id="matDet-' + row.idMaterial + '" onclick="getMaterialDetalle(this);"><i class="fal fa-eye fa-2x"></i></a> ';
 
-                        var historialHtml = '<a title="Ver Historial" class="btn btn-outline-dark" href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="far fa-clock"></i> </a> ';
+                        var historialHtml = '<a title="Historial" href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="fal fa-clock fa-2x"></i> </a> ';
 
-                        var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="fas fa-pencil-alt"></i> </a> ';
+                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="fal fa-pencil-alt fa-2x"></i> </a> ';
 
                         var borrarHtml =
-                            '<a title="Borrar" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-' + row.idMaterial + '"><i class="fas fa-trash-alt"></i></a><div class="modal fade" id="myModal-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                            '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idMaterial + '"><i class="fal fa-trash-alt fa-2x"></i></a><div class="modal fade" id="myModal-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Material</h4></div>' +
@@ -103,7 +112,9 @@ function loadMateriales(from, end) {
                             '<a href="' + baseURL + 'Material/Borrar/' + row.idMaterial + '" type="button" class="btn btn-danger">Aceptar</a>' +
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
                             '</div></div></div></div></div>';
-                        return verDetalleHtml + historialHtml + editarHtml + borrarHtml;
+                        var cola = '</div>';
+
+                        return cab + head + verDetalleHtml + cola + head + historialHtml + cola + head + editarHtml + cola + head + borrarHtml + cola;
                     }
                 },
             ],

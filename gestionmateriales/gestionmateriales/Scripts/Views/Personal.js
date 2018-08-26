@@ -3,7 +3,7 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaPersonal;
 
 $(document).ready(function () {
-    $('#btn_crearPersonal').tooltip();
+    //$('#btn_crearPersonal').tooltip();
 
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
@@ -56,11 +56,15 @@ $(document).ready(function () {
                     "data": "fichaCensal"
                 },
                 {
-                    "sWidth": "9%",
+                    "sWidth": "10%",
                     "mRender": function (dato, type, row) {
-                        var editarHtml = '<a title="Editar" class="btn btn-outline-dark" href="' + baseURL + 'Personal/Editar/' + row.idPersonal + '"><i class="fas fa-pencil-alt"></i> </a> ';
+                        var ini = '<div class="row">';
 
-                        var borrarHtml = '<a title="Borrar" class="btn btn-outline-dark" href="" data-toggle="modal" data-target="#myModal-' + row.idPersonal + '"><i class="fas fa-trash-alt"></i> </a><div class="modal fade" id= "myModal-' + row.idPersonal + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                        var cab = '<div class="col-6">';
+
+                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Personal/Editar/' + row.idPersonal + '"><i class="fal fa-pencil-alt fa-2x"></i> </a> ';
+
+                        var borrarHtml = '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idPersonal + '"><i class="fal fa-trash-alt fa-2x"></i> </a><div class="modal fade" id= "myModal-' + row.idPersonal + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Personal</h4></div>' +
@@ -75,7 +79,9 @@ $(document).ready(function () {
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
                             '</div></div></div></div></div>';
 
-                        return editarHtml + borrarHtml;
+                        var end = '</div>';
+
+                        return ini + cab + editarHtml + end + cab + borrarHtml + end + end;
                     }
                 }],
             "language": {

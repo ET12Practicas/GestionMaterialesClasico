@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    $('#btn_limpiar').tooltip();
-    $('#btn_aceptar').tooltip();
-    $('#btn_cancelar').tooltip();
+    //$('#btn_limpiar').tooltip();
+    //$('#btn_aceptar').tooltip();
+    //$('#btn_cancelar').tooltip();
 
     var appName = location.pathname.split('/')[1];
     var baseURL = window.location.protocol + "//" + window.location.host + "/";

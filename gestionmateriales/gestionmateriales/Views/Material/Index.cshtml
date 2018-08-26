@@ -1,77 +1,76 @@
-﻿<div class="container-fluid">
-    <h1 class="display-4">Materiales</h1>
-    <div class="row">
-        <div class="col-md-6">
-            <p>Materiales o herramientas utilizadas para taller o reparaciones edilicias.</p>
-        </div>
-        <div class="offset-md-4 col-md-2">
-            <a id="btn_agregarmaterial" class="btn btn-outline-primary btn-block" href="~/Material/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Agrega materiales o herramientas utilizadas para taller o reparaciones edilicias"><i class="fas fa-wrench"></i> Nuevo Material</a>
-        </div>
+﻿<h1 class="display-4">Materiales</h1>
+<div class="row">
+    <div class="col-md-6">
+        <p>Materiales o herramientas utilizadas para taller o reparaciones edilicias.</p>
     </div>
-    <br />
-    <div class="card">
-        <div class="card-body">
-            <table id="grdMateriales" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            Código
-                        </th>
-                        <th>
-                            Material
-                        </th>
-                        <th>
-                            Stock Actual
-                        </th>
-                        <th>
-                            Stock Mínimo
-                        </th>
-                        <th>
-                            Stock
-                        </th>
-                        <th>
-                            Opciones
-                        </th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="card-footer">
-            <div id="lastUpdated"></div>
-        </div>
+    <div class="offset-md-4 col-md-2">
+        <a id="btn_agregarmaterial" class="btn btn-outline-primary btn-block" href="~/Material/Agregar"><i class="far fa-gavel"></i> Nuevo Material</a>
     </div>
-    
-    <script type="text/javascript" src="~/Scripts/Views/Material.js"></script>
+</div>
+<div class="card">
+    <div class="card-body">
+        <table id="grdMateriales" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Material
+                    </th>
+                    <th>
+                        Stock Actual
+                    </th>
+                    <th>
+                        Stock Mínimo
+                    </th>
+                    <th>
+                        Stock
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div id="lastUpdated"></div>
+    </div>
+</div>
 
-    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Material</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p><strong>Código:</strong> <span id="matCodigo"></span></p>
-                            <p><strong>Material:</strong> <span id="matNombre"></span></p>
-                            <p><strong>Tipo:</strong> <span id="matTipo"></span></p>
-                            <p><strong>Unidad:</strong> <span id="matUnidad"></span></p>
-                            <p><strong>Proveedor:</strong> <span id="matProveedor"></span></p>
-                        </div>
-                        <div class="col-md-6 ml-auto">
-                            <p><strong>Stock Actual:</strong> <span id="matStockActual"></span></p>
-                            <p><strong>Stock Mínimo:</strong> <span id="matStockMinimo"></span></p>
-                            <p><strong>Estado del Stock:</strong> <span id="matStockEstado"></span></p>
-                            <p><strong>Detalle:</strong> <span id="matDetalle"></span></p>
-                        </div>
+<script type="text/javascript" src="~/Scripts/Views/Material.js"></script>
+
+<div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Material</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Código:</strong> <span id="matCodigo"></span></p>
+                        <p><strong>Material:</strong> <span id="matNombre"></span></p>
+                        <p><strong>Tipo:</strong> <span id="matTipo"></span></p>
+                        <p><strong>Unidad:</strong> <span id="matUnidad"></span></p>
+                        <p><strong>Proveedor:</strong> <span id="matProveedor"></span></p>
                     </div>
-                    <br />
+                    <div class="col-md-6 ml-auto">
+                        <p><strong>Stock Actual:</strong> <span id="matStockActual"></span></p>
+                        <p><strong>Stock Mínimo:</strong> <span id="matStockMinimo"></span></p>
+                        <p><strong>Estado del Stock:</strong> <span id="matStockEstado"></span></p>
+                        <p><strong>Detalle:</strong> <span id="matDetalle"></span></p>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                </div>
+                <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>

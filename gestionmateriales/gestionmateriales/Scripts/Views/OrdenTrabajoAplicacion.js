@@ -62,11 +62,18 @@ $(document).ready(function () {
                 {
                     "sWidth": "10%",
                     "mRender": function (dato, type, row) {
-                        var editar = '<a title="Editar" class="btn btn-outline-dark btn-sm" href="' + baseURL + 'OrdenTrabajoAplicacion/Editar/' + row.id + '"><i class="fas fa-pencil-alt"></i> </a> ';
 
-                        var detalle = '<a title="Ver Detalle" class="btn btn-outline-dark btn-sm" href="' + baseURL + 'OrdenTrabajoAplicacion/Detalle/' + row.id + '"><i class="fas fa-eye"></i> </a> ';
+                        var ini = '<div class="row">';
 
-                        return detalle + editar;
+                        var cab = '<div class="col-6">';
+
+                        var editar = '<a title="Editar" href="' + baseURL + 'OrdenTrabajoAplicacion/Editar/' + row.id + '"><i class="fal fa-pencil-alt fa-2x"></i> </a> ';
+
+                        var detalle = '<a title="Ver Detalle" href="' + baseURL + 'OrdenTrabajoAplicacion/Detalle/' + row.id + '"><i class="fal fa-eye fa-2x"></i> </a> ';
+
+                        var end = '</div>';
+
+                        return ini + cab + detalle + end + cab + editar + end + end;
                     }
                 }                
             ],

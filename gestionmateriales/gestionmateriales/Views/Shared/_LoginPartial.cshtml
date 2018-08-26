@@ -1,25 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
 
 <li class="nav-item">
-    <a class="nav-link" href="~/Ayuda/Index"><i class="fas fa-question-circle"></i></a>
+        <a class="nav-link" href="~/Ayuda"><i class="fal fa-question"></i></a>
 </li>
 
-<li class="nav-item dropdown no-arrow">
-    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-circle fa-fw"></i>
+<li class="dropdown">
+    <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+        <div class="peer"><span class="fsz-sm c-grey-900"><i class="fal fa-user"></i></span> @User.Identity.GetUserName()</div>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="~/Manage/Index"> @User.Identity.GetUserName()</a>
-        @*<a class="dropdown-item" href="#">Activity Log</a>*@
-        <div class="dropdown-divider"></div>
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-        {
-            @Html.AntiForgeryToken()
+    <ul class="dropdown-menu fsz-sm">
+        <li><a href="~/Manage" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="far fa-cog"></i> <span>Configuración</span></a></li>
+        @*<li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Perfil</span></a></li>*@
+        <li role="separator" class="divider"></li>
+        <li>
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="fal fa-sign-out-alt"></i> <span>Cerrar sesión</span></a>
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
 
-            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-        }
-    </div>
+            }
+        </li>
+     </ul>
 </li>
 
 
