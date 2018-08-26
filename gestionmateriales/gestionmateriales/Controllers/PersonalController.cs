@@ -35,7 +35,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Agregar(Personal aPersonal)
         {
-            if (personalRepository.GetAll().Any(x => (x.fichaCensal == aPersonal.fichaCensal || x.dni == aPersonal.dni) && x.hab))
+            if (personalRepository.Find(x => x.hab).Any(x => (x.fichaCensal == aPersonal.fichaCensal || x.dni == aPersonal.dni)))
             {
                 ViewBag.Result = 1;
 
@@ -59,7 +59,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             ViewBag.Result = 0;
@@ -84,7 +84,7 @@ namespace gestionmateriales.Controllers
 
             if (personal == null) throw new Exception("No existe el personal");
 
-            if (personalRepository.Find(x => x.idPersonal != id && x.hab).Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
+            if (personalRepository.Find(x => x.hab).Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
             {
                 ViewBag.Result = 1;
 
@@ -109,7 +109,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
             
             ViewBag.Result = 0;
@@ -135,7 +135,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             return RedirectToAction("Index", "Personal");

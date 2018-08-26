@@ -86,12 +86,12 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
             
             if (idOt < 0)
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             return RedirectToAction("Materiales", new { id = idOt });
@@ -153,14 +153,14 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             idOt = otEdit.idOrdenTrabajoAplicacion;
 
             if(idOt < 0)
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             ViewData["IdOT"] = idOt;

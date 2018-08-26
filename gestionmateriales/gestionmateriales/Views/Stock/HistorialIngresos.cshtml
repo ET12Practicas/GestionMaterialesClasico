@@ -1,112 +1,38 @@
-﻿    <h1 class="display-4">Historial Entradas</h1>
-    <br />
-    <div class="card">
-        <div class="card-body">
-            <table id="grdIngresos" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            Nro. Operación
-                        </th>
-                        <th>
-                            Código Material
-                        </th>
-                        <th>
-                            Material
-                        </th>
-                        <th>
-                            Cantidad
-                        </th>
-                        <th>
-                            Tipo de Entrada
-                        </th>
-                        <th>
-                            Cod. Documento
-                        </th>
-                        <th>
-                            Usuario
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="card-footer"></div>
+﻿<h1 class="display-4">Historial Entradas</h1>
+<br />
+<div class="card">
+    <div class="card-body">
+        <table id="grdIngresos" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nro.
+                    </th>
+                    <th>
+                        Cod. Material
+                    </th>
+                    <th>
+                        Material
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Tipo de Entrada
+                    </th>
+                    <th>
+                        Cod. Documento
+                    </th>
+                    <th>
+                        Usuario
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>
-        <script>
-            var appName = location.pathname.split('/')[1];
-            var baseURL = window.location.protocol + "//" + window.location.host + "/";
-
-            if (appName == 'ottest')
-                baseURL = baseURL + appName + "/";
-
-            var requestMaterial = $.ajax({
-                url: baseURL + "Stock/GetHistorialIngresos",
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8'
-            });
-
-            requestMaterial.done(function (data) {
-                console.log(data.Response);
-                tablaMateriales = $('#grdIngresos').DataTable({
-                    //"dom": "lfrtip",
-                    "aaData": data.Response,
-                    "aoColumns": [
-                        {
-                            "data": "numero"
-                        },
-                        {
-                            "data": "codMaterial"
-                        },
-                        {
-                            "data": "material"
-                        },
-                        {
-                            "data": "cantidad"
-                        },
-                        {
-                            "data": "tipoEntrada"
-                        },
-                        {
-                            "data": "codDocumento"
-                        },
-                        {
-                            "data": "usuario"
-                        },
-                        {
-                            "mRender": function (data, type, row) {
-                                var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
-                                return value.toLocaleString().split(' ')[0];
-                            }
-                        }
-                    ],
-                    "order": [7, "desc"],
-                    "language": {
-                        "decimal": "",
-                        "emptyTable": "No hay información disponible para mostrar",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                        "infoEmpty": "No hay ingresos para mostrar",
-                        "infoFiltered": "(filtrados de _MAX_ ingresos totales)",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "_MENU_",
-                        "loadingRecords": "Cargando...",
-                        "processing": "En proceso...",
-                        "search": "Buscar",
-                        "zeroRecords": "No hay ingresos que coincidan con el filtro",
-                        "paginate": {
-                            "first": "Primera",
-                            "last": "Última",
-                            "next": "Siguiente",
-                            "previous": "Anterior"
-                        }
-                    }
-                });
-            });
-
-            requestMaterial.fail(function (data) {
-                alert(data.Response);
-            });
-        </script>
+    <div class="card-footer"></div>
+</div>
+<script type="text/javascript" src="~/Scripts/Views/Stock/HistorialIngresos.js"></script>

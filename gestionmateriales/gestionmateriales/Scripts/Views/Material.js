@@ -35,7 +35,7 @@ function loadMateriales(from, end) {
         //console.log(data.Response);
         tablaMateriales = $('#grdMateriales').DataTable({
             //"dom": "lfrtip",
-            "autoWidth": false,
+            "autoWidth": true,
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],

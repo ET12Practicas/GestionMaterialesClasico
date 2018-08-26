@@ -17,11 +17,6 @@ namespace gestionmateriales.Repository.Implementation
             this.context = Context;
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return context.Set<TEntity>().Where(predicate);
-        }
-
         public TEntity GetById(int id)
         {
             return context.Set<TEntity>().Find(id);
@@ -49,5 +44,16 @@ namespace gestionmateriales.Repository.Implementation
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
         }
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return context.Set<TEntity>().Where(predicate);
+        }
+
+        //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
+        //{
+        //    IQueryable<TEntity> query = context.Set<TEntity>().Where(predicate);
+        //    return include != null ? include(query) : query;
+        //}        
     }
 }

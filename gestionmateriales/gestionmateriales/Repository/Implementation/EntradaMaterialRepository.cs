@@ -4,15 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web;
 
 namespace gestionmateriales.Repository.Implementation
 {
-    public class MaterialRepository : Repository<Material>, IMaterialRepository
+    public class EntradaMaterialRepository : Repository<EntradaMaterial>, IEntradaMaterialRepository
     {
-        public MaterialRepository(DbContext Context) : base(Context)
+        public EntradaMaterialRepository(DbContext Context) : base(Context)
         {
-        }       
+        }
     }
 }

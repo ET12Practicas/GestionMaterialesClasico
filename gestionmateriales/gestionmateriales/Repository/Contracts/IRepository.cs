@@ -15,6 +15,8 @@ namespace gestionmateriales.Repository.Contracts
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
+        //IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null);
+
         void Add(TEntity entity);
 
         void Edit(TEntity entity);

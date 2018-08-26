@@ -7,18 +7,34 @@ using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 using gestionmateriales.Models.OficinaTecnica.Tipos;
 using System.Data.Entity;
 using System.Collections.Generic;
+using gestionmateriales.Repository.Contracts;
+using gestionmateriales.Repository.Implementation;
 
 namespace gestionmateriales.Controllers
 {
-    [Route("Stock/[action]")]
+    [Route("/Stock")]
     public class StockController : Controller
     {
+        //private readonly ISalidaMaterialRepository salidaMaterialRepository;
+        //private readonly IEntradaMaterialRepository entradaMaterialRepository;
+        //private readonly IMaterialRepository materialRepository;
+        //private readonly ITipoEntradaMaterialRepository tipoEntradaMaterialRepository;
+
+        public StockController()
+        {
+            //OficinaTecnicaEntities context = new OficinaTecnicaEntities();
+            //entradaMaterialRepository = new EntradaMaterialRepository(context);
+            //salidaMaterialRepository = new SalidaMaterialRepository(context);
+            //materialRepository = new MaterialRepository(context);
+            //tipoEntradaMaterialRepository = new TipoEntradaMaterialRepository(context);
+        }
+
         [Authorize(Roles = "administrador, deposito, compras")]
-        
         [HttpGet]
         public ActionResult Sumar()
         {
             cargarTipoEntrada();
+
             return View("Sumar");
         }
 
@@ -29,16 +45,20 @@ namespace gestionmateriales.Controllers
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
 
             Material unMaterial = db.materiales
-                .Where(x => x.codigo == unaEntrada.codigoMaterial && x.hab)
-                .Include(x => x.proveedor)
-                .Include(x => x.tipoMaterial)
-                .Include(x => x.unidad)
-                .Include(x => x.entradas)
-                .Include(x => x.salidas)
-                .FirstOrDefault();
+                   .Where(x => x.codigo == unaEntrada.codigoMaterial && x.hab)
+                   .Include(x => x.proveedor)
+                   .Include(x => x.tipoMaterial)
+                   .Include(x => x.unidad)
+                   .Include(x => x.entradas)
+                   .Include(x => x.salidas)
+                   .FirstOrDefault();
+
+            if (unMaterial == null) throw new Exception("No existe el material");
 
             TipoEntradaMaterial unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntradaMaterial);
-            
+
+            if (unTipoEntrada == null) throw new Exception("No existe el tipo entrada material");
+
             try
             {
                 //actualizo el stock de la entrada para el material indicado
@@ -66,10 +86,12 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
             ViewBag.Result = 0;
+
             cargarTipoEntrada();
+
             return View("Sumar");
         }
 
@@ -132,7 +154,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
             ViewBag.Result = 0;
             cargarTipoSalida();
@@ -165,7 +187,7 @@ namespace gestionmateriales.Controllers
                                        timestamp = egr.LAST_UPDATED_DATE
                                    };
 
-            return Json(new { Name = "/GetHistorialEgresos", Response = historialEgresos, Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt") }, JsonRequestBehavior.AllowGet);
+            return Json(new { Response = historialEgresos }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "administrador, deposito, compras")]

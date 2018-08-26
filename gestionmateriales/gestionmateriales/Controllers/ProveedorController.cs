@@ -36,7 +36,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Agregar(Proveedor unProveedor)
         {
-            if (proveedorRepository.GetAll().Any(y => y.cuit == unProveedor.cuit && y.hab))
+            if (proveedorRepository.Find(x => x.hab).Any(y => y.cuit == unProveedor.cuit))
             {
                 ViewBag.Result = 1;
 
@@ -66,7 +66,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             ViewBag.Result = 0;
@@ -91,7 +91,7 @@ namespace gestionmateriales.Controllers
 
             if (proveedor == null) throw new Exception("No existe el proveedor");
 
-            if (proveedorRepository.Find(x => x.idProveedor != id && x.hab).Any(y => y.cuit == unProveedor.cuit))
+            if (proveedorRepository.Find(x => x.hab).Any(y => y.cuit == unProveedor.cuit))
             {
                 ViewBag.Result = 1;
 
@@ -124,7 +124,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             ViewBag.Result = 0;
@@ -153,7 +153,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             return RedirectToAction("Index", "Proveedor");
@@ -171,7 +171,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetById(int IdProveedor)
         {
-            var proveedor = proveedorRepository.Find(x => x.idProveedor == IdProveedor && x.hab)
+            var proveedor = proveedorRepository.Find(x => x.hab && x.idProveedor == IdProveedor)
                 .Select(p => new { p.idProveedor, p.nombre, p.cuit, p.razonSocial, p.zona, p.direccion, p.telefono, p.email, p.horario, p.nombreContacto });
 
             return Json(new { Response = proveedor }, JsonRequestBehavior.AllowGet);

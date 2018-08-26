@@ -94,14 +94,14 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             idOp = opEdit.idOrdenPedido;
 
             if (idOp < 0)
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             return RedirectToAction("Index","ShopCartMaterialPedido", new { id = idOp });

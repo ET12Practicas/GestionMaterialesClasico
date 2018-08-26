@@ -93,7 +93,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             cargarCombos();
@@ -124,7 +124,7 @@ namespace gestionmateriales.Controllers
 
             if (material == null) throw new Exception("No existe el material");
 
-            if (materialRepository.Find(x => x.idMaterial != id && x.hab).Any(y => y.codigo == material.codigo))
+            if (materialRepository.Find(x => x.hab).Any(y => y.codigo == material.codigo))
             {
                 ViewBag.Result = 1;
 
@@ -177,7 +177,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             cargarProveedor(material.proveedor.idProveedor);
@@ -211,7 +211,7 @@ namespace gestionmateriales.Controllers
             }
             catch
             {
-                return RedirectToAction("Error406", "Error");
+                return RedirectToAction("Error500", "Error");
             }
 
             return RedirectToAction("Index", "Material");
@@ -220,7 +220,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Historial(int id)
         {
-            var ordenesTrabajoAplicacion = ordenTrabajoAplicacionRepository.Find(x => x.itemsOTA.Any(y => y.material.idMaterial == id));
+            var ordenesTrabajoAplicacion = ordenTrabajoAplicacionRepository.Find(x => x.hab);
 
             var material = materialRepository.GetById(id);
 
@@ -260,7 +260,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetById(int id)
         {
-            var material = materialRepository.Find(x => x.idMaterial == id && x.hab)
+            var material = materialRepository.Find(x => x.hab && x.idMaterial == id)
                 .Select(x => new { x.idMaterial, x.codigo, x.nombre, x.stockActual, x.stockMinimo, x.detalle, unidad = x.unidad.nombre,
                     proveedor = x.proveedor.nombre, tipoMaterial = x.tipoMaterial.nombre });
 
