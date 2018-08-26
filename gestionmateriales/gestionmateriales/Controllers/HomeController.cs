@@ -60,27 +60,27 @@ namespace gestionmateriales.Controllers
 
             if (User.IsInRole("deposito"))
             {
-                menu.Add(new MenuItem { Id = 20, nameOption = "Stock", controller = "", action = "", imageClass = "fa-fw fas fa-sync", estatus = true, isParent = true, parentId = 0 });
+                menu.Add(new MenuItem { Id = 20, nameOption = "Stock", controller = "", action = "", imageClass = "c-deep-purple-500 far fa-sync-alt", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 21, nameOption = "Entrada", controller = "Stock", action = "Sumar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 22, nameOption = "Salida", controller = "Stock", action = "Restar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 23, nameOption = "Historial Ingreso", controller = "Stock", action = "HistorialIngresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 24, nameOption = "Historial Egreso", controller = "Stock", action = "HistorialEgresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
-                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "fa-fw fas fa-wrench", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-gavel", estatus = true, isParent = false, parentId = 0 });
             }
 
             if (User.IsInRole("compras"))
             {
-                menu.Add(new MenuItem { Id = 20, nameOption = "Stock", controller = "", action = "", imageClass = "fa-fw fas fa-sync", estatus = true, isParent = true, parentId = 0 });
+                menu.Add(new MenuItem { Id = 20, nameOption = "Stock", controller = "", action = "", imageClass = "c-deep-purple-500 far fa-sync-alt", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 21, nameOption = "Entrada", controller = "Stock", action = "Sumar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 23, nameOption = "Historial Ingreso", controller = "Stock", action = "HistorialIngresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
-                menu.Add(new MenuItem { Id = 30, nameOption = "Compras", controller = "", action = "", imageClass = "fa-fw fas fa-shopping-cart", estatus = true, isParent = true, parentId = 0 });
+                menu.Add(new MenuItem { Id = 30, nameOption = "Compras", controller = "", action = "", imageClass = "c-teal-500 far fa-shopping-cart", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 31, nameOption = "Necesidades", controller = "Compras", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 30 });
                 menu.Add(new MenuItem { Id = 32, nameOption = "Orden de Compra", controller = "OrdenCompra", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 30 });
-                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "fa-fw fas fa-wrench", estatus = true, isParent = false, parentId = 0 });
-                menu.Add(new MenuItem { Id = 50, nameOption = "Proveedores", controller = "Proveedor", action = "Index", imageClass = "fa-fw fas fa-truck", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-gavel", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 50, nameOption = "Proveedores", controller = "Proveedor", action = "Index", imageClass = "c-deep-purple-500 far fa-truck", estatus = true, isParent = false, parentId = 0 });
             }
 
-             return PartialView("Menu", menu);
+            return PartialView("Menu", menu);
         }
     }
 }

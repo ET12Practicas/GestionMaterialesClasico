@@ -93,6 +93,36 @@ function loadMateriales(from, end) {
                         var verDetalleHtml =
                             '<a title="Detalle" href="#" id="matDet-' + row.idMaterial + '" onclick="getMaterialDetalle(this);"><i class="fal fa-eye fa-2x"></i></a> ';
 
+                        //var verDetalleHtml =
+                        //    '<a title="Ver Detalle" href="" data-toggle="modal" data-target="#myModal-ver-' + row.idMaterial + '"><i class="fal fa-eye fa-2x"></i> </a>' +
+                        //    '<div class="modal fade" id="myModal-ver-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                        //    '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                        //    '<div class="modal-content">' +
+                        //    '<div class="modal-header">' +
+                        //    '<h4 class="modal-title" id="myModalLabel">Material</h4>' +
+                        //    '</div>' +
+                        //    '<div class="modal-body">' +
+                        //    '<div class="row">' +
+                        //    '<div class="col-md-6">' +
+                        //    '<p><strong>Código:</strong> ' + row.codigo + '</p>' +
+                        //    '<p><strong>Material:</strong> ' + row.nombre + '</p>' +
+                        //    '<p><strong>Tipo:</strong> ' + row.tipoMaterial + '</p>' +
+                        //    '<p><strong>Unidad:</strong> ' + row.unidad + '</p>' +
+                        //    '<p><strong>Proveedor:</strong> ' + row.proveedor + '</p>' +
+                        //    '</div>' +
+                        //    '<div class="col-md-6 ml-auto">' +
+                        //    '<p><strong>Stock Actual:</strong> ' + row.stockActual + '</p>' +
+                        //    '<p><strong>Stock Mínimo:</strong> ' + row.stockMinimo + '</p > ' +
+                        //    '<p><strong>Estado del Stock:</strong> ' + row.estado + '</p > ' +
+                        //    '<p><strong>Detalle:</strong> ' + row.detalle + '</p > ' +
+                        //    '</div>' +
+                        //    '</div>' +
+                        //    '<br />' +
+                        //    '</div>' +
+                        //    '<div class="modal-footer">' +
+                        //    '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
+                        //    '</div></div></div></div>';
+
                         var historialHtml = '<a title="Historial" href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="fal fa-clock fa-2x"></i> </a> ';
 
                         var editarHtml = '<a title="Editar" href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="fal fa-pencil-alt fa-2x"></i> </a> ';

@@ -230,6 +230,14 @@
     <Content Include="Assets\logo-sm.png" />
     <Content Include="Content\adminator\bundle.js" />
     <Content Include="Content\adminator\global.css" />
+    <Content Include="Content\adminator\images\404.png" />
+    <Content Include="Content\adminator\images\500.png" />
+    <Content Include="Content\adminator\images\bg.jpg" />
+    <Content Include="Content\adminator\images\logo.png" />
+    <Content Include="Content\adminator\images\logo.svg" />
+    <Content Include="Content\adminator\images\retiro.jpg" />
+    <Content Include="Content\adminator\images\retiro2.jpg" />
+    <Content Include="Content\adminator\images\retiro3.jpg" />
     <Content Include="Content\adminator\style.css" />
     <Content Include="Content\adminator\vendor.js" />
     <Content Include="Content\bootstrap-grid.css" />

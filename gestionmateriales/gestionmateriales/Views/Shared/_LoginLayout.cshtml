@@ -4,35 +4,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titán - ET12</title>
-
+    <title>Titán</title>
+    <link href="~/Content/adminator/style.css" rel="stylesheet">
     <!--JQuery-->
-    <!---script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></!--script-->
-    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
 
     <!-- Bootstrap -->
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>*@
     @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
-    <script type="text/javascript" src="~/Scripts/umd/popper.min.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/umd/popper.min.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
-    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>*@
 
 
 
-    <!--Scrips Varios-->
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
-    <!--Notitify-->
-    <script type="text/javascript" src="~/Scripts/notify.min.js"></script>
-
-    <!--Iconos-->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
-    <!--Estilos-->
-    <link rel="stylesheet" href="~/Content/signin.css" />
 </head>
-<body class="text-center">
-    @RenderBody()
+<body class="app">
+    <div id='loader'>
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('fadeOut');
+            }, 300);
+        });
+    </script>
+    <div class="peers ai-s fxw-nw h-100vh">
+        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("/Content/adminator/images/retiro2.jpg")'>
+            @*<div class="pos-a centerXY">
+                <div class="bgc-white bdrs-50p pos-r" style='width: 100px; height: 100px;'>
+                    <img class="pos-a centerXY" src="~/Assets/logoet12.png" alt="">
+                </div>
+            </div>*@
+        </div>
+        @RenderBody()
+    </div>
+    <script type="text/javascript" src="~/Content/adminator/vendor.js"></script>
+    <script type="text/javascript" src="~/Content/adminator/bundle.js"></script>
 </body>
 </html>
