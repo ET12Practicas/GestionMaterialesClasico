@@ -23,7 +23,7 @@ namespace gestionmateriales.Models
     {
         public ApplicationDbContext()
             //: base("DefaultConnection", throwIfV1Schema: false)
-            : base("DefaultConnection")
+            : base("OtUsers")
         {
         }
 

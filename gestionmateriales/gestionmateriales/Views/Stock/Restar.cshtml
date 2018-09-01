@@ -1,109 +1,106 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.SalidaMaterial
-@{
-    ViewBag.Title = "Stock";
-}
 
-    <h1 class="display-4">Salida</h1>
-    <p>Engreso de material o herramientas del depósito</p>
-        <div class="card">
-            <div class="card-header">
-                Material o Herramienta
-            </div>
-            <div class="card-body">
-                @using (@Html.BeginForm("Restar", "Stock", FormMethod.Post))
-                {
-                    <div class="form row">
-                        <div class="form-group col-5">
-                            <label for="companyValue">Código: </label>  <strong><span class="output" id="codigoMaterial"></span></strong>
-                            <br />
-                            <br />
-                            <label for="materialPicker">Buscar Material o Herramienta </label><input type="text" id="materialPicker" name="material" class="form-control" autocomplete="off">
-                            @* Aqui se guarda el codigo del material que se enviara en el formulario *@
-                            @Html.EditorFor(model => model.codigoMaterial, new { htmlAttributes = new { @class = "form-control", id = "codMaterial", type = "hidden" } })
-                        </div>
-                        <div class="form-group offset-1 col-4">
-                            @Html.LabelFor(model => model.cantidad, "Cantidad a Egresar", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", id = "cantidadMaterial", autocomplete = "off" } })
-                            <br />
-                            @Html.LabelFor(model => model.tipoSalidaMaterial, "Tipo de Engreso", new { @class = "control-label" })
-                            @Html.DropDownList("IdTipoSalidaMaterial", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form row">
-                        <div class="form-group offset-6 col-4">
-                            @Html.LabelFor(model => model.codigoDocumento, "Código Documento", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 15, id = "codigoDocumento", required = "true", autocomplete = "off" } })
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="offset-8 col-md-2">
-                            <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
-                        </div>
-                        <div class="col-md-2">
-                            <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='/Home/Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
-                        </div>
-                    </div>
-                }
-
-                @if (ViewBag.Result == 0)
-                {
-
-                    <script type="text/javascript">
-                        $('#cantidadMaterial').val('');
-                        $('#codigoMaterial').text('');
-                        $('#codigoDocumento').val('');
-                        $.notify(
-                            {
-                                message: 'Los datos se guardaron con éxito'
-                            },
-                            {
-                                type: 'success',
-                                animate: {
-                                    enter: 'animated bounceInDown',
-                                    exit: 'animated bounceOutUp'
-                                },
-                                placement: {
-                                    from: 'top',
-                                    align: 'center'
-                                },
-                                offset: {
-                                    y: 75
-                                },
-                                delay: 1000
-                            }
-                        );
-                    </script>
-                }
-                @if (ViewBag.Result == 1)
-                {
-                    <script type="text/javascript">
-                        $.notify(
-                            {
-                                message: 'No hay suficiente stock del material o herramienta.'
-                            },
-                            {
-                                type: 'danger',
-                                animate: {
-                                    enter: 'animated bounceInDown',
-                                    exit: 'animated bounceOutUp'
-                                },
-                                placement: {
-                                    from: 'top',
-                                    align: 'center'
-                                },
-                                offset: {
-                                    y: 75
-                                },
-                                delay: 1000
-                            }
-                        );
-                    </script>
-                }
-
-                <link rel="stylesheet" href="~/Scripts/Fuse/css/fuzzycomplete.min.css">
-                <script type="text/javascript" src="~/Scripts/Fuse/fuse.min.js"></script>
-                <script type="text/javascript" src="~/Scripts/Fuse/js/fuzzycomplete.min.js"></script>
-                <script type="text/javascript" src="~/Scripts/Views/Stock.js"></script>
-            </div>
+<h1 class="display-4">Salida</h1>
+<p>Engreso de material o herramientas del depósito</p>
+<div class="card">
+    <div class="card-header">
+        Material o Herramienta
     </div>
+    <div class="card-body">
+        @using (@Html.BeginForm("Restar", "Stock", FormMethod.Post))
+        {
+            <div class="form row">
+                <div class="form-group col-5">
+                    <label for="companyValue">Código: </label>  <strong><span class="output" id="codigoMaterial"></span></strong>
+                    <br />
+                    <br />
+                    <label for="materialPicker">Buscar Material o Herramienta </label><input type="text" id="materialPicker" name="material" class="form-control" autocomplete="off">
+                    @* Aqui se guarda el codigo del material que se enviara en el formulario *@
+                    @Html.EditorFor(model => model.codigoMaterial, new { htmlAttributes = new { @class = "form-control", id = "codMaterial", type = "hidden" } })
+                </div>
+                <div class="form-group offset-1 col-4">
+                    @Html.LabelFor(model => model.cantidad, "Cantidad a Egresar", new { @class = "control-label" })
+                    @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", id = "cantidadMaterial", autocomplete = "off" } })
+                    <br />
+                    @Html.LabelFor(model => model.tipoSalidaMaterial, "Tipo de Engreso", new { @class = "control-label" })
+                    @Html.DropDownList("IdTipoSalidaMaterial", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form row">
+                <div class="form-group offset-6 col-4">
+                    @Html.LabelFor(model => model.codigoDocumento, "Código Documento", new { @class = "control-label" })
+                    @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 15, id = "codigoDocumento", required = "true", autocomplete = "off" } })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="offset-8 col-md-2">
+                    <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
+                </div>
+                <div class="col-md-2">
+                    <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='/Home/Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.Result == 0)
+        {
+
+            <script type="text/javascript">
+                $('#cantidadMaterial').val('');
+                $('#codigoMaterial').text('');
+                $('#codigoDocumento').val('');
+                $.notify(
+                    {
+                        message: 'Los datos se guardaron con éxito'
+                    },
+                    {
+                        type: 'success',
+                        animate: {
+                            enter: 'animated bounceInDown',
+                            exit: 'animated bounceOutUp'
+                        },
+                        placement: {
+                            from: 'top',
+                            align: 'center'
+                        },
+                        offset: {
+                            y: 75
+                        },
+                        delay: 1000
+                    }
+                );
+            </script>
+        }
+        @if (ViewBag.Result == 1)
+        {
+            <script type="text/javascript">
+                $.notify(
+                    {
+                        message: 'No hay suficiente stock del material o herramienta.'
+                    },
+                    {
+                        type: 'danger',
+                        animate: {
+                            enter: 'animated bounceInDown',
+                            exit: 'animated bounceOutUp'
+                        },
+                        placement: {
+                            from: 'top',
+                            align: 'center'
+                        },
+                        offset: {
+                            y: 75
+                        },
+                        delay: 1000
+                    }
+                );
+            </script>
+        }
+
+        <link rel="stylesheet" href="~/Scripts/Fuse/css/fuzzycomplete.min.css">
+        <script type="text/javascript" src="~/Scripts/Fuse/fuse.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/Fuse/js/fuzzycomplete.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/Views/Stock.js"></script>
+    </div>
+</div>
