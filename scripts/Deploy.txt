@@ -1,4 +1,0 @@
-1) Correr el scriptUsuarios para crear la DB de usuarios.
-2) Crear un usuario desde la aplicacion /Account/Register.
-3) Acceder al sistema.
-4) Una vez creada la DB del negocio correr el scriptBackup para cargar datos de ejemplo.
