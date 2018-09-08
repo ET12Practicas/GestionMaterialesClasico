@@ -5,6 +5,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using gestionmateriales.Models;
+using gestionmateriales.Models.OficinaTecnica;
+using System.Security.Claims;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace gestionmateriales.Controllers
 {
@@ -135,6 +139,11 @@ namespace gestionmateriales.Controllers
         //[AllowAnonymous]
         public ActionResult Register()
         {
+        //    var roles = ((ClaimsIdentity)User.Identity).Claims
+        //        .Where(c => c.Type == ClaimTypes.Role)
+        //        .Select(c => c.Value);
+
+        //    ViewBag.idRol = new SelectList(roles, "Id", "Name", null);
             return View();
         }
 
@@ -151,9 +160,13 @@ namespace gestionmateriales.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    return RedirectToAction("Index", "Home");
+                    ////await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //var usr = UserManager.FindByName(model.Username);
+                    //var res = await UserManager.AddToRoleAsync(usr.Id, model.IdRol.ToString());
+                    //if (result.Succeeded)
+                    //{
+                        return RedirectToAction("Index", "Home");
+                    //}
                 }
                 AddErrors(result);
             }
@@ -161,19 +174,6 @@ namespace gestionmateriales.Controllers
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }
-
-        ////
-        //// GET: /Account/ConfirmEmail
-        //[AllowAnonymous]
-        //public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        //{
-        //    if (userId == null || code == null)
-        //    {
-        //        return View("Error");
-        //    }
-        //    var result = await UserManager.ConfirmEmailAsync(userId, code);
-        //    return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        //}
 
         //
         // GET: /Account/ForgotPassword

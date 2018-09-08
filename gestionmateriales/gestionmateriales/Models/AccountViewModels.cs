@@ -39,5 +39,8 @@ namespace gestionmateriales.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public int IdRol { get; set; }
     }
 }

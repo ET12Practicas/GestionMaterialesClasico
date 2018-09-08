@@ -12,6 +12,7 @@ using gestionmateriales.Repository.Implementation;
 
 namespace gestionmateriales.Controllers
 {
+    [Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
     [Route("/Stock")]
     public class StockController : Controller
     {
@@ -28,8 +29,7 @@ namespace gestionmateriales.Controllers
             //materialRepository = new MaterialRepository(context);
             //tipoEntradaMaterialRepository = new TipoEntradaMaterialRepository(context);
         }
-
-        [Authorize(Roles = "administrador, deposito, compras")]
+        
         [HttpGet]
         public ActionResult Sumar()
         {
@@ -38,7 +38,6 @@ namespace gestionmateriales.Controllers
             return View("Sumar");
         }
 
-        [Authorize(Roles = "administrador, deposito, compras")]
         [HttpPost]
         public ActionResult Sumar(EntradaMaterial unaEntrada)
         {
@@ -95,15 +94,14 @@ namespace gestionmateriales.Controllers
             return View("Sumar");
         }
 
-        [Authorize(Roles = "administrador, deposito, compras")]
         [HttpGet]
         public ActionResult Restar()
         {
             cargarTipoSalida();
+
             return View("Restar");
         }
 
-        [Authorize(Roles = "administrador, deposito, compras")]
         [HttpPost]
         public ActionResult Restar(SalidaMaterial unaSalida)
         {
@@ -161,14 +159,12 @@ namespace gestionmateriales.Controllers
             return View("Restar");
         }
 
-        [Authorize(Roles = "administrador, deposito, compras")]
         [HttpGet]
         public ActionResult HistorialIngresos()
         {
             return View("HistorialIngresos");
         }
 
-        [Authorize(Roles = "administrador, deposito, compras")]
         [HttpGet]
         public JsonResult GetHistorialEgresos()
         {
@@ -190,14 +186,12 @@ namespace gestionmateriales.Controllers
             return Json(new { Response = historialEgresos }, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "administrador, deposito, compras")]
         [HttpGet]
         public ActionResult HistorialEgresos()
         {
             return View("HistorialEgresos");
         }
 
-        [Authorize(Roles = "administrador, deposito, compras")]
         [HttpGet]
         public JsonResult GetHistorialIngresos()
         {
@@ -224,6 +218,8 @@ namespace gestionmateriales.Controllers
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             if (User.IsInRole("administrador"))
                 ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
+            if (User.IsInRole("oficinatecnica"))
+                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("deposito"))
                 ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.idSector == 1).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("compras"))
@@ -234,6 +230,8 @@ namespace gestionmateriales.Controllers
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             if (User.IsInRole("administrador"))
+                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
+            if (User.IsInRole("oficinatecnica"))
                 ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             if (User.IsInRole("deposito"))
                 ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.idSector == 1).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
