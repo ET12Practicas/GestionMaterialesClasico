@@ -7,7 +7,7 @@ $(document).ready(function () {
         baseURL = baseURL + appName + "/";
 
     var request = $.ajax({
-        url: baseURL + "OrdenTrabajoAplicacion/GetOTA",
+        url: baseURL + "OrdenTrabajoAplicacion/GetAll",
         type: 'GET',
         contentType: 'application/json; charset=utf-8'
     });
