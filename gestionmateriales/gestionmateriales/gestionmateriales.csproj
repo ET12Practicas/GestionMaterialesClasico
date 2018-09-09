@@ -216,6 +216,7 @@
     <Compile Include="Repository\Contracts\ISalidaMaterialRepository.cs" />
     <Compile Include="Repository\Contracts\ITipoEntradaMaterialRepository.cs" />
     <Compile Include="Repository\Contracts\ITipoMaterialRepository.cs" />
+    <Compile Include="Repository\Contracts\ITipoSalidaMaterialRepository.cs" />
     <Compile Include="Repository\Contracts\ITurnoRepository.cs" />
     <Compile Include="Repository\Contracts\IUnidadRepository.cs" />
     <Compile Include="Repository\Implementation\EntradaMaterialRepository.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Repository\Implementation\Repository.cs" />
     <Compile Include="Repository\Implementation\TipoEntradaMaterialRepository.cs" />
     <Compile Include="Repository\Implementation\TipoMaterialRepository.cs" />
+    <Compile Include="Repository\Implementation\TipoSalidaMaterialRepository.cs" />
     <Compile Include="Repository\Implementation\TurnoRepository.cs" />
     <Compile Include="Repository\Implementation\UnidadRepository.cs" />
     <Compile Include="Startup.cs" />

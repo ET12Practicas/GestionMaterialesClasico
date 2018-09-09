@@ -36,6 +36,10 @@ $(document).ready(function () {
                 },
                 {
                     "sWidth": "5%",
+                    "data": "cantRet"
+                },
+                {
+                    "sWidth": "5%",
                     "mRender": function (data, type, row) {
                         //console.log(row.fecha);
                         if (row.fecha != '') {
