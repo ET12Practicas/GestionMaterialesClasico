@@ -17,38 +17,53 @@ namespace gestionmateriales.Repository.Implementation
             this.context = Context;
         }
 
-        public TEntity GetById(int id)
-        {
-            return context.Set<TEntity>().Find(id);
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            return context.Set<TEntity>().ToList();
-        }
-
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             context.Set<TEntity>().Add(entity);
             context.SaveChanges();
         }
 
-        public void Edit(TEntity entity)
+        public virtual void Edit(TEntity entity)
         {
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
         }
 
-        public void Remove(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual TEntity FindById(int id)
         {
-            return context.Set<TEntity>().Where(predicate);
+            return context.Set<TEntity>().Find(id);
         }
+
+        public virtual TEntity FindOne(Expression<Func<TEntity, bool>> predicate)
+        {
+            return context.Set<TEntity>().Where(predicate).FirstOrDefault();
+        }
+
+        public virtual IEnumerable<TEntity> FindAll()
+        {
+            return context.Set<TEntity>().ToList();
+        }
+
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            return context.Set<TEntity>().Where(predicate).ToList();
+        }
+
+        //public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
+        //{
+        //    IQueryable<TEntity> query = context.Set<TEntity>().Where(predicate);
+
+        //    query = includes.Aggregate(query,
+        //          (current, include) => current.Include(include));
+
+        //    return query;
+        //}
 
         //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
         //{

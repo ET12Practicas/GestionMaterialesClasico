@@ -13,12 +13,12 @@ namespace gestionmateriales.Controllers
     public class OrdenCompraController : Controller
     {
 
-        //private readonly IOrdenCompraRepository ordenCompraRepository;
+        private readonly IOrdenCompraRepository ordenCompraRepository;
 
-        //public OrdenCompraController()
-        //{
-        //    ordenCompraRepository = new OrdenCompraRepository(new OficinaTecnicaEntities());
-        //}
+        public OrdenCompraController()
+        {
+            ordenCompraRepository = new OrdenCompraRepository(new OficinaTecnicaEntities());
+        }
 
         // GET: OrdenCompra
         public ActionResult Index()
@@ -66,8 +66,12 @@ namespace gestionmateriales.Controllers
                              items = oc.itemsOC.Count()
                          };
 
-            //var Query2 = ordenCompraRepository.Find(x => x.hab).OrderByDescending(x => x.fecha).Select(x => new { 
-            //      x.IdOrdenCompra, x.numeroInterno, x.numeroFactura, x.fecha
+            //var Query2 = ordenCompraRepository.Find(x => x.hab).OrderByDescending(x => x.fecha).Select(x => new
+            //{
+            //    x.IdOrdenCompra,
+            //    x.numeroInterno,
+            //    x.numeroFactura,
+            //    x.fecha
             //});
 
             return Json(new { Response = Query1 }, JsonRequestBehavior.AllowGet);

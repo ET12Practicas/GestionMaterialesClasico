@@ -50,7 +50,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Agregar(Material unMaterial)
         {
-            if (materialRepository.GetAll().Any(x => x.codigo == unMaterial.codigo && x.hab))
+            if (materialRepository.FindAll().Any(x => x.codigo == unMaterial.codigo && x.hab))
             {
                 ViewBag.Result = 1;
 
@@ -59,15 +59,15 @@ namespace gestionmateriales.Controllers
                 return View("Agregar", unMaterial);
             }
 
-            Unidad unidad = unidadRepository.GetById(unMaterial.idUnidad);
+            Unidad unidad = unidadRepository.FindById(unMaterial.idUnidad);
 
             if (unidad == null) throw new Exception("No existe la unidad");
 
-            Proveedor proveedor = proveedorRepository.GetById(unMaterial.idProveedor);
+            Proveedor proveedor = proveedorRepository.FindById(unMaterial.idProveedor);
 
             if (proveedor == null) throw new Exception("No existe el proveedor");
 
-            TipoMaterial tipoMaterial = tipoMaterialRepository.GetById(unMaterial.idTipoMaterial);
+            TipoMaterial tipoMaterial = tipoMaterialRepository.FindById(unMaterial.idTipoMaterial);
 
             if (tipoMaterial == null) throw new Exception("No existe el tipo material");
 
@@ -106,7 +106,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Editar(int id)
         {
-            Material material = materialRepository.GetById(id);
+            Material material = materialRepository.FindById(id);
 
             cargarProveedor(material.proveedor.idProveedor);
 
@@ -120,7 +120,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, Material unMaterial)
         {
-            Material material = materialRepository.GetById(id);
+            Material material = materialRepository.FindById(id);
 
             if (material == null) throw new Exception("No existe el material");
 
@@ -137,15 +137,15 @@ namespace gestionmateriales.Controllers
                 return View("Editar", material);
             }
 
-            Unidad unidad = unidadRepository.GetById(unMaterial.idUnidad);
+            Unidad unidad = unidadRepository.FindById(unMaterial.idUnidad);
 
             if (unidad == null) throw new Exception("No existe la unidad");
 
-            Proveedor proveedor = proveedorRepository.GetById(unMaterial.idProveedor);
+            Proveedor proveedor = proveedorRepository.FindById(unMaterial.idProveedor);
 
             if (proveedor == null) throw new Exception("No existe el proveedor");
 
-            TipoMaterial tipoMaterial = tipoMaterialRepository.GetById(unMaterial.idTipoMaterial);
+            TipoMaterial tipoMaterial = tipoMaterialRepository.FindById(unMaterial.idTipoMaterial);
 
             if (tipoMaterial == null) throw new Exception("No existe el tipo material");
 
@@ -193,7 +193,7 @@ namespace gestionmateriales.Controllers
 
         public ActionResult Borrar(int id)
         {
-            Material material = materialRepository.GetById(id);
+            Material material = materialRepository.FindById(id);
 
             if (material == null) throw new Exception("No existe el material");
 
@@ -222,7 +222,7 @@ namespace gestionmateriales.Controllers
         {
             var ordenesTrabajoAplicacion = ordenTrabajoAplicacionRepository.Find(x => x.hab);
 
-            var material = materialRepository.GetById(id);
+            var material = materialRepository.FindById(id);
 
             ViewData["codigo"] = material.codigo;
 
@@ -233,7 +233,7 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoMaterial(object selectedTipoMaterial = null)
         {
-            ViewBag.idTipoMaterial = new SelectList(tipoMaterialRepository.GetAll(), "idTipoMaterial", "nombre", selectedTipoMaterial);
+            ViewBag.idTipoMaterial = new SelectList(tipoMaterialRepository.FindAll(), "idTipoMaterial", "nombre", selectedTipoMaterial);
         }
 
         private void cargarProveedor(object selectedProveedor = null)
@@ -245,7 +245,7 @@ namespace gestionmateriales.Controllers
         private void cargarUnidad(object selectedUnidad = null)
         {
             OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            ViewBag.idUnidad = new SelectList(unidadRepository.GetAll(), "idUnidad", "nombre", selectedUnidad);
+            ViewBag.idUnidad = new SelectList(unidadRepository.FindAll(), "idUnidad", "nombre", selectedUnidad);
         }
 
         private void cargarCombos()

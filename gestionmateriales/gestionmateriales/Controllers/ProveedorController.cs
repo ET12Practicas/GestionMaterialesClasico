@@ -77,7 +77,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Editar(int id)
         {
-            var proveedor = proveedorRepository.GetById(id);
+            var proveedor = proveedorRepository.FindById(id);
 
             if (proveedor == null) throw new Exception("No existe el proveedor");
 
@@ -87,7 +87,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, Proveedor unProveedor)
         {
-            Proveedor proveedor = proveedorRepository.GetById(id);
+            Proveedor proveedor = proveedorRepository.FindById(id);
 
             if (proveedor == null) throw new Exception("No existe el proveedor");
 
@@ -132,17 +132,16 @@ namespace gestionmateriales.Controllers
             return View("Editar", unProveedor);
         }
 
-        [HttpPost]
         public ActionResult Borrar(int id)
         {
-            Proveedor proveedor = proveedorRepository.GetById(id);
-
+            Proveedor proveedor = proveedorRepository.FindById(id);
+            
             if (proveedor == null) throw new Exception("El proveedor no existe");
 
             try
             {
                 proveedor.hab = false;
-
+                
                 proveedor.LAST_UPDATED_BY = User.Identity.Name;
 
                 proveedor.LAST_UPDATED_DATE = DateTime.Now;

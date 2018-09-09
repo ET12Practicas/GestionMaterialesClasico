@@ -15,34 +15,35 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
         [StringLength(45)]
         public string nombre { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(100)]
         public string direccion { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string cuit { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string telefono { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string email { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(15)]
         public string razonSocial { get; set; }
 
+        [Required(AllowEmptyStrings = true)]
         [StringLength(45)]
         public string nombreContacto { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(30)]
         public string zona { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string horario { get; set; }
 

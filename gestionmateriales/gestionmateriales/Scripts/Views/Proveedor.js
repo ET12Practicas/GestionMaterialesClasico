@@ -3,11 +3,9 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaProveedores;
 
 $(document).ready(function () {
-    //$('#btnCrearProveedor').tooltip();
 
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
-
 
     var requestFecha = $.ajax({
         url: baseURL + "Proveedor/GetLastUpdated",
@@ -62,7 +60,7 @@ $(document).ready(function () {
                 {
                     "sWidth": "10%",
                     "mRender": function (dato, type, row) {
-
+                        //console.log(row);
                         var ini = '<div class="row">';
 
                         var cab = '<div class="col-4">';
@@ -80,10 +78,10 @@ $(document).ready(function () {
                             '<div class="modal-body">' +
                             '<p>¿Desea borrar el siguiente proveedor del sistema?</p>' +
                             '<p><strong>Proveedor:</strong> ' + row.nombre + '</p>' +
-                            '<p> <strong>Razón Social:</strong> ' + row.razonSocial + '</p > ' +
+                            //'<p> <strong>Razón Social:</strong> ' + row.razonSocial + '</p > ' +
                             '<p> <strong>CUIT:</strong> ' + row.cuit + '</p > ' +
-                            '<p> <strong>Teléfono:</strong> ' + row.telefono + '</p > ' +
-                            '<p> <strong>Dirección:</strong> ' + row.direccion + '</p > ' +
+                            //'<p> <strong>Teléfono:</strong> ' + row.telefono + '</p > ' +
+                            //'<p> <strong>Dirección:</strong> ' + row.direccion + '</p > ' +
                             '</div>' +
                             '<div class="modal-footer">' +
                             '<a href="' + baseURL + 'Proveedor/Borrar/' + row.idProveedor + '" type="button" class="btn btn-danger">Aceptar</a>' +
@@ -150,6 +148,7 @@ function getProveedorDetalle(data) {
         $('#proHorario').html(data.Response[0].horario);
         $('#proContacto').html(data.Response[0].contacto);
 
-        $('#modalDetalle').modal("show");
+        $('#modalDetalle').modal('show');
     });
 }
+      

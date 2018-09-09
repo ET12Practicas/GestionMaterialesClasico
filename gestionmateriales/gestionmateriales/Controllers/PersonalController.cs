@@ -70,7 +70,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Editar(int id)
         {
-            var unPersonal = personalRepository.GetById(id);
+            var unPersonal = personalRepository.FindById(id);
 
             if (unPersonal == null) throw new Exception("No existe el personal");
 
@@ -80,7 +80,7 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Editar(int id, Personal aPersonal)
         {
-            Personal personal = personalRepository.GetById(id);
+            Personal personal = personalRepository.FindById(id);
 
             if (personal == null) throw new Exception("No existe el personal");
 
@@ -119,7 +119,7 @@ namespace gestionmateriales.Controllers
         
         public ActionResult Borrar(int id)
         {
-            Personal personal = personalRepository.GetById(id);
+            Personal personal = personalRepository.FindById(id);
 
             try
             {

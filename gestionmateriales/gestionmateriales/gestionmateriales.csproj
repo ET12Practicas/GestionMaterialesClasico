@@ -602,6 +602,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Views\Compras\Necesidades.js" />
     <Content Include="Scripts\Views\Material.js" />
     <Content Include="Scripts\Views\MaterialesOTA.js" />
     <Content Include="Scripts\Views\OrdenTrabajoAplicacion.js" />
