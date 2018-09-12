@@ -612,6 +612,7 @@
     <Content Include="Scripts\Views\Compras\Necesidades.js" />
     <Content Include="Scripts\Views\Material.js" />
     <Content Include="Scripts\Views\MaterialesOTA.js" />
+    <Content Include="Scripts\Views\OrdenCompra\OrdenCompra.js" />
     <Content Include="Scripts\Views\OrdenTrabajoAplicacion.js" />
     <Content Include="Scripts\Views\OTADetalle.js" />
     <Content Include="Scripts\Views\Personal.js" />

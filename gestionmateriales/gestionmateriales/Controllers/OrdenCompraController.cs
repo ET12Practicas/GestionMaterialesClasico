@@ -14,10 +14,14 @@ namespace gestionmateriales.Controllers
     {
 
         private readonly IOrdenCompraRepository ordenCompraRepository;
-
+        private readonly IProveedorRepository proveedorRepository;
+        private readonly IPersonalRepository personalRepository;
         public OrdenCompraController()
         {
-            ordenCompraRepository = new OrdenCompraRepository(new OficinaTecnicaEntities());
+            OficinaTecnicaEntities context = new OficinaTecnicaEntities();
+            ordenCompraRepository = new OrdenCompraRepository(context);
+            proveedorRepository = new ProveedorRepository(context);
+            personalRepository = new PersonalRepository(context);
         }
 
         // GET: OrdenCompra
@@ -35,11 +39,40 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public ActionResult Agregar()
         {
+            CargarProveedor();
+            CargarResponsable();
             return View("Agregar");
         }
         [HttpPost]
         public ActionResult Agregar(OrdenCompra aOC)
         {
+            try
+            {
+                OrdenCompra oc = new OrdenCompra
+                {
+                    numeroInterno = aOC.numeroInterno,
+                    numeroFactura = aOC.numeroFactura,
+                    fecha = aOC.fecha,
+                    chequeNro = aOC.chequeNro,
+                    total = aOC.total,
+                    proveedor = proveedorRepository.FindById(aOC.idProveedor),
+                    responsable = personalRepository.FindById(aOC.idResponsable),
+                    hab = true,
+                    CREATED_BY = User.Identity.Name,
+                    CREATION_DATE = DateTime.Now,
+                    CREATION_IP = Request.UserHostAddress,
+                    LAST_UPDATED_BY = User.Identity.Name,
+                    LAST_UPDATED_DATE = DateTime.Now,
+                    LAST_UPDATED_IP = Request.UserHostAddress
+                };
+
+                ordenCompraRepository.Add(oc);
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("Error500", "Error");
+            }
+
             return View("Agregar");
         }
         [HttpPost]
@@ -101,6 +134,15 @@ namespace gestionmateriales.Controllers
 
             return Json(new { Response = Query2 }, JsonRequestBehavior.AllowGet);
 
+        }
+        private void CargarProveedor(object selectedProveedor = null)
+        {
+            ViewBag.idProveedor = new SelectList(proveedorRepository.Find(x => x.hab), "idProveedor", "nombre", selectedProveedor);
+        }
+
+        private void CargarResponsable(object selectedPersonal = null)
+        {
+            ViewBag.idPersonal = new SelectList(personalRepository.Find(x => x.hab), "idPersonal", "nombre", selectedPersonal);
         }
     }
 }

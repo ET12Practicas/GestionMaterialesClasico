@@ -19,7 +19,11 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int numeroInterno { get; set; }
 
         [Required]
-        public Proveedor proveedor { get; set; }
+        [NotMapped]
+        public int idProveedor { get; set; }
+
+        [Required]
+        public virtual Proveedor proveedor { get; set; }
 
         [Required]
         public int numeroFactura { get; set; }
@@ -28,7 +32,11 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public DateTime fecha { get; set; }
 
         [Required]
-        public Personal responsable { get; set; }
+        [NotMapped]
+        public int idResponsable { get; set; }
+
+        [Required]
+        public virtual Personal responsable { get; set; }
 
         [Required]
         public double total { get; set; }

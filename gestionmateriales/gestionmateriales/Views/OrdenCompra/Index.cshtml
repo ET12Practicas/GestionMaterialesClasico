@@ -8,5 +8,22 @@
             <a id="btn_nuevarordencompra" class="btn btn-block btn-outline-primary" href="~/OrdenCompra/Agregar" role="button" data-toggle="tooltip" data-placement="right" title="Genera una nueva orden de compra"><i class="fas fa-file-alt"></i> Nueva Orden</a>
         </div>
     </div>
-    <hr />
+    <div class="card">
+        <div class="card-body">
+            <table id="grdOC" class="table table-bordered table-striped table-hover ">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Numero</th>
+                        <th>Cantidad</th>
+                        <th>Destino</th>
+                        <th>PrecioUnitario</th>
+                        <th>PrecioParcial</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="card-footer"></div>        
+    </div>
 </div>
+<script type="text/javascript" src="~/Scripts/Views/OrdenCompra/OrdenCompra.js"></script>
