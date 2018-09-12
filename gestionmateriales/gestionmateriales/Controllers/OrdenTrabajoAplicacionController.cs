@@ -15,6 +15,7 @@ namespace gestionmateriales.Controllers
     [Route("/OrdenTrabajoAplicacion")]
     public class OrdenTrabajoAplicacionController : Controller
     {
+        //declaracion de todos los repositorios que se utilizaran en la clase (solo definir lo necesario)
         private readonly IOrdenTrabajoAplicacionRepository ordenTrabajoAplicacionRepository;
         private readonly IPersonalRepository personalRepository;
         private readonly ITurnoRepository turnoRepository;
@@ -23,9 +24,10 @@ namespace gestionmateriales.Controllers
         private readonly ISalidaMaterialRepository salidaMaterialRepository;
         private readonly ITipoSalidaMaterialRepository tipoSalidaMaterialRepository;
 
+        //inicializacion del contexto y repositorios
         public OrdenTrabajoAplicacionController()
         {
-            var context = new OficinaTecnicaEntities();
+            OficinaTecnicaEntities context = new OficinaTecnicaEntities();
             personalRepository = new PersonalRepository(context);
             turnoRepository = new TurnoRepository(context);
             materialRepository = new MaterialRepository(context);
@@ -35,22 +37,14 @@ namespace gestionmateriales.Controllers
             tipoSalidaMaterialRepository = new TipoSalidaMaterialRepository(context);
         }
 
+        //Si se llama /aplicacion/OrdenTrabajoAplicacion/Index retorna la vista Index
         [HttpGet]
         public ActionResult Index()
         {
             return View("Index");
         }
 
-        [HttpGet]
-        public JsonResult GetAll()
-        {
-            var otas = from o in ordenTrabajoAplicacionRepository.FindAll()
-                       where o.hab == true
-                       select new { id = o.idOrdenTrabajoAplicacion, num = o.numero, o.fecha, turno = o.turno.nombre, o.nombre, res = o.responsable.nombre, jds = o.jefeSeccion.nombre, cant = o.itemsOTA.Count };
-
-            return Json(new { Response = otas }, JsonRequestBehavior.AllowGet);
-        }
-
+        //Si se llama /aplicacion/OrdenTrabajoAplicacion/Agregar retorna la vista Agergar
         [HttpGet]
         public ActionResult Agregar()
         {
@@ -63,6 +57,7 @@ namespace gestionmateriales.Controllers
             return View();
         }
 
+        //Si se llama /aplicacion/OrdenTrabajoAplicacion/Agregar con datos de la vista, los datos se encapsulan en el objeto OrdenTrabajoAplicacion
         [HttpPost]
         public ActionResult Agregar(OrdenTrabajoAplicacion aOT)
         {
@@ -84,19 +79,31 @@ namespace gestionmateriales.Controllers
             try
             {
                 OrdenTrabajoAplicacion unaOTA = new OrdenTrabajoAplicacion();
+
                 unaOTA.turno = turnoRepository.FindById(aOT.idTurno);
+
                 unaOTA.jefeSeccion = personalRepository.FindById(aOT.idJefeSeccion);
+
                 unaOTA.responsable = personalRepository.FindById(aOT.idResponsable);
+
                 unaOTA.numero = aOT.numero;
+
                 unaOTA.nombre = aOT.nombre;
+
                 unaOTA.fecha = aOT.fecha;
+
                 unaOTA.CREATED_BY = User.Identity.Name;
+
                 unaOTA.CREATION_DATE = DateTime.Now;
+
                 unaOTA.CREATION_IP = Request.UserHostAddress;
+
                 unaOTA.LAST_UPDATED_BY = User.Identity.Name;
+
                 unaOTA.LAST_UPDATED_DATE = DateTime.Now;
+
                 unaOTA.LAST_UPDATED_IP = Request.UserHostAddress;
-                
+
                 ordenTrabajoAplicacionRepository.Add(unaOTA);
 
                 idOt = ordenTrabajoAplicacionRepository.FindOne(x => x.numero == aOT.numero).idOrdenTrabajoAplicacion;
@@ -105,7 +112,7 @@ namespace gestionmateriales.Controllers
             {
                 return RedirectToAction("Error500", "Error");
             }
-            
+
             if (idOt < 0)
             {
                 return RedirectToAction("Error500", "Error");
@@ -114,6 +121,7 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Materiales", new { id = idOt });
         }
 
+        //Si se llama /aplicacion/OrdenTrabajoAplicacion/Agregar retorna la vista Editar
         [HttpGet]
         public ActionResult Editar(int id)
         {
@@ -132,6 +140,7 @@ namespace gestionmateriales.Controllers
             return View(ordenSelect);
         }
 
+        //Si se llama /aplicacion/OrdenTrabajoAplicacion/Editar con datos de la vista, los datos se encapsulan en el objeto OrdenTrabajoAplicacion
         [HttpPost]
         public ActionResult Editar(int id, OrdenTrabajoAplicacion aOT)
         {
@@ -151,27 +160,28 @@ namespace gestionmateriales.Controllers
 
                 return View("Editar", otEdit);
             }
+
             try
             {
-                Turno t = turnoRepository.FindById(aOT.idTurno);
+                Turno turno = turnoRepository.FindById(aOT.idTurno);
 
                 Personal jefe = personalRepository.FindById(aOT.idJefeSeccion);
 
-                Personal res = personalRepository.FindById(aOT.idResponsable);
-                
+                Personal responsable = personalRepository.FindById(aOT.idResponsable);
+
                 otEdit.numero = aOT.numero;
 
                 otEdit.nombre = aOT.nombre;
 
-                otEdit.idTurno = t.idTurno;
+                otEdit.idTurno = turno.idTurno;
 
-                otEdit.turno = t;
+                otEdit.turno = turno;
 
                 otEdit.fecha = aOT.fecha;
 
-                otEdit.responsable = res;
+                otEdit.responsable = responsable;
 
-                otEdit.idResponsable = res.idPersonal;
+                otEdit.idResponsable = responsable.idPersonal;
 
                 otEdit.jefeSeccion = jefe;
 
@@ -186,7 +196,7 @@ namespace gestionmateriales.Controllers
 
             idOt = otEdit.idOrdenTrabajoAplicacion;
 
-            if(idOt < 0)
+            if (idOt < 0)
             {
                 return RedirectToAction("Error500", "Error");
             }
@@ -196,21 +206,25 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Materiales", new { id = idOt });
         }
 
+        //carga el combobox de turnos
         private void cargarTurno(object selectedTurno = null)
         {
             ViewBag.idTurno = new SelectList(turnoRepository.FindAll(), "idTurno", "nombre", selectedTurno);
         }
 
+        //carga el combobox de jefe de seccion con personal
         private void cargarJefeSeccion(object selectedJefeSeccion = null)
         {
             ViewBag.idJefeSeccion = new SelectList(personalRepository.Find(x => x.hab), "idPersonal", "nombre", selectedJefeSeccion);
         }
 
+        //carga el combobox de responsable con personal
         private void cargarResponsable(object selectedResponsable = null)
         {
             ViewBag.idResponsable = new SelectList(personalRepository.Find(x => x.hab), "idPersonal", "nombre", selectedResponsable);
         }
 
+        //Si se llama /aplicacion/OrdenTrabajoAplicacion/Materiales/1 retorna la vista para agregar/editar los materiales de la OTA
         [HttpGet]
         public ActionResult Materiales(int id)
         {
@@ -227,6 +241,7 @@ namespace gestionmateriales.Controllers
             return View("Materiales");
         }
 
+        //Retorna JSON de los todos los materiales disponibles en el sistema
         [HttpGet]
         public JsonResult GetMateriales(int id)
         {
@@ -247,7 +262,7 @@ namespace gestionmateriales.Controllers
 
             return Json(new { Response = itemsMateriales }, JsonRequestBehavior.AllowGet);
         }
-
+         
         private int getCantidadByIdMaterial(List<ItemOrdenTrabajoAplicacion> items, int idMaterial)
         {
             ItemOrdenTrabajoAplicacion item = items.FirstOrDefault(x => x.material.idMaterial == idMaterial);
@@ -298,6 +313,16 @@ namespace gestionmateriales.Controllers
             if (ota == null) throw new Exception("No existe orden de trabajo de aplicacion");
 
             return View("Detalle", ota);
+        }
+
+        [HttpGet]
+        public JsonResult GetAll()
+        {
+            var otas = from o in ordenTrabajoAplicacionRepository.FindAll()
+                       where o.hab == true
+                       select new { id = o.idOrdenTrabajoAplicacion, num = o.numero, o.fecha, turno = o.turno.nombre, o.nombre, res = o.responsable.nombre, jds = o.jefeSeccion.nombre, cant = o.itemsOTA.Count };
+
+            return Json(new { Response = otas }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
