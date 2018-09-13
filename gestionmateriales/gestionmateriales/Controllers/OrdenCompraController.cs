@@ -140,9 +140,9 @@ namespace gestionmateriales.Controllers
             ViewBag.idProveedor = new SelectList(proveedorRepository.Find(x => x.hab), "idProveedor", "nombre", selectedProveedor);
         }
 
-        private void CargarResponsable(object selectedPersonal = null)
+        private void CargarResponsable(object selectedResponsable = null)
         {
-            ViewBag.idPersonal = new SelectList(personalRepository.Find(x => x.hab), "idPersonal", "nombre", selectedPersonal);
+            ViewBag.idResponsable = new SelectList(personalRepository.Find(x => x.hab), "idPersonal", "nombre", selectedResponsable);
         }
     }
 }
