@@ -270,6 +270,7 @@
     <Content Include="Content\fontawesome\webfonts\fa-light-300.svg" />
     <Content Include="Content\fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\googlefonts\Raleway.css" />
     <Content Include="Content\master.css" />
     <Content Include="Content\signin.css" />
     <Content Include="Content\bootstrap-notify\animate.css" />

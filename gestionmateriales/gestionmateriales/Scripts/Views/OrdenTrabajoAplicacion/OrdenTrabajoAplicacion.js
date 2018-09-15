@@ -16,7 +16,6 @@ $(document).ready(function () {
         //console.log(data.Response);
         tablaMateriales = $('#grdOTA').DataTable({
             //"dom": "lfrtip",
-            "autoWidth": false,
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
@@ -77,27 +76,7 @@ $(document).ready(function () {
                     }
                 }                
             ],
-            "order": [2, "asc"],
-            "language": {
-                "decimal": "",
-                "emptyTable": "No hay información disponible para mostrar",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "No hay entradas para mostrar",
-                "infoFiltered": "(filtrados de _MAX_ materiales totales)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "_MENU_",
-                "loadingRecords": "Cargando...",
-                "processing": "En proceso...",
-                "search": "Buscar",
-                "zeroRecords": "No hay entradas que coincidan con el filtro",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
+            "order": [2, "asc"]
         });
     });
 

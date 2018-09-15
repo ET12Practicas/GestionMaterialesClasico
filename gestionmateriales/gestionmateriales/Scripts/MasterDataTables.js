@@ -1,7 +1,7 @@
 ﻿$.extend(true, $.fn.dataTable.defaults, {
-    "searching": true,
-    "ordering": true,
     "autoWidth": false,
+    "searching": true,
+    "ordering": true,    
     "language": {
         "decimal": "",
         "emptyTable": "No hay información disponible para mostrar",
@@ -10,7 +10,7 @@
         "infoFiltered": "(filtrados de _MAX_ entradas totales)",
         "infoPostFix": "",
         "thousands": ",",
-        "lengthMenu": "_MENU_",
+        "lengthMenu": "Visualizar _MENU_ entradas   ",
         "loadingRecords": "Cargando...",
         "processing": "En proceso...",
         "search": "Buscar",
