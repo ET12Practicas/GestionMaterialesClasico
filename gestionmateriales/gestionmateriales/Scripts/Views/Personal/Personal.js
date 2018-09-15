@@ -26,13 +26,7 @@ $(document).ready(function () {
     });
 
     requestPersonal.done(function (data) {
-        //console.log(data.Response);
         tablaPersonal = $('#grdPersonal').DataTable({
-            //"dom": "lfrtip",
-            "autoWidth": false,
-            "columnDefs": [
-                { width: 100, targets: 4 }
-            ],
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
@@ -62,9 +56,9 @@ $(document).ready(function () {
 
                         var cab = '<div class="col-6">';
 
-                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Personal/Editar/' + row.idPersonal + '"><i class="fal fa-pencil-alt fa-2x"></i> </a> ';
+                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Personal/Editar/' + row.idPersonal + '"><i class="far fa-edit fa-2x"></i> </a> ';
 
-                        var borrarHtml = '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idPersonal + '"><i class="fal fa-trash-alt fa-2x"></i> </a><div class="modal fade" id= "myModal-' + row.idPersonal + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                        var borrarHtml = '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idPersonal + '"><i class="far fa-trash-alt fa-2x"></i> </a><div class="modal fade" id= "myModal-' + row.idPersonal + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Personal</h4></div>' +
@@ -84,26 +78,6 @@ $(document).ready(function () {
                         return ini + cab + editarHtml + end + cab + borrarHtml + end + end;
                     }
                 }],
-            "language": {
-                "decimal": "",
-                "emptyTable": "No hay información disponible para mostrar",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "No hay personas para mostrar",
-                "infoFiltered": "(filtrados de _MAX_ personas totales)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "_MENU_",
-                "loadingRecords": "Cargando...",
-                "processing": "En proceso...",
-                "search": "Buscar",
-                "zeroRecords": "No hay personas que coincidan con el filtro",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
         });
     });
 

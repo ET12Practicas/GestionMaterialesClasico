@@ -11,10 +11,8 @@ var request = $.ajax({
 });
 
 request.done(function (data) {
-    //console.log(data.Response);
     tablaMateriales = $('#grdEgresos').DataTable({
         //"dom": "lfrtip",
-        "autoWidth": false,
         "aaData": data.Response,
         "aoColumnDefs": [{
             "sType": "html",
@@ -30,7 +28,7 @@ request.done(function (data) {
                 "data": "codMaterial"
             },
             {
-                "sWidth": "33%",
+                "sWidth": "20%",
                 "data": "material"
             },
             {
@@ -58,31 +56,12 @@ request.done(function (data) {
                 }
             }
         ],
-        "order": [7, "desc"],
-        "language": {
-            "decimal": "",
-            "emptyTable": "No hay información disponible para mostrar",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-            "infoEmpty": "No hay Egresos para mostrar",
-            "infoFiltered": "(filtrados de _MAX_ Egresos totales)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "_MENU_",
-            "loadingRecords": "Cargando...",
-            "processing": "En proceso...",
-            "search": "Buscar",
-            "zeroRecords": "No hay Egresos que coincidan con el filtro",
-            "paginate": {
-                "first": "Primera",
-                "last": "Última",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
-    });
+        "order": [7, "desc"]       
+    });   
 });
-
+    
 request.fail(function (data) {
     alert('No se pueden cargar el historial de egresos');
     console.log(data.Response);
 });
+

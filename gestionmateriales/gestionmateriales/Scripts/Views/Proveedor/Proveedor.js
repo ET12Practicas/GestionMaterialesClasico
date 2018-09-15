@@ -13,8 +13,7 @@ $(document).ready(function () {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
-            var fecha = value.toLocaleString();//.split(' ')[0];
-            //console.log(fecha);
+            var fecha = value.toLocaleString();
             $('#lastUpdated').text('Última modificación ' + fecha);
         }
     });
@@ -26,10 +25,7 @@ $(document).ready(function () {
     });
 
     request.done(function (data) {
-        //console.log(data.Response);
         tablaProveedores = $('#grdProveedores').DataTable({
-            //"dom": "lfrtip",
-            "autoWidth": false,
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
@@ -60,18 +56,17 @@ $(document).ready(function () {
                 {
                     "sWidth": "10%",
                     "mRender": function (dato, type, row) {
-                        //console.log(row);
                         var ini = '<div class="row">';
 
                         var cab = '<div class="col-4">';
 
                         var verDetalleHtml =
-                            '<a title="Detalle" href="#" id="matDet-' + row.idProveedor + '" onclick="getProveedorDetalle(this);"><i class="fal fa-eye fa-2x"></i></a>';
+                            '<a title="Detalle" href="#" id="matDet-' + row.idProveedor + '" onclick="getProveedorDetalle(this);"><i class="far fa-info-circle fa-2x"></i></a>';
 
-                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="fal fa-pencil-alt fa-2x"></i> </a>';
+                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Proveedor/Editar/' + row.idProveedor + '"><i class="far fa-edit fa-2x"></i> </a>';
 
                         var borrarHtml =
-                            '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="fal fa-trash-alt fa-2x"></i> </a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                            '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idProveedor + '"><i class="far fa-trash-alt fa-2x"></i> </a><div class="modal fade" id="myModal-' + row.idProveedor + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Proveedor</h4></div>' +
@@ -90,35 +85,29 @@ $(document).ready(function () {
 
                         var end = '</div>';
                         return ini + cab + verDetalleHtml + end + cab + editarHtml + end + cab + borrarHtml + end + end;
+                        //return 'im batman';
                     }
                 }],
             "order": [1, "asc"],
-            "language": {
-                "decimal": "",
-                "emptyTable": "No hay información disponible para mostrar",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "No hay proveedores para mostrar",
-                "infoFiltered": "(filtrados de _MAX_ proveedores totales)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "_MENU_",
-                "loadingRecords": "Cargando...",
-                "processing": "En proceso...",
-                "search": "Buscar",
-                "zeroRecords": "No hay proveedores que coincidan con el filtro",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
+            "responsive" : {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return 'Details for ' + data[0] + ' ' + data[1];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
                 }
             }
         });
-    });
 
     request.fail(function (data) {
         console.log(data.Response);
         alert('No se pueden cargar el listado de proveedores');
+    });
     });
 });
 
@@ -151,4 +140,3 @@ function getProveedorDetalle(data) {
         $('#modalDetalle').modal('show');
     });
 }
-      

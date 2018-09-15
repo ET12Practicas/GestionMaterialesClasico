@@ -1,47 +1,48 @@
-﻿    <h1 class="display-4">Orden de Trabajo de Aplicación</h1>
-    <div class="row">
-        <div class="col-md-6">
-            <p>Ordenes de trabajo de aplicación</p>
-        </div>
-        <div class="offset-4 col-md-2">
-            <a id="btn_nuevarordentrabajo" class="btn btn-block btn-outline-primary" href="~/OrdenTrabajoAplicacion/Agregar"><i class="fal fa-file"></i> Nueva Orden</a>
-        </div>
+﻿<h1>Orden de Trabajo de Aplicación</h1>
+<div class="row">
+    <div class="col-8">
+        <p>Ordenes de trabajo de materiales y herramientas para trabajos prácticos</p>
     </div>
-    <br />
-    <div class="card">
-        <div class="card-body">
-            <table id="grdOTA" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            Número
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
-                        <th>
-                            Turno
-                        </th>
-                        <th>
-                            Trabajo Práctico
-                        </th>
-                        <th>
-                            Responsable
-                        </th>
-                        <th>
-                            Jefe de Sección
-                        </th>
-                        <th>
-                            #Items
-                        </th>
-                        <th>
-                            Opciones
-                        </th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="card-footer"></div>
+    <div class="offset-1 col-md-3">
+        <a id="btn_nuevarordentrabajo" class="btn btn-block btn-outline-primary btn-sm" href="~/OrdenTrabajoAplicacion/Agregar"><i class="far fa-file-alt"></i> Nueva Orden de Trabajo de Aplicación</a>
     </div>
-    <script type="text/javascript" src="~/Scripts/Views/OrdenTrabajoAplicacion.js"></script>
+</div>
+<div class="card">
+    <div class="card-body">
+        <table id="grdOTA" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Número
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                    <th>
+                        Turno
+                    </th>
+                    <th>
+                        Trabajo Práctico
+                    </th>
+                    <th>
+                        Responsable
+                    </th>
+                    <th>
+                        Jefe de Sección
+                    </th>
+                    <th>
+                        #Items
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="~/Scripts/MasterDataTables.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/OrdenTrabajoAplicacion/OrdenTrabajoAplicacion.js"></script>

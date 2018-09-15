@@ -17,7 +17,6 @@ $(document).ready(function () {
         //console.log(data.Response);
         tablaMateriales = $('#grdItemsOTA').DataTable({
             //"dom": "lfrtip",
-            "autoWidth": false,
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [],
@@ -50,30 +49,7 @@ $(document).ready(function () {
                     }
                 }
             ],
-            "order": [1, "asc"],
-            "searching": false,
-            "info": false,
-            "paging": false,
-            "language": {
-                "decimal": "",
-                "emptyTable": "No hay información disponible para mostrar",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "No hay entradas para mostrar",
-                "infoFiltered": "(filtrados de _MAX_ materiales totales)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "Ver _MENU_ entradas por página",
-                "loadingRecords": "Cargando...",
-                "processing": "En proceso...",
-                "search": "Buscar",
-                "zeroRecords": "No hay entradas que coincidan con el filtro",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
+            "order": [1, "asc"]            
         });
     });
 
@@ -82,24 +58,3 @@ $(document).ready(function () {
         alert('No se pueden cargar los items OTA');
     });
 });
-
-
-//var doc = new jsPDF();
-
-//var specialElementHandlers = {
-//    '#editor': function (element, renderer) {
-//        return true;
-//    },
-//    '.controls': function (element, renderer) {
-//        return true;
-//    }
-//};
-
-
-//$('#cmd').click(function () {
-//    doc.fromHTML($('#content').get(0), 15, 15, {
-//        'width': 170,
-//        'elementHandlers': specialElementHandlers
-//    });
-//    doc.save('sample-file.pdf');
-//});

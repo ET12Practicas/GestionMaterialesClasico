@@ -1,0 +1,19 @@
+﻿body h1 {
+    font-family: 'Raleway', sans-serif; 
+    font-size: 40px;
+}
+
+body p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+}
+
+body label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+}
+
+body td,th {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+}

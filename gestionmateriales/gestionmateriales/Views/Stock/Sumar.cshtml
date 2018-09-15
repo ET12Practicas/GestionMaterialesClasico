@@ -1,12 +1,9 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.EntradaMaterial
 
-
-<h1 class="display-4">Entrada</h1>
+<h1>Entrada</h1>
 <p>Ingreso material o herramientas al stock del depósito</p>
-<div class="card">
-    <div class="card-header">
-        Material o Herramienta
-    </div>
+
+<div class="card offset-1 col-10">
     <div class="card-body">
         @using (@Html.BeginForm("Sumar", "Stock", FormMethod.Post))
         {
@@ -39,7 +36,7 @@
                     <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
                 </div>
                 <div class="col-md-2">
-                    <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='/Home/Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                    <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="window.history.back();" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                 </div>
             </div>
         }
@@ -78,6 +75,6 @@
         <link rel="stylesheet" href="~/Scripts/Fuse/css/fuzzycomplete.min.css">
         <script type="text/javascript" src="~/Scripts/Fuse/fuse.min.js"></script>
         <script type="text/javascript" src="~/Scripts/Fuse/js/fuzzycomplete.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/Views/Stock.js"></script>
+        <script type="text/javascript" src="~/Scripts/Views/Stock/Stock.js"></script>
     </div>
 </div>

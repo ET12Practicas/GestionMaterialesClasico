@@ -1,0 +1,2 @@
+﻿$('#tabla_historial').DataTable();
+        

@@ -2,126 +2,114 @@
 @{
     ViewBag.Title = "Material";
 }
-<div class="container-fluid">
-    <h1 class="display-4">Materiales</h1>
-    <p>Edita información de materiales o herramientas</p>
-</div>
-<div class="col-md-12">
-    <div class="card">
-        <div class="card-header">
-            Editar datos del Material
-        </div>
-        <div class="card-body">
-            @using (@Html.BeginForm("Editar", "Material", FormMethod.Post))
-            {
-                <div class="form-horizontal">
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            @Html.LabelFor(model => model.codigo, "Código", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 15, autofocus = "true", required = "true", autocomplete = "off" } })
-                        </div>
-                        <div class="form-group col-6">
-                            @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 75, required = "true", autocomplete = "off" } })
-                        </div>
+<h1>Materiales</h1>
+<p>Edita información de materiales o herramientas</p>
+<div class="card">
+    <div class="card-body">
+        @using (@Html.BeginForm("Editar", "Material", FormMethod.Post))
+        {
+            <div class="form-horizontal">
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        @Html.LabelFor(model => model.codigo, "Código", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", maxlength = 15, autofocus = "true", required = "true", autocomplete = "off" } })
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-4">
-                            @Html.LabelFor(model => model.unidad, "Unidad", new { @class = "control-label" })
-                            @Html.DropDownList("idUnidad", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                        <div class="form-group col-4">
-                            @Html.LabelFor(model => model.stockMinimo, "Stock Mínimo", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.stockMinimo, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", autocomplete = "off" } })
-                        </div>
-                        <div class="form-group col-4">
-                            @Html.LabelFor(model => model.stockActual, "Stock Actual", new { @class = "control-label" })
-                            @Html.EditorFor(model => model.stockActual, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", autocomplete = "off" } })
-                        </div>
+                    <div class="form-group col-6">
+                        @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 75, required = "true", autocomplete = "off" } })
                     </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            @Html.LabelFor(model => model.tipoMaterial, "Tipo", new { @class = "control-label" })
-                            @Html.DropDownList("idTipoMaterial", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                        <div class="form-group col-6">
-                            @Html.LabelFor(model => model.proveedor, "Proveedor", new { @class = "control-label" })
-                            @Html.DropDownList("idProveedor", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        @Html.LabelFor(model => model.unidad, "Unidad", new { @class = "control-label" })
+                        @Html.DropDownList("idUnidad", null, htmlAttributes: new { @class = "form-control" })
                     </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.detalle, "Detalle", new { @class = "control-label" })
-                            @Html.TextAreaFor(model => model.detalle, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 100 })
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="left" title="Restaura los valores antes de los cambios" />
-                            </div>
-                            <div class="offset-6 col-md-2">
-                                <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
-                            </div>
-                            <div class="col-md-2">
-                                <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
-                            </div>
-                        </div>
+                    <div class="form-group col-4">
+                        @Html.LabelFor(model => model.stockMinimo, "Stock Mínimo", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.stockMinimo, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", autocomplete = "off" } })
                     </div>
-            }
-        </div>
+                    <div class="form-group col-4">
+                        @Html.LabelFor(model => model.stockActual, "Stock Actual", new { @class = "control-label" })
+                        @Html.EditorFor(model => model.stockActual, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", autocomplete = "off" } })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        @Html.LabelFor(model => model.tipoMaterial, "Tipo", new { @class = "control-label" })
+                        @Html.DropDownList("idTipoMaterial", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-6">
+                        @Html.LabelFor(model => model.proveedor, "Proveedor", new { @class = "control-label" })
+                        @Html.DropDownList("idProveedor", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.detalle, "Detalle", new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.detalle, new { @class = "form-control", @cols = 80, @rows = 3, maxlength = 100 })
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <input id="btn_limpiar" type="reset" class="btn btn-default btn-block" value="Restaurar" data-toggle="tooltip" data-placement="left" title="Restaura los valores antes de los cambios" />
+                    </div>
+                    <div class="offset-6 col-md-2">
+                        <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-    @if (ViewBag.Result == 0)
-    {
-        <script type="text/javascript">
-            $.notify(
-                {
-                    message: 'Los datos se guardaron con éxito'
-                },
-                {
-                    type: 'success',
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: 'top',
-                        align: 'center'
-                    },
-                    offset: {
-                        y: 75
-                    },
-                    delay: 1000
-                }
-            );
-        </script>
-    }
-    @if (ViewBag.Result == 1)
-    {
-        <script type="text/javascript">
-            $.notify(
-                {
-                    message: 'El Código ya existe, verifique el valor'
-                },
-                {
-                    type: 'danger',
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: 'top',
-                        align: 'center'
-                    },
-                    offset: {
-                        y: 75
-                    },
-                    delay: 1000
-                }
-            );
-        </script>
-    }
-    <script type="text/javascript">
-        $('#btn_limpiar').tooltip();
-        $('#btn_aceptar').tooltip();
-        $('#btn_cancelar').tooltip();
-    </script>
 </div>
+@if (ViewBag.Result == 0)
+{
+    <script type="text/javascript">
+        $.notify(
+            {
+                message: 'Los datos se guardaron con éxito'
+            },
+            {
+                type: 'success',
+                animate: {
+                    enter: 'animated bounceInDown',
+                    exit: 'animated bounceOutUp'
+                },
+                placement: {
+                    from: 'top',
+                    align: 'center'
+                },
+                offset: {
+                    y: 75
+                },
+                delay: 1000
+            }
+        );
+    </script>
+}
+@if (ViewBag.Result == 1)
+{
+    <script type="text/javascript">
+        $.notify(
+            {
+                message: 'El Código ya existe, verifique el valor'
+            },
+            {
+                type: 'danger',
+                animate: {
+                    enter: 'animated bounceInDown',
+                    exit: 'animated bounceOutUp'
+                },
+                placement: {
+                    from: 'top',
+                    align: 'center'
+                },
+                offset: {
+                    y: 75
+                },
+                delay: 1000
+            }
+        );
+    </script>
+}
 

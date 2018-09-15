@@ -14,7 +14,6 @@ requestMaterial.done(function (data) {
     //console.log(data.Response);
     tablaMateriales = $('#grdIngresos').DataTable({
         //"dom": "lfrtip",
-        "autoWidth": false,
         "aaData": data.Response,
         "aoColumnDefs": [{
             "sType": "html",
@@ -57,27 +56,7 @@ requestMaterial.done(function (data) {
                 }
             }
         ],
-        "order": [7, "desc"],
-        "language": {
-            "decimal": "",
-            "emptyTable": "No hay información disponible para mostrar",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-            "infoEmpty": "No hay ingresos para mostrar",
-            "infoFiltered": "(filtrados de _MAX_ ingresos totales)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "_MENU_",
-            "loadingRecords": "Cargando...",
-            "processing": "En proceso...",
-            "search": "Buscar",
-            "zeroRecords": "No hay ingresos que coincidan con el filtro",
-            "paginate": {
-                "first": "Primera",
-                "last": "Última",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
+        "order": [7, "desc"]
     });
 });
 

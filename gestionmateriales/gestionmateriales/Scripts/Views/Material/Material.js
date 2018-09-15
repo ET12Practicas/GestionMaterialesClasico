@@ -8,8 +8,6 @@ $(document).ready(function () {
 
 
 function loadMateriales(from, end) {
-    //$('#btn_agregarmaterial').tooltip();
-
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
 
@@ -19,8 +17,7 @@ function loadMateriales(from, end) {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
-            var fecha = value.toLocaleString();//.split(' ')[0];
-            //console.log(fecha);
+            var fecha = value.toLocaleString();
             $('#lastUpdated').text('Última modificación ' + fecha);
         }
     });
@@ -34,8 +31,6 @@ function loadMateriales(from, end) {
     requestMaterial.done(function (data) {
         //console.log(data.Response);
         tablaMateriales = $('#grdMateriales').DataTable({
-            //"dom": "lfrtip",
-            "autoWidth": false,
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
@@ -91,7 +86,7 @@ function loadMateriales(from, end) {
                         var head = '<div class="col-3">';
 
                         var verDetalleHtml =
-                            '<a title="Detalle" href="#" id="matDet-' + row.idMaterial + '" onclick="getMaterialDetalle(this);"><i class="fal fa-eye fa-2x"></i></a> ';
+                            '<a title="Detalle" href="#" id="matDet-' + row.idMaterial + '" onclick="getMaterialDetalle(this);"><i class="far fa-info-circle fa-2x"></i></a> ';
 
                         //var verDetalleHtml =
                         //    '<a title="Ver Detalle" href="" data-toggle="modal" data-target="#myModal-ver-' + row.idMaterial + '"><i class="fal fa-eye fa-2x"></i> </a>' +
@@ -123,12 +118,12 @@ function loadMateriales(from, end) {
                         //    '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>' +
                         //    '</div></div></div></div>';
 
-                        var historialHtml = '<a title="Historial" href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="fal fa-clock fa-2x"></i> </a> ';
+                        var historialHtml = '<a title="Historial" href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="far fa-clock fa-2x"></i> </a> ';
 
-                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="fal fa-pencil-alt fa-2x"></i> </a> ';
+                        var editarHtml = '<a title="Editar" href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="far fa-edit fa-2x"></i></a> ';
 
                         var borrarHtml =
-                            '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idMaterial + '"><i class="fal fa-trash-alt fa-2x"></i></a><div class="modal fade" id="myModal-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
+                            '<a title="Borrar" href="" data-toggle="modal" data-target="#myModal-' + row.idMaterial + '"><i class="far fa-trash-alt fa-2x"></i></a><div class="modal fade" id="myModal-' + row.idMaterial + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >' +
                             '<div class="modal-dialog modal-dialog-centered" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header"><h4 class="modal-title" id="myModalLabel">Borrar Material</h4></div>' +
@@ -148,27 +143,7 @@ function loadMateriales(from, end) {
                     }
                 },
             ],
-            "order": [2, "asc"],
-            "language": {
-                "decimal": "",
-                "emptyTable": "No hay información disponible para mostrar",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "No hay materiales para mostrar",
-                "infoFiltered": "(filtrados de _MAX_ materiales totales)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "_MENU_",
-                "loadingRecords": "Cargando...",
-                "processing": "En proceso...",
-                "search": "Buscar",
-                "zeroRecords": "No hay materiales que coincidan con el filtro",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
+            "order": [2, "asc"]
         });
     });
 

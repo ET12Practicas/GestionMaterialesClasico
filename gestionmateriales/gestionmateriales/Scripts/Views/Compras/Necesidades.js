@@ -40,7 +40,7 @@ $(document).ready(function () {
                     if (row.stockActual == 0) {
                         //return 'SIN STOCK';
                         //return '<span class="badge badge-danger">Sin Stock</span>';
-                        return '<span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Sin stock</span>';
+                        return '<span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Sin Stock</span>';
                     }
                     if (row.stockActual > row.stockMinimo) {
                         //return 'ALTO';
@@ -68,27 +68,7 @@ $(document).ready(function () {
                     text: 'Exportar a Excel',
                     filename: 'listadoCompras-' + timestamp
                 }
-            ],
-            "language": {
-                "decimal": "",
-                "emptyTable": "No hay información disponible para mostrar",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "No hay compras para mostrar",
-                "infoFiltered": "(filtrados de _MAX_ compras totales)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "_MENU_",
-                "loadingRecords": "Cargando...",
-                "processing": "En proceso...",
-                "search": "Buscar",
-                "zeroRecords": "No hay compras que coincidan con el filtro",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
+            ]
         });
     });
 
