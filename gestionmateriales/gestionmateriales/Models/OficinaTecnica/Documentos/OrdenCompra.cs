@@ -29,6 +29,7 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int numeroFactura { get; set; }
 
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime fecha { get; set; }
 
         [Required]

@@ -62,9 +62,9 @@ $(document).ready(function () {
 
                         var cab = '<div class="col-6">';
 
-                        var editar = '<a title="Editar" href="' + baseURL + 'OrdenTrabajoAplicacion/Editar/' + row.id + '"><i class="far fa-edit fa-2x"></i> </a> ';
+                        var editar = '<a title="Editar" href="' + baseURL + 'OrdenCompra/Editar/' + row.IdOrdenCompra + '"><i class="far fa-edit fa-2x"></i> </a> ';
 
-                        var detalle = '<a title="Ver Detalle" href="' + baseURL + 'OrdenTrabajoAplicacion/Detalle/' + row.id + '"><i class="far fa-info-circle fa-2x"></i> </a> ';
+                        var detalle = '<a title="Ver Detalle" href="' + baseURL + 'OrdenCompra/Detalle/' + row.IdOrdenCompra + '"><i class="far fa-info-circle fa-2x"></i> </a> ';
 
                         var end = '</div>';
 

@@ -36,9 +36,12 @@ namespace gestionmateriales.Controllers
         }
 
         [HttpGet]
-        public ActionResult Editar()
+        public ActionResult Editar(int id)
         {
-            return View("Editar");
+            OrdenCompra oc = ordenCompraRepository.FindById(id);
+            CargarProveedor(oc.idProveedor);
+            CargarResponsable(oc.idResponsable);
+            return View("Editar", oc);
         }
 
         [HttpGet]
@@ -89,6 +92,12 @@ namespace gestionmateriales.Controllers
         public ActionResult Editar(OrdenCompra aOC)
         {
             return View("Editar", aOC);
+        }
+
+        [HttpGet]
+        public ActionResult Detalle()
+        {
+            return View("Detalle");
         }
 
         //[HttpGet]
