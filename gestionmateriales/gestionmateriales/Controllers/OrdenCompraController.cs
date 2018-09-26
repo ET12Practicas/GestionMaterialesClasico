@@ -46,6 +46,8 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Agregar(OrdenCompra aOC)
         {
+            int idOC = -1;
+
             try
             {
                 OrdenCompra oc = new OrdenCompra
@@ -67,48 +69,51 @@ namespace gestionmateriales.Controllers
                 };
 
                 ordenCompraRepository.Add(oc);
+
+                idOC = ordenCompraRepository.FindOne(x => x.numeroInterno == aOC.numeroInterno).IdOrdenCompra;
             }
             catch(Exception ex)
             {
                 return RedirectToAction("Error500", "Error");
             }
 
-            return View("Agregar");
+            return RedirectToAction("Materiales", new { id = idOC });
         }
+
         [HttpPost]
         public ActionResult Editar(OrdenCompra aOC)
         {
             return View("Editar", aOC);
         }
 
-        [HttpGet]
-        public JsonResult GetAll()
-        {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+        //[HttpGet]
+        //public JsonResult GetAll()
+        //{
+        //    OficinaTecnicaEntities db = new OficinaTecnicaEntities();
 
-            var Query1 = from oc in db.ordenCompra
-                         where oc.hab == true
-                         select new
-                         {
-                             id = oc.IdOrdenCompra,
-                             numInt = oc.numeroInterno,
-                             numFac = oc.numeroFactura,
-                             fecha = oc.fecha,
-                             resp = oc.responsable.nombre,
-                             prov = oc.proveedor.nombre,
-                             items = oc.itemsOC.Count()
-                         };
+        //    var Query1 = from oc in db.ordenCompra
+        //                 where oc.hab == true
+        //                 select new
+        //                 {
+        //                     id = oc.IdOrdenCompra,
+        //                     numInt = oc.numeroInterno,
+        //                     numFac = oc.numeroFactura,
+        //                     fecha = oc.fecha,
+        //                     resp = oc.responsable.nombre,
+        //                     prov = oc.proveedor.nombre,
+        //                     items = oc.itemsOC.Count()
+        //                 };
 
-            //var Query2 = ordenCompraRepository.Find(x => x.hab).OrderByDescending(x => x.fecha).Select(x => new
-            //{
-            //    x.IdOrdenCompra,
-            //    x.numeroInterno,
-            //    x.numeroFactura,
-            //    x.fecha
-            //});
+        //    //var Query2 = ordenCompraRepository.Find(x => x.hab).OrderByDescending(x => x.fecha).Select(x => new
+        //    //{
+        //    //    x.IdOrdenCompra,
+        //    //    x.numeroInterno,
+        //    //    x.numeroFactura,
+        //    //    x.fecha
+        //    //});
 
-            return Json(new { Response = Query1 }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { Response = Query1 }, JsonRequestBehavior.AllowGet);
+        //}
 
         public JsonResult GetOC(int id)
         {
@@ -143,6 +148,30 @@ namespace gestionmateriales.Controllers
         private void CargarResponsable(object selectedResponsable = null)
         {
             ViewBag.idResponsable = new SelectList(personalRepository.Find(x => x.hab), "idPersonal", "nombre", selectedResponsable);
+        }
+
+        [HttpGet]
+        public JsonResult GetAll()
+        {
+            var otas = from o in ordenCompraRepository.FindAll()
+                       where o.hab == true
+                       select new { o.IdOrdenCompra, o.numeroInterno, o.numeroFactura, o.fecha, responsable = o.responsable.nombre, proveedor = o.proveedor.nombre, cant = o.itemsOC.Count };
+
+            return Json(new { Response = otas }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult Materiales (int id)
+        {
+            var oc = ordenCompraRepository.FindById(id);
+            if (oc == null) throw new Exception("La OC no existe");
+
+            ViewData["idOc"] = id;
+            ViewData["numeroInterno"] = oc.numeroInterno;
+            ViewData["numeroFactura"] = oc.numeroFactura;
+
+            return View("Materiales");
+            
+           
         }
     }
 }

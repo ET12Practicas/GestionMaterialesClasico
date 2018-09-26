@@ -1,0 +1,30 @@
+﻿<<h1>Orden de Compra</h1>
+<div class="row">
+    <div class="col-md-10">
+        <p>NúmeroInterno: <strong>@ViewData["numeroInterno"]</strong><p>NúmeroFactura: <strong>@ViewData["numeroFactura"]</strong>
+    </div>
+    <div class="col-md-2">
+        <a id="btn_generarOrdenCompra" class="btn btn-outline-primary btn-block btn-sm" href="~/OrdenCompra"><i class="far fa-check"></i> Generar</a>
+    </div>
+</div>
+
+<input type="hidden" id="IdOc" value="@ViewData["idOc"]"/>
+<div class="card">
+    <div class="card-body">
+        <table id="grdMateriales" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>  </th>
+                    <th>Codigo Material</th>
+                    <th> material </th>
+                    <th>Cantidad</th> 
+                    <th>Precio Unitario</th>
+                    <th>SubTotal</th>
+                </tr>
+            </thead>
+         </table>
+    </div>
+ </div>
+
+<script type="text/javascript" src="~/Scripts/MasterDataTables.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/OrdenCompra/Materiales.js"></script>
