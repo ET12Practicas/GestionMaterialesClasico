@@ -208,6 +208,7 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Contracts\IEntradaMaterialRepository.cs" />
+    <Compile Include="Repository\Contracts\IItemOrdenCompraRepository.cs" />
     <Compile Include="Repository\Contracts\IItemOrdenTrabajoAplicacionRepository.cs" />
     <Compile Include="Repository\Contracts\IMaterialRepository.cs" />
     <Compile Include="Repository\Contracts\IOrdenCompraRepository.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Repository\Contracts\ITurnoRepository.cs" />
     <Compile Include="Repository\Contracts\IUnidadRepository.cs" />
     <Compile Include="Repository\Implementation\EntradaMaterialRepository.cs" />
+    <Compile Include="Repository\Implementation\ItemOrdenCompraRepository.cs" />
     <Compile Include="Repository\Implementation\ItemOrdenTrabajoAplicacionRepository.cs" />
     <Compile Include="Repository\Implementation\SalidaMaterialRepository.cs" />
     <Compile Include="Repository\Implementation\MaterialRepository.cs" />

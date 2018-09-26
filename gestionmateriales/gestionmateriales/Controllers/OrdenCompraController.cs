@@ -1,5 +1,6 @@
 ﻿using gestionmateriales.Models.OficinaTecnica;
 using gestionmateriales.Models.OficinaTecnica.Documentos;
+using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 using gestionmateriales.Repository.Contracts;
 using gestionmateriales.Repository.Implementation;
 using System;
@@ -16,12 +17,16 @@ namespace gestionmateriales.Controllers
         private readonly IOrdenCompraRepository ordenCompraRepository;
         private readonly IProveedorRepository proveedorRepository;
         private readonly IPersonalRepository personalRepository;
+        private readonly IItemOrdenCompraRepository itemOrdenCompraRepository;
+        private readonly IMaterialRepository materialRepository;
         public OrdenCompraController()
         {
             OficinaTecnicaEntities context = new OficinaTecnicaEntities();
             ordenCompraRepository = new OrdenCompraRepository(context);
             proveedorRepository = new ProveedorRepository(context);
             personalRepository = new PersonalRepository(context);
+            itemOrdenCompraRepository = new ItemOrdenCompraRepository(context);
+            materialRepository = new MaterialRepository(context);
         }
 
         // GET: OrdenCompra
@@ -173,5 +178,33 @@ namespace gestionmateriales.Controllers
             
            
         }
+         [HttpGet]
+        public JsonResult GetMateriales(int id)
+        {
+            int cantMat;
+            var itemsMateriales = new List<object>();
+            var oc = ordenCompraRepository.FindById(id);
+            var items = itemOrdenCompraRepository.Find(x => x.ordenCompra.IdOrdenCompra == id).ToList();
+               foreach (Material mat in materialRepository.Find(x => x.hab))
+            {
+                cantMat = getCantidadByIdMaterial(items, mat.idMaterial);
+
+                itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre });
+            }
+
+            return Json(new { Response = itemsMateriales }, JsonRequestBehavior.AllowGet);
+        }
+                     
+        
+
+         private int getCantidadByIdMaterial(List<ItemOrdenCompra> items, int idMaterial)
+        {
+            ItemOrdenCompra item = items.FirstOrDefault(x => x.material.idMaterial == idMaterial);
+            if (item != null)
+                return item.cantidad;
+            return 0;
+        }
+
+    
     }
 }
