@@ -692,6 +692,7 @@
     <Content Include="Views\Error\Error404.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\OrdenCompra\Materiales.cshtml" />
+    <Content Include="Views\OrdenCompra\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

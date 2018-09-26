@@ -89,6 +89,12 @@ namespace gestionmateriales.Controllers
             return View("Editar", aOC);
         }
 
+        [HttpGet]
+        public ActionResult Detalle()
+        {
+            return View("Detalle");
+        }
+
         //[HttpGet]
         //public JsonResult GetAll()
         //{
