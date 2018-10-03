@@ -56,6 +56,14 @@ namespace gestionmateriales.Controllers
         {
             int idOC = -1;
 
+            if(ordenCompraRepository.FindAll().Any(y=> y.numeroInterno== aOC.numeroInterno))
+            {
+                ViewBag.Result = 1;
+                CargarProveedor(aOC.idProveedor);
+                CargarResponsable(aOC.idResponsable);
+                return View("Agregar", aOC);
+            }
+
             try
             {
                 OrdenCompra oc = new OrdenCompra
@@ -80,7 +88,7 @@ namespace gestionmateriales.Controllers
 
                 idOC = ordenCompraRepository.FindOne(x => x.numeroInterno == aOC.numeroInterno).IdOrdenCompra;
             }
-            catch(Exception ex)
+            catch
             {
                 return RedirectToAction("Error500", "Error");
             }
@@ -89,9 +97,51 @@ namespace gestionmateriales.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(OrdenCompra aOC)
+        public ActionResult Editar(int id, OrdenCompra aOC)
         {
-            return View("Editar", aOC);
+            int idOC = -1;
+
+            OrdenCompra ocEdit = ordenCompraRepository.FindById(id);
+
+            if (ordenCompraRepository.Find(x=> x.IdOrdenCompra !=id).Any(y=> y.numeroInterno== aOC.numeroInterno))
+            {
+                ViewBag.Result = 1;
+                CargarProveedor(aOC.idProveedor);
+                CargarResponsable(aOC.idResponsable);
+                return View("Editar", aOC);
+
+            }
+
+            try
+            {
+
+                ocEdit.numeroInterno = aOC.numeroInterno;
+                ocEdit.numeroFactura = aOC.numeroFactura;
+                ocEdit.fecha = aOC.fecha;
+                ocEdit.chequeNro = aOC.chequeNro;
+                ocEdit.total = aOC.total;
+                ocEdit.proveedor = proveedorRepository.FindById(aOC.idProveedor);
+                ocEdit.responsable = personalRepository.FindById(aOC.idResponsable);
+                ocEdit.LAST_UPDATED_BY = User.Identity.Name;
+                ocEdit.LAST_UPDATED_DATE = DateTime.Now;
+                ocEdit.LAST_UPDATED_IP = Request.UserHostAddress;
+                ordenCompraRepository.Edit(ocEdit);
+
+            }
+            catch
+            {
+                return RedirectToAction("Error500", "Error");
+            }
+
+            idOC = ocEdit.IdOrdenCompra;
+
+            if (idOC < 0)
+            {
+                return RedirectToAction("Error500", "Error");
+            }
+
+            //return View("Editar", aOC);
+            return RedirectToAction("Materiales", new { id = idOC });
         }
 
         [HttpGet]
