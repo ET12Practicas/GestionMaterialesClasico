@@ -42,22 +42,23 @@ $(document).ready(function () {
                     "sWidth": "10%",
                     "data" : "Cantidad",
                     "mRender": function (dato, type, raw) {
-                        var editarCant = '<input id="iCant-' + raw.idOC + '-' + raw.idMat + '" type="number" min="0" class="form-control" />';
+                        var editarCant = '<input id="iCant-' + raw.idOC + '-' + raw.idMat + '" type="number" min="0" class="form-control" onkeyup="CalcularSubtotal('+raw.idOC +', '+ raw.idMat +')"/>';
                         return editarCant;
                     }
                 },
                 {
                     "data" : "PrecioUnitario",
                     "mRender": function (dato, type, raw) {
-                        var editarCant = '<input id="iPre-' + raw.idOC + '-' + raw.idMat + '" type="text" class="form-control" />';
+                        var editarCant = '<input id="iPre-' + raw.idOC + '-' + raw.idMat + '" type="text" class="form-control" onkeyup="CalcularSubtotal('+ raw.idOC +','+ raw.idMat +')" />';
                         return editarCant;
                     }
 
                 },
                 {
                     "data" : "SubTotal",   
-                    "mRender" : function (dato, type, raw){
-                        return '';
+                    "mRender": function (dato, type, raw) {
+                        var subtotal = '<input id="iSub-' + raw.idOC + '-' + raw.idMat + '" type="text" class="form-control" readonly />';
+                        return subtotal;
                     }
                 },
                 {
@@ -73,3 +74,14 @@ $(document).ready(function () {
             });
     });                  
 });
+
+function CalcularSubtotal(idOC, idMat)
+{
+    var cantidad = $('#iCant-' + idOC + '-' + idMat).val();
+
+    var precioUnitario = $('#iPre-' + idOC + '-' + idMat).val();
+
+    var subtotal = cantidad * precioUnitario;
+
+    $('#iSub-' + idOC + '-' + idMat).val(subtotal);
+}
