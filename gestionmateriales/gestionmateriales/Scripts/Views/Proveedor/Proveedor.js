@@ -12,8 +12,15 @@ $(document).ready(function () {
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
-            var fecha = value.toLocaleString();
+            var fecha = '';
+            if (data.Response.length > 0) {
+                var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+                fecha = value.toLocaleString();
+            }
+            else {
+                fecha = new Date().toLocaleString();
+            }
+
             $('#lastUpdated').text('Última modificación ' + fecha);
         }
     });
