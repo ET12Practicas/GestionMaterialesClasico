@@ -8,7 +8,7 @@ using System.Web;
 
 namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
-    [Table("ordencompra")]
+    [Table("OrdenCompra")]
     public class OrdenCompra
     {
         [Key]

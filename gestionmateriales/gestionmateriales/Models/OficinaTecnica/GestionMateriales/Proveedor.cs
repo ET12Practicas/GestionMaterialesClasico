@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
 {
-    [Table("proveedor")]
+    [Table("Proveedor")]
     public class Proveedor
     {
         [Key]

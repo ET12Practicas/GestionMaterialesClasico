@@ -7,7 +7,7 @@ using System.Web;
 
 namespace gestionmateriales.Models.OficinaTecnica.Tipos
 {
-    [Table("tiposalidamaterial")]
+    [Table("TipoSalidaMaterial")]
     public class TipoSalidaMaterial
     {
         [Key]

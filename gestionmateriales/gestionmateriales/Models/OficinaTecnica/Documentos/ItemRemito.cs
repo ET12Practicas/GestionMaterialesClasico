@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
-    [Table("itemremito")]
+    [Table("ItemRemito")]
     public class ItemRemito
     {
         [Key]

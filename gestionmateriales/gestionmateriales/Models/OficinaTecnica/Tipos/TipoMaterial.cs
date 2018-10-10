@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.OficinaTecnica.Tipos
 {
-    [Table("tipomaterial")]
+    [Table("TipoMaterial")]
     public class TipoMaterial
     {
         [Key]

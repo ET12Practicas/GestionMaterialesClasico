@@ -4,11 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
 {
-    /// <summary>
-    /// Clase Personal
-    /// Representa a cualquier persona para solicitar y/o retirar materiales..
-    /// </summary>
-    [Table("personal")]
+    [Table("Personal")]
     public class Personal
     {
         [Key]

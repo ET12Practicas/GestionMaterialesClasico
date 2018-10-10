@@ -6,7 +6,7 @@ using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 
 namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
-    [Table("ordenpedido")]
+    [Table("OrdenPedido")]
     public class OrdenPedido
     {
         [Key]

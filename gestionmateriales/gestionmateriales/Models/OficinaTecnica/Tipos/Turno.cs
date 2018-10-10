@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.OficinaTecnica.Tipos
 {
-    [Table("turno")]
+    [Table("Turno")]
     public class Turno
     {
         [Key]

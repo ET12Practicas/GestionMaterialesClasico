@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
 {
-    [Table("entradamaterial")]
+    [Table("EntradaMaterial")]
     public class EntradaMaterial
     {
         [Key]

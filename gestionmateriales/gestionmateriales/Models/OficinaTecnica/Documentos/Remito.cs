@@ -8,7 +8,7 @@ using System.Web;
 
 namespace gestionmateriales.Models.OficinaTecnica.Documentos
 {
-    [Table("remito")]
+    [Table("Remito")]
     public class Remito
     {
         [Key]
