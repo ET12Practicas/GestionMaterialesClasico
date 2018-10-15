@@ -6,6 +6,24 @@ $(document).ready(function () {
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
 
+    var requestFecha = $.ajax({
+        url: baseURL + "OrdenCompra/GetLastUpdated",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            var fecha = '';
+            if (data.Response.length > 0) {
+                var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+                fecha = value.toLocaleString();
+            }
+            else {
+                fecha = new Date().toLocaleString();
+            }
+
+            $('#lastUpdated').text('Última modificación ' + fecha);
+        }
+    });
+
     var request = $.ajax({
         url: baseURL + "OrdenCompra/GetAll",
         type: 'GET',
@@ -36,6 +54,10 @@ $(document).ready(function () {
                     "data": "numeroFactura"
                 },
                 {
+                    "sWidth": "35%",
+                    "data": "proveedor"
+                },
+                {
                     "sWidth": "5%",
                     "mRender": function (data, type, row) {
                         var value = new Date(parseInt(row.fecha.replace(/(^.*\()|([+-].*$)/g, '')));
@@ -43,13 +65,9 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    "sWidth": "5%",
+                    "sWidth": "10%",
                     "data": "responsable"
-                },
-                {
-                    "sWidth": "40%",
-                    "data": "proveedor"
-                },
+                },               
                 {
                     "sWidth": "5%",
                     "data": "cant"

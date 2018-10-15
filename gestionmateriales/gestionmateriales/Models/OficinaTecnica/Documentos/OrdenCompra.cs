@@ -26,7 +26,7 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public virtual Proveedor proveedor { get; set; }
 
         [Required]
-        public int numeroFactura { get; set; }
+        public string numeroFactura { get; set; }
 
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]

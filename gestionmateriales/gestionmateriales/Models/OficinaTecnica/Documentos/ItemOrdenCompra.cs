@@ -12,25 +12,19 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int idItemOrdenCompra { get; set; }
 
         [Required]
-        public int numero { get; set; }
+        public virtual Material material { get; set; }
 
         [Required]
         public int cantidad { get; set; }
 
         [Required]
-        public Material material { get; set; }
-
-        [Required]
-        public string destino { get; set; }
-
-        [Required]
         public double precioUnitario { get; set; }
 
         [Required]
-        public double precioParcial { get; set; }
+        public double subtotal { get; set; }
 
         [Required]
-        public OrdenCompra ordenCompra { get; set; }
+        public virtual OrdenCompra ordenCompra { get; set; }
 
         public ItemOrdenCompra()
         {

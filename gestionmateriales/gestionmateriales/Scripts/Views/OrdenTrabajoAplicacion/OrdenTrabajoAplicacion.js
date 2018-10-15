@@ -6,6 +6,24 @@ $(document).ready(function () {
     if (appName == 'ottest')
         baseURL = baseURL + appName + "/";
 
+    var requestFecha = $.ajax({
+        url: baseURL + "OrdenTrabajoAplicacion/GetLastUpdated",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            var fecha = '';
+            if (data.Response.length > 0) {
+                var value = new Date(parseInt(data.Response[0].LAST_UPDATED_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+                fecha = value.toLocaleString();
+            }
+            else {
+                fecha = new Date().toLocaleString();
+            }
+
+            $('#lastUpdated').text('Última modificación ' + fecha);
+        }
+    });
+
     var request = $.ajax({
         url: baseURL + "OrdenTrabajoAplicacion/GetAll",
         type: 'GET',

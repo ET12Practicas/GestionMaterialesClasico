@@ -1,13 +1,12 @@
-﻿using gestionmateriales.Models.OficinaTecnica;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using gestionmateriales.Models.OficinaTecnica;
 using gestionmateriales.Models.OficinaTecnica.Documentos;
 using gestionmateriales.Models.OficinaTecnica.GestionMateriales;
 using gestionmateriales.Repository.Contracts;
 using gestionmateriales.Repository.Implementation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace gestionmateriales.Controllers
 {
@@ -36,15 +35,6 @@ namespace gestionmateriales.Controllers
         }
 
         [HttpGet]
-        public ActionResult Editar(int id)
-        {
-            OrdenCompra oc = ordenCompraRepository.FindById(id);
-            CargarProveedor(oc.idProveedor);
-            CargarResponsable(oc.idResponsable);
-            return View("Editar", oc);
-        }
-
-        [HttpGet]
         public ActionResult Agregar()
         {
             CargarProveedor();
@@ -56,7 +46,7 @@ namespace gestionmateriales.Controllers
         {
             int idOC = -1;
 
-            if(ordenCompraRepository.FindAll().Any(y=> y.numeroInterno== aOC.numeroInterno))
+            if (ordenCompraRepository.FindAll().Any(y => y.numeroInterno == aOC.numeroInterno))
             {
                 ViewBag.Result = 1;
                 CargarProveedor(aOC.idProveedor);
@@ -69,10 +59,10 @@ namespace gestionmateriales.Controllers
                 OrdenCompra oc = new OrdenCompra
                 {
                     numeroInterno = aOC.numeroInterno,
-                    numeroFactura = aOC.numeroFactura,
+                    numeroFactura = "Sin número",
                     fecha = aOC.fecha,
-                    chequeNro = aOC.chequeNro,
-                    total = aOC.total,
+                    chequeNro = "Sin número",
+                    total = 0,
                     proveedor = proveedorRepository.FindById(aOC.idProveedor),
                     responsable = personalRepository.FindById(aOC.idResponsable),
                     hab = true,
@@ -96,6 +86,15 @@ namespace gestionmateriales.Controllers
             return RedirectToAction("Materiales", new { id = idOC });
         }
 
+        [HttpGet]
+        public ActionResult Editar(int id)
+        {
+            OrdenCompra oc = ordenCompraRepository.FindById(id);
+            CargarProveedor(oc.idProveedor);
+            CargarResponsable(oc.idResponsable);
+            return View("Editar", oc);
+        }
+
         [HttpPost]
         public ActionResult Editar(int id, OrdenCompra aOC)
         {
@@ -103,18 +102,16 @@ namespace gestionmateriales.Controllers
 
             OrdenCompra ocEdit = ordenCompraRepository.FindById(id);
 
-            if (ordenCompraRepository.Find(x=> x.IdOrdenCompra !=id).Any(y=> y.numeroInterno== aOC.numeroInterno))
+            if (ordenCompraRepository.Find(x => x.IdOrdenCompra != id).Any(y => y.numeroInterno == aOC.numeroInterno))
             {
                 ViewBag.Result = 1;
                 CargarProveedor(aOC.idProveedor);
                 CargarResponsable(aOC.idResponsable);
                 return View("Editar", aOC);
-
             }
 
             try
             {
-
                 ocEdit.numeroInterno = aOC.numeroInterno;
                 ocEdit.numeroFactura = aOC.numeroFactura;
                 ocEdit.fecha = aOC.fecha;
@@ -140,70 +137,33 @@ namespace gestionmateriales.Controllers
                 return RedirectToAction("Error500", "Error");
             }
 
-            //return View("Editar", aOC);
             return RedirectToAction("Materiales", new { id = idOC });
         }
 
         [HttpGet]
-        public ActionResult Detalle()
+        public ActionResult Detalle(int id)
         {
-            return View("Detalle");
+            var oc = ordenCompraRepository.FindById(id);
+
+            if (oc == null) throw new Exception("No existe la orden de compra");
+
+            return View("Detalle", oc);
         }
 
-        //[HttpGet]
-        //public JsonResult GetAll()
-        //{
-        //    OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-
-        //    var Query1 = from oc in db.ordenCompra
-        //                 where oc.hab == true
-        //                 select new
-        //                 {
-        //                     id = oc.IdOrdenCompra,
-        //                     numInt = oc.numeroInterno,
-        //                     numFac = oc.numeroFactura,
-        //                     fecha = oc.fecha,
-        //                     resp = oc.responsable.nombre,
-        //                     prov = oc.proveedor.nombre,
-        //                     items = oc.itemsOC.Count()
-        //                 };
-
-        //    //var Query2 = ordenCompraRepository.Find(x => x.hab).OrderByDescending(x => x.fecha).Select(x => new
-        //    //{
-        //    //    x.IdOrdenCompra,
-        //    //    x.numeroInterno,
-        //    //    x.numeroFactura,
-        //    //    x.fecha
-        //    //});
-
-        //    return Json(new { Response = Query1 }, JsonRequestBehavior.AllowGet);
-        //}
-
-        public JsonResult GetOC(int id)
+        [HttpGet]
+        public JsonResult Get_Detalle_ItemsOrdenCompra(int id)
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-            var Query2 = from oc in db.ordenCompra
-                         where oc.hab == true && oc.IdOrdenCompra == id
-                         select new
-                         {
-                             id = oc.IdOrdenCompra,
-                             numInt = oc.numeroInterno,
-                             numFac = oc.numeroFactura,
-                             fecha = oc.fecha,
-                             resp = oc.responsable.nombre,
-                             prov = oc.proveedor.nombre,
-                             items = oc.itemsOC.Count()
-                         };
 
-            OrdenCompra unaOrdenCompra = db.ordenCompra
-                .Where(x => x.hab == true && x.IdOrdenCompra == id)
-                //.Include(x => x.responsable)
-                //.Include(x => x.proveedor)
-                .FirstOrDefault();
+            var oc = ordenCompraRepository.FindOne(x => x.IdOrdenCompra == id);
 
-            return Json(new { Response = Query2 }, JsonRequestBehavior.AllowGet);
+            if (oc == null) throw new Exception("No existe orden de compra");
 
+            var itemsOC = from i in oc.itemsOC
+                           select new { codigo = i.material.codigo, material = i.material.nombre, cantidad = i.cantidad, precioUnitario = i.precioUnitario, subtotal = i.subtotal };
+
+            return Json(new { Response = itemsOC }, JsonRequestBehavior.AllowGet);
         }
+
         private void CargarProveedor(object selectedProveedor = null)
         {
             ViewBag.idProveedor = new SelectList(proveedorRepository.Find(x => x.hab), "idProveedor", "nombre", selectedProveedor);
@@ -223,47 +183,131 @@ namespace gestionmateriales.Controllers
 
             return Json(new { Response = otas }, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
-        public ActionResult Materiales (int id)
+        public ActionResult Materiales(int id)
         {
             var oc = ordenCompraRepository.FindById(id);
+
             if (oc == null) throw new Exception("La OC no existe");
 
             ViewData["idOc"] = id;
             ViewData["numeroInterno"] = oc.numeroInterno;
             ViewData["numeroFactura"] = oc.numeroFactura;
+            ViewData["proveedor"] = oc.proveedor.nombre;
+            ViewData["responsable"] = oc.responsable.nombre;
+            ViewData["fecha"] = oc.fecha.ToShortDateString();
+            ViewData["cheque"] = oc.chequeNro;
 
             return View("Materiales");
-            
-           
+
+
         }
-         [HttpGet]
+        [HttpGet]
         public JsonResult GetMateriales(int id)
         {
-            int cantMat;
-            var itemsMateriales = new List<object>();
-            var oc = ordenCompraRepository.FindById(id);
-            var items = itemOrdenCompraRepository.Find(x => x.ordenCompra.IdOrdenCompra == id).ToList();
-               foreach (Material mat in materialRepository.Find(x => x.hab))
-            {
-                cantMat = getCantidadByIdMaterial(items, mat.idMaterial);
+            ItemOrdenCompra itemOC;
 
-                itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre });
+            var itemsMateriales = new List<object>();
+
+            var oc = ordenCompraRepository.FindById(id);
+
+            var items = itemOrdenCompraRepository.Find(x => x.ordenCompra.IdOrdenCompra == id).ToList();
+
+            foreach (Material mat in materialRepository.Find(x => x.hab))
+            {
+                itemOC = items.FirstOrDefault(x => x.material.idMaterial == mat.idMaterial);
+
+                if (itemOC != null)
+                {
+                    itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, itemOC.cantidad, itemOC.precioUnitario, itemOC.subtotal });
+                }
+                else
+                {
+                    itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, cantidad = String.Empty, precioUnitario = String.Empty, subtotal = String.Empty });
+                }
+                    
             }
 
             return Json(new { Response = itemsMateriales }, JsonRequestBehavior.AllowGet);
         }
-                     
-        
 
-         private int getCantidadByIdMaterial(List<ItemOrdenCompra> items, int idMaterial)
+        private ItemOrdenCompra GetItemOrdenCompra(List<ItemOrdenCompra> items, int idMaterial)
         {
-            ItemOrdenCompra item = items.FirstOrDefault(x => x.material.idMaterial == idMaterial);
-            if (item != null)
-                return item.cantidad;
-            return 0;
+            ItemOrdenCompra itemOC = items.FirstOrDefault(x => x.material.idMaterial == idMaterial);
+
+            if (itemOC != null) throw new Exception("No existe el item de la orden de compra");
+
+            return itemOC;
         }
 
-    
+        [HttpPost]
+        public ActionResult AgregarItemMaterial(int id, int idMaterial, int unaCantidad, double unPrecioUnitario, double unSubtotal)
+        {
+            var unaOrdenCompra = ordenCompraRepository.FindOne(x => x.IdOrdenCompra == id);
+
+            if (unaOrdenCompra == null) throw new Exception("No existe la orden de compra");
+
+            var unMaterial = materialRepository.FindById(idMaterial);
+
+            if (unMaterial == null) throw new Exception("No existe el material");
+
+            try
+            {
+                ItemOrdenCompra itemOC = unaOrdenCompra.itemsOC.FirstOrDefault(x => x.material.idMaterial == idMaterial);
+
+                if (itemOC != null)
+                {
+                    itemOC.cantidad = unaCantidad;
+
+                    itemOC.precioUnitario = unPrecioUnitario;
+
+                    itemOC.subtotal = unSubtotal;
+                }
+                else
+                {
+                    unaOrdenCompra.itemsOC.Add(new ItemOrdenCompra { ordenCompra = unaOrdenCompra, material = unMaterial, cantidad = unaCantidad, precioUnitario = unPrecioUnitario, subtotal = unSubtotal });
+                }
+
+                ordenCompraRepository.Edit(unaOrdenCompra);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString());
+            }
+
+            return Json("200 ok");
+        }
+
+        [HttpGet]
+        public JsonResult Get_Materiales_TotalOrdenCompra(int id)
+        {
+            var ordenCompra = ordenCompraRepository.FindById(id);
+
+            if (ordenCompra == null) throw new Exception("La orden de compra no existe");
+
+            double total = ordenCompra.itemsOC.Sum(x => x.subtotal);
+
+            try
+            {
+                ordenCompra.total = total;
+
+                ordenCompraRepository.Edit(ordenCompra);
+            }
+            catch
+            {
+                throw new Exception("No se puede asignar el total de la orden de compra");
+            }
+
+            return Json(new { Response = total }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetLastUpdated()
+        {
+            var fecha = ordenCompraRepository.Find(x => x.hab).OrderBy(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
+
+            return Json(new { Response = fecha }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

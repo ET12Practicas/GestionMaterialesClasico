@@ -353,5 +353,13 @@ namespace gestionmateriales.Controllers
 
         //    return salidas.Where(x => x.idMaterial == idMat).Sum(x => x.cantidad);
         //}
+
+        [HttpGet]
+        public JsonResult GetLastUpdated()
+        {
+            var fecha = ordenTrabajoAplicacionRepository.Find(x => x.hab).OrderBy(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
+
+            return Json(new { Response = fecha }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
