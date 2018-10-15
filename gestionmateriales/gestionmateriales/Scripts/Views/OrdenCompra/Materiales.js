@@ -37,21 +37,22 @@ $(document).ready(function () {
                     "data" : "codMat"
                 },
                 {
-                    "sWidth": "50%",
+                    "sWidth": "40%",
                     "data" : "nomMat"
                 },
                 {
                     "sWidth": "10%",
                     "data" : "cantidad",
                     "mRender": function (dato, type, raw) {
-                        var editarCant = '<input id="iCant-' + raw.idOC + '-' + raw.idMat + '" type="number" min="0" class="form-control" onkeyup="CalcularSubtotal('+ raw.idOC +', '+ raw.idMat +')" value="'+ raw.cantidad +'"/>';
+                        var editarCant = '<input id="iCant-' + raw.idOC + '-' + raw.idMat + '" type="number" min="0" class="form-control form-control-sm" onkeyup="CalcularSubtotal('+ raw.idOC +', '+ raw.idMat +')" value="'+ raw.cantidad +'"/>';
                         return editarCant;
                     }
                 },
                 {
+                    "sWidth": "10%",
                     "data" : "precioUnitario",
                     "mRender": function (dato, type, raw) {
-                        var header = '<div class="input-group"><div class="input-group-prepend"><span class="input-group-text">$</span></div>';
+                        var header = '<div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text">$</span></div>';
                         var editarCant = '<input id="iPre-' + raw.idOC + '-' + raw.idMat + '" type="text" class="form-control" onkeyup="CalcularSubtotal(' + raw.idOC + ',' + raw.idMat + ')" value="' + raw.precioUnitario + '">';
                         var footer = '</div>';
                         return header + editarCant + footer;
@@ -59,16 +60,17 @@ $(document).ready(function () {
 
                 },
                 {
+                    "sWidth": "10%",
                     "data" : "subTotal",   
                     "mRender": function (dato, type, raw) {
-                        var header = '<div class="input-group"><div class="input-group-prepend"><span class="input-group-text">$</span></div>';
+                        var header = '<div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text">$</span></div>';
                         var subtotal = '<input id="iSub-' + raw.idOC + '-' + raw.idMat + '" type="text" class="form-control" readonly value="' + raw.subtotal + '"/>';
                         var footer = '</div>';
                         return header + subtotal + footer;
                     }
                 },
                 {
-                    "sWidth": "10%",
+                    "sWidth": "7%",
                     "mRender": function (dato, type, raw) {
 
                         var btnAgregarItemOC = '<button type="button" title="Agrega el item a la Orden de Compra" class="btn btn-outline-primary btn-sm" href="" id="itemOC-' + raw.idOC + '-' + raw.idMat + 

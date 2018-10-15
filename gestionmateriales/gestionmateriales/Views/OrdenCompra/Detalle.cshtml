@@ -1,54 +1,57 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.Documentos.OrdenCompra
 
 <input type="hidden" id="IdOC" value="@Model.IdOrdenCompra" />
-<h1>Orden de Compra</h1>
 <div class="row">
-    <div class="offset-10 col-md-2">
+    <div class="col-4">
+        <h1>Orden de Compra</h1>
+    </div>
+    <div class="offset-6 col-2">
         <button class="btn btn-outline-secondary btn-block btn-sm" onclick="window.history.back();"><i class="far fa-arrow-left"></i> Volver</button>
     </div>
 </div>
-<hr />
-<div class="row">
-    <div class="col-3">
-        <p>Proveedor: <strong>@Model.proveedor.nombre</strong></p>
-    </div>
-    <div class="offset-3 col-3">
-        <p>Número Interno: <strong>@Model.numeroInterno</strong></p>
-    </div>
-    <div class="col-3">
-        <p>Número Factura: <strong>@Model.numeroFactura</strong></p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-3">
-        <p>Responsable: <strong>@Model.responsable.nombre</strong></p>
-    </div>
-    <div class="offset-3 col-3">
-        <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
-    </div>
-    <div class="col-3">
-        <p>Cheque: <strong>@Model.chequeNro</strong></p>
-    </div>
-</div>
-<hr />
-<p><strong>Detalle materiales</strong></p>
 <div class="card">
-    <div class="card-body">
-        <table id="grdItemsOC" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Material</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="card-footer h5">
-        Total: <strong>$ @Model.total</strong>
-    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-3">
+                    <p>Proveedor: <strong>@Model.proveedor.nombre</strong></p>
+                </div>
+                <div class="offset-3 col-3">
+                    <p>Número Interno: <strong>@Model.numeroInterno</strong></p>
+                </div>
+                <div class="col-3">
+                    <p>Número Factura: <strong>@Model.numeroFactura</strong></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p>Responsable: <strong>@Model.responsable.nombre</strong></p>
+                </div>
+                <div class="offset-3 col-3">
+                    <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
+                </div>
+                <div class="col-3">
+                    <p>Cheque: <strong>@Model.chequeNro</strong></p>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="card-title"><strong>Materiales</strong></div>
+            <table id="grdItemsOC" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Material</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+            </table>
+        <li class="list-group-item">
+            Total: <strong>$ @Model.total</strong>
+        </li>
+    </ul>
 </div>
 
 <script type="text/javascript" src="~/Scripts/MasterDataTables.js"></script>

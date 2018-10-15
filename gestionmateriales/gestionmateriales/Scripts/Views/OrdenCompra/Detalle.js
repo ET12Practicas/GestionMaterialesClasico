@@ -22,7 +22,7 @@ $(document).ready(function () {
                 "targets": [],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [3,4]
+                "aTargets": [3, 4]
             }],
             "aoColumns": [
                 {
@@ -39,7 +39,7 @@ $(document).ready(function () {
                 },
                 {
                     "sWidth": "10%",
-                    "data": "precioUnitario",
+                    "data": "precioUnitario",                    
                     "mRender": function (dato, type, raw) {                        
                         return '$ ' + raw.precioUnitario;
                     }

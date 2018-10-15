@@ -238,6 +238,12 @@ namespace gestionmateriales.Controllers
 
             ViewData["nombre"] = ot.nombre;
 
+            ViewData["responsable"] = ot.responsable.nombre;
+
+            ViewData["jefeSeccion"] = ot.jefeSeccion.nombre;
+
+            ViewData["fecha"] = ot.fecha.ToShortDateString();
+
             return View("Materiales");
         }
 

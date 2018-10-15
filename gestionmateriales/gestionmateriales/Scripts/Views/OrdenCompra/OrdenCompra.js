@@ -80,9 +80,9 @@ $(document).ready(function () {
 
                         var cab = '<div class="col-6">';
 
-                        var editar = '<a title="Editar" href="' + baseURL + 'OrdenCompra/Editar/' + row.IdOrdenCompra + '"><i class="far fa-edit fa-2x"></i> </a> ';
+                        var editar = '<a title="Editar orden de compra" href="' + baseURL + 'OrdenCompra/Editar/' + row.IdOrdenCompra + '"><i class="far fa-edit fa-2x"></i> </a> ';
 
-                        var detalle = '<a title="Ver Detalle" href="' + baseURL + 'OrdenCompra/Detalle/' + row.IdOrdenCompra + '"><i class="far fa-info-circle fa-2x"></i> </a> ';
+                        var detalle = '<a title="Ver detalle de orden de compra" href="' + baseURL + 'OrdenCompra/Detalle/' + row.IdOrdenCompra + '"><i class="far fa-info-circle fa-2x"></i> </a> ';
 
                         var end = '</div>';
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
                     }
                 }
             ],
-            "order": [2, "asc"]
+            "order": [1, "desc"]
         });
     });
 

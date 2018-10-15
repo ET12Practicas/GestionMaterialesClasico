@@ -1,42 +1,65 @@
-﻿<h1>Orden de Trabajo de Aplicación</h1>
+﻿
 <div class="row">
-    <div class="col-md-10">
-        <p>Número: <strong>@ViewData["numero"]</strong> - Nombre: <strong>@ViewData["nombre"]</strong></p>
+    <div class="col-6">
+        <h1>Orden de Trabajo de Aplicación</h1>
     </div>
-    <div class="col-md-2">
-        <a id="btn_generarordentrabajo" class="btn btn-outline-primary btn-block btn-sm" href="~/OrdenTrabajoAplicacion"><i class="far fa-check"></i> Generar</a>
+    <div class="offset-3 col-3">
+        <a id="btn_generarordentrabajo" class="btn btn-outline-primary btn-block btn-sm" href="~/OrdenTrabajoAplicacion"><i class="far fa-check"></i> Generar Orden de Trabajo de Aplicación</a>
     </div>
 </div>
-
 <input type="hidden" id="IdOT" value="@ViewData["IdOT"]" />
 <div class="card">
-    <div class="card-body">
-        <table id="grdMateriales" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Material
-                    </th>
-                    <th>
-                        Stock Actual
-                    </th>
-                    <th>
-                        Cantidad
-                    </th>
-                    <th>
-                        Opciones
-                    </th>
-                </tr>
-            </thead>
-        </table>        
-    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-3">
+                    <p>Trabajo Práctico: <strong>@ViewData["nombre"]</strong></p>
+                </div>
+                <div class="offset-3 col-3">
+                    <p>Número: <strong>@ViewData["numero"]</strong></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p>Responsable: <strong>@ViewData["responsable"]</strong></p>
+                </div>
+                <div class="offset-3 col-3">
+                    <p>Jefe de Sección: <strong>@ViewData["jefeSeccion"]</strong></p>
+                </div>
+                <div class="col-3">
+                    <p>Fecha: <strong>@ViewData["fecha"]</strong></p>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="card-title"><strong>Materiales</strong></div>
+            <table id="grdMateriales" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Material
+                        </th>
+                        <th>
+                            Stock Actual
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Opciones
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </li>
+    </ul>
 </div>
 
 <script type="text/javascript" src="~/Scripts/MasterDataTables.js"></script>

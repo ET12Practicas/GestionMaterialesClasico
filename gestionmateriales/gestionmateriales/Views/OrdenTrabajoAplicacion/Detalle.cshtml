@@ -1,53 +1,58 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.Documentos.OrdenTrabajoAplicacion
 
 <input type="hidden" id="IdOTA" value="@Model.idOrdenTrabajoAplicacion" />
-<h1>Orden de Trabajo de Aplicación</h1>
+
 <div class="row">
-    <div class="offset-10 col-md-2">
+    <div class="col-6">
+        <h1>Orden de Trabajo de Aplicación</h1>
+    </div>
+    <div class="offset-4 col-2">
         <button class="btn btn-outline-secondary btn-block btn-sm" onclick="window.history.back();"><i class="far fa-arrow-left"></i> Volver</button>
     </div>
 </div>
-<hr />
-<div class="row">
-    <div class="col-3">
-        <p>Trabajo Práctico: <strong>@Model.nombre</strong></p>
-    </div>
-    <div class="offset-6 col-3">
-        <p>Número: <strong>@Model.numero</strong></p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-3">
-        <p>Responsable: <strong>@Model.responsable.nombre</strong></p>
-    </div>
-    <div class="col-3">
-        <p>Jefe de Sección: <strong>@Model.jefeSeccion.nombre</strong></p>
-    </div>
-    <div class="offset-3 col-3">
-        <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
-    </div>
-</div>
-<hr />
-<p><strong>Detalle de retiro de materiales</strong></p>
 <div class="card">
-    <div class="card-body">
-        <table id="grdItemsOTA" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Cantidad</th>
-                    <th>
-                        Material
-                    </th>
-                    <th>
-                        Retiro
-                    </th>
-                    <th>
-                        Fecha
-                    </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-3">
+                    <p>Trabajo Práctico: <strong>@Model.nombre</strong></p>
+                </div>
+                <div class="offset-6 col-3">
+                    <p>Número: <strong>@Model.numero</strong></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p>Responsable: <strong>@Model.responsable.nombre</strong></p>
+                </div>
+                <div class="col-3">
+                    <p>Jefe de Sección: <strong>@Model.jefeSeccion.nombre</strong></p>
+                </div>
+                <div class="offset-3 col-3">
+                    <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="card-title"><strong>Materiales</strong></div>
+                <table id="grdItemsOTA" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>
+                                Material
+                            </th>
+                            <th>
+                                Retiro
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+        </li>
+    </ul>
 </div>
 
 <script type="text/javascript" src="~/Scripts/MasterDataTables.js"></script>
