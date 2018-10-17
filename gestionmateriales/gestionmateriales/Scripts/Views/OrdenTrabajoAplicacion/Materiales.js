@@ -76,42 +76,87 @@ function addItemOTA(data) {
     var idOT = data.id.split('-')[1];
     var idMaterial = data.id.split('-')[2];
     var cant = $('#iCant-' + idOT + '-' + idMaterial).val();
-
-    var request = $.ajax({
-        url: baseURL + "OrdenTrabajoAplicacion/AddItemMaterial",
-        type: 'POST',
-        data: "{ 'id': '" + idOT + "', 'idMaterial':'" + idMaterial + "', 'cant':'" + cant + "' }",
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8'
-    });
-
-    request.done(function () {
-
+    if (cant <= 0) {
         $.notify(
-            {
-                message: 'Los datos se guardaron con éxito'
-            },
-            {
-                type: 'success',
-                animate: {
-                    enter: 'animated bounceInDown',
-                    exit: 'animated bounceOutUp'
-                },
-                placement: {
-                    from: 'top',
-                    align: 'right'
-                },
-                offset: {
-                    x: 25,
-                    y: 75
-                },
-                delay: 500
-            }
-        );
-    });
+           {
+               message: 'El campo cantidad debe ser un valor entero y positivo'
+           },
+           {
+               type: 'danger',
+               animate: {
+                   enter: 'animated bounceInDown',
+                   exit: 'animated bounceOutUp'
+               },
+               placement: {
+                   from: 'top',
+                   align: 'right'
+               },
+               offset: {
+                   x: 25,
+                   y: 75
+               },
+               delay: 500
+           }
+       );
+    }
+    else {
+        var request = $.ajax({
+            url: baseURL + "OrdenTrabajoAplicacion/AddItemMaterial",
+            type: 'POST',
+            data: "{ 'id': '" + idOT + "', 'idMaterial':'" + idMaterial + "', 'cant':'" + cant + "' }",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
 
-    request.fail(function () {
-        console.log(data.Response);
-        alert('No se pueden cargar el listado de items OTA');
-    });
+        request.done(function () {
+
+            $.notify(
+                {
+                    message: 'Los datos se guardaron con éxito'
+                },
+                {
+                    type: 'success',
+                    animate: {
+                        enter: 'animated bounceInDown',
+                        exit: 'animated bounceOutUp'
+                    },
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    },
+                    offset: {
+                        x: 25,
+                        y: 75
+                    },
+                    delay: 500
+                }
+            );
+        });
+
+        request.fail(function () {
+            console.log(data.Response);
+            //alert('No se pueden cargar el listado de items OTA');
+            $.notify(
+          {
+              message: 'Los datos no se pueden guardar'
+          },
+          {
+              type: 'danger',
+              animate: {
+                  enter: 'animated bounceInDown',
+                  exit: 'animated bounceOutUp'
+              },
+              placement: {
+                  from: 'top',
+                  align: 'right'
+              },
+              offset: {
+                  x: 25,
+                  y: 75
+              },
+              delay: 500
+          }
+      );
+        });
+    }
 }

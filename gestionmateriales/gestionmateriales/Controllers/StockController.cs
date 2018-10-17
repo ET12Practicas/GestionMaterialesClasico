@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using gestionmateriales.Repository.Contracts;
 using gestionmateriales.Repository.Implementation;
+using gestionmateriales.Models.OficinaTecnica.Documentos;
 
 namespace gestionmateriales.Controllers
 {
@@ -58,6 +59,10 @@ namespace gestionmateriales.Controllers
 
             if (unTipoEntrada == null) throw new Exception("No existe el tipo entrada material");
 
+
+            if (!verificarMaterialenDocumento(unMaterial, unaEntrada)) throw new Exception("No se puede verificar el material en el documento");
+
+
             try
             {
                 //actualizo el stock de la entrada para el material indicado
@@ -92,6 +97,23 @@ namespace gestionmateriales.Controllers
             cargarTipoEntrada();
 
             return View("Sumar");
+        }
+
+        private bool verificarMaterialenDocumento(Material unMaterial, EntradaMaterial unaEntrada)
+        {
+            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
+
+            int documento = Convert.ToInt32(unaEntrada.codigoDocumento);
+             
+            switch(unaEntrada.idTipoEntradaMaterial)
+            {
+               // Orden de Compra
+                case 5: { OrdenCompra oc= db.ordenCompra.FirstOrDefault(x => x.numeroInterno == documento );
+                return oc.itemsOC.Any(x => x.material.idMaterial == unMaterial.idMaterial);
+
+                }
+            }
+            return false;
         }
 
         [HttpGet]

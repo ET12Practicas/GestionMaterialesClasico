@@ -90,8 +90,8 @@ namespace gestionmateriales.Controllers
         public ActionResult Editar(int id)
         {
             OrdenCompra oc = ordenCompraRepository.FindById(id);
-            CargarProveedor(oc.idProveedor);
-            CargarResponsable(oc.idResponsable);
+            CargarProveedor(oc.proveedor.idProveedor);
+            CargarResponsable(oc.responsable.idPersonal);
             return View("Editar", oc);
         }
 
