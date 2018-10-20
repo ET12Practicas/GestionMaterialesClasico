@@ -244,6 +244,8 @@ namespace gestionmateriales.Controllers
 
             ViewData["fecha"] = ot.fecha.ToShortDateString();
 
+            ViewData["turno"] = ot.turno.nombre;
+
             return View("Materiales");
         }
 
