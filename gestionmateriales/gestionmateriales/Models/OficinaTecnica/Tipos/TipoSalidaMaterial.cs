@@ -19,7 +19,7 @@ namespace gestionmateriales.Models.OficinaTecnica.Tipos
         public string nombre { get; set; }
 
         [Required]
-        public int idSector { get; set; }
+        public virtual Sector sector { get; set; }
 
         public TipoSalidaMaterial()
         {

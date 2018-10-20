@@ -48,27 +48,7 @@
                 $('#cantidadMaterial').val('');
                 $('#codigoMaterial').text('');
                 $('#codigoDocumento').val('');
-                $.notify(
-                    {
-                        message: 'Los datos se guardaron con éxito'
-                    },
-                    {
-                        type: 'success',
-                        animate: {
-                            enter: 'animated bounceInDown',
-                            exit: 'animated bounceOutUp'
-                        },
-                        placement: {
-                            from: 'top',
-                            align: 'right'
-                        },
-                        offset: {
-                            x: 25,
-                            y: 75
-                        },
-                        delay: 1000
-                    }
-                );
+                ShowNotificationSuccess('Stock');
             </script>
         }
 

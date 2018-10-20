@@ -91,7 +91,7 @@ namespace gestionmateriales.Controllers
 
             if (proveedor == null) throw new Exception("No existe el proveedor");
 
-            if (proveedorRepository.Find(x => x.hab).Any(y => y.cuit == unProveedor.cuit))
+            if (proveedorRepository.Find(x => x.idProveedor != id && x.hab).Any(y => y.cuit == unProveedor.cuit))
             {
                 ViewBag.Result = 1;
 

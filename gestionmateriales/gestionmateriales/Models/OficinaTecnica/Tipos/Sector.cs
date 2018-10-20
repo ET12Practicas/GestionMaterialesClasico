@@ -1,25 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace gestionmateriales.Models.OficinaTecnica.Tipos
 {
-    [Table("TipoEntradaMaterial")]
-    public class TipoEntradaMaterial
+    [Table("Sector")]
+    public class Sector
     {
         [Key]
         [Required]
-        public int idTipoEntradaMaterial { get; set; }
+        public int idSector { get; set; }
 
         [Required]
-        [StringLength(35)]
+        [StringLength(50)]
         public string nombre { get; set; }
 
-        [Required]
-        public virtual Sector sector { get; set; }
-
-        public TipoEntradaMaterial()
+        public Sector()
         {
-
+                
         }
     }
 }

@@ -241,11 +241,11 @@ namespace gestionmateriales.Controllers
             if (User.IsInRole("administrador"))
                 ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("oficinatecnica"))
-                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.OrderBy(x => x.nombre).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("deposito"))
-                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.idSector == 1).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
-            if (User.IsInRole("compras"))
-                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.idSector == 0).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.sector.idSector == 2).OrderBy(x => x.nombre).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
+            //if (User.IsInRole("compras"))
+            //    ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.sector.idSector == 0).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
         }
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
@@ -254,11 +254,11 @@ namespace gestionmateriales.Controllers
             if (User.IsInRole("administrador"))
                 ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             if (User.IsInRole("oficinatecnica"))
-                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.sector.idSector == 1).OrderBy(x => x.nombre).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             if (User.IsInRole("deposito"))
-                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.idSector == 1).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
-            if (User.IsInRole("compras"))
-                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.idSector == 0).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.sector.idSector == 2).OrderBy(x => x.nombre).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
+            //if (User.IsInRole("compras"))
+            //    ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.idSector == ).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
         }
     }
 }

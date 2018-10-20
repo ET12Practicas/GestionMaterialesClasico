@@ -124,7 +124,7 @@ namespace gestionmateriales.Controllers
 
             if (material == null) throw new Exception("No existe el material");
 
-            if (materialRepository.Find(x => x.hab).Any(y => y.codigo == material.codigo))
+            if (materialRepository.Find(x => x.idMaterial != id && x.hab).Any(y => y.codigo == material.codigo))
             {
                 ViewBag.Result = 1;
 

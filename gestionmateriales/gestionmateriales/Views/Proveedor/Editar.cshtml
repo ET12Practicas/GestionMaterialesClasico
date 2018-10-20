@@ -9,7 +9,7 @@
             <div class="form-horizontal">
                 <div class="form-group">
                     @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "control-label" })
-                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", autofocus = "true", title = "Solo se admiten letras.", pattern = "^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$", autocomplete = "off" } })
+                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", maxlength = 45, required = "true", autofocus = "true", title = "Solo se admiten letras y números.", pattern = "^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]+$", autocomplete = "off" } })
                 </div>
                 <div class="form row">
                     <div class="form-group col-md-6">
@@ -57,7 +57,7 @@
                         <input type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="right" title="Confirma la operación" />
                     </div>
                     <div class="col-md-2">
-                        <input type="button" class="btn btn-default btn-block" onclick="window.history.back();" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                        <input type="button" class="btn btn-default btn-block" onclick="location.href = '/Proveedor'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                     </div>
                 </div>
             </div>
@@ -67,51 +67,13 @@
 @if (ViewBag.Result == 0)
 {
     <script type="text/javascript">
-        $.notify(
-            {
-                message: 'Los datos se guardaron con éxito'
-            },
-            {
-                type: 'success',
-                animate: {
-                    enter: 'animated bounceInDown',
-                    exit: 'animated bounceOutUp'
-                },
-                placement: {
-                    from: 'top',
-                    align: 'center'
-                },
-                offset: {
-                    y: 75
-                },
-                delay: 1000
-            }
-        );
+        ShowNotificationSuccess('Proveedor');
     </script>
 }
 @if (ViewBag.Result == 1)
 {
     <script type="text/javascript">
-        $.notify(
-            {
-                message: 'El CUIT ya existe, verifique el valor'
-            },
-            {
-                type: 'danger',
-                animate: {
-                    enter: 'animated bounceInDown',
-                    exit: 'animated bounceOutUp'
-                },
-                placement: {
-                    from: 'top',
-                    align: 'right'
-                },
-                offset: {
-                    x: 25,
-                    y: 75
-                },
-                delay: 1000
-            }
-        );
+        ShowNotificationDanger('Proveedor', 'El CUIT ya existe, verifique el valor');
     </script>
 }
+

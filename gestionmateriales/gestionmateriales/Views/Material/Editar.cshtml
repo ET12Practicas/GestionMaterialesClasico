@@ -55,7 +55,7 @@
                         <input id="btn_aceptar" type="submit" class="btn btn-primary btn-block" value="Aceptar" data-toggle="tooltip" data-placement="bottom" title="Confirma la operación" />
                     </div>
                     <div class="col-md-2">
-                        <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href='../Index'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
+                        <input id="btn_cancelar" type="button" class="btn btn-default btn-block" onclick="location.href = '/Material'" value="Volver" data-toggle="tooltip" data-placement="right" title="Regresa a la pantalla anterior" />
                     </div>
                 </div>
             </div>
@@ -65,51 +65,13 @@
 @if (ViewBag.Result == 0)
 {
     <script type="text/javascript">
-        $.notify(
-            {
-                message: 'Los datos se guardaron con éxito'
-            },
-            {
-                type: 'success',
-                animate: {
-                    enter: 'animated bounceInDown',
-                    exit: 'animated bounceOutUp'
-                },
-                placement: {
-                    from: 'top',
-                    align: 'center'
-                },
-                offset: {
-                    y: 75
-                },
-                delay: 1000
-            }
-        );
+        ShowNotificationSuccess('Material');
     </script>
 }
 @if (ViewBag.Result == 1)
 {
     <script type="text/javascript">
-        $.notify(
-            {
-                message: 'El Código ya existe, verifique el valor'
-            },
-            {
-                type: 'danger',
-                animate: {
-                    enter: 'animated bounceInDown',
-                    exit: 'animated bounceOutUp'
-                },
-                placement: {
-                    from: 'top',
-                    align: 'center'
-                },
-                offset: {
-                    y: 75
-                },
-                delay: 1000
-            }
-        );
+        ShowNotificationDanger('Material', 'El Código ya existe, verifique el valor');
     </script>
 }
 

@@ -49,5 +49,7 @@ namespace gestionmateriales.Models.OficinaTecnica
         public DbSet<ItemOrdenPedido> ItemOP { get; set; }
 
         public DbSet<ItemOrdenCompra> ItemOC { get; set; }
+
+        public DbSet<Sector> sectores { get; set; }
     }
 }

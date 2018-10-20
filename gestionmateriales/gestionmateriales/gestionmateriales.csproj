@@ -196,6 +196,7 @@
     <Compile Include="Models\OficinaTecnica\GestionMateriales\Personal.cs" />
     <Compile Include="Models\OficinaTecnica\GestionMateriales\Proveedor.cs" />
     <Compile Include="Models\OficinaTecnica\GestionMateriales\SalidaMaterial.cs" />
+    <Compile Include="Models\OficinaTecnica\Tipos\Sector.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\TipoEntradaMaterial.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\TipoMaterial.cs" />
     <Compile Include="Models\OficinaTecnica\Tipos\TipoOrdenTrabajo.cs" />
@@ -538,6 +539,7 @@
     <Content Include="Scripts\Fuse\css\fuzzycomplete.min.css" />
     <Content Include="Scripts\Fuse\fuse.min.js" />
     <Content Include="Scripts\Fuse\js\fuzzycomplete.min.js" />
+    <Content Include="Scripts\masterNotify.js" />
     <Content Include="Scripts\MasterDataTables.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

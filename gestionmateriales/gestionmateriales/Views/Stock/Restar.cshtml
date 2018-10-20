@@ -3,7 +3,7 @@
 <h1>Salida</h1>
 <p>Engreso de material o herramientas del depósito</p>
 
-<div class="card">
+<div class="card offset-1 col-10">
     <div class="card-body">
         @using (@Html.BeginForm("Restar", "Stock", FormMethod.Post))
         {
@@ -47,52 +47,13 @@
                 $('#cantidadMaterial').val('');
                 $('#codigoMaterial').text('');
                 $('#codigoDocumento').val('');
-                $.notify(
-                    {
-                        message: 'Los datos se guardaron con éxito'
-                    },
-                    {
-                        type: 'success',
-                        animate: {
-                            enter: 'animated bounceInDown',
-                            exit: 'animated bounceOutUp'
-                        },
-                        placement: {
-                            from: 'top',
-                            align: 'right'
-                        },
-                        offset: {
-                            x: 25,
-                            y: 75
-                        },
-                        delay: 1000
-                    }
-                );
+                ShowNotificationSuccess('Stock');
             </script>
         }
         @if (ViewBag.Result == 1)
         {
             <script type="text/javascript">
-                $.notify(
-                    {
-                        message: 'No hay suficiente stock del material o herramienta.'
-                    },
-                    {
-                        type: 'danger',
-                        animate: {
-                            enter: 'animated bounceInDown',
-                            exit: 'animated bounceOutUp'
-                        },
-                        placement: {
-                            from: 'top',
-                            align: 'center'
-                        },
-                        offset: {
-                            y: 75
-                        },
-                        delay: 1000
-                    }
-                );
+                ShowNotificationDanger('Stock', 'No hay suficiente stock del material o herramienta');
             </script>
         }
 
