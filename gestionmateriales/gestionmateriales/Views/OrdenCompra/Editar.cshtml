@@ -68,27 +68,7 @@
     @if (ViewBag.Result == 1)
     {
         <script type="text/javascript">
-            $.notify(
-                {
-                    message: 'El Número Interno ya existe, verifique el valor'
-                },
-                {
-                    type: 'danger',
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    },
-                    offset: {
-                        x: 25,
-                        y: 75
-                    },
-                    delay: 1000
-                }
-            );
+            ShowNotificationDanger('Orden de Compra', 'El Número Interno ya existe, verifique el valor');
         </script>
     }
 </div>

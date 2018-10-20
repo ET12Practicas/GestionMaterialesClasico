@@ -1,7 +1,6 @@
 ﻿var appName = location.pathname.split('/')[1];
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
-
 $(document).ready(function () {
 
     if (appName == 'ottest')
@@ -111,36 +110,13 @@ function AgregarItemOC(data) {
     });
 
     request.done(function () {
-
-        $.notify(
-            {
-                message: 'Los datos se guardaron con éxito'
-            },
-            {
-                type: 'success',
-                animate: {
-                    enter: 'animated bounceInDown',
-                    exit: 'animated bounceOutUp'
-                },
-                placement: {
-                    from: 'top',
-                    align: 'right'
-                },
-                offset: {
-                    x: 25,
-                    y: 75
-                },
-                delay: 500
-            }
-        );
-
-        //actualizo el total del la orden de compra
+        ShowNotificationSuccess('Orden de Compra');
         CalcularTotalOrdenCompra();
     });
 
     request.fail(function () {
-        console.log(data.Response);
-        alert('No se pueden cargar el listado de items de la Orden de Compra');
+        //console.log(data.Response);
+        ShowNotificationDanger('Orden de Compra', 'No se puede agregar el material, verifique la Cantidad y Precio');
     });
 }
 

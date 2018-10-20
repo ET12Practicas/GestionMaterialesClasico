@@ -15,6 +15,18 @@ namespace gestionmateriales.Repository.Implementation
         {
         }
 
+        public override Material FindOne(Expression<Func<Material, bool>> predicate = null)
+        {
+            return context.Set<Material>().Where(predicate)
+               .Include(x => x.tipoMaterial)
+               .Include(x => x.proveedor)
+               .Include(x => x.unidad)
+               .Include(x => x.entradas)
+               .Include(x => x.salidas)
+               .ToList()
+               .FirstOrDefault();
+        }
+
         public override Material FindById(int id)
         {
             return context.Set<Material>().Where(x => x.idMaterial == id)

@@ -162,7 +162,6 @@
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\AyudaController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
-    <Compile Include="Controllers\ConstruccionController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,11 +169,8 @@
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\OrdenCompraController.cs" />
     <Compile Include="Controllers\OrdenTrabajoAplicacionController.cs" />
-    <Compile Include="Controllers\OrdenPedidoController.cs" />
-    <Compile Include="Controllers\OrdenTrabajoController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
-    <Compile Include="Controllers\ShopCartMaterialPedidoController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -624,9 +620,6 @@
     <Content Include="Views\Material\Agregar.cshtml" />
     <Content Include="Views\Material\Editar.cshtml" />
     <Content Include="Views\Material\Index.cshtml" />
-    <Content Include="Views\OrdenPedido\Agregar.cshtml" />
-    <Content Include="Views\OrdenPedido\Editar.cshtml" />
-    <Content Include="Views\OrdenPedido\Index.cshtml" />
     <Content Include="Views\Personal\Agregar.cshtml" />
     <Content Include="Views\Personal\Editar.cshtml" />
     <Content Include="Views\Personal\Index.cshtml" />
@@ -638,8 +631,6 @@
     <Content Include="Views\OrdenTrabajoAplicacion\Agregar.cshtml" />
     <Content Include="Views\OrdenTrabajoAplicacion\Editar.cshtml" />
     <Content Include="Views\Error\Error500.cshtml" />
-    <Content Include="Views\ShopCartMaterialPedido\Index.cshtml" />
-    <Content Include="Views\Construccion\Index.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
     <Content Include="Views\Home\UnAuthorized.cshtml" />
     <Content Include="Views\Material\Historial.cshtml" />
@@ -652,7 +643,6 @@
     <Content Include="Views\OrdenCompra\Index.cshtml" />
     <Content Include="Views\OrdenTrabajoAplicacion\Materiales.cshtml" />
     <Content Include="Views\OrdenTrabajoAplicacion\Detalle.cshtml" />
-    <Content Include="Views\OrdenTrabajo\Index.cshtml" />
     <Content Include="Views\OrdenCompra\Agregar.cshtml" />
     <Content Include="Views\OrdenCompra\Editar.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />

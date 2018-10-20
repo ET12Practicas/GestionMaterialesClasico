@@ -56,9 +56,9 @@ $(document).ready(function () {
                     "sWidth": "10%",
                     "mRender": function (dato, type, raw) {
 
-                        var btnAddItemOTA = '<button type="button" title="Detalle" class="btn btn-outline-primary btn-sm" href="" id="bCant-' + raw.idOT + '-' + raw.idMat + 
-                            '" onclick="addItemOTA(this);"><i class="fas fa-plus"></i> Agregar</button> ';
-                        return btnAddItemOTA;
+                        var btnAgregarItemOTA = '<button type="button" title="Detalle" class="btn btn-outline-primary btn-sm" href="" id="bCant-' + raw.idOT + '-' + raw.idMat + 
+                            '" onclick="AgregarItemOTA(this);"><i class="fas fa-plus"></i> Agregar</button> ';
+                        return btnAgregarItemOTA;
                     }
                 },
             ],
@@ -72,32 +72,12 @@ $(document).ready(function () {
     });
 });
 
-function addItemOTA(data) {
+function AgregarItemOTA(data) {
     var idOT = data.id.split('-')[1];
     var idMaterial = data.id.split('-')[2];
     var cant = $('#iCant-' + idOT + '-' + idMaterial).val();
     if (cant <= 0) {
-        $.notify(
-           {
-               message: 'El campo cantidad debe ser un valor entero y positivo'
-           },
-           {
-               type: 'danger',
-               animate: {
-                   enter: 'animated bounceInDown',
-                   exit: 'animated bounceOutUp'
-               },
-               placement: {
-                   from: 'top',
-                   align: 'right'
-               },
-               offset: {
-                   x: 25,
-                   y: 75
-               },
-               delay: 500
-           }
-       );
+        ShowNotificationDanger('Orden de Trabajo de Aplicación', 'El campo cantidad debe ser un valor entero y positivo');
     }
     else {
         var request = $.ajax({
@@ -109,54 +89,12 @@ function addItemOTA(data) {
         });
 
         request.done(function () {
-
-            $.notify(
-                {
-                    message: 'Los datos se guardaron con éxito'
-                },
-                {
-                    type: 'success',
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    },
-                    offset: {
-                        x: 25,
-                        y: 75
-                    },
-                    delay: 500
-                }
-            );
+            ShowNotificationSuccess('Order de Trabajo de Aplicación');
         });
 
         request.fail(function () {
-            console.log(data.Response);
-            //alert('No se pueden cargar el listado de items OTA');
-            $.notify(
-          {
-              message: 'Los datos no se pueden guardar'
-          },
-          {
-              type: 'danger',
-              animate: {
-                  enter: 'animated bounceInDown',
-                  exit: 'animated bounceOutUp'
-              },
-              placement: {
-                  from: 'top',
-                  align: 'right'
-              },
-              offset: {
-                  x: 25,
-                  y: 75
-              },
-              delay: 500
-          }
-      );
+            //console.log(data.Response);
+            ShowNotificationDanger('Orden de Trabajo de Aplicación', 'Los datos no se pueden guardar');           
         });
     }
 }

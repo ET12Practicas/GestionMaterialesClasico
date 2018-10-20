@@ -1,7 +1,5 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.Documentos.OrdenTrabajoAplicacion
-@{
-    ViewBag.Title = "Orden de Trabajo";
-}
+
 <h1>Orden de Trabajo de Aplicación</h1>
 <p>Genera una nueva orden de trabajo de aplicación</p>
 <div class="card offset-1 col-10">
@@ -59,15 +57,7 @@
     @if (ViewBag.Result == 1)
     {
         <script type="text/javascript">
-            $.notify.defaults({ globalPosition: 'bottom rigth' });
-            $.notify(
-                "El número de orden de trabajo ya existe, verifique el valor",
-                "error",
-                {
-                    position: "right bottom",
-                    globalPosition: "right bottom"
-                }
-            );
+            ShowNotificationDanger('Orden de Trabajo de Aplicación', 'El número de orden de trabajo de aplicación ya existe, verifique el valor');
         </script>
     }
 </div>

@@ -17,18 +17,22 @@ namespace gestionmateriales.Controllers
     [Route("/Stock")]
     public class StockController : Controller
     {
-        //private readonly ISalidaMaterialRepository salidaMaterialRepository;
-        //private readonly IEntradaMaterialRepository entradaMaterialRepository;
-        //private readonly IMaterialRepository materialRepository;
-        //private readonly ITipoEntradaMaterialRepository tipoEntradaMaterialRepository;
+        private readonly ISalidaMaterialRepository salidaMaterialRepository;
+        private readonly IEntradaMaterialRepository entradaMaterialRepository;
+        private readonly IMaterialRepository materialRepository;
+        private readonly ITipoEntradaMaterialRepository tipoEntradaMaterialRepository;
+        private readonly ITipoSalidaMaterialRepository tipoSalidaMaterialRepository;
+        private readonly IOrdenCompraRepository ordenCompraRepository;
 
         public StockController()
         {
-            //OficinaTecnicaEntities context = new OficinaTecnicaEntities();
-            //entradaMaterialRepository = new EntradaMaterialRepository(context);
-            //salidaMaterialRepository = new SalidaMaterialRepository(context);
-            //materialRepository = new MaterialRepository(context);
-            //tipoEntradaMaterialRepository = new TipoEntradaMaterialRepository(context);
+            OficinaTecnicaEntities context = new OficinaTecnicaEntities();
+            entradaMaterialRepository = new EntradaMaterialRepository(context);
+            salidaMaterialRepository = new SalidaMaterialRepository(context);
+            materialRepository = new MaterialRepository(context);
+            tipoEntradaMaterialRepository = new TipoEntradaMaterialRepository(context);
+            tipoSalidaMaterialRepository = new TipoSalidaMaterialRepository(context);
+            ordenCompraRepository = new OrdenCompraRepository(context);
         }
         
         [HttpGet]
@@ -42,30 +46,18 @@ namespace gestionmateriales.Controllers
         [HttpPost]
         public ActionResult Sumar(EntradaMaterial unaEntrada)
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-
-            Material unMaterial = db.materiales
-                   .Where(x => x.codigo == unaEntrada.codigoMaterial && x.hab)
-                   .Include(x => x.proveedor)
-                   .Include(x => x.tipoMaterial)
-                   .Include(x => x.unidad)
-                   .Include(x => x.entradas)
-                   .Include(x => x.salidas)
-                   .FirstOrDefault();
+            var unMaterial = materialRepository.FindOne(x => x.codigo == unaEntrada.codigoMaterial && x.hab);
 
             if (unMaterial == null) throw new Exception("No existe el material");
 
-            TipoEntradaMaterial unTipoEntrada = db.tipoEntrada.Find(unaEntrada.idTipoEntradaMaterial);
+            TipoEntradaMaterial unTipoEntrada = tipoEntradaMaterialRepository.FindById(unaEntrada.idTipoEntradaMaterial);
 
             if (unTipoEntrada == null) throw new Exception("No existe el tipo entrada material");
 
-
             if (!verificarMaterialenDocumento(unMaterial, unaEntrada)) throw new Exception("No se puede verificar el material en el documento");
-
 
             try
             {
-                //actualizo el stock de la entrada para el material indicado
                 unMaterial.stockActual += unaEntrada.cantidad;
 
                 EntradaMaterial nuevaEntrada = new EntradaMaterial()
@@ -85,8 +77,7 @@ namespace gestionmateriales.Controllers
                     LAST_UPDATED_IP = Request.UserHostAddress,
                 };
 
-                db.entradas.Add(nuevaEntrada);
-                db.SaveChanges();
+                entradaMaterialRepository.Add(nuevaEntrada);
             }
             catch
             {
@@ -101,14 +92,14 @@ namespace gestionmateriales.Controllers
 
         private bool verificarMaterialenDocumento(Material unMaterial, EntradaMaterial unaEntrada)
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-
             int documento = Convert.ToInt32(unaEntrada.codigoDocumento);
              
             switch(unaEntrada.idTipoEntradaMaterial)
             {
                // Orden de Compra
-                case 5: { OrdenCompra oc= db.ordenCompra.FirstOrDefault(x => x.numeroInterno == documento );
+                //case 5: { OrdenCompra oc = db.ordenCompra.FirstOrDefault(x => x.numeroInterno == documento );
+                //return oc.itemsOC.Any(x => x.material.idMaterial == unMaterial.idMaterial);
+                case 5: { OrdenCompra oc = ordenCompraRepository.FindOne(x => x.numeroInterno == documento );
                 return oc.itemsOC.Any(x => x.material.idMaterial == unMaterial.idMaterial);
 
                 }
@@ -190,9 +181,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetHistorialEgresos()
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-
-            var historialEgresos = from egr in db.salidas
+            var historialEgresos = from egr in salidaMaterialRepository.FindAll()
                                    select new
                                    {
                                        numero = egr.idSalidaMaterial,
@@ -217,9 +206,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetHistorialIngresos()
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
-
-            var historialIngresos = from ing in db.entradas
+            var historialIngresos = from ing in entradaMaterialRepository.FindAll()
                                     select new
                                     {
                                         numero = ing.idEntradaMaterial,
@@ -237,26 +224,24 @@ namespace gestionmateriales.Controllers
 
         private void cargarTipoSalida(object selectedTipoSalida = null)
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             if (User.IsInRole("administrador"))
-                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(tipoSalidaMaterialRepository.FindAll(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("oficinatecnica"))
-                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.OrderBy(x => x.nombre).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(tipoSalidaMaterialRepository.FindAll().OrderBy(x => x.nombre), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             if (User.IsInRole("deposito"))
-                ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.sector.idSector == 2).OrderBy(x => x.nombre).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
+                ViewBag.IdTipoSalidaMaterial = new SelectList(tipoSalidaMaterialRepository.Find(x => x.sector.idSector == 2).OrderBy(x => x.nombre).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
             //if (User.IsInRole("compras"))
             //    ViewBag.IdTipoSalidaMaterial = new SelectList(db.tipoSalida.Where(x => x.sector.idSector == 0).ToList(), "idTipoSalidaMaterial", "nombre", selectedTipoSalida);
         }
 
         private void cargarTipoEntrada(object selectedTipoEntrada = null)
         {
-            OficinaTecnicaEntities db = new OficinaTecnicaEntities();
             if (User.IsInRole("administrador"))
-                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(tipoEntradaMaterialRepository.FindAll(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             if (User.IsInRole("oficinatecnica"))
-                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.sector.idSector == 1).OrderBy(x => x.nombre).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(tipoEntradaMaterialRepository.Find(x => x.sector.idSector == 1).OrderBy(x => x.nombre), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             if (User.IsInRole("deposito"))
-                ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.sector.idSector == 2).OrderBy(x => x.nombre).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
+                ViewBag.IdTipoEntradaMaterial = new SelectList(tipoEntradaMaterialRepository.Find(x => x.sector.idSector == 2).OrderBy(x => x.nombre), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
             //if (User.IsInRole("compras"))
             //    ViewBag.IdTipoEntradaMaterial = new SelectList(db.tipoEntrada.Where(x => x.idSector == ).ToList(), "idTipoEntradaMaterial", "nombre", selectedTipoEntrada);
         }
