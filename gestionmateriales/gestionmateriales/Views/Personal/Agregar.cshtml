@@ -46,53 +46,13 @@
             $('#nombre').val('');
             $('#fichaCensal').val('');
             $('#dni').val('');
-            $.notify(
-                {
-                    message: 'Los datos se guardaron con éxito'
-                },
-                {
-                    type: 'success',
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    },
-                    offset: {
-                        x: 25,
-                        y: 75
-                    },
-                    delay: 1000
-                }
-            );
+            ShowNotificationSuccess('Personal');
         </script>
     }
     @if (ViewBag.Result == 1)
     {
         <script type="text/javascript">
-            $.notify(
-                {
-                    message: 'El DNI o Ficha Censal ya existe, verifique el valor'
-                },
-                {
-                    type: 'danger',
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    },
-                    offset: {
-                        x: 25,
-                        y: 75
-                    },
-                    delay: 1000
-                }
-            );
+            ShowNotificationDanger('Personal', 'El DNI o Ficha Censal ya existe, verifique el valor');
         </script>
     }
 </div>

@@ -84,7 +84,7 @@ namespace gestionmateriales.Controllers
 
             if (personal == null) throw new Exception("No existe el personal");
 
-            if (personalRepository.Find(x => x.hab).Any(y => y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni))
+            if (personalRepository.Find(x => x.hab).Any(y => y.idPersonal != id && (y.fichaCensal == aPersonal.fichaCensal || y.dni == aPersonal.dni)))
             {
                 ViewBag.Result = 1;
 
