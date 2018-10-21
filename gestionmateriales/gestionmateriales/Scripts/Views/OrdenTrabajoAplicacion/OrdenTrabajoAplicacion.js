@@ -94,7 +94,7 @@ $(document).ready(function () {
                     }
                 }                
             ],
-            "order": [2, "asc"]
+            "order": [2, "desc"]
         });
     });
 
