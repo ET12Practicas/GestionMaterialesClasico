@@ -257,12 +257,6 @@
     <Content Include="Content\datetimepicker\bootstrap-datepicker.es.min.js" />
     <Content Include="Content\datetimepicker\css\bootstrap-datepicker.css" />
     <Content Include="Content\datetimepicker\css\bootstrap-datepicker.min.css" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker.standalone.css" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker.standalone.min.css" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.css" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.min.css" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.standalone.css" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.standalone.min.css" />
     <Content Include="Content\datetimepicker\js\bootstrap-datepicker.js" />
     <Content Include="Content\datetimepicker\js\bootstrap-datepicker.min.js" />
     <Content Include="Content\fontawesome\css\all.css" />
@@ -585,14 +579,6 @@
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.woff2" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker.css.map" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker.min.css.map" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker.standalone.css.map" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker.standalone.min.css.map" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.css.map" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.min.css.map" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.standalone.css.map" />
-    <Content Include="Content\datetimepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
     <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\win2012-01.pubxml" />

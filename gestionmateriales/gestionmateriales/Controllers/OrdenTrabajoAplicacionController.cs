@@ -187,6 +187,12 @@ namespace gestionmateriales.Controllers
 
                 otEdit.idJefeSeccion = jefe.idPersonal;
 
+                otEdit.LAST_UPDATED_BY = User.Identity.Name;
+                
+                otEdit.LAST_UPDATED_DATE = DateTime.Now;
+                
+                otEdit.LAST_UPDATED_IP = Request.UserHostAddress;
+
                 ordenTrabajoAplicacionRepository.Edit(otEdit);
             }
             catch
@@ -365,7 +371,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetLastUpdated()
         {
-            var fecha = ordenTrabajoAplicacionRepository.Find(x => x.hab).OrderBy(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
+            var fecha = ordenTrabajoAplicacionRepository.Find(x => x.hab).OrderByDescending(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
 
             return Json(new { Response = fecha }, JsonRequestBehavior.AllowGet);
         }
