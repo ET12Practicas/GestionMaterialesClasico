@@ -23,6 +23,8 @@ namespace gestionmateriales.Controllers
         private readonly ITipoEntradaMaterialRepository tipoEntradaMaterialRepository;
         private readonly ITipoSalidaMaterialRepository tipoSalidaMaterialRepository;
         private readonly IOrdenCompraRepository ordenCompraRepository;
+        private readonly IOrdenTrabajoAplicacionRepository ordenTrabajoAplicacionRepository;
+        private readonly IOrdenTrabajoRepository ordenTrabajoRepository;
 
         public StockController()
         {
@@ -33,6 +35,8 @@ namespace gestionmateriales.Controllers
             tipoEntradaMaterialRepository = new TipoEntradaMaterialRepository(context);
             tipoSalidaMaterialRepository = new TipoSalidaMaterialRepository(context);
             ordenCompraRepository = new OrdenCompraRepository(context);
+            ordenTrabajoAplicacionRepository = new OrdenTrabajoAplicacionRepository(context);
+            ordenTrabajoRepository = new OrdenTrabajoRepository(context);
         }
         
         [HttpGet]
@@ -93,16 +97,25 @@ namespace gestionmateriales.Controllers
         private bool verificarMaterialenDocumento(Material unMaterial, EntradaMaterial unaEntrada)
         {
             int documento = Convert.ToInt32(unaEntrada.codigoDocumento);
-             
-            switch(unaEntrada.idTipoEntradaMaterial)
-            {
-               // Orden de Compra
-                //case 5: { OrdenCompra oc = db.ordenCompra.FirstOrDefault(x => x.numeroInterno == documento );
-                //return oc.itemsOC.Any(x => x.material.idMaterial == unMaterial.idMaterial);
-                case 5: { OrdenCompra oc = ordenCompraRepository.FindOne(x => x.numeroInterno == documento );
-                return oc.itemsOC.Any(x => x.material.idMaterial == unMaterial.idMaterial);
 
-                }
+            switch (unaEntrada.idTipoEntradaMaterial)
+            {
+                // Orden de Compra
+                case 3:
+                    {
+                        OrdenCompra oc = ordenCompraRepository.FindOne(x => x.numeroInterno == documento);
+                        return oc.itemsOC.Any(x => x.material.idMaterial == unMaterial.idMaterial);
+                    }
+                case 4:
+                    {
+                        OrdenTrabajoAplicacion ota = ordenTrabajoAplicacionRepository.FindOne(x => x.numero == documento);
+                        return ota.itemsOTA.Any(x => x.material.idMaterial == unMaterial.idMaterial);
+                    }
+                case 8:
+                    {
+                        OrdenTrabajo ot = ordenTrabajoRepository.FindOne(x => x.numero == documento);
+                        return ot.itemsOT.Any(x => x.material.idMaterial == unMaterial.idMaterial);
+                    }
             }
             return false;
         }
