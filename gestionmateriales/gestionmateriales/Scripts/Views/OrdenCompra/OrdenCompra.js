@@ -3,7 +3,7 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
 $(document).ready(function () {
 
-    if (appName == 'ottest')
+    if (location.pathname.split('/').length > 2)
         baseURL = baseURL + appName + "/";
 
     var requestFecha = $.ajax({

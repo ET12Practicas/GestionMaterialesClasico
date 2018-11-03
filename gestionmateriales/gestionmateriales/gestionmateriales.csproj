@@ -209,6 +209,7 @@
     <Compile Include="Repository\Contracts\IMaterialRepository.cs" />
     <Compile Include="Repository\Contracts\IOrdenCompraRepository.cs" />
     <Compile Include="Repository\Contracts\IOrdenTrabajoAplicacionRepository.cs" />
+    <Compile Include="Repository\Contracts\IOrdenTrabajoRepository.cs" />
     <Compile Include="Repository\Contracts\IPersonalRepository.cs" />
     <Compile Include="Repository\Contracts\IProveedorRepository.cs" />
     <Compile Include="Repository\Contracts\IRepository.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Repository\Implementation\EntradaMaterialRepository.cs" />
     <Compile Include="Repository\Implementation\ItemOrdenCompraRepository.cs" />
     <Compile Include="Repository\Implementation\ItemOrdenTrabajoAplicacionRepository.cs" />
+    <Compile Include="Repository\Implementation\OrdenTrabajoRepository.cs" />
     <Compile Include="Repository\Implementation\SalidaMaterialRepository.cs" />
     <Compile Include="Repository\Implementation\MaterialRepository.cs" />
     <Compile Include="Repository\Implementation\OrdenCompraRepository.cs" />
@@ -654,6 +656,7 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\OrdenCompra\Materiales.cshtml" />
     <Content Include="Views\OrdenCompra\Detalle.cshtml" />
+    <Content Include="Views\About\Simpsons.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

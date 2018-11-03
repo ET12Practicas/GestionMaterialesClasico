@@ -1,17 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
 
 <li class="nav-item">
-        <a class="nav-link" href="~/Ayuda"><i class="fal fa-question"></i></a>
+    <a class="nav-link" href="~/Ayuda"><i class="far fa-question" title="Ayuda"></i></a>
 </li>
-
+<li class="nav-item">
+    <a class="nav-link" href="~/About"><i class="far fa-users" title="Sobre nosotros"></i></a>
+</li>
 <li class="dropdown">
     <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
-        <div class="peer"><span class="fsz-sm c-grey-900"><i class="fal fa-user"></i></span> @User.Identity.GetUserName()</div>
+        <div class="peer"><span class="fsz-sm c-grey-900"><i class="far fa-user"></i></span> @User.Identity.GetUserName()</div>
     </a>
 
     <ul class="dropdown-menu fsz-sm">
         <li><a href="~/Manage" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="far fa-cog"></i> <span>Configuración</span></a></li>
-        @*<li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Perfil</span></a></li>*@
         <li role="separator" class="divider"></li>
         <li>
             <a href="javascript:document.getElementById('logoutForm').submit()" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="fal fa-sign-out-alt"></i> <span>Cerrar sesión</span></a>
@@ -21,7 +22,7 @@
 
             }
         </li>
-     </ul>
+    </ul>
 </li>
 
 

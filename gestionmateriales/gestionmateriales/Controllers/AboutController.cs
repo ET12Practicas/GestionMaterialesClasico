@@ -8,8 +8,12 @@ namespace gestionmateriales.Controllers
 {
     public class AboutController : Controller
     {
-        // GET: About
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Simpsons()
         {
             return View();
         }

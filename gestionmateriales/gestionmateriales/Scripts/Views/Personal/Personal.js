@@ -3,11 +3,10 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaPersonal;
 
 $(document).ready(function () {
-    //$('#btn_crearPersonal').tooltip();
-
-    if (appName == 'ottest')
+    
+    if (location.pathname.split('/').length > 2)
         baseURL = baseURL + appName + "/";
-
+    
     var requestFecha = $.ajax({
         url: baseURL + "Personal/GetLastUpdated",
         type: 'GET',

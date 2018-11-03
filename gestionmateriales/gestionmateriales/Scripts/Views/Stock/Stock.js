@@ -1,12 +1,9 @@
-﻿$(document).ready(function () {
-    //$('#btn_limpiar').tooltip();
-    //$('#btn_aceptar').tooltip();
-    //$('#btn_cancelar').tooltip();
+﻿var appName = location.pathname.split('/')[1];
+var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
-    var appName = location.pathname.split('/')[1];
-    var baseURL = window.location.protocol + "//" + window.location.host + "/";
-
-    if (appName == 'ottest')
+$(document).ready(function () {
+   
+    if (location.pathname.split('/').length > 2)
         baseURL = baseURL + appName + "/";
 
     var request = $.ajax({
@@ -35,6 +32,5 @@
 });
 
 $('.output').on('DOMSubtreeModified', function () {
-    //console.log($('#codigoMaterial').text());
     $('#codMaterial').val($('#codigoMaterial').text());
-})
+});

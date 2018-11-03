@@ -1,7 +1,7 @@
 ﻿var appName = location.pathname.split('/')[1];
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
-if (appName == 'ottest')
+if (location.pathname.split('/').length > 2)
     baseURL = baseURL + appName + "/";
 
 var request = $.ajax({

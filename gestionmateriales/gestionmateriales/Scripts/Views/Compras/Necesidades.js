@@ -3,11 +3,11 @@ var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYe
 var appName = location.pathname.split('/')[1];
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
-if (appName == 'ottest')
-    baseURL = baseURL + appName + "/";
-
-//console.log(appName);
 $(document).ready(function () {
+
+    if (location.pathname.split('/').length > 2)
+        baseURL = baseURL + appName + "/";
+
     var request = $.ajax({
         url: baseURL + "Compras/GetCompras",
         type: 'GET',
