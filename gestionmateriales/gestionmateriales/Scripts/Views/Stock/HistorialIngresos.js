@@ -1,7 +1,8 @@
 ﻿var appName = location.pathname.split('/')[1];
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
-if (location.pathname.split('/').length > 2)
+//if (location.pathname.split('/').length > 2)
+if (appName == 'titan')
     baseURL = baseURL + appName + "/";
 
 var requestMaterial = $.ajax({
@@ -25,11 +26,11 @@ requestMaterial.done(function (data) {
                 "data": "numero"
             },
             {
-                "sWidth": "12%",
+                "sWidth": "5%",
                 "data": "codMaterial"
             },
             {
-                "sWidth": "33%",
+                "sWidth": "20%",
                 "data": "material"
             },
             {
@@ -41,7 +42,7 @@ requestMaterial.done(function (data) {
                 "data": "tipoEntrada"
             },
             {
-                "sWidth": "15%",
+                "sWidth": "5%",
                 "data": "codDocumento"
             },
             {
@@ -49,10 +50,10 @@ requestMaterial.done(function (data) {
                 "data": "usuario"
             },
             {
-                "sWidth": "5%",
+                "sWidth": "10%",
                 "mRender": function (data, type, row) {
                     var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
-                    return value.toLocaleString().split(' ')[0];
+                    return value.toLocaleString();
                 }
             }
         ],

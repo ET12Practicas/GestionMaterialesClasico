@@ -25,7 +25,7 @@ request.done(function (data) {
                 "data": "numero"
             },
             {
-                "sWidth": "12%",
+                "sWidth": "5%",
                 "data": "codMaterial"
             },
             {
@@ -41,7 +41,7 @@ request.done(function (data) {
                 "data": "tipoSalida"
             },
             {
-                "sWidth": "15%",
+                "sWidth": "5%",
                 "data": "codDocumento"
             },
             {
@@ -49,10 +49,9 @@ request.done(function (data) {
                 "data": "usuario"
             },
             {
-                "sWidth": "5%",
+                "sWidth": "10%",
                 "mRender": function (dato, type, row) {
                     var value = new Date(parseInt(row.timestamp.replace(/(^.*\()|([+-].*$)/g, '')));
-                    //return value.toLocaleString().split(' ')[0];
                     return value.toLocaleString();
                 }
             }

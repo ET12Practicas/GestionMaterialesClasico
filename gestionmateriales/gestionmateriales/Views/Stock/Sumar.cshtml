@@ -51,6 +51,12 @@
                 ShowNotificationSuccess('Stock');
             </script>
         }
+        @if (ViewBag.Result == 1)
+        {
+            <script type="text/javascript">
+                ShowNotificationDanger('Stock', 'El tipo de documento y el número no existen');
+            </script>
+        }
 
         <link rel="stylesheet" href="~/Scripts/Fuse/css/fuzzycomplete.min.css">
         <script type="text/javascript" src="~/Scripts/Fuse/fuse.min.js"></script>

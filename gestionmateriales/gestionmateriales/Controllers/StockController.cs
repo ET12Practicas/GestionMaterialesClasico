@@ -58,7 +58,12 @@ namespace gestionmateriales.Controllers
 
             if (unTipoEntrada == null) throw new Exception("No existe el tipo entrada material");
 
-            if (!verificarMaterialenDocumento(unMaterial, unaEntrada)) throw new Exception("No se puede verificar el material en el documento");
+            if (!verificarMaterialenDocumento(unMaterial, unaEntrada, unTipoEntrada))
+            {
+                ViewBag.Result = 1;
+                cargarTipoEntrada();
+                return View("Sumar");
+            }
 
             try
             {
@@ -87,6 +92,7 @@ namespace gestionmateriales.Controllers
             {
                 return RedirectToAction("Error500", "Error");
             }
+
             ViewBag.Result = 0;
 
             cargarTipoEntrada();
@@ -94,30 +100,33 @@ namespace gestionmateriales.Controllers
             return View("Sumar");
         }
 
-        private bool verificarMaterialenDocumento(Material unMaterial, EntradaMaterial unaEntrada)
+        private bool verificarMaterialenDocumento(Material unMaterial, EntradaMaterial unaEntrada, TipoEntradaMaterial unTipoEntrada)
         {
             int documento = Convert.ToInt32(unaEntrada.codigoDocumento);
 
-            switch (unaEntrada.idTipoEntradaMaterial)
+            switch (unTipoEntrada.idTipoEntradaMaterial)
             {
                 // Orden de Compra
                 case 3:
                     {
                         OrdenCompra oc = ordenCompraRepository.FindOne(x => x.numeroInterno == documento);
+                        if (oc == null) return false;
                         return oc.itemsOC.Any(x => x.material.idMaterial == unMaterial.idMaterial);
                     }
+                // Orden de trabajo de aplicacion
                 case 4:
                     {
                         OrdenTrabajoAplicacion ota = ordenTrabajoAplicacionRepository.FindOne(x => x.numero == documento);
+                        if (ota == null) return false;
                         return ota.itemsOTA.Any(x => x.material.idMaterial == unMaterial.idMaterial);
                     }
-                case 8:
-                    {
-                        OrdenTrabajo ot = ordenTrabajoRepository.FindOne(x => x.numero == documento);
-                        return ot.itemsOT.Any(x => x.material.idMaterial == unMaterial.idMaterial);
-                    }
+                //case 8:
+                //    {
+                //        OrdenTrabajo ot = ordenTrabajoRepository.FindOne(x => x.numero == documento);
+                //        return ot.itemsOT.Any(x => x.material.idMaterial == unMaterial.idMaterial);
+                //    }
             }
-            return false;
+            return true;
         }
 
         [HttpGet]

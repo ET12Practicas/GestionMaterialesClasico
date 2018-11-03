@@ -3,7 +3,8 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
 $(document).ready(function () {
 
-    if (location.pathname.split('/').length > 2)
+    //if (location.pathname.split('/').length > 2)
+    if (appName == 'titan')
         baseURL = baseURL + appName + "/";
 
     var requestMaterial = $.ajax({
