@@ -1,28 +1,23 @@
 ﻿@using Microsoft.AspNet.Identity
 
 <li class="nav-item">
-    <a class="nav-link" href="~/Ayuda"><i class="far fa-question" title="Ayuda"></i></a>
+    <a class="nav-link" href="~/Ayuda" data-toggle="tooltip" data-placement="bottom" data-original-title="Ayuda"><i class="far fa-question" ></i></a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="~/About"><i class="far fa-users" title="Sobre nosotros"></i></a>
+    <a class="nav-link" href="~/About" data-toggle="tooltip" data-placement="bottom" data-original-title="Nosotros"><i class="far fa-users" ></i></a>
 </li>
-<li class="dropdown">
-    <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
-        <div class="peer"><span class="fsz-sm c-grey-900"><i class="far fa-user"></i></span> @User.Identity.GetUserName()</div>
-    </a>
-
-    <ul class="dropdown-menu fsz-sm">
-        <li><a href="~/Manage" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="far fa-cog"></i> <span>Configuración</span></a></li>
-        <li role="separator" class="divider"></li>
-        <li>
-            <a href="javascript:document.getElementById('logoutForm').submit()" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="fal fa-sign-out-alt"></i> <span>Cerrar sesión</span></a>
-            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-            {
-                @Html.AntiForgeryToken()
-
-            }
-        </li>
-    </ul>
+<li class="nav-item">
+    <a class="nav-link" href="~/Manage" data-toggle="tooltip" data-placement="bottom" data-original-title="Configuración"><i class="far fa-user"></i> @User.Identity.GetUserName()</a>
 </li>
+<li class="nav-item">
+    <a href="javascript:document.getElementById('logoutForm').submit()" data-toggle="tooltip" data-placement="bottom" data-original-title="Cerrar Sesión"><i class="far fa-sign-out-alt"></i></a>
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+    }
+</li>
+
+
 
 
