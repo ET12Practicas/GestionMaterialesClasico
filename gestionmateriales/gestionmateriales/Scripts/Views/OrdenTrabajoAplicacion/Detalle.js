@@ -3,18 +3,21 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
 $(document).ready(function () {
 
-    if (location.pathname.split('/').length > 2)
+    //if (location.pathname.split('/').length > 2)
+    if (appName == 'titan')
         baseURL = baseURL + appName + "/";
-
+    
+    var idOTA = $('#IdOTA').val();
+    
     var request = $.ajax({
         url: baseURL + "OrdenTrabajoAplicacion/GetItemsOTA",
         type: 'GET',
-        data: { id: $('#IdOTA').val() },
+        data: { id: idOTA },
         contentType: 'application/json; charset=utf-8'
     });
 
     request.done(function (data) {
-        //console.log(data.Response);
+        console.log(data.Response);
         tablaMateriales = $('#grdItemsOTA').DataTable({
             //"dom": "lfrtip",
             "aaData": data.Response,
@@ -22,12 +25,16 @@ $(document).ready(function () {
                 "targets": [],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [2]
+                "aTargets": []
             }],
             "aoColumns": [
                 {
                     "sWidth": "5%",
                     "data": "cant"
+                },
+                {
+                    "sWidth": "10%",
+                    "data": "codMat"
                 },
                 {
                     "sWidth": "60%",
@@ -36,18 +43,18 @@ $(document).ready(function () {
                 {
                     "sWidth": "5%",
                     "data": "cantRet"
-                },
-                {
-                    "sWidth": "5%",
-                    "mRender": function (data, type, row) {
-                        //console.log(row.fecha);
-                        if (row.fecha != '') {
-                            var value = new Date(parseInt(row.fecha.replace(/(^.*\()|([+-].*$)/g, '')));
-                            return value.toLocaleString().split(' ')[0];
-                        }
-                        return '';
-                    }
                 }
+                //{
+                //    "sWidth": "5%",
+                //    "mRender": function (data, type, row) {
+                //        //console.log(row.fecha);
+                //        if (row.fecha != '') {
+                //            var value = new Date(parseInt(row.fecha.replace(/(^.*\()|([+-].*$)/g, '')));
+                //            return value.toLocaleString().split(' ')[0];
+                //        }
+                //        return '';
+                //    }
+                //}
             ],
             "order": [1, "asc"]            
         });

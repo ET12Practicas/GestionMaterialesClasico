@@ -66,9 +66,9 @@ namespace gestionmateriales.Models.OficinaTecnica.GestionMateriales
             material.stockActual = nuevoStock;
         }
 
-        public bool HayStock()
+        public bool HayStock(int cantidadMaximaRetirar)
         {
-            if (material.stockActual - cantidad < 0)
+            if (cantidadMaximaRetirar - cantidad < 0)
                 return false;
             return true;
         }

@@ -346,27 +346,27 @@ namespace gestionmateriales.Controllers
             string num = ota.numero.ToString();
             if (ota == null) throw new Exception("No existe orden trabajo aplicacion");
 
-            //var itemsOTA = from i in ota.itemsOTA
-            //               select new { cant = i.cantidad, mat = i.material.nombre, fecha = String.Empty, cantRet = GetCantidadRetirada(i.ordenTrabajoAplicacion.numero, i.material.idMaterial ) };
-            //var itemsOTA = from i in ota.itemsOTA
-            //               join mat in salidaMaterialRepository.Find(x => x.idTipoSalidaMaterial == 2 && x.codigoDocumento == num)
-            //               on i.material.idMaterial equals mat.idMaterial
-            //               select new { cant = i.cantidad, mat = i.material.nombre, fecha = String.Empty, cantRet = mat.cantidad };
-
             var itemsOTA = from i in ota.itemsOTA
-                           select new { cant = i.cantidad, mat = i.material.nombre, fecha = String.Empty, cantRet = 0};
+                           select new { cant = i.cantidad, codMat = i.material.codigo, codMatId = i.material.idMaterial, matNom = i.material.nombre, otaNro = i.ordenTrabajoAplicacion.numero };
 
-            return Json(new { Response = itemsOTA }, JsonRequestBehavior.AllowGet);
+            List<object> itemsOTAactual = new List<object>();
+
+            foreach (var item in itemsOTA)
+            {
+                itemsOTAactual.Add(new { cant = item.cant, codMat = item.codMat, mat = item.matNom, cantRet = GetCantidadRetirada(item.otaNro, item.codMatId) });
+            }
+
+            return Json(new { Response = itemsOTAactual }, JsonRequestBehavior.AllowGet);
         }
 
-        //private int GetCantidadRetirada(int numOTA, int idMat)
-        //{
-        //    string num = numOTA.ToString();
+        private int GetCantidadRetirada(int numOTA, int idMat)
+        {
+            string num = numOTA.ToString();
 
-        //    var salidas = salidaMaterialRepository.Find(x => x.idTipoSalidaMaterial == 2 && x.codigoDocumento == num);
+            var salidas = salidaMaterialRepository.Find(x => x.tipoSalidaMaterial.idTipoSalidaMaterial == 2 && x.codigoDocumento == num);
 
-        //    return salidas.Where(x => x.idMaterial == idMat).Sum(x => x.cantidad);
-        //}
+            return salidas.Where(x => x.material.idMaterial == idMat).Sum(x => x.cantidad);
+        }
 
         [HttpGet]
         public JsonResult GetLastUpdated()

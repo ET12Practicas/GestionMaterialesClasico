@@ -26,7 +26,7 @@
             </div>
             <div class="form row">
                 <div class="form-group offset-6 col-4">
-                    @Html.LabelFor(model => model.codigoDocumento, "Código Documento", new { @class = "control-label" })
+                    @Html.LabelFor(model => model.codigoDocumento, "Número Documento", new { @class = "control-label" })
                     @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 15, id = "codigoDocumento", required = "true", autocomplete = "off" } })
                 </div>
             </div>
@@ -53,7 +53,7 @@
         @if (ViewBag.Result == 1)
         {
             <script type="text/javascript">
-                ShowNotificationDanger('Stock', 'No hay suficiente stock del material o herramienta');
+                ShowNotificationDanger('Stock', 'No hay suficiente stock del material o la cantidad a retirar excede el limite establecido');
             </script>
         }
 

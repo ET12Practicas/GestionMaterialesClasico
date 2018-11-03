@@ -144,6 +144,8 @@ namespace gestionmateriales.Controllers
 
             TipoSalidaMaterial unTipoSalida = db.tipoSalida.Find(unaSalida.idTipoSalidaMaterial);
 
+            int cantidadMaximaRetirar = cantidadARetirarSegunDocumento(unMaterial, unaSalida, unTipoSalida);
+
             try
             {
                 SalidaMaterial nuevaSalida = new SalidaMaterial()
@@ -163,7 +165,7 @@ namespace gestionmateriales.Controllers
                     LAST_UPDATED_IP = Request.UserHostAddress
                 };
 
-                if (nuevaSalida.HayStock())
+                if (nuevaSalida.HayStock(cantidadMaximaRetirar))
                 {
                     nuevaSalida.RestarStockMaterial();
                     db.salidas.Add(nuevaSalida);
@@ -183,6 +185,28 @@ namespace gestionmateriales.Controllers
             ViewBag.Result = 0;
             cargarTipoSalida();
             return View("Restar");
+        }
+
+        private int cantidadARetirarSegunDocumento(Material unMaterial, SalidaMaterial unaSalida, TipoSalidaMaterial unTipoSalidaMaterial)
+        {
+            int documento = Convert.ToInt32(unaSalida.codigoDocumento);
+
+            switch (unTipoSalidaMaterial.idTipoSalidaMaterial)
+            {
+                // Orden de trabajo de aplicacion
+                case 2:
+                    {
+                        OrdenTrabajoAplicacion ota = ordenTrabajoAplicacionRepository.FindOne(x => x.numero == documento);
+                        return ota.itemsOTA.FirstOrDefault(x => x.material.idMaterial == unMaterial.idMaterial).cantidad;
+                    }
+                // Orden de trabajo
+                //case 3:
+                //    {
+                //        OrdenTrabajo ot = ordenTrabajoRepository.FindOne(x => x.numero == documento);
+                //        return ot.itemsOT.FirstOrDefault(x => x.material.idMaterial == unMaterial.idMaterial).cantidad;
+                //    }
+            }
+            return unMaterial.stockActual;
         }
 
         [HttpGet]

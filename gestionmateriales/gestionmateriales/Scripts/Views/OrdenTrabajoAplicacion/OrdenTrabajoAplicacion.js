@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     if (location.pathname.split('/').length > 2)
         baseURL = baseURL + appName + "/";
-
+    
     var requestFecha = $.ajax({
         url: baseURL + "OrdenTrabajoAplicacion/GetLastUpdated",
         type: 'GET',
