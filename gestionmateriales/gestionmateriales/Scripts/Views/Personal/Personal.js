@@ -4,7 +4,7 @@ var tablaPersonal;
 
 $(document).ready(function () {
     
-    if (location.pathname.split('/').length > 2)
+    if (window.location.href.split(':').length == 2)
         baseURL = baseURL + appName + "/";
     
     var requestFecha = $.ajax({

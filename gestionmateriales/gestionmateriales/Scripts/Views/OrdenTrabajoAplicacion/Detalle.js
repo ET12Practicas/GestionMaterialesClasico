@@ -2,9 +2,8 @@
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
 $(document).ready(function () {
-
-    //if (location.pathname.split('/').length > 2)
-    if (appName == 'titan')
+    
+    if (window.location.href.split(':').length == 2)
         baseURL = baseURL + appName + "/";
     
     var idOTA = $('#IdOTA').val();
@@ -17,7 +16,7 @@ $(document).ready(function () {
     });
 
     request.done(function (data) {
-        console.log(data.Response);
+        //console.log(data.Response);
         tablaMateriales = $('#grdItemsOTA').DataTable({
             //"dom": "lfrtip",
             "aaData": data.Response,

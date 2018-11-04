@@ -1,6 +1,13 @@
 ﻿@model IEnumerable<gestionmateriales.Models.OficinaTecnica.Documentos.OrdenTrabajoAplicacion>
 
-<h1>Materiales</h1>
+<div class="row">
+    <div class="col-6">
+        <h1>Historial Material</h1>
+    </div>
+    <div class="offset-4 col-2">
+        <button class="btn btn-outline-secondary btn-block btn-sm" onclick="window.history.back();" title="Volver a la pantalla anterior">Volver</button>
+    </div>
+</div>
 <p>Historial de ordenes de trabajo vinculadas al material o herramienta</p>
 <hr />
 <p>Código: <strong>@ViewData["codigo"]</strong> - Nombre: <strong>@ViewData["nombre"]</strong></p>

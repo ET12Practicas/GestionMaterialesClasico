@@ -12,7 +12,7 @@ using gestionmateriales.Repository.Implementation;
 
 namespace gestionmateriales.Controllers
 {
-    [Authorize(Roles = "administrador, oficinatecnica, compras")]
+    [Authorize(Roles = "administrador, oficinatecnica, deposito, compras")]
     [Route("/Material")]
     public class MaterialController : Controller
     {
@@ -32,7 +32,6 @@ namespace gestionmateriales.Controllers
             ordenTrabajoAplicacionRepository = new OrdenTrabajoAplicacionRepository(context);
         }
 
-        [Authorize(Roles = "administrador, oficinatecnica, rectoria, deposito, compras")]
         [HttpGet]
         public ActionResult Index()
         {
