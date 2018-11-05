@@ -13,13 +13,8 @@
         if (item.isParent == true && item.parentId == 0)
         {
         <li class="nav-item dropdown">
-            <a href="javascript:void(0);" class="dropdown-toggle"><span class="icon-holder"><i class="@item.imageClass"></i></span> <span>@item.nameOption </span> @*@if (item.Id == 30) { <span id="comprasPendientes" class="notif badge badge-info"></span> }*@</a>
+            <a href="javascript:void(0);" class="dropdown-toggle"><span class="icon-holder"><i class="@item.imageClass"></i></span> <span class="title">@item.nameOption</span> <span class="arrow"><i class="fas fa-angle-right float-down"></i></span></a>
             <ul class="dropdown-menu">
-                @*@if (item.nameOption == "Documentos") 
-                {
-                    <h6 class="dropdown-header">Orden de:</h6>
-                }*@
-
                 @foreach (var child in Model.Where(p => p.parentId == item.Id))
                 {
                 <li><a class="sidebar-link" href="@Url.Action(child.action, child.controller)">@child.nameOption </a></li>
@@ -29,32 +24,3 @@
         }
     }
 }
-@*<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-file-alt"></i> Documentos</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="~/OrdenTrabajoAplicacion/Index">Orden de Trabajo de Aplicacion</a>
-        </div>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-sync"></i> Stock</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="~/Stock/Sumar">Ingreso</a>
-        </div>
-    </li>
-
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-shopping-cart"></i> Compras <span id="comprasPendientes" class="notif badge badge-info"></span></a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="~/Compras/Index">Materiales a Comprar</a>
-        </div>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="~/Material/Index"><i class="fas fa-wrench"></i> Materiales</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="~/Proveedor/Index"><i class="fas fa-truck"></i> Proveedores</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="~/Personal/Index"><i class="fas fa-male"></i> Personal</a>
-    </li>*@
