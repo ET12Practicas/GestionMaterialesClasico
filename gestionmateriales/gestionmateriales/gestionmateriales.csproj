@@ -590,6 +590,7 @@
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\capitan.js" />
     <Content Include="Scripts\Views\Compras\Necesidades.js" />
     <Content Include="Scripts\Views\Material\Historial.js" />
     <Content Include="Scripts\Views\Material\Material.js" />
