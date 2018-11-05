@@ -1,19 +1,22 @@
 ﻿var appName = location.pathname.split('/')[1];
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
+var tablaMateriales;
 
 if (window.location.href.split(':').length == 2)
     baseURL = baseURL + appName + "/";
 
-var request = $.ajax({
-    url: baseURL + "Stock/GetHistorialEgresos",
-    type: 'GET',
-    contentType: 'application/json; charset=utf-8'
+$('#divgrdEgresos').append('<table id="grdEgresos" class="table table-bordered table-striped table-hover"> <thead> <tr> <th> Nro. Salida </th> <th> Cod. Material </th> <th> Material </th> <th> Cantidad </th> <th> Tipo de Salida </th> <th> Nro. Documento </th> <th> Usuario </th> <th> Fecha </th> </tr> </thead> </table>');
+
+jQuery.fn.dataTable.Api.register('processing()', function (show) {
+    return this.iterator('table', function (ctx) {
+        ctx.oApi._fnProcessingDisplay(ctx, show);
+    });
 });
 
-request.done(function (data) {
+if (!$.fn.dataTable.isDataTable('#grdEgresos')) {
     tablaMateriales = $('#grdEgresos').DataTable({
         //"dom": "lfrtip",
-        "aaData": data.Response,
+        //"aaData": data.Response,
         "aoColumnDefs": [{
             "sType": "html",
             "aTargets": [7]
@@ -55,8 +58,24 @@ request.done(function (data) {
                 }
             }
         ],
-        "order": [7, "desc"]       
+        "order": [7, "desc"],
+        "processing": true
     });   
+}
+
+tablaMateriales.processing(true);
+
+var request = $.ajax({
+    url: baseURL + "Stock/GetHistorialEgresos",
+    type: 'GET',
+    contentType: 'application/json; charset=utf-8'
+});
+
+request.done(function (data) {
+    tablaMateriales.clear();
+    tablaMateriales.rows.add(data.Response);
+    tablaMateriales.draw();
+    tablaMateriales.processing(false);
 });
     
 request.fail(function (data) {

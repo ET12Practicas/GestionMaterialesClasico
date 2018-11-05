@@ -2,24 +2,26 @@
 var timestamp = fecha.getDate() + "-" + fecha.getMonth() + "-" + fecha.getFullYear() + " " + fecha.getHours() + "." + fecha.getMinutes();
 var appName = location.pathname.split('/')[1];
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
+var tablaCompras;
 
 $(document).ready(function () {
 
     if (window.location.href.split(':').length == 2)
         baseURL = baseURL + appName + "/";
 
-    var request = $.ajax({
-        url: baseURL + "Compras/GetCompras",
-        type: 'GET',
-        contentType: 'application/json; charset=utf-8'
+    $('#divgrdCompras').append('<table id="grdCompras" class="table table-bordered table-striped table-hover"> <thead> <tr> <th> Código </th> <th> Material </th> <th> Stock Actual </th> <th> Stock Mínimo </th> <th> Stock </th> <th> Proveedor </th> </tr> </thead> </table>');
+
+    jQuery.fn.dataTable.Api.register('processing()', function (show) {
+        return this.iterator('table', function (ctx) {
+            ctx.oApi._fnProcessingDisplay(ctx, show);
+        });
     });
 
-    request.done(function (data) {
-        //console.log(data.Response);
-        $('#grdCompras').DataTable({
+    if (!$.fn.dataTable.isDataTable('#grdCompras')) {
+        tablaCompras = $('#grdCompras').DataTable({
             //"dom": 'Bflrtip',
             "autoWidth": false,
-            "aaData": data.Response,
+            //"aaData": data.Response,
             "aoColumnDefs": [{
                 "aTargets": [4]
             }],
@@ -38,18 +40,12 @@ $(document).ready(function () {
             {
                 "mRender": function (dato, type, row) {
                     if (row.stockActual == 0) {
-                        //return 'SIN STOCK';
-                        //return '<span class="badge badge-danger">Sin Stock</span>';
                         return '<span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Sin Stock</span>';
                     }
                     if (row.stockActual > row.stockMinimo) {
-                        //return 'ALTO';
-                        //return '<span class="badge badge-success">Alto</span>';
                         return '<span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Alto</span>';
                     }
                     else {
-                        //return 'BAJO';
-                        //return '<span class="badge badge-warning">Bajo</span>';
                         return '<span class="badge bgc-yellow-50 c-yellow-700 p-10 lh-0 tt-c badge-pill">Bajo</span>';
                     }
                 }
@@ -68,8 +64,25 @@ $(document).ready(function () {
                     text: 'Exportar a Excel',
                     filename: 'listadoCompras-' + timestamp
                 }
-            ]
+            ],
+            "processing": true
         });
+    }
+
+    tablaCompras.processing(true);
+
+    var request = $.ajax({
+        url: baseURL + "Compras/GetCompras",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8'
+    });
+
+    request.done(function (data) {
+        tablaCompras.clear();
+        tablaCompras.rows.add(data.Response);
+        tablaCompras.draw();
+        tablaCompras.processing(false);
+        
     });
 
     request.fail(function (data) {

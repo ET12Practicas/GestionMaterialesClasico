@@ -25,15 +25,17 @@ $(document).ready(function () {
         }
     });
 
-    var request = $.ajax({
-        url: baseURL + "Proveedor/GetAll",
-        type: 'GET',
-        contentType: 'application/json; charset=utf-8'
+    $('#divgrdProveedores').append('<table id="grdProveedores" class="table table-bordered table-striped table-hover"> <thead> <tr> <th> </th> <th> Nombre </th> <th> CUIT </th> <th> Teléfono </th> <th> Email </th> <th> Opciones </th> </tr> </thead> </table>');
+
+    jQuery.fn.dataTable.Api.register('processing()', function (show) {
+        return this.iterator('table', function (ctx) {
+            ctx.oApi._fnProcessingDisplay(ctx, show);
+        });
     });
 
-    request.done(function (data) {
+    if (!$.fn.dataTable.isDataTable('#grdProveedores')) {
         tablaProveedores = $('#grdProveedores').DataTable({
-            "aaData": data.Response,
+            //"aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
                 "visible": false,
@@ -80,10 +82,7 @@ $(document).ready(function () {
                             '<div class="modal-body">' +
                             '<p>¿Desea borrar el siguiente proveedor del sistema?</p>' +
                             '<p><strong>Proveedor:</strong> ' + row.nombre + '</p>' +
-                            //'<p> <strong>Razón Social:</strong> ' + row.razonSocial + '</p > ' +
                             '<p> <strong>CUIT:</strong> ' + row.cuit + '</p > ' +
-                            //'<p> <strong>Teléfono:</strong> ' + row.telefono + '</p > ' +
-                            //'<p> <strong>Dirección:</strong> ' + row.direccion + '</p > ' +
                             '</div>' +
                             '<div class="modal-footer">' +
                             '<a href="' + baseURL + 'Proveedor/Borrar/' + row.idProveedor + '" type="button" class="btn btn-danger">Aceptar</a>' +
@@ -92,24 +91,27 @@ $(document).ready(function () {
 
                         var end = '</div>';
                         return ini + cab + verDetalleHtml + end + cab + editarHtml + end + cab + borrarHtml + end + end;
-                        //return 'im batman';
                     }
                 }],
             "order": [1, "asc"],
-            "responsive" : {
-                details: {
-                    display: $.fn.dataTable.Responsive.display.modal({
-                        header: function (row) {
-                            var data = row.data();
-                            return 'Details for ' + data[0] + ' ' + data[1];
-                        }
-                    }),
-                    renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-                        tableClass: 'table'
-                    })
-                }
-            }
+            "processing": true            
         });
+    }
+
+    tablaProveedores.processing(true);
+
+    var request = $.ajax({
+        url: baseURL + "Proveedor/GetAll",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8'
+    });
+
+    request.done(function (data) {
+
+        tablaProveedores.clear();
+        tablaProveedores.rows.add(data.Response);
+        tablaProveedores.draw();
+        tablaProveedores.processing(false);
     });
 
     request.fail(function (data) {

@@ -7,11 +7,20 @@ $(document).ready(function () {
     if (window.location.href.split(':').length == 2)
         baseURL = baseURL + appName + "/";
 
-    loadMateriales(0, 200);
+    $('#divgrdMateriales').append('<table id="grdMateriales" class="table table-bordered table-striped table-hover"> <thead> <tr> <th></th> <th> Código </th> <th> Material </th> <th> Stock Actual </th> <th> Stock Mínimo </th> <th> Stock </th> <th> Opciones </th> </tr> </thead> </table>');
+
+    jQuery.fn.dataTable.Api.register('processing()', function (show) {
+        return this.iterator('table', function (ctx) {
+            ctx.oApi._fnProcessingDisplay(ctx, show);
+        });
+    });
+
+
+    loadMateriales();
 });
 
 
-function loadMateriales(from, end) {
+function loadMateriales() {
 
     var requestFecha = $.ajax({
         url: baseURL + "Material/GetLastUpdated",
@@ -31,16 +40,9 @@ function loadMateriales(from, end) {
         }
     });
 
-    var requestMaterial = $.ajax({
-        url: baseURL + "Material/GetAll",
-        type: 'GET',
-        contentType: 'application/json; charset=utf-8'
-    });
-
-    requestMaterial.done(function (data) {
-        //console.log(data.Response);
+    if (!$.fn.dataTable.isDataTable('#grdMateriales')) {
         tablaMateriales = $('#grdMateriales').DataTable({
-            "aaData": data.Response,
+            //"aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
                 "visible": false,
@@ -71,18 +73,12 @@ function loadMateriales(from, end) {
                     "sWidth": "7%",
                     "mRender": function (dato, type, row) {
                         if (row.stockActual == 0) {
-                            //return 'SIN STOCK';
-                            //return '<span class="badge badge-danger">Sin Stock</span>';
                             return '<span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Sin stock</span>';
                         }
                         if (row.stockActual > row.stockMinimo) {
-                            //return 'ALTO';
-                            //return '<span class="badge badge-success">Alto</span>';
                             return '<span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Alto</span>';
                         }
                         else {
-                            //return 'BAJO';
-                            //return '<span class="badge badge-warning">Bajo</span>';
                             return '<span class="badge bgc-yellow-50 c-yellow-700 p-10 lh-0 tt-c badge-pill">Bajo</span>';
                         }
                     }
@@ -96,7 +92,7 @@ function loadMateriales(from, end) {
 
                         var verDetalleHtml =
                             '<a title="Detalle" href="#" id="matDet-' + row.idMaterial + '" onclick="getMaterialDetalle(this);"><i class="far fa-info-circle fa-2x"></i></a> ';
-                                           
+
                         var historialHtml = '<a title="Historial" href="' + baseURL + 'Material/Historial/' + row.idMaterial + '"><i class="far fa-clock fa-2x"></i> </a> ';
 
                         var editarHtml = '<a title="Editar" href="' + baseURL + 'Material/Editar/' + row.idMaterial + '"><i class="far fa-edit fa-2x"></i></a> ';
@@ -120,10 +116,28 @@ function loadMateriales(from, end) {
 
                         return cab + head + verDetalleHtml + cola + head + historialHtml + cola + head + editarHtml + cola + head + borrarHtml + cola;
                     }
-                },
+                }
             ],
-            "order": [2, "asc"]
+            "order": [2, "asc"],
+            "processing": true
         });
+    }
+
+    tablaMateriales.processing(true);
+
+    var requestMaterial = $.ajax({
+        url: baseURL + "Material/GetAll",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8'
+    });
+
+    requestMaterial.done(function (data) {
+        //console.log(data.Response);
+        tablaMateriales.clear();
+        tablaMateriales.rows.add(data.Response);
+        tablaMateriales.draw();
+        tablaMateriales.processing(false);
+        
     });
 
     requestMaterial.fail(function (data) {
