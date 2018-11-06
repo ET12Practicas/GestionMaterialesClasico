@@ -36,7 +36,7 @@ body td,th {
     border-radius: 15px !important;
 }
 
-.just-padding {
+/*.just-padding {
     padding: 15px;
 }
 
@@ -72,8 +72,9 @@ body td,th {
 
 .fas{
     margin-right: 5px!important;
-}
-.list-group .active{
+}*/
+/*.list-group .active {
       background-color: #448AFF!important;
-  border-color: #448AFF!important;
-}
+      border-color: #448AFF!important;
+}*/
+
