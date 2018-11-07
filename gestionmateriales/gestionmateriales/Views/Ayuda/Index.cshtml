@@ -17,21 +17,138 @@
             <div class="shadow p-15 mb-5 bg-white rounded">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat blandit lorem, id ullamcorper elit laoreet volutpat. Quisque quis eros varius massa cursus volutpat eget ut ante. Sed pellentesque sit amet ligula sed volutpat. Nam ultrices vel nibh ac convallis. Vivamus fringilla varius consectetur. Sed ut dolor eu risus convallis molestie vitae sit amet est. Suspendisse dignissim molestie est a volutpat. Cras sit amet enim enim. Cras id ultricies nisi. Etiam at turpis ut quam varius tincidunt. Aenean vitae dignissim est. Nulla vitae lorem arcu. Cras placerat nisi nec eleifend pellentesque. Praesent quis odio mollis, laoreet ligula sit amet, ullamcorper est. Maecenas congue imperdiet augue, ut tempor arcu sollicitudin eget. Proin sed tristique nisi, id interdum sapien.
-                        Cras scelerisque magna tortor, vel iaculis magna accumsan sed. Etiam aliquet pulvinar elementum. In nec nisi consectetur est fermentum sodales. Aliquam eu turpis a ex laoreet cursus. Nam fringilla massa ac mi ullamcorper feugiat. Nulla nisl diam, ullamcorper ut ante sit amet, egestas tempor massa. Integer feugiat ac eros quis scelerisque. Aenean sem arcu, dapibus quis purus viverra, cursus congue odio. Morbi et dolor ac est fermentum ultrices. Donec sodales magna vitae consequat varius. In eget dictum odio. Integer sed odio quam. Duis facilisis mi ut purus commodo sollicitudin.
-                        Duis et augue arcu. Nunc imperdiet velit nec eros varius tempus. Sed libero arcu, pharetra vel velit vitae, dignissim gravida lacus. Donec euismod ligula libero, non ultrices nibh finibus nec. Mauris sed quam mollis, varius elit sodales, vehicula nulla. Duis vitae hendrerit nulla. Quisque vehicula efficitur elit sed vestibulum. Nam lacinia urna ac leo tincidunt, in elementum ipsum iaculis. Morbi varius urna non purus aliquet, id fermentum metus dignissim. Nunc scelerisque rhoncus justo sed efficitur. Nullam nec nibh metus. Fusce accumsan ultrices velit eget blandit. Quisque finibus tincidunt nunc, vitae tincidunt velit.
-                        Vivamus eu lobortis purus. Integer quis eros a nulla porttitor dapibus. Praesent pellentesque non nibh ac fermentum. Vestibulum pulvinar molestie dolor in placerat. Mauris gravida ipsum lorem, id suscipit arcu porta in. Cras sit amet nibh sodales, fringilla lacus non, feugiat ante. Pellentesque ut volutpat lacus, quis aliquam nunc. Praesent varius convallis egestas. Nullam eu magna ac orci iaculis egestas eget vel ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non lorem a est dictum laoreet. Vivamus quis aliquet nulla. Etiam pellentesque, mauris eu dapibus vulputate, est libero luctus libero, in suscipit ante nisl eget urna. Integer auctor imperdiet nunc, at consectetur libero consequat sit amet.
+                       <h2> Principal</h2>
+                         Esta aplicación informática fue realizada con el objetivo de poder informatizar el trabajo que se realiza tanto en oficina técnica como en depósito. Es decir que se puede ver los materiales existentes en Depósito,llevar el control de ingreso y egreso de los materiales esto permite visualizar en tiempo real el stock, cuando está en bajo poder realizar una orden de compra. Y la parte más importante es la trazabilidad de las operaciones realizadas.
+                       <br/> La aplicación permite cargar, visualizar y editar materiales, ver el stock en tiempo real, realizar orden de compra, orden trabajo de Aplicación. Ver, editar e ingresar proveedores y personal deposito, oficina técnica y Mep. Ver la trazabilidad de los materiales hacia la orden de trabajo de Aplicación y también se puede visualizar aquellos materiales que se encuentra bajo el punto de reposición de stock.
+                        <br/>
+                        <br/>La aplicación cuenta con los siguientes módulos:
+                         <br />
+                        <li> Materiales: Visualiza todos los insumos y materiales que se utilizan en la institución.</li>
+                        <li> Compras: Visualiza todos los materiales con bajo stock.</li>
+                        <li> Stock: permite realizar el ingreso y egreso de materiales al depósito.</li>
+                        <li> Proveedores: Visualiza aquellas empresas o negocios a los cuales se compran materiales e insumos.</li>
+                        <li> Personal: Visualiza trabajadores de oficina Técnica, deposito y Mep.</li>
+                        <li> Orden de compra: Documento para solicitar la compra de materiales con bajo stock.</li>
+                        <li> Orden de trabajo de Aplicación:  Documento que visualiza el listado de materiales que se van a utilizar para confeccionar un trabajo Práctico.</li>
+
                     </div>
                     <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-personal-list">
-                        <div class="offset-1 col-10">
-                            <img class="imggif" src="~/Assets/Gifs/NuevoPersonal.gif" />
-                        </div>
+                            <h3> Personal</h3>
+                            Se pueden visualizar y cargar trabajadores de Ofcina Técnica, deposito y MEP.
+                        <br>
+                        <h4> Cargar Nuevo Personal</h4>
+                            En esta pantalla se puede Agregar un nuevo Personal, al pulsar el Boton "Nuevo Personal" te pide completar los siguientes campos: Nombre y Apellido, Ficha Censal y Dni. En cuanto se pulsa Aceptar el personal es dado de alta.
+                            <br /> 
+                           <img class="imggif" src="~/Assets/Gifs/NuevoPersonal.gif" />
+                            <br />
+                        <h4> Buscar Personal</h4>
+                              En esta pantalla se puede buscar cualquier personal filtrando cualquier dato que se tenga.
+                            <br />
+                         <img class="imggif" src="~/Assets/Gifs/BuscarPersonal.gif"/>
+                            <br />
+                         <h4> Eliminar Personal</h4>
+                            Se puede eliminar cualquier Personal de la lista haciendo click en el icono con forma de tacho de basura.
+                        <br />  
+                          <img class="imggif" src="~/Assets/Gifs/BorrarPersonal.gif" />
+                          <br />
+                           <h4> Editar Personal</h4>
+                            Para modificar cualquier dato de un personal pulsando en el icono con forma de lapiz, le manda a la pantalla con todos los campos a completar o cambiar.
+                          <br />
+                          <img class="imggif" src="~/Assets/Gifs/EditarPersonal.gif" />
                     </div>
-                    <div class="tab-pane fade" id="list-proveedor" role="tabpanel" aria-labelledby="list-proveedor-list">...</div>
-                    <div class="tab-pane fade" id="list-material" role="tabpanel" aria-labelledby="list-material-list">...</div>
-                    <div class="tab-pane fade" id="list-compras" role="tabpanel" aria-labelledby="list-compras-list">...</div>
-                    <div class="tab-pane fade" id="list-stock" role="tabpanel" aria-labelledby="list-stock-list">...</div>
-                    <div class="tab-pane fade" id="list-documentos" role="tabpanel" aria-labelledby="list-documentos-list">...</div>
+                    <div class="tab-pane fade" id="list-proveedor" role="tabpanel" aria-labelledby="list-proveedor-list">
+                        <h3> Proveedor</h3>
+                        Se puede visualizar, buscar, editar y Agregar proveedores que esten asociados con el establecimiento.
+                        <h4> Cargar Nuevo Proveedor</h4>
+                        En esta pantalla se puede Agregar un nuevo Proveedor, al pulsar el Boton "Nuevo Proveedor" te pide completar los siguientes campos: Nombre, Cuit, Razon Social, telefono, correo electronico, dirección, zona, Horario de Atención y Contacto. En cuanto se pulsa Aceptar el personal es dado de alta.
+                        <img class="imggif" src="~/Assets/Gifs/NuevoProveedor.gif" />
+                        <h4> Buscar Proveedor</h4>
+                        En esta pantalla se puede buscar cualquier proveedor filtrando cualquier dato que se tenga.
+                        <img class="imggif" src="~/Assets/Gifs/BuscarProveedor.gif" />
+                        <h4> Eliminar Proveedor</h4>
+                        Se puede eliminar cualquier Proveedor de la lista haciendo click en el icono con forma de tacho de basura.
+                        <img class="imggif" src="~/Assets/Gifs/BorrarProveedor.gif" />
+                        <h4> Editar Proveedor</h4>
+                        Para modificar cualquier dato de un proveedor pulsando en el icono con forma de lapiz, le manda a la pantalla con todos los campos a completar o cambiar.
+                        <img class="imggif" src="~/Assets/Gifs/EditarProveedor.gif" />
+
+                    </div>
+                    <div class="tab-pane fade" id="list-material" role="tabpanel" aria-labelledby="list-material-list">
+                        <h3> Material</h3>
+                        Se puede visualizar, buscar, editar y Agregar materiales que esten asociados con el establecimiento.
+                        <h4> Cargar Nuevo Material</h4>
+                        En esta pantalla se puede Agregar un nuevo Material, al pulsar el Boton "Nuevo Material" te pide completar los siguientes campos: Codigo, Nombre, Unidad, Stock Minimo, Stock Actual, Tipo, Proveedor y Detalle. En cuanto se pulsa Aceptar el personal es dado de alta.
+                        <img class="imggif" src="~/Assets/Gifs/NuevoMaterial.gif" />
+                        <h4> Buscar Material</h4>
+                        En esta pantalla se puede buscar cualquier material filtrando cualquier dato que se tenga.
+                        <img class="imggif" src="~/Assets/Gifs/BuscarMaterial.gif" />
+                        <h4> Eliminar Material</h4>
+                        Se puede eliminar cualquier material de la lista haciendo click en el icono con forma de tacho de basura.
+                        <img class="imggif" src="~/Assets/Gifs/BorrarMaterial.gif" />
+                        <h4> Editar Material</h4>
+                        Para modificar cualquier dato de un material pulsando en el icono con forma de lapiz, le manda a la pantalla con todos los campos a completar o cambiar.
+                        <img class="imggif" src="~/Assets/Gifs/EditarMaterial.gif" />
+                        
+                         
+                    </div>
+                    <div class="tab-pane fade" id="list-compras" role="tabpanel" aria-labelledby="list-compras-list">
+                        <h3> Compras</h3>
+                        En esta pantalla se pueden visualizar todos los materiales en bajo Stock.
+                          <h4> Buscar </h4>
+                        En esta pantalla se puede buscar cualquier material en bajo stock filtarndo cualquier dato que se tenga.
+                        <img class="imggif" src="~/Assets/Gifs/NecesidadesCompras.gif" />
+
+
+
+                    </div>
+                    <div class="tab-pane fade" id="list-stock" role="tabpanel" aria-labelledby="list-stock-list">
+                        <h3> Stock</h3>
+                        En esta pantalla se puede ingresar y sacar material, tambien ver el historial de entradas y salidas de materiales.
+                        <h4> Entrada Material</h4>
+                         En esta pantalla se puede ingresar materiales o herramientas, pide completar los campos con el nombre, Cantidad a ingresar, Tipo de Entrada y Código Documento.
+                        <img class="imggif" src="~/Assets/Gifs/EntradaMaterial.gif" />
+                        <h4> Salida material</h4>
+                        En esta pantalla se puede egresar los materiales o herramientas completando los campos nombre, Cantidad a Egresar, Tipo de Egreso y Código Documento.
+                        <img class="imggif" src="~/Assets/Gifs/SalidaMaterial.gif" />
+                        <h4> Historial Entradas </h4>
+                        En esta pantalla se pueden visualizar todos los materiales ingresados, quién los ingreso y cuándo.
+                        <img class="imggif" src="~/Assets/Gifs/HsitorialEntradas.gif" />
+                        <h4> Historial Salidas</h4>
+                        En esta pantalla se pueden visualizar todos los materiales egresados, quién lo hizo y cuándo.
+                        <img class="imggif" src="~/Assets/Gifs/HsitorialSalidas.gif" />
+
+                    </div>
+                    <div class="tab-pane fade" id="list-documentos" role="tabpanel" aria-labelledby="list-documentos-list">
+                        <h3> Documentos </h3>
+                        En esta pantalla se puede realizar la Orden de Compra y la Orden de Trabajo de Aplicación, editar, buscar y ver los Detalles.
+                        <h4> Orden de Compra</h4>
+                        En esta pantalla se puede realizar la orden de Compra completando los siguientes campos: Número Interno, Número Factura, fecha. proveedor, responsable, Numero cheque y el monto total es la suma de todos los materiales que selecciono.
+                        <img class="imggif" src="~/Assets/Gifs/NuevaOC.gif" />
+                        <h4> Editar Orden de Compra</h4>
+                        En esta pantallas se puede editar cualquier campo de un OC ya existente pulsando en el icono con forma de lapiz.
+                        <img class="imggif" src="~/Assets/Gifs/EditarOC.gif" />
+                        <h4> Buscar Orden de Compra</h4>
+                        En esta pantalla se puede Buscar cualquier orden de compra filtrando con un dato que se tenga de el.
+                        <img class="imggif" src="~/Assets/Gifs/BuscarOC.gif" />
+                        <h4> Detalles Orden de Compra</h4>
+                        En esta pantalla se pueden visualizar todos los detalles de una Orden de Compra.
+                        <img class="imggif" src="~/Assets/Gifs/DetallesOC.gif" />
+                        <br />
+                        <h4> Orden de Trabajo de Aplicación</h4>
+                        En esta pantalla se puede realizar la orden de trabajo de Aplicación completando los siguientes campos: Número, Nombre, Turno, fecha, responsable y jefe de Sección, luego se seleccionan los materiales a utilizar y se genera la OTA.
+                        <img class="imggif" src="~/Assets/Gifs/NuevaOTA.gif" />
+                        <h4> Editar Orden de Trabajo de Aplicación</h4>
+                        En esta pantallas se puede editar cualquier campo de un OTA ya existente pulsando en el icono con forma de lapiz.
+                        <img class="imggif" src="~/Assets/Gifs/EditarOTA.gif" />
+                        <h4> Buscar Orden de trabajo de Aplicación</h4>
+                        En esta pantalla se puede Buscar cualquier orden de trabajo de Aplicación filtrando con un dato que se tenga de el.
+                        <img class="imggif" src="~/Assets/Gifs/BuscarOTA.gif" />
+                        <h4> Detalles Orden de trabajo de Aplicación</h4>
+                        En esta pantalla se pueden visualizar todos los detalles de una Orden de trabajo de Aplicación.
+                        <img class="imggif" src="~/Assets/Gifs/DetallesOTA.gif" />
+
+
+                    </div>
                 </div>
             </div>
         </div>
