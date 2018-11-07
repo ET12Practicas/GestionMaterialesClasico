@@ -1,9 +1,13 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.Personal
 
-<h1>Personal</h1>
-<p>Agregar nuevo personal para solicitar y/o retirar materiales.</p>
-
-<div class="card offset-2 col-8">
+<div class="card shadow">
+    <div class="card-body">
+        <h1>Personal</h1>
+        <p>Agregar nuevo personal para solicitar y/o retirar materiales.</p>
+    </div>
+</div>
+<br />
+<div class="card shadow">
     <div class="card-body">
         @using (@Html.BeginForm("Agregar", "Personal", FormMethod.Post))
         {

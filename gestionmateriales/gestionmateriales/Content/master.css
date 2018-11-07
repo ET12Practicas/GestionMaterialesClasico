@@ -5,12 +5,12 @@
 
 body h2 {
     font-family: 'quicksand_lightregular';
-    font-size: 30px;
+    font-size: 32px;
 }
 
 body h3 {
     font-family: 'quicksand_lightregular';
-    font-size: 30px;
+    font-size: 26px;
 }
 
 body h4 {
@@ -69,6 +69,10 @@ body a {
 
 .imggif {
     width: 100%;
+    border-width: 1px;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-radius: 5px;
 }
 
 /*.ayudaTexto {
@@ -76,6 +80,20 @@ body a {
 }*/
 
 .fondo {
-    background-color: #ECEFF1;
+    background-color: #F5F5F5;
+}
 
+#lastUpdated {
+    font-family: 'quicksand_lightregular';
+    font-size: 14px;
+}
+
+.list-group-item.active {
+    background-color: #E1BEE7 !important;
+    border-color: #E1BEE7 !important;
+}
+
+.dataTables_info {
+    font-family: 'quicksand_lightregular';
+    font-size: 14px;
 }

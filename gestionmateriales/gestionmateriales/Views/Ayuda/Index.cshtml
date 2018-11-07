@@ -1,12 +1,19 @@
-﻿<h1>Ayuda</h1>
+﻿@*<div class="card shadow">
+    <div class="card-body">
+        <h1>Ayuda</h1>
+        <p>Muestra dasd</p>
+    </div>
+</div>
+<br />*@
 <div class="row">
     <div class="col-2">
         <div class="shadow">
             <div class="list-group list-group-root" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><i class="c-blue-500 far fa-home fa-fw"></i> Principal</a>
+                <a class="list-group-item list-group-item-action" id="list-usuarios-list" data-toggle="list" href="#list-usuarios" role="tab" aria-controls="usuarios"><i class="c-black-500 far fa-user fa-fw"></i> Usuarios</a>
                 <a class="list-group-item list-group-item-action" id="list-personal-list" data-toggle="list" href="#list-personal" role="tab" aria-controls="personal"><i class="c-pink-500 far fa-male fa-fw"></i> Personal</a>
-                <a class="list-group-item list-group-item-action" id="list-proveedor-list" data-toggle="list" href="#list-proveedor" role="tab" aria-controls="proveedor"><i class="c-deep-purple-500 far fa-truck "></i> Proveedor</a>
-                <a class="list-group-item list-group-item-action" id="list-material-list" data-toggle="list" href="#list-material" role="tab" aria-controls="material"><i class="c-brown-500 far fa-wrench fa-fw"></i> Material</a>
+                <a class="list-group-item list-group-item-action" id="list-proveedor-list" data-toggle="list" href="#list-proveedor" role="tab" aria-controls="proveedor"><i class="c-deep-purple-500 far fa-truck "></i> Proveedores</a>
+                <a class="list-group-item list-group-item-action" id="list-material-list" data-toggle="list" href="#list-material" role="tab" aria-controls="material"><i class="c-brown-500 far fa-wrench fa-fw"></i> Materiales</a>
                 <a class="list-group-item list-group-item-action" id="list-compras-list" data-toggle="list" href="#list-compras" role="tab" aria-controls="compras"><i class="c-teal-500 far fa-shopping-cart fa-fw"></i> Compras</a>
                 <a class="list-group-item list-group-item-action" id="list-stock-list" data-toggle="list" href="#list-stock" role="tab" aria-controls="stock"><i class="c-deep-purple-500 far fa-sync-alt fa-fw"></i> Stock</a>
                 <a class="list-group-item list-group-item-action" id="list-documentos-list" data-toggle="list" href="#list-documentos" role="tab" aria-controls="documentos"><i class="c-red-500 far fa-copy fa-fw"></i> Documentos</a>
@@ -14,18 +21,17 @@
         </div>
     </div>
     <div class="col-10">
-        <div class="shadow p-15 mb-5 bg-white rounded">
+        <div class="shadow p-20 mb-5 bg-white rounded">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-
-                    <h2> Principal</h2>
+                    <h1>Ayuda</h1>
                     <p>
                         Esta aplicación informática fue realizada con el objetivo de poder informatizar el trabajo que se realiza tanto en oficina técnica como en depósito. Es decir que se puede ver los materiales existentes en Depósito,llevar el control de ingreso y egreso de los materiales esto permite visualizar en tiempo real el stock, cuando está en bajo poder realizar una orden de compra. Y la parte más importante es la trazabilidad de las operaciones realizadas.
                         <br /> La aplicación permite cargar, visualizar y editar materiales, ver el stock en tiempo real, realizar orden de compra, orden trabajo de Aplicación. Ver, editar e ingresar proveedores y personal deposito, oficina técnica y Mep. Ver la trazabilidad de los materiales hacia la orden de trabajo de Aplicación y también se puede visualizar aquellos materiales que se encuentra bajo el punto de reposición de stock.
                         <br />
                         <br />La aplicación cuenta con los siguientes módulos:
                         <br />
-                        <ul>                                                                            
+                        <ul>
                             <li><b>Personal:</b> Visualiza trabajadores de oficina Técnica, deposito y MEP.</li>
                             <li><b>Proveedores:</b>Visualiza aquellas empresas o negocios a los cuales se compran materiales e insumos.</li>
                             <li><b>Materiales:</b> Visualiza todos los insumos y materiales que se utilizan en la institución.</li>
@@ -35,31 +41,28 @@
                         </ul>
                     </p>
                 </div>
+                <div class="tab-pane fade" id="list-usuarios" role="tabpanel" aria-labelledby="list-usuarios-list">
+                    <h1>Usuarios</h1>
+                </div>
                 <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-personal-list">
-                    <h2>Personal</h2>
-                    <p>
-                        Se pueden visualizar y cargar trabajadores de Ofcina Técnica, deposito y MEP.
-                        <br>
-                        <h4> Cargar Nuevo Personal</h4>
+                    <h1>Personal</h1>
+                    <p>Se pueden visualizar y cargar trabajadores de Ofcina Técnica, deposito y MEP.</p>
+                    <hr />
+                    <h3>Cargar Nuevo Personal</h3>
                     <p> En esta pantalla se puede Agregar un nuevo Personal, al pulsar el Boton "Nuevo Personal" te pide completar los siguientes campos: Nombre y Apellido, Ficha Censal y Dni. En cuanto se pulsa Aceptar el personal es dado de alta.</p>
-                    <br />
                     <img class="imggif" src="~/Assets/Gifs/NuevoPersonal.gif" />
-                    <br />
-                    <h4> Buscar Personal</h4>
-                    <p> En esta pantalla se puede buscar cualquier personal filtrando cualquier dato que se tenga.</p>
-                    <br />
+                    <hr />
+                    <h3>Buscar Personal</h3>
+                    <p> En esta pantalla se puede buscar cualquier personal filtrando cualquier dato que se tenga</p>
                     <img class="imggif" src="~/Assets/Gifs/BuscarPersonal.gif" />
-                    <br />
-                    <h4> Eliminar Personal</h4>
-                    <p> Se puede eliminar cualquier Personal de la lista haciendo click en el icono con forma de tacho de basura. </p>
-                    <br />
-                    <img class="imggif" src="~/Assets/Gifs/BorrarPersonal.gif" />
-                    <br />
-                    <h4> Editar Personal</h4>
-                    <p> Para modificar cualquier dato de un personal pulsando en el icono con forma de lapiz, le manda a la pantalla con todos los campos a completar o cambiar. </p>
-                    <br />
+                    <hr />
+                    <h3>Editar Personal</h3>
+                    <p> Para modificar cualquier dato de un personal pulsando en el icono con forma de lapiz, le manda a la pantalla con todos los campos a completar o cambiar</p>
                     <img class="imggif" src="~/Assets/Gifs/EditarPersonal.gif" />
-                    </p>
+                    <hr />
+                    <h3>Eliminar Personal</h3>
+                    <p> Se puede eliminar cualquier Personal de la lista haciendo click en el icono con forma de tacho de basura</p>
+                    <img class="imggif" src="~/Assets/Gifs/BorrarPersonal.gif" />
                 </div>
                 <div class="tab-pane fade" id="list-proveedor" role="tabpanel" aria-labelledby="list-proveedor-list">
                     <h2> Proveedor</h2>
