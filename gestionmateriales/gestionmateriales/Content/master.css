@@ -1,20 +1,30 @@
 ﻿body h1 {
-    font-family: 'Raleway', sans-serif; 
+    font-family: 'quicksand_lightregular';
     font-size: 40px;
 }
 
 body p {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'quicksand_lightregular';
     font-size: 14px;
 }
 
 body label {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'quicksand_lightregular';
     font-size: 14px;
 }
 
-body td,th {
-    font-family: 'Raleway', sans-serif;
+body td, th {
+    font-family: 'quicksand_lightregular';
+    font-size: 12px;
+}
+
+body a {
+    font-family: 'quicksand_lightregular';
+    font-size: 12px;
+}
+
+.sidebar-menu > li > a{
+    font-family: 'quicksandbold';
     font-size: 12px;
 }
 
@@ -39,3 +49,7 @@ body td,th {
 .imggif {
     width: 100%;
 }
+
+/*.ayudaTexto {
+    background-color: red !important;
+}*/

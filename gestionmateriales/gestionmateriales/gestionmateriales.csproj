@@ -298,7 +298,7 @@
     <Content Include="Content\fontawesome\webfonts\fa-light-300.svg" />
     <Content Include="Content\fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.svg" />
-    <Content Include="Content\googlefonts\Raleway.css" />
+    <Content Include="Content\googlefonts\fuente.css" />
     <Content Include="Content\master.css" />
     <Content Include="Content\bootstrap-notify\animate.css" />
     <Content Include="Content\bootstrap-notify\bootstrap-notify.min.js" />
@@ -609,6 +609,12 @@
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\googlefonts\quicksand-light-webfont.woff" />
+    <Content Include="Content\googlefonts\quicksand-light-webfont.woff2" />
+    <Content Include="Content\googlefonts\quicksand-regular-webfont.woff" />
+    <Content Include="Content\googlefonts\quicksand-regular-webfont.woff2" />
+    <Content Include="Content\googlefonts\quicksand-bold-webfont.woff" />
+    <Content Include="Content\googlefonts\quicksand-bold-webfont.woff2" />
     <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\win2012-01.pubxml" />
