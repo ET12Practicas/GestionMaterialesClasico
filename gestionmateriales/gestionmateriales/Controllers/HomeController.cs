@@ -58,7 +58,7 @@ namespace gestionmateriales.Controllers
                 menu.Add(new MenuItem { Id = 24, nameOption = "Historial Salidas", controller = "Stock", action = "HistorialEgresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 30, nameOption = "Compras", controller = "", action = "", imageClass = "c-teal-500 far fa-shopping-cart", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 31, nameOption = "Necesidades", controller = "Compras", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 30 });                
-                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-gavel", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-wrench", estatus = true, isParent = false, parentId = 0 });
                 menu.Add(new MenuItem { Id = 50, nameOption = "Proveedores", controller = "Proveedor", action = "Index", imageClass = "c-deep-purple-500 far fa-truck", estatus = true, isParent = false, parentId = 0 });
                 menu.Add(new MenuItem { Id = 60, nameOption = "Personal", controller = "Personal", action = "Index", imageClass = "c-pink-500 far fa-male", estatus = true, isParent = false, parentId = 0 });
             }
@@ -79,7 +79,7 @@ namespace gestionmateriales.Controllers
                 menu.Add(new MenuItem { Id = 24, nameOption = "Historial Salidas", controller = "Stock", action = "HistorialEgresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 30, nameOption = "Compras", controller = "", action = "", imageClass = "c-teal-500 far fa-shopping-cart", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 31, nameOption = "Necesidades", controller = "Compras", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 30 });
-                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-gavel", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-wrench", estatus = true, isParent = false, parentId = 0 });
                 menu.Add(new MenuItem { Id = 50, nameOption = "Proveedores", controller = "Proveedor", action = "Index", imageClass = "c-deep-purple-500 far fa-truck", estatus = true, isParent = false, parentId = 0 });
                 menu.Add(new MenuItem { Id = 60, nameOption = "Personal", controller = "Personal", action = "Index", imageClass = "c-pink-500 far fa-male", estatus = true, isParent = false, parentId = 0 });
             }
@@ -91,7 +91,7 @@ namespace gestionmateriales.Controllers
                 menu.Add(new MenuItem { Id = 22, nameOption = "Salida", controller = "Stock", action = "Restar", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 23, nameOption = "Historial Entradas", controller = "Stock", action = "HistorialIngresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 24, nameOption = "Historial Salidas", controller = "Stock", action = "HistorialEgresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
-                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-gavel", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-wrench", estatus = true, isParent = false, parentId = 0 });
             }
 
             if (User.IsInRole("compras"))
@@ -101,7 +101,7 @@ namespace gestionmateriales.Controllers
                 menu.Add(new MenuItem { Id = 23, nameOption = "Historial Ingreso", controller = "Stock", action = "HistorialIngresos", imageClass = "", estatus = true, isParent = false, parentId = 20 });
                 menu.Add(new MenuItem { Id = 30, nameOption = "Compras", controller = "", action = "", imageClass = "c-teal-500 far fa-shopping-cart", estatus = true, isParent = true, parentId = 0 });
                 menu.Add(new MenuItem { Id = 31, nameOption = "Necesidades", controller = "Compras", action = "Index", imageClass = "", estatus = true, isParent = false, parentId = 30 });
-                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-gavel", estatus = true, isParent = false, parentId = 0 });
+                menu.Add(new MenuItem { Id = 40, nameOption = "Materiales", controller = "Material", action = "Index", imageClass = "c-brown-500 far fa-wrench", estatus = true, isParent = false, parentId = 0 });
                 menu.Add(new MenuItem { Id = 50, nameOption = "Proveedores", controller = "Proveedor", action = "Index", imageClass = "c-deep-purple-500 far fa-truck", estatus = true, isParent = false, parentId = 0 });
             }
 

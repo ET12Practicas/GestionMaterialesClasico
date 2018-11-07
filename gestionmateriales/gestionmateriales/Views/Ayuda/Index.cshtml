@@ -1,19 +1,20 @@
-﻿<div class="shadow-sm p-3 mb-5 bg-white rounded">
-    <div class="container-fluid">
-        <h1>Ayuda</h1>
-        <div class="row">
-            <div class="col-2">
-                <div class="list-group list-group-root" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><i class="c-blue-500 far fa-home fa-fw"></i> Principal</a>
-                    <a class="list-group-item list-group-item-action" id="list-personal-list" data-toggle="list" href="#list-personal" role="tab" aria-controls="personal"><i class="c-pink-500 far fa-male fa-fw"></i> Personal</a>
-                    <a class="list-group-item list-group-item-action" id="list-proveedor-list" data-toggle="list" href="#list-proveedor" role="tab" aria-controls="proveedor"><i class="c-deep-purple-500 far fa-truck "></i> Proveedor</a>
-                    <a class="list-group-item list-group-item-action" id="list-material-list" data-toggle="list" href="#list-material" role="tab" aria-controls="material"><i class="c-brown-500 far fa-gavel fa-fw"></i> Material</a>
-                    <a class="list-group-item list-group-item-action" id="list-compras-list" data-toggle="list" href="#list-compras" role="tab" aria-controls="compras"><i class="c-teal-500 far fa-shopping-cart fa-fw"></i> Compras</a>
-                    <a class="list-group-item list-group-item-action" id="list-stock-list" data-toggle="list" href="#list-stock" role="tab" aria-controls="stock"><i class="c-deep-purple-500 far fa-sync-alt fa-fw"></i> Stock</a>
-                    <a class="list-group-item list-group-item-action" id="list-documentos-list" data-toggle="list" href="#list-documentos" role="tab" aria-controls="documentos"><i class="c-red-500 far fa-copy fa-fw"></i> Documentos</a>
-                </div>
+﻿<h1>Ayuda</h1>
+<div class="row">
+    <div class="col-2">
+        <div class="shadow">
+            <div class="list-group list-group-root" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><i class="c-blue-500 far fa-home fa-fw"></i> Principal</a>
+                <a class="list-group-item list-group-item-action" id="list-personal-list" data-toggle="list" href="#list-personal" role="tab" aria-controls="personal"><i class="c-pink-500 far fa-male fa-fw"></i> Personal</a>
+                <a class="list-group-item list-group-item-action" id="list-proveedor-list" data-toggle="list" href="#list-proveedor" role="tab" aria-controls="proveedor"><i class="c-deep-purple-500 far fa-truck "></i> Proveedor</a>
+                <a class="list-group-item list-group-item-action" id="list-material-list" data-toggle="list" href="#list-material" role="tab" aria-controls="material"><i class="c-brown-500 far fa-wrench fa-fw"></i> Material</a>
+                <a class="list-group-item list-group-item-action" id="list-compras-list" data-toggle="list" href="#list-compras" role="tab" aria-controls="compras"><i class="c-teal-500 far fa-shopping-cart fa-fw"></i> Compras</a>
+                <a class="list-group-item list-group-item-action" id="list-stock-list" data-toggle="list" href="#list-stock" role="tab" aria-controls="stock"><i class="c-deep-purple-500 far fa-sync-alt fa-fw"></i> Stock</a>
+                <a class="list-group-item list-group-item-action" id="list-documentos-list" data-toggle="list" href="#list-documentos" role="tab" aria-controls="documentos"><i class="c-red-500 far fa-copy fa-fw"></i> Documentos</a>
             </div>
-            <div class="col-10" @*style="height:480px; overflow-y:scroll;"*@>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="shadow p-15 mb-5 bg-white rounded">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat blandit lorem, id ullamcorper elit laoreet volutpat. Quisque quis eros varius massa cursus volutpat eget ut ante. Sed pellentesque sit amet ligula sed volutpat. Nam ultrices vel nibh ac convallis. Vivamus fringilla varius consectetur. Sed ut dolor eu risus convallis molestie vitae sit amet est. Suspendisse dignissim molestie est a volutpat. Cras sit amet enim enim. Cras id ultricies nisi. Etiam at turpis ut quam varius tincidunt. Aenean vitae dignissim est. Nulla vitae lorem arcu. Cras placerat nisi nec eleifend pellentesque. Praesent quis odio mollis, laoreet ligula sit amet, ullamcorper est. Maecenas congue imperdiet augue, ut tempor arcu sollicitudin eget. Proin sed tristique nisi, id interdum sapien.
@@ -22,7 +23,9 @@
                         Vivamus eu lobortis purus. Integer quis eros a nulla porttitor dapibus. Praesent pellentesque non nibh ac fermentum. Vestibulum pulvinar molestie dolor in placerat. Mauris gravida ipsum lorem, id suscipit arcu porta in. Cras sit amet nibh sodales, fringilla lacus non, feugiat ante. Pellentesque ut volutpat lacus, quis aliquam nunc. Praesent varius convallis egestas. Nullam eu magna ac orci iaculis egestas eget vel ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non lorem a est dictum laoreet. Vivamus quis aliquet nulla. Etiam pellentesque, mauris eu dapibus vulputate, est libero luctus libero, in suscipit ante nisl eget urna. Integer auctor imperdiet nunc, at consectetur libero consequat sit amet.
                     </div>
                     <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-personal-list">
-                        <img src="~/Assets/Gifs/NuevoPersonal.gif" style="width:100%;" />
+                        <div class="offset-1 col-10">
+                            <img class="imggif" src="~/Assets/Gifs/NuevoPersonal.gif" />
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="list-proveedor" role="tabpanel" aria-labelledby="list-proveedor-list">...</div>
                     <div class="tab-pane fade" id="list-material" role="tabpanel" aria-labelledby="list-material-list">...</div>
@@ -33,6 +36,4 @@
             </div>
         </div>
     </div>
-</div>
 
-@*<script src="~/Scripts/capitan.js"></script>*@
