@@ -3,7 +3,28 @@
     font-size: 40px;
 }
 
+body h2 {
+    font-family: 'quicksand_lightregular';
+    font-size: 30px;
+}
+
+body h3 {
+    font-family: 'quicksand_lightregular';
+    font-size: 30px;
+}
+
+body h4 {
+    font-family: 'quicksand_lightregular';
+    font-size: 22px;
+}
+
+
 body p {
+    font-family: 'quicksand_lightregular';
+    font-size: 14px;
+}
+
+body ul > li {
     font-family: 'quicksand_lightregular';
     font-size: 14px;
 }
@@ -53,3 +74,8 @@ body a {
 /*.ayudaTexto {
     background-color: red !important;
 }*/
+
+.fondo {
+    background-color: #ECEFF1;
+
+}
