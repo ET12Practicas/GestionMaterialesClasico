@@ -15,10 +15,8 @@ $(document).ready(function () {
         });
     });
 
-
     loadMateriales();
 });
-
 
 function loadMateriales() {
 
@@ -132,7 +130,6 @@ function loadMateriales() {
     });
 
     requestMaterial.done(function (data) {
-        //console.log(data.Response);
         tablaMateriales.clear();
         tablaMateriales.rows.add(data.Response);
         tablaMateriales.draw();

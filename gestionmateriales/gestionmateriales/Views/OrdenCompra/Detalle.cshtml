@@ -1,15 +1,21 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.Documentos.OrdenCompra
 
 <input type="hidden" id="IdOC" value="@Model.IdOrdenCompra" />
-<div class="row">
-    <div class="col-4">
-        <h1>Orden de Compra</h1>
-    </div>
-    <div class="offset-6 col-2">
-        <button class="btn btn-outline-secondary btn-block btn-sm" onclick="window.history.back();">Volver</button>
+<div class="card shadow">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <h1>Orden de Compra</h1>
+            </div>
+            <div class="offset-6 col-2">
+                <button class="btn btn-outline-secondary btn-block btn-sm" onclick="window.history.back();">Volver</button>
+            </div>
+            <button class="btn btn-info" onclick="descargarOrdenCompra();">generar pdf</button>
+        </div>
     </div>
 </div>
-<div class="card">
+<br />
+<div class="card shadow">
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
             <div class="row">

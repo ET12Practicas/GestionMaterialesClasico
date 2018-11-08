@@ -1,5 +1,5 @@
 ﻿body h1 {
-    font-family: 'quicksand_lightregular';
+    font-family: 'quicksand_lightregular' !important;
     font-size: 40px;
 }
 
@@ -17,7 +17,6 @@ body h4 {
     font-family: 'quicksand_lightregular';
     font-size: 22px;
 }
-
 
 body p {
     font-family: 'quicksand_lightregular';
@@ -49,24 +48,6 @@ body a {
     font-size: 12px;
 }
 
-.logoet {
-    top: 3% !important;
-    right: 35% !important;
-    opacity: 0.6;
-}
-
-#Username {
-    border-radius: 15px !important;
-}
-
-#Password {
-    border-radius: 15px !important;
-}
-
-#btnLogin {
-    border-radius: 15px !important;
-}
-
 .imggif {
     width: 100%;
     border-width: 1px;
@@ -74,10 +55,6 @@ body a {
     border-style: solid;
     border-radius: 5px;
 }
-
-/*.ayudaTexto {
-    background-color: red !important;
-}*/
 
 .fondo {
     background-color: #F5F5F5;
@@ -96,4 +73,37 @@ body a {
 .dataTables_info {
     font-family: 'quicksand_lightregular';
     font-size: 14px;
+}
+
+/*Login*/
+
+.logoet {
+    opacity: 0.6;
+}
+
+.mensajeLogin {
+    margin-top: 50px;
+}
+
+.btnLogin {
+    font-family: 'quicksand_lightregular';
+    font-size: 14px;
+    border-radius: 15px !important;
+}
+
+.textLoginPlaceholder {
+    font-family: 'quicksand_lightregular';
+    font-size: 14px;
+}
+
+/*Register*/
+
+#Username, #Password, #Email, #ConfirmPassword {
+    border-radius: 15px !important;
+}
+
+/*Sidebar*/
+#nombreAplicacion {
+    font-family: 'quicksandbold' !important;
+    font-size: 20px !important;
 }

@@ -14,7 +14,6 @@ $(document).ready(function () {
     });
 
     request.done(function (data) {
-        //console.log(data.Response);
         tablaMateriales = $('#grdItemsOC').DataTable({
             //"dom": "lfrtip",
             "aaData": data.Response,
@@ -52,7 +51,10 @@ $(document).ready(function () {
                     }
                 }
             ],
-            "order": [1, "asc"]
+            "order": [1, "asc"],
+            "paging": false,
+            "filter": false,
+            "info": false
         });
     });
 
@@ -61,3 +63,8 @@ $(document).ready(function () {
         alert('No se pueden cargar los items OC');
     });
 });
+
+
+function descargarOrdenCompra() {
+    
+}

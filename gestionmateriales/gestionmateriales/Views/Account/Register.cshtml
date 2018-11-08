@@ -1,51 +1,46 @@
 ﻿@model gestionmateriales.Models.RegisterViewModel
 
-<div class="container-fluid">
-    <h2>Registrarse</h2>
-    <h5>Cree un nuevo usuario</h5>
-</div>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-horizontal">
-        <div class="form-group">
-            @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", autocomplete = "off" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", autocomplete = "off" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", autocomplete = "off" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", autocomplete = "off" })
-            </div>
-        </div>
-        @*<div class="form-group">
-            @Html.LabelFor(m => m.IdRol, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.DropDownList("idRol", null, htmlAttributes: new { @class = "form-control" })
-            </div>
-        </div>*@
-        <br />
-        <div class="form-group">
-            <div class="col-2">
-                <input type="submit" class="btn btn-outline-primary btn-block" value="Registrarse" />
-            </div>
-        </div>
+<div class="card shadow offset-4 col-4">
+    <div class="card-body">
+        <h1>Registrarse</h1>
+        <h3>Cree un nuevo usuario</h3>
     </div>
-}
+</div>
+<br />
+<div class="card shadow offset-4 col-4">
+    <div class="card-body">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Username, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", autocomplete = "off" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", autocomplete = "off" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", autocomplete = "off" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", autocomplete = "off" })
+                </div>
+                @*<div class="form-group">
+                        @Html.LabelFor(m => m.IdRol, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("idRol", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>*@
+                <br />
+                <div class="form-group">
+                        <input type="submit" class="btn btn-outline-primary btn-block btnLogin" value="Registrarse" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

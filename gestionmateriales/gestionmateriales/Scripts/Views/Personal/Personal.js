@@ -3,10 +3,22 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaPersonal;
 
 $(document).ready(function () {
-    
+
     if (window.location.href.split(':').length == 2)
         baseURL = baseURL + appName + "/";
-    
+
+    $('#divgrdPersonal').append('<table id="grdPersonal" class="table table-bordered table-striped table-hover"> <thead> <tr> <th> idPersonal </th> <th> Nombre y Apellido </th> <th> Dni </th> <th> Ficha Censal </th> <th> Opciones </th> </tr> </thead> </table>');
+
+    jQuery.fn.dataTable.Api.register('processing()', function (show) {
+        return this.iterator('table', function (ctx) {
+            ctx.oApi._fnProcessingDisplay(ctx, show);
+        });
+    });
+
+    loadPersonal();
+});
+
+function loadPersonal() {
     var requestFecha = $.ajax({
         url: baseURL + "Personal/GetLastUpdated",
         type: 'GET',
@@ -25,15 +37,9 @@ $(document).ready(function () {
         }
     });
 
-    var requestPersonal = $.ajax({
-        url: baseURL + "Personal/GetAll",
-        type: 'GET',
-        contentType: 'application/json; charset=utf-8'
-    });
-
-    requestPersonal.done(function (data) {
+    if (!$.fn.dataTable.isDataTable('#grdMateriales')) {
         tablaPersonal = $('#grdPersonal').DataTable({
-            "aaData": data.Response,
+            //"aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [0],
                 "visible": false,
@@ -84,11 +90,28 @@ $(document).ready(function () {
                         return ini + cab + editarHtml + end + cab + borrarHtml + end + end;
                     }
                 }],
+            "order": [1, "asc"],
+            "processing": true
         });
+    }
+
+    tablaPersonal.processing(true);
+
+    var requestPersonal = $.ajax({
+        url: baseURL + "Personal/GetAll",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8'
+    });
+
+    requestPersonal.done(function (data) {
+        tablaPersonal.clear();
+        tablaPersonal.rows.add(data.Response);
+        tablaPersonal.draw();
+        tablaPersonal.processing(false);
     });
 
     requestPersonal.fail(function (data) {
         console.log(data.Response);
         alert('No se pueden cargar el listado de personal');
     });
-});
+}

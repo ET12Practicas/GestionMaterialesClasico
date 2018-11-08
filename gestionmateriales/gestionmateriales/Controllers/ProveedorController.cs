@@ -179,7 +179,7 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetLastUpdated()
         {
-            var fecha = proveedorRepository.Find(x => x.hab).OrderBy(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
+            var fecha = proveedorRepository.Find(x => x.hab).OrderByDescending(x => x.LAST_UPDATED_DATE).Take(1).Select(x => new { x.LAST_UPDATED_DATE });
 
             return Json(new { Response = fecha }, JsonRequestBehavior.AllowGet);
         }

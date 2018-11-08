@@ -10,7 +10,7 @@
         "infoFiltered": "(filtrados de _MAX_ entradas totales)",
         "infoPostFix": "",
         "thousands": ",",
-        "lengthMenu": "Visualizar _MENU_ entradas   ",
+        "lengthMenu": "Ver _MENU_ entradas   ",
         "loadingRecords": "Cargando...",
         "processing": "En proceso...",
         "search": "Buscar",
