@@ -1,9 +1,12 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.Proveedor
-
-<h1>Proveedores</h1>
-<p>Crea un nuevo proveedor para comprar materiales o herramientas</p>
-
-<div class="card">
+<div class="card shadow">
+    <div class="card-body">
+        <h1>Proveedores</h1>
+        <p>Crea un nuevo proveedor para comprar materiales o herramientas</p>
+    </div>
+</div>
+<br />
+<div class="card shadow ">
     <div class="card-body">
         @using (@Html.BeginForm("Agregar", "Proveedor", FormMethod.Post))
         {

@@ -1,8 +1,13 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.Material
+<div class="card shadow">
+    <div class="card-body">
+        <h1>Materiales</h1>
+        <p>Agrega materiales o herramientas utilizadas para taller o reparaciones edilicias</p>
+    </div>
+</div>
+<br />
 
-<h1>Materiales</h1>
-<p>Agrega materiales o herramientas utilizadas para taller o reparaciones edilicias</p>
-<div class="card">
+<div class="card shadow">
     <div class="card-body">
         @using (@Html.BeginForm("Agregar", "Material", FormMethod.Post))
         {

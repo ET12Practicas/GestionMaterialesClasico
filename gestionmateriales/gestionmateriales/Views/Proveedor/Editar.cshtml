@@ -1,8 +1,12 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.Proveedor
-<h1>Proveedores</h1>
-<p>Edita información de proveedor existente en el sistema</p>
-
-<div class="card">
+<div class="card shadow">
+    <div class="card-body">
+        <h1>Proveedores</h1>
+        <p>Edita información de proveedor existente en el sistema</p>
+    </div>
+</div>
+<br />
+<div class="card shadow">
     <div class="card-body">
         @using (@Html.BeginForm("Editar", "Proveedor", new { id = Model.idProveedor }, FormMethod.Post))
         {

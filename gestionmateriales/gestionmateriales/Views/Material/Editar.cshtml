@@ -2,9 +2,14 @@
 @{
     ViewBag.Title = "Material";
 }
-<h1>Materiales</h1>
-<p>Edita información de materiales o herramientas</p>
-<div class="card">
+<div class="card shadow">
+    <div class="card-body">
+        <h1>Materiales</h1>
+        <p>Edita información de materiales o herramientas</p>
+    </div>
+</div>
+<br />
+<div class="card shadow">
     <div class="card-body">
         @using (@Html.BeginForm("Editar", "Material", FormMethod.Post))
         {

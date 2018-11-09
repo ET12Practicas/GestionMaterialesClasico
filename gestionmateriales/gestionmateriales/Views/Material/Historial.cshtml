@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<gestionmateriales.Models.OficinaTecnica.Documentos.OrdenTrabajoAplicacion>
-
+<div class="card shadow">
+    <div class="card-body">
 <div class="row">
     <div class="col-6">
         <h1>Historial Material</h1>
@@ -11,8 +12,10 @@
 <p>Historial de ordenes de trabajo vinculadas al material o herramienta</p>
 <hr />
 <p>Código: <strong>@ViewData["codigo"]</strong> - Nombre: <strong>@ViewData["nombre"]</strong></p>
-
-<div class="card">
+        </div>
+    </div>
+<br />
+<div class="card shadow">
     <div class="card-body">
         <table id="tabla_historial" class="table table-bordered table-striped table-hover">
             <thead>

@@ -1,9 +1,12 @@
 ﻿@model gestionmateriales.Models.OficinaTecnica.GestionMateriales.EntradaMaterial
-
+<div class="card shadow">
+    <div class="card-body">
 <h1>Entrada</h1>
 <p>Ingreso material o herramientas al stock del depósito</p>
-
-<div class="card offset-1 col-10">
+</div>
+    </div>
+<br />
+<div class="card shadow">
     <div class="card-body">
         @using (@Html.BeginForm("Sumar", "Stock", FormMethod.Post))
         {

@@ -3,10 +3,14 @@
 <link href="~/Content/datetimepicker/css/bootstrap-datepicker.min.css" />
 <script src="~/Content/datetimepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="~/Content/datetimepicker/bootstrap-datepicker.es.min.js"></script>
-
+<div class="card shadow">
+    <div class="card-body">
 <h1>Orden de Trabajo de Aplicación</h1>
 <p>Genera una nueva orden de trabajo de aplicación</p>
-<div class="card offset-1 col-10">
+        </div>
+    </div>
+<br />
+<div class="card shadow">
     <div class="card-body">
         @using (@Html.BeginForm("Agregar", "OrdenTrabajoAplicacion", FormMethod.Post))
         {
