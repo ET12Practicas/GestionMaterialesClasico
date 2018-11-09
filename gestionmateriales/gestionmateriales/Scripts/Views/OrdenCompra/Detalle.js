@@ -98,7 +98,7 @@ function descargarOrdenCompra() {
     });
 
     doc.text('Total: $ 100000');
-
+    doc.roundedRect(10, 10, 190, 275, 5, 5, 'S');
     doc.save('OC');
   
 }
