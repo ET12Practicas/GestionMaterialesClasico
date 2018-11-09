@@ -1,5 +1,6 @@
 ﻿var appName = location.pathname.split('/')[1];
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
+var itemsOC;
 
 $(document).ready(function () {
 
@@ -14,6 +15,7 @@ $(document).ready(function () {
     });
 
     request.done(function (data) {
+        itemsOC = data.Response;
         tablaMateriales = $('#grdItemsOC').DataTable({
             //"dom": "lfrtip",
             "aaData": data.Response,
@@ -66,5 +68,37 @@ $(document).ready(function () {
 
 
 function descargarOrdenCompra() {
-    
+    console.log(itemsOC);
+    var doc = new jsPDF();
+    doc.setFontSize(20);
+    doc.text('Orden de Compra', 15, 20);
+    doc.setFontSize(10);
+
+    doc.text('Proveedor: ASDASDAD', 15, 40);
+    doc.text('Número Interno: 1342', 80, 40);
+    doc.text('Número Factura: 1247', 150, 40);
+
+    doc.text('Responsable: Juan Perez', 15, 50);
+    doc.text('Fecha: 12/10/2018', 80, 50);
+    doc.text('Cheque: 10000', 150, 50);
+    doc.line(15, 55, 195, 55);
+
+    var columns = [
+        { title: "Material", dataKey: "material" },
+        { title: "Cantidad", dataKey: "cantidad" },
+        { title: "Precio Unitario", dataKey: "precioUnitario" },
+        { title: "Subtotal", dataKey: "subtotal" }
+    ];
+
+    doc.autoTable(columns, itemsOC, {
+        margin: { top: 70 },
+        addPageContent: function (data) {
+            doc.text("Materiales", 15, 65);
+        }
+    });
+
+    doc.text('Total: $ 100000');
+
+    doc.save('OC');
+  
 }
