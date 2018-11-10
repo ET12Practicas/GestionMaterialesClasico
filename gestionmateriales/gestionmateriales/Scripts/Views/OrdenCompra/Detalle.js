@@ -69,19 +69,6 @@ $(document).ready(function () {
 
 function descargarOrdenCompra() {
     console.log(itemsOC);
-    var doc = new jsPDF();
-    doc.setFontSize(20);
-    doc.text('Orden de Compra', 15, 20);
-    doc.setFontSize(10);
-
-    doc.text('Proveedor: ASDASDAD', 15, 40);
-    doc.text('Número Interno: 1342', 80, 40);
-    doc.text('Número Factura: 1247', 150, 40);
-
-    doc.text('Responsable: Juan Perez', 15, 50);
-    doc.text('Fecha: 12/10/2018', 80, 50);
-    doc.text('Cheque: 10000', 150, 50);
-    doc.line(15, 55, 195, 55);
 
     var columns = [
         { title: "Material", dataKey: "material" },
@@ -90,15 +77,104 @@ function descargarOrdenCompra() {
         { title: "Subtotal", dataKey: "subtotal" }
     ];
 
+    var nombreInstiticion = 'Escuela Técnica N°12 DE 1 "Libertador General Jose de San Martin"';
+    var nombreDocumento = 'ORDEN DE COMPRA';
+    var logo = baseURL + 'Assets/logodoc.png';
+
+    var doc = new jsPDF();
+
+    //doc.roundedRect(15, 15, 180, 267, 3, 3, 'S');
+    //doc.rect(15, 15, 180, 267, 'S');
+    doc.setFont('helvetica');
+    doc.setFontType('normal');
+
+    //nombre institucion
+    // doc.setFontSize(12);
+    // doc.text(20, 24, nombreInstiticion);
+
+    //logo
+    doc.addImage(logo, 'png', 17, 17, 26, 26);
+
+    //nombre documento
+    doc.setFontType('bold');
+    doc.setFontSize(18);
+    doc.text(75, 42, nombreDocumento);
+
+    //leyenda oficina tecnica
+    doc.setFontType('bolditalic');
+    doc.setFontSize(8);
+    doc.text(168, 22, 'Oficina Técnica');
+
+    //numero orden de compra
+    doc.setFontSize(12);
+    doc.text(166, 34, 'N° ');
+    doc.setFontSize(30);
+    doc.text(174, 34, '100');
+
+    //separador
+    //doc.line(15, 45, 195, 45);
+
+    doc.setFont('helvetica');
+    doc.setFontType('bolditalic');
+    doc.setFontSize(10);
+    doc.text('Asociación Cooperadora María L. Prat de Louit', 20, 52);
+    doc.setFontType('bold');
+    doc.text('CUIT: 30-68246181-7', 110, 52);
+    doc.text('Factura tipo B o C', 161, 52);
+
+    doc.setFontType('normal');
+    doc.text('Av. Del Libertador 238 CABA Tel. 4328-4433/9421', 20, 60);
+    doc.setFontType('bold');
+    doc.text('IVA EXENTO', 170, 60);
+
+    //separador
+  //  doc.line(15, 65, 195, 65);
+
+    doc.text('Proveedor: ', 20, 72);
+    doc.text('Telefóno: ', 120, 72);
+
+    doc.text('Contacto: ', 20, 80);
+    doc.text('Dirección: ', 90, 80);
+
+    //separador
+    //doc.line(15, 85, 195, 85);
+
+    //tabla de materiales
     doc.autoTable(columns, itemsOC, {
-        margin: { top: 70 },
+        theme: 'grid',
+        margin: {
+            top: 95,
+            left: 20,
+            right: 20
+        },
         addPageContent: function (data) {
-            doc.text("Materiales", 15, 65);
+            doc.text("Materiales", 20, 90);
         }
     });
 
-    doc.text('Total: $ 100000');
-    doc.roundedRect(10, 10, 190, 275, 5, 5, 'S');
-    doc.save('OC');
-  
+    doc.text('Total: $ 100000', 20, doc.autoTable.previous.finalY + 10);
+    
+    //separador
+    doc.line(15, 250, 195, 250);
+
+    //separador
+    doc.line(15, 260, 195, 260);
+
+    doc.text('Fecha: ', 20, 268);
+    doc.text('Recursos Asignados: ', 135, 268);
+
+    doc.text('Responsable: ', 20, 276);
+    doc.text('Cheque N° ', 153, 276);
+
+    doc.roundedRect(15, 15, 180, 267, 3, 3, 'S');
+    doc.line(15, 65, 195, 65);
+    doc.line(15, 85, 195, 85);
+    doc.line(15, 45, 195, 45);
+
+    //propiedades del archivo
+    var fecha = Date.now();
+
+    doc.setCreationDate(fecha);
+
+    doc.save('OC-' + '100');  
 }

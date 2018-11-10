@@ -16,9 +16,7 @@ $(document).ready(function () {
     });
 
     request.done(function (data) {
-        //console.log(data.Response);
         tablaMateriales = $('#grdItemsOTA').DataTable({
-            //"dom": "lfrtip",
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [],
@@ -43,19 +41,11 @@ $(document).ready(function () {
                     "sWidth": "5%",
                     "data": "cantRet"
                 }
-                //{
-                //    "sWidth": "5%",
-                //    "mRender": function (data, type, row) {
-                //        //console.log(row.fecha);
-                //        if (row.fecha != '') {
-                //            var value = new Date(parseInt(row.fecha.replace(/(^.*\()|([+-].*$)/g, '')));
-                //            return value.toLocaleString().split(' ')[0];
-                //        }
-                //        return '';
-                //    }
-                //}
             ],
-            "order": [1, "asc"]            
+            "order": [1, "asc"],
+            "paging": false,
+            "filter": false,
+            "info": false
         });
     });
 
