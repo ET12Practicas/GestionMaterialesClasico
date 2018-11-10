@@ -16,6 +16,7 @@ $(document).ready(function () {
 
     request.done(function (data) {
         itemsOC = data.Response;
+        console.log(itemsOC);
         tablaMateriales = $('#grdItemsOC').DataTable({
             //"dom": "lfrtip",
             "aaData": data.Response,
@@ -23,9 +24,13 @@ $(document).ready(function () {
                 "targets": [],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [3, 4]
+                "aTargets": [4,5]
             }],
             "aoColumns": [
+                {
+                    "sWidth": "5%",
+                    "data": "nroItem"
+                },
                 {
                     "sWidth": "30%",
                     "data": "material"
@@ -53,7 +58,7 @@ $(document).ready(function () {
                     }
                 }
             ],
-            "order": [1, "asc"],
+            "order": [0, "asc"],
             "paging": false,
             "filter": false,
             "info": false
@@ -71,6 +76,7 @@ function descargarOrdenCompra() {
     console.log(itemsOC);
 
     var columns = [
+        { title: "N°", dataKey: "nroItem" },
         { title: "Detalle", dataKey: "material" },
         { title: "Destino", dataKey: "dest" },
         { title: "Cantidad", dataKey: "cantidad" },

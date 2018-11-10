@@ -9,12 +9,12 @@
             </div>
             <div class="offset-2 col-2">
                 <button class="btn btn-outline-secondary btn-block" onclick="window.history.back();"><i class="far fa-arrow-alt-to-left"></i> Volver</button>
-            </div>            
+            </div>
         </div>
         <div class="row">
             <div class="offset-10 col-2">
                 <button class="btn btn-outline-primary btn-block" onclick="descargarOrdenCompra();"><i class="far fa-download"></i> Descargar</button>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -23,34 +23,61 @@
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
             <div class="row">
-                <div class="col-3">
-                    <p>Proveedor: <strong>@Model.proveedor.nombre</strong></p>
+                <div class="col-6">
+                    <p>Número: <strong>@Model.numeroInterno</strong></p>
                 </div>
-                <div class="offset-3 col-3">
-                    <p>Número Interno: <strong>@Model.numeroInterno</strong></p>
-                </div>
-                <div class="col-3">
+                <div class="col-6">
                     <p>Número Factura: <strong>@Model.numeroFactura</strong></p>
                 </div>
             </div>
+        </li>
+        @*<li class="list-group-item">
+                <div class="row">
+                    <div class="col-6">
+                        <b>Asociación Cooperadora María L. Prat de Louit</b>
+                    </div>
+                    <div class="col-3">
+                        <b>CUIT: 30-68246181-7</b>
+                    </div>
+                    <div class="col-3">
+                        <b>Factura tipo B o C</b>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-6">
+                        <b>Av. Del Libertador 238 CABA Tel. 4328-4433/9421</b>
+                    </div>
+                    <div class="col-3">
+                        <b>IVA EXENTO</b>
+                    </div>
+                </div>
+            </li>*@
+        <li class="list-group-item">
             <div class="row">
-                <div class="col-3">
-                    <p>Responsable: <strong>@Model.responsable.nombre</strong></p>
+                <div class="col-6">
+                    <p>Proveedor: <strong>@Model.proveedor.nombre</strong></p>
                 </div>
-                <div class="offset-3 col-3">
-                    <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
+                <div class="col-6">
+                    <p>Telefono: <strong>@Model.proveedor.telefono</strong></p>
                 </div>
-                <div class="col-3">
-                    <p>Cheque: <strong>@Model.chequeNro</strong></p>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p>Contacto: <strong>@Model.proveedor.nombreContacto</strong></p>
+                </div>
+                <div class="col-6">
+                    <p>Dirección: <strong>@Model.proveedor.direccion</strong></p>
                 </div>
             </div>
         </li>
         <li class="list-group-item">
-            <div class="card-title"><strong>Materiales</strong></div>
+            @*<div class="card-title"><strong>Materiales</strong></div>*@
             <table id="grdItemsOC" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Material</th>
+                        <th>N°</th>
+                        <th>Detalle</th>
                         <th>Destino</th>
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
@@ -59,7 +86,29 @@
                 </thead>
             </table>
         <li class="list-group-item">
-            Total: <strong>$ @Model.total</strong>
+            <div class="row">
+                <div class="offset-10 col-2">
+                    Total: <strong>$ @Model.total</strong>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-9">
+                    <p>Responsable: <strong>@Model.responsable.nombre</strong></p>
+                </div>
+                <div class="col-3">
+                    <p>Recursos Asignados: <strong>$ @Model.total</strong></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
+                </div>
+                <div class="col-3">
+                    <p>Cheque: <strong>@Model.chequeNro</strong></p>
+                </div>
+            </div>
         </li>
     </ul>
 </div>

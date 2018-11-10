@@ -12,7 +12,6 @@ namespace gestionmateriales.Controllers
 {
     public class OrdenCompraController : Controller
     {
-
         private readonly IOrdenCompraRepository ordenCompraRepository;
         private readonly IProveedorRepository proveedorRepository;
         private readonly IPersonalRepository personalRepository;
@@ -41,6 +40,7 @@ namespace gestionmateriales.Controllers
             CargarResponsable();
             return View("Agregar");
         }
+
         [HttpPost]
         public ActionResult Agregar(OrdenCompra aOC)
         {
@@ -158,8 +158,14 @@ namespace gestionmateriales.Controllers
 
             if (oc == null) throw new Exception("No existe orden de compra");
 
-            var itemsOC = from i in oc.itemsOC
-                           select new { material = i.material.nombre, dest = i.destino, cantidad = i.cantidad, precioUnitario = i.precioUnitario, subtotal = i.subtotal };
+            List<object> itemsOC = new List<object>();
+            
+            int posItem = 0;
+            foreach(var i in oc.itemsOC.OrderBy(x => x.material.nombre))
+            {
+                posItem++;
+                itemsOC.Add(new { nroItem = posItem, material = i.material.nombre, dest = i.destino, cantidad = i.cantidad, precioUnitario = i.precioUnitario, subtotal = i.subtotal });
+            }
 
             return Json(new { Response = itemsOC }, JsonRequestBehavior.AllowGet);
         }
