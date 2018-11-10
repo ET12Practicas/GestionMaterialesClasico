@@ -16,9 +16,7 @@ $(document).ready(function () {
 
     request.done(function (data) {
         itemsOC = data.Response;
-        console.log(itemsOC);
         tablaMateriales = $('#grdItemsOC').DataTable({
-            //"dom": "lfrtip",
             "aaData": data.Response,
             "aoColumnDefs": [{
                 "targets": [],
@@ -73,8 +71,6 @@ $(document).ready(function () {
 
 
 function descargarOrdenCompra() {
-    console.log(itemsOC);
-
     var columns = [
         { title: "N°", dataKey: "nroItem" },
         { title: "Detalle", dataKey: "material" },
@@ -115,9 +111,9 @@ function descargarOrdenCompra() {
 
     //numero orden de compra
     doc.setFontSize(12);
-    doc.text(166, 36, 'N° ');
+    doc.text(168, 36, 'N° ');
     doc.setFontSize(30);
-    doc.text(174, 36, '100');
+    doc.text(176, 36, numeroInterno.toString());
 
     //separador
     //doc.line(15, 45, 195, 45);
@@ -133,16 +129,17 @@ function descargarOrdenCompra() {
     doc.setFontType('normal');
     doc.text('Av. Del Libertador 238 CABA Tel. 4328-4433/9421', margenDerecho, 60);
     doc.setFontType('bold');
-    doc.text('IVA EXENTO', 170, 60);
+    doc.text('IVA EXENTO', 110, 60);
+    doc.text('Factura N° ' + numeroFactura, 161, 60);
 
     //separador
   //  doc.line(15, 65, 195, 65);
 
-    doc.text('Proveedor: ', margenDerecho, 72);
-    doc.text('Telefóno: ', 120, 72);
+    doc.text('Proveedor: ' + proveedorNombre, margenDerecho, 72);
+    doc.text('Telefóno: ' + proveedorTelefono, 110, 72);
 
-    doc.text('Contacto: ', margenDerecho, 80);
-    doc.text('Dirección: ', 90, 80);
+    doc.text('Contacto: ' + proveedorContacto, margenDerecho, 80);
+    doc.text('Dirección: ' + proveedorDireccion, 110, 80);
 
     //separador
     //doc.line(15, 85, 195, 85);
@@ -162,16 +159,16 @@ function descargarOrdenCompra() {
     //separador
     doc.line(margenDerecho, tablaPosY + 5, 195, tablaPosY + 5);
 
-    doc.text('TOTAL: $ 100000', 160, tablaPosY + 12);
+    doc.text('TOTAL: $' + total, 160, tablaPosY + 12);
 
     //separador
     doc.line(margenDerecho, tablaPosY + 17, 195, tablaPosY + 17);
+    var fechaFormato = new Date(parseInt(fecha.replace(/(^.*\()|([+-].*$)/g, '')));
+    doc.text('Fecha: ' + fechaFormato.toLocaleDateString(), margenDerecho, tablaPosY + 25);
+    doc.text('Recursos Asignados: $' + total, 140, tablaPosY + 25);
 
-    doc.text('Fecha: ', margenDerecho, tablaPosY + 25);
-    doc.text('Recursos Asignados: ', 135, tablaPosY + 25);
-
-    doc.text('Responsable: ', margenDerecho, tablaPosY + 33);
-    doc.text('Cheque N° ', 153, tablaPosY + 33);
+    doc.text('Responsable: ' + responsable, margenDerecho, tablaPosY + 33);
+    doc.text('Cheque N° ' + cheque, 140, tablaPosY + 33);
 
     //doc.roundedRect(15, 15, 180, 267, 3, 3, 'S');
     doc.line(margenDerecho, 65, 195, 65);
@@ -179,9 +176,9 @@ function descargarOrdenCompra() {
     doc.line(margenDerecho, 45, 195, 45);
 
     //propiedades del archivo
-    var fecha = Date.now();
+    var value = Date.now();
+    var fechaCreacion = new Date(value);
+    doc.setCreationDate(value);
 
-    doc.setCreationDate(fecha);
-
-    doc.save('OC-' + '100');  
+    doc.save('OC-' + numeroInterno.toString() + '-' + fechaCreacion.getDate() + '' + (fechaCreacion.getMonth() + 1).toString() + '' + fechaCreacion.getFullYear());  
 }
