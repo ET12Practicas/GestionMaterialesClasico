@@ -270,6 +270,7 @@
     <Content Include="Assets\gsuarez.jpg" />
     <Content Include="Assets\logo-sm.png" />
     <Content Include="Assets\logo128x128.png" />
+    <Content Include="Assets\logodoc.png" />
     <Content Include="Content\adminator\bundle.js" />
     <Content Include="Content\adminator\global.css" />
     <Content Include="Content\adminator\images\404.png" />

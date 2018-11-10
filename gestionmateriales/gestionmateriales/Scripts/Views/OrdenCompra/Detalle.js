@@ -27,12 +27,12 @@ $(document).ready(function () {
             }],
             "aoColumns": [
                 {
-                    "sWidth": "10%",
-                    "data": "codigo"
+                    "sWidth": "30%",
+                    "data": "material"
                 },
                 {
-                    "sWidth": "50%",
-                    "data": "material"
+                    "sWidth": "30%",
+                    "data": "dest"
                 },
                 {
                     "sWidth": "10%",
@@ -71,19 +71,21 @@ function descargarOrdenCompra() {
     console.log(itemsOC);
 
     var columns = [
-        { title: "Material", dataKey: "material" },
+        { title: "Detalle", dataKey: "material" },
+        { title: "Destino", dataKey: "dest" },
         { title: "Cantidad", dataKey: "cantidad" },
-        { title: "Precio Unitario", dataKey: "precioUnitario" },
+        { title: "P. Unit.", dataKey: "precioUnitario" },
         { title: "Subtotal", dataKey: "subtotal" }
     ];
 
     var nombreInstiticion = 'Escuela Técnica N°12 DE 1 "Libertador General Jose de San Martin"';
     var nombreDocumento = 'ORDEN DE COMPRA';
     var logo = baseURL + 'Assets/logodoc.png';
+    var margenDerecho = 15;
 
     var doc = new jsPDF();
 
-    //doc.roundedRect(15, 15, 180, 267, 3, 3, 'S');
+    doc.roundedRect(164, 18, 30, 22, 3, 3, 'S');
     //doc.rect(15, 15, 180, 267, 'S');
     doc.setFont('helvetica');
     doc.setFontType('normal');
@@ -98,18 +100,18 @@ function descargarOrdenCompra() {
     //nombre documento
     doc.setFontType('bold');
     doc.setFontSize(18);
-    doc.text(75, 42, nombreDocumento);
+    doc.text(75, 34, nombreDocumento);
 
     //leyenda oficina tecnica
     doc.setFontType('bolditalic');
     doc.setFontSize(8);
-    doc.text(168, 22, 'Oficina Técnica');
+    doc.text(168, 24, 'Oficina Técnica');
 
     //numero orden de compra
     doc.setFontSize(12);
-    doc.text(166, 34, 'N° ');
+    doc.text(166, 36, 'N° ');
     doc.setFontSize(30);
-    doc.text(174, 34, '100');
+    doc.text(174, 36, '100');
 
     //separador
     //doc.line(15, 45, 195, 45);
@@ -117,23 +119,23 @@ function descargarOrdenCompra() {
     doc.setFont('helvetica');
     doc.setFontType('bolditalic');
     doc.setFontSize(10);
-    doc.text('Asociación Cooperadora María L. Prat de Louit', 20, 52);
+    doc.text('Asociación Cooperadora María L. Prat de Louit', margenDerecho, 52);
     doc.setFontType('bold');
     doc.text('CUIT: 30-68246181-7', 110, 52);
     doc.text('Factura tipo B o C', 161, 52);
 
     doc.setFontType('normal');
-    doc.text('Av. Del Libertador 238 CABA Tel. 4328-4433/9421', 20, 60);
+    doc.text('Av. Del Libertador 238 CABA Tel. 4328-4433/9421', margenDerecho, 60);
     doc.setFontType('bold');
     doc.text('IVA EXENTO', 170, 60);
 
     //separador
   //  doc.line(15, 65, 195, 65);
 
-    doc.text('Proveedor: ', 20, 72);
+    doc.text('Proveedor: ', margenDerecho, 72);
     doc.text('Telefóno: ', 120, 72);
 
-    doc.text('Contacto: ', 20, 80);
+    doc.text('Contacto: ', margenDerecho, 80);
     doc.text('Dirección: ', 90, 80);
 
     //separador
@@ -143,33 +145,32 @@ function descargarOrdenCompra() {
     doc.autoTable(columns, itemsOC, {
         theme: 'grid',
         margin: {
-            top: 95,
-            left: 20,
-            right: 20
-        },
-        addPageContent: function (data) {
-            doc.text("Materiales", 20, 90);
+            top: 90,
+            left: margenDerecho,
+            right: margenDerecho
         }
     });
 
-    doc.text('Total: $ 100000', 20, doc.autoTable.previous.finalY + 10);
-    
-    //separador
-    doc.line(15, 250, 195, 250);
+    var tablaPosY = doc.autoTable.previous.finalY;
 
     //separador
-    doc.line(15, 260, 195, 260);
+    doc.line(margenDerecho, tablaPosY + 5, 195, tablaPosY + 5);
 
-    doc.text('Fecha: ', 20, 268);
-    doc.text('Recursos Asignados: ', 135, 268);
+    doc.text('TOTAL: $ 100000', 160, tablaPosY + 12);
 
-    doc.text('Responsable: ', 20, 276);
-    doc.text('Cheque N° ', 153, 276);
+    //separador
+    doc.line(margenDerecho, tablaPosY + 17, 195, tablaPosY + 17);
 
-    doc.roundedRect(15, 15, 180, 267, 3, 3, 'S');
-    doc.line(15, 65, 195, 65);
-    doc.line(15, 85, 195, 85);
-    doc.line(15, 45, 195, 45);
+    doc.text('Fecha: ', margenDerecho, tablaPosY + 25);
+    doc.text('Recursos Asignados: ', 135, tablaPosY + 25);
+
+    doc.text('Responsable: ', margenDerecho, tablaPosY + 33);
+    doc.text('Cheque N° ', 153, tablaPosY + 33);
+
+    //doc.roundedRect(15, 15, 180, 267, 3, 3, 'S');
+    doc.line(margenDerecho, 65, 195, 65);
+    doc.line(margenDerecho, 85, 195, 85);
+    doc.line(margenDerecho, 45, 195, 45);
 
     //propiedades del archivo
     var fecha = Date.now();

@@ -4,16 +4,16 @@
 <div class="card shadow">
     <div class="card-body">
         <div class="row">
-            <div class="col-4">
+            <div class="col-8">
                 <h1>Orden de Compra</h1>
             </div>
-            <div class="offset-6 col-2">
-                <button class="btn btn-outline-secondary btn-block" onclick="window.history.back();">Volver</button>
+            <div class="offset-2 col-2">
+                <button class="btn btn-outline-secondary btn-block" onclick="window.history.back();"><i class="far fa-arrow-alt-to-left"></i> Volver</button>
             </div>            
         </div>
         <div class="row">
             <div class="offset-10 col-2">
-                <button class="btn btn-outline-primary btn-block" onclick="descargarOrdenCompra();"><i class="far fa-file-alt"></i> Descargar</button>
+                <button class="btn btn-outline-primary btn-block" onclick="descargarOrdenCompra();"><i class="far fa-download"></i> Descargar</button>
             </div>            
         </div>
     </div>
@@ -50,8 +50,8 @@
             <table id="grdItemsOC" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Código</th>
                         <th>Material</th>
+                        <th>Destino</th>
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
                         <th>Subtotal</th>

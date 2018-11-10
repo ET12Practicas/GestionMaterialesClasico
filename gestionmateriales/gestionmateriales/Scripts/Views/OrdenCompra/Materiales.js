@@ -16,6 +16,7 @@ $(document).ready(function () {
     });
 
     request.done(function (data) {
+        console.log(data.Response);
         tablaMateriales = $ ('#grdMateriales').DataTable({
             "aaData" : data.Response,
             "aoColumnDefs": [{
@@ -32,12 +33,20 @@ $(document).ready(function () {
                     "data" : "idMat"
                 },
                 {
-                    "sWidth": "10%",
+                    "sWidth": "7%",
                     "data" : "codMat"
                 },
                 {
-                    "sWidth": "40%",
+                    "sWidth": "30%",
                     "data" : "nomMat"
+                },
+                {
+                    "sWidth": "30%",
+                    "data": "dest",
+                    "mRender": function (dato, type, raw) {
+                        var editarDest = '<input id="iDes-' + raw.idOC + '-' + raw.idMat + '" type="text" maxlength="49" class="form-control form-control-sm" value="' + raw.dest + '"/>';
+                        return editarDest;
+                    }
                 },
                 {
                     "sWidth": "10%",
@@ -69,11 +78,11 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    "sWidth": "7%",
+                    "sWidth": "5%",
                     "mRender": function (dato, type, raw) {
 
                         var btnAgregarItemOC = '<button type="button" title="Agrega el item a la Orden de Compra" class="btn btn-outline-primary btn-sm" href="" id="itemOC-' + raw.idOC + '-' + raw.idMat + 
-                            '" onclick="AgregarItemOC(this);"><i class="fas fa-plus"></i> Agregar</button> ';
+                            '" onclick="AgregarItemOC(this);"><i class="fas fa-plus"></i></button> ';
                         return btnAgregarItemOC;
                     }
                 }],
@@ -96,6 +105,7 @@ function CalcularSubtotal(idOC, idMat)
 function AgregarItemOC(data) {
     var idOC = data.id.split('-')[1];
     var idMaterial = data.id.split('-')[2];
+    var destino = $('#iDes-' + idOC + '-' + idMaterial).val();
     var cantidad = $('#iCant-' + idOC + '-' + idMaterial).val();
     var precioUnitario = $('#iPre-' + idOC + '-' + idMaterial).val().replace('.', ',');
     var subtotal = $('#iSub-' + idOC + '-' + idMaterial).val().replace('.', ',');
@@ -104,7 +114,7 @@ function AgregarItemOC(data) {
     var request = $.ajax({
         url: baseURL + "OrdenCompra/AgregarItemMaterial",
         type: 'POST',
-        data: "{ 'id': '" + idOC + "', 'idMaterial':'" + idMaterial + "', 'unaCantidad':'" + cantidad + "', 'unPrecioUnitario':'" + precioUnitario + "', 'unSubtotal':' " + subtotal + "'}",
+        data: "{ 'id': '" + idOC + "', 'idMaterial':'" + idMaterial + "', 'unaCantidad':'" + cantidad + "', 'unPrecioUnitario':'" + precioUnitario + "', 'unSubtotal':' " + subtotal + "', 'unDestino':'" + destino + "'}",
         dataType: 'json',
         contentType: 'application/json; charset=utf-8'
     });
