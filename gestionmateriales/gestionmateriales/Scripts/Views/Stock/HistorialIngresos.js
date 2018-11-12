@@ -58,7 +58,7 @@ if (!$.fn.dataTable.isDataTable('#grdIngresos')) {
                 }
             }
         ],
-        "order": [7, "desc"],
+        "order": [0, "desc"],
         "processing": true
     });
 }

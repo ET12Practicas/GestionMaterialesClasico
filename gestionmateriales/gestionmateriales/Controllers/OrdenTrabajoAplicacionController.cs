@@ -350,10 +350,11 @@ namespace gestionmateriales.Controllers
                            select new { cant = i.cantidad, codMat = i.material.codigo, codMatId = i.material.idMaterial, matNom = i.material.nombre, otaNro = i.ordenTrabajoAplicacion.numero };
 
             List<object> itemsOTAactual = new List<object>();
-
-            foreach (var item in itemsOTA)
+            int itemNro = 0;
+            foreach (var item in itemsOTA.OrderBy(x => x.matNom))
             {
-                itemsOTAactual.Add(new { cant = item.cant, codMat = item.codMat, mat = item.matNom, cantRet = GetCantidadRetirada(item.otaNro, item.codMatId) });
+                itemNro++;
+                itemsOTAactual.Add(new { nroItem = itemNro, cant = item.cant,   mat = item.matNom, cantRet = GetCantidadRetirada(item.otaNro, item.codMatId) });
             }
 
             return Json(new { Response = itemsOTAactual }, JsonRequestBehavior.AllowGet);

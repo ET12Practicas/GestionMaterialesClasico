@@ -571,6 +571,8 @@
     <Content Include="Scripts\Fuse\css\fuzzycomplete.min.css" />
     <Content Include="Scripts\Fuse\fuse.min.js" />
     <Content Include="Scripts\Fuse\js\fuzzycomplete.min.js" />
+    <Content Include="Scripts\jspdf.min.js" />
+    <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
     <Content Include="Scripts\masterNotify.js" />
     <Content Include="Scripts\MasterDataTables.js" />
     <Content Include="favicon.ico" />

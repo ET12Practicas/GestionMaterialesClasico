@@ -30,7 +30,8 @@ namespace gestionmateriales.Repository.Implementation
                 .Include(x => x.proveedor)
                 .Include(x => x.responsable)
                 .Include(x => x.itemsOC)
-                .ToList().FirstOrDefault();
+                .ToList()
+                .FirstOrDefault();
         }
     }
 }

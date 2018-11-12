@@ -3,47 +3,51 @@
 <input type="hidden" id="IdOTA" value="@Model.idOrdenTrabajoAplicacion" />
 <div class="card shadow">
     <div class="card-body">
-<div class="row">
-    <div class="col-8">
-        <h1>Orden de Trabajo de Aplicación</h1>
-    </div>
-    <div class="offset-2 col-2">
-        <button class="btn btn-outline-secondary btn-block btn-sm" onclick="window.history.back();" title="Volver a la pantalla anterior"><i class="far fa-arrow-alt-to-left"></i> Volver</button>
-    </div>
-</div>
+        <div class="row">
+            <div class="col-8">
+                <h1>Orden de Trabajo de Aplicación</h1>
+            </div>
+            <div class="offset-2 col-2">
+                <button class="btn btn-outline-secondary btn-block" onclick="window.history.back();" title="Volver a la pantalla anterior"><i class="far fa-arrow-alt-to-left"></i> Volver</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-10 col-2">
+                <button class="btn btn-outline-primary btn-block" onclick="descargarOrdenTrabajoAplicacion();"><i class="far fa-download"></i> Descargar</button>
+            </div>
         </div>
     </div>
-        <br />
+</div>
+<br />
 <div class="card shadow">
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
             <div class="row">
-                <div class="col-3">
+                <div class="col-10">
                     <p>Trabajo Práctico: <strong>@Model.nombre</strong></p>
                 </div>
-                <div class="offset-6 col-3">
+                <div class="col-2">
                     <p>Número: <strong>@Model.numero</strong></p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-3">
+                <div class="col-5">
                     <p>Responsable: <strong>@Model.responsable.nombre</strong></p>
                 </div>
-                <div class="col-3">
+                <div class="col-5">
                     <p>Jefe de Sección: <strong>@Model.jefeSeccion.nombre</strong></p>
                 </div>
-                <div class="offset-3 col-3">
+                <div class="col-2">
                     <p>Fecha: <strong>@Model.fecha.ToShortDateString()</strong></p>
                 </div>
             </div>
         </li>
         <li class="list-group-item">
-            <div class="card-title"><strong>Materiales</strong></div>
             <table id="grdItemsOTA" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
+                        <th>N°</th>
                         <th>Cantidad</th>
-                        <th>Código</th>
                         <th>Material</th>
                         <th>Retirado</th>
                     </tr>
@@ -53,5 +57,16 @@
     </ul>
 </div>
 
+<script type="text/javascript">
+    var numero = @Html.Raw(Json.Encode(Model.numero));
+    var nombre = @Html.Raw(Json.Encode(Model.nombre));
+    var turno = @Html.Raw(Json.Encode(Model.turno.nombre));
+    var responsable = @Html.Raw(Json.Encode(Model.responsable.nombre));
+    var jefeSeccion = @Html.Raw(Json.Encode(Model.jefeSeccion.nombre));
+    var fecha = @Html.Raw(Json.Encode(Model.fecha));
+</script>
+
+<script type="text/javascript" src="~/Scripts/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jspdf.plugin.autotable.min.js"></script>
 <script type="text/javascript" src="~/Scripts/MasterDataTables.js"></script>
 <script type="text/javascript" src="~/Scripts/Views/OrdenTrabajoAplicacion/Detalle.js"></script>

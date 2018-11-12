@@ -206,7 +206,9 @@ namespace gestionmateriales.Controllers
                 case 2:
                     {
                         OrdenTrabajoAplicacion ota = ordenTrabajoAplicacionRepository.FindOne(x => x.numero == documento);
-                        return ota.itemsOTA.FirstOrDefault(x => x.material.idMaterial == unMaterial.idMaterial).cantidad;
+                        int totalARetirar = ota.itemsOTA.FirstOrDefault(x => x.material.idMaterial == unMaterial.idMaterial).cantidad;
+                        int retirado = salidaMaterialRepository.Find(x => x.codigoDocumento == unaSalida.codigoDocumento && x.material.idMaterial == unMaterial.idMaterial).Sum(x => x.cantidad);
+                        return totalARetirar - retirado;
                     }
                 // Orden de trabajo
                 //case 3:

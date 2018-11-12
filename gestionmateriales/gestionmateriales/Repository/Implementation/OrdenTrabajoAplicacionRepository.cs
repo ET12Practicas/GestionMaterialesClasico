@@ -20,7 +20,9 @@ namespace gestionmateriales.Repository.Implementation
             return context.Set<OrdenTrabajoAplicacion>().Where(x => x.idOrdenTrabajoAplicacion == id)
                 .Include(x => x.turno)
                 .Include(x => x.responsable)
-                .Include(x => x.jefeSeccion).ToList().FirstOrDefault();
+                .Include(x => x.jefeSeccion)
+                .ToList()
+                .FirstOrDefault();
         }
 
         public override OrdenTrabajoAplicacion FindOne(Expression<Func<OrdenTrabajoAplicacion, bool>> predicate)
@@ -30,7 +32,8 @@ namespace gestionmateriales.Repository.Implementation
                 .Include(x => x.responsable)
                 .Include(x => x.jefeSeccion)
                 .Include(x => x.itemsOTA)
-                .ToList().FirstOrDefault();
+                .ToList()
+                .FirstOrDefault();
         }
     }
 }
