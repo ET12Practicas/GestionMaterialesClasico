@@ -72,8 +72,8 @@ function descargarOrdenTrabajoAplicacion() {
 
     var doc = new jsPDF();
     
-    doc.setFont('times', 'normal');
-    //doc.setFontType('normal');
+    doc.setFont('helvetica');
+    doc.setFontType('normal');
 
     //nombre institucion
     doc.setFontSize(10);
@@ -88,20 +88,27 @@ function descargarOrdenTrabajoAplicacion() {
     doc.text(52, 42, nombreDocumento);
 
     //leyenda oficina tecnica
-    doc.setFontType('bolditalic');
-    doc.setFontSize(8);
+    //doc.setFontType('bolditalic');
+    //doc.setFontSize(8);
 
     //numero orden de compra
+    doc.setFontType('bolditalic');
     doc.setFontSize(12);
     doc.text(172, 42, 'N° ');
     doc.setFontSize(30);
     doc.text(178, 42, numero.toString());
 
+    doc.setFontType('normal');
+    doc.setFontSize(12);
+    doc.text(156, 62, 'Turno: ');
 
     doc.setFontType('bold');
     doc.setFontSize(16);
     doc.text(margenDerecho, 62, nombre);
-    doc.text(156, 62, 'Turno: ' + turno);
+
+    doc.setFontType('bold');
+    doc.setFontSize(14);
+    doc.text(170, 62, turno);
     
     doc.setFontType('normal');
     doc.setFontSize(12);
@@ -110,8 +117,8 @@ function descargarOrdenTrabajoAplicacion() {
 
     doc.setFontType('bold');
     doc.setFontSize(14);
-    doc.text(responsable, 40, 72);
-    doc.text(jefeSeccion, 140, 72);
+    doc.text(responsable, 44, 72);
+    doc.text(jefeSeccion, 144, 72);
     
     //doc.text('Dirección: ' + proveedorDireccion, 110, 80);
 

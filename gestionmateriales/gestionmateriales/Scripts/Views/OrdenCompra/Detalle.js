@@ -87,7 +87,7 @@ function descargarOrdenCompra() {
 
     var doc = new jsPDF();
 
-    doc.roundedRect(164, 18, 30, 22, 3, 3, 'S');
+    //doc.roundedRect(164, 18, 30, 22, 3, 3, 'S');
     //doc.rect(15, 15, 180, 267, 'S');
     doc.setFont('helvetica');
     doc.setFontType('normal');
