@@ -11,7 +11,7 @@
         @using (@Html.BeginForm("Restar", "Stock", FormMethod.Post))
         {
             <div class="form row">
-                <div class="form-group col-5">
+                <div class="form-group col-6">
                     <label for="companyValue">Código: </label>  <strong><span class="output" id="codigoMaterial"></span></strong>
                     <br />
                     <br />
@@ -19,7 +19,7 @@
                     @* Aqui se guarda el codigo del material que se enviara en el formulario *@
                     @Html.EditorFor(model => model.codigoMaterial, new { htmlAttributes = new { @class = "form-control", id = "codMaterial", type = "hidden" } })
                 </div>
-                <div class="form-group offset-1 col-4">
+                <div class="form-group col-6">
                     @Html.LabelFor(model => model.cantidad, "Cantidad a Egresar", new { @class = "control-label" })
                     @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", min = 0, required = "true", id = "cantidadMaterial", autocomplete = "off" } })
                     <br />
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form row">
-                <div class="form-group offset-6 col-4">
+                <div class="form-group offset-6 col-6">
                     @Html.LabelFor(model => model.codigoDocumento, "Número Documento", new { @class = "control-label" })
                     @Html.EditorFor(model => model.codigoDocumento, new { htmlAttributes = new { @class = "form-control", maxlength = 15, id = "codigoDocumento", required = "true", autocomplete = "off" } })
                 </div>
