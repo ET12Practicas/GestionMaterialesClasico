@@ -239,6 +239,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\asilva.jpg" />
+    <Content Include="Assets\circleDocumentos.png" />
+    <Content Include="Assets\circleMateriales.png" />
+    <Content Include="Assets\circleProvedores.png" />
+    <Content Include="Assets\circleStock.ico" />
     <Content Include="Assets\gcolombre.jpg" />
     <Content Include="Assets\Gifs\BorrarMaterial.gif" />
     <Content Include="Assets\Gifs\BorrarPersonal.gif" />
@@ -271,6 +275,7 @@
     <Content Include="Assets\logo-sm.png" />
     <Content Include="Assets\logo128x128.png" />
     <Content Include="Assets\logodoc.png" />
+    <Content Include="Assets\plaza.png" />
     <Content Include="Content\adminator\bundle.js" />
     <Content Include="Content\adminator\global.css" />
     <Content Include="Content\adminator\images\404.png" />
@@ -285,6 +290,7 @@
     <Content Include="Content\adminator\vendor.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\carousel.css" />
     <Content Include="Content\datetimepicker\bootstrap-datepicker.es.min.js" />
     <Content Include="Content\datetimepicker\css\bootstrap-datepicker.css" />
     <Content Include="Content\datetimepicker\css\bootstrap-datepicker.min.css" />
