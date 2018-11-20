@@ -135,16 +135,17 @@ function getProveedorDetalle(data) {
     });
 
     requestProveedor.done(function (data) {
+        console.log(data.Response);
         $('#proNombre').html(data.Response[0].nombre);
         $('#proRazonSocial').html(data.Response[0].razonSocial);
         $('#proCuit').html(data.Response[0].cuit);
         $('#proTelefono').html(data.Response[0].telefono);
-        $('#proCorreo').html(data.Response[0].correo);
+        $('#proCorreo').html(data.Response[0].email);
 
         $('#proDireccion').html(data.Response[0].direccion);
         $('#proZona').html(data.Response[0].zona);
         $('#proHorario').html(data.Response[0].horario);
-        $('#proContacto').html(data.Response[0].contacto);
+        $('#proContacto').html(data.Response[0].nombreContacto);
 
         $('#modalDetalle').modal('show');
     });

@@ -107,7 +107,8 @@ namespace gestionmateriales.Controllers
                 proveedor.razonSocial = unProveedor.razonSocial;
 
                 proveedor.horario = unProveedor.horario;
-
+                proveedor.email = unProveedor.email;
+                proveedor.zona = unProveedor.zona;
                 proveedor.telefono = unProveedor.telefono;
 
                 proveedor.nombreContacto = unProveedor.nombreContacto;
