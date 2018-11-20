@@ -135,7 +135,6 @@ function getProveedorDetalle(data) {
     });
 
     requestProveedor.done(function (data) {
-        console.log(data.Response);
         $('#proNombre').html(data.Response[0].nombre);
         $('#proRazonSocial').html(data.Response[0].razonSocial);
         $('#proCuit').html(data.Response[0].cuit);
