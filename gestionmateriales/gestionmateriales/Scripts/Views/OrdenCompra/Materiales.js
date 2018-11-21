@@ -23,7 +23,7 @@ $(document).ready(function () {
                 "targets": [0, 1],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [3,4,6]
+                "aTargets": [4,5,6]
             }],
             "aoColumns": [
                 {
@@ -37,16 +37,8 @@ $(document).ready(function () {
                     "data" : "codMat"
                 },
                 {
-                    "sWidth": "30%",
+                    "sWidth": "60%",
                     "data" : "nomMat"
-                },
-                {
-                    "sWidth": "30%",
-                    "data": "dest",
-                    "mRender": function (dato, type, raw) {
-                        var editarDest = '<input id="iDes-' + raw.idOC + '-' + raw.idMat + '" type="text" maxlength="49" class="form-control form-control-sm" value="' + raw.dest + '"/>';
-                        return editarDest;
-                    }
                 },
                 {
                     "sWidth": "10%",
@@ -105,7 +97,7 @@ function CalcularSubtotal(idOC, idMat)
 function AgregarItemOC(data) {
     var idOC = data.id.split('-')[1];
     var idMaterial = data.id.split('-')[2];
-    var destino = $('#iDes-' + idOC + '-' + idMaterial).val();
+    //var destino = $('#iDes-' + idOC + '-' + idMaterial).val();
     var cantidad = $('#iCant-' + idOC + '-' + idMaterial).val();
     var precioUnitario = $('#iPre-' + idOC + '-' + idMaterial).val().replace('.', ',');
     var subtotal = $('#iSub-' + idOC + '-' + idMaterial).val().replace('.', ',');
@@ -114,7 +106,7 @@ function AgregarItemOC(data) {
     var request = $.ajax({
         url: baseURL + "OrdenCompra/AgregarItemMaterial",
         type: 'POST',
-        data: "{ 'id': '" + idOC + "', 'idMaterial':'" + idMaterial + "', 'unaCantidad':'" + cantidad + "', 'unPrecioUnitario':'" + precioUnitario + "', 'unSubtotal':' " + subtotal + "', 'unDestino':'" + destino + "'}",
+        data: "{ 'id': '" + idOC + "', 'idMaterial':'" + idMaterial + "', 'unaCantidad':'" + cantidad + "', 'unPrecioUnitario':'" + precioUnitario + "', 'unSubtotal':' " + subtotal + "' }",
         dataType: 'json',
         contentType: 'application/json; charset=utf-8'
     });

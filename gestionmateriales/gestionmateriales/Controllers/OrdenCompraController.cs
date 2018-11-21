@@ -164,7 +164,7 @@ namespace gestionmateriales.Controllers
             foreach(var i in oc.itemsOC.OrderBy(x => x.material.nombre))
             {
                 posItem++;
-                itemsOC.Add(new { nroItem = posItem, material = i.material.nombre, dest = i.destino, cantidad = i.cantidad, precioUnitario = i.precioUnitario, subtotal = i.subtotal });
+                itemsOC.Add(new { nroItem = posItem, material = i.material.nombre, cantidad = i.cantidad, precioUnitario = i.precioUnitario, subtotal = i.subtotal });
             }
 
             return Json(new { Response = itemsOC }, JsonRequestBehavior.AllowGet);
@@ -226,11 +226,11 @@ namespace gestionmateriales.Controllers
 
                 if (itemOC != null)
                 {
-                    itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, dest = itemOC.destino, itemOC.cantidad, itemOC.precioUnitario, itemOC.subtotal });
+                    itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, itemOC.cantidad, itemOC.precioUnitario, itemOC.subtotal });
                 }
                 else
                 {
-                    itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, dest = String.Empty, cantidad = String.Empty, precioUnitario = String.Empty, subtotal = String.Empty });
+                    itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, cantidad = String.Empty, precioUnitario = String.Empty, subtotal = String.Empty });
                 }                    
             }
 
@@ -247,7 +247,7 @@ namespace gestionmateriales.Controllers
         }
 
         [HttpPost]
-        public ActionResult AgregarItemMaterial(int id, int idMaterial, int unaCantidad, double unPrecioUnitario, double unSubtotal, string unDestino)
+        public ActionResult AgregarItemMaterial(int id, int idMaterial, int unaCantidad, double unPrecioUnitario, double unSubtotal)
         {
             var unaOrdenCompra = ordenCompraRepository.FindOne(x => x.IdOrdenCompra == id);
 
@@ -268,12 +268,10 @@ namespace gestionmateriales.Controllers
                     itemOC.precioUnitario = unPrecioUnitario;
 
                     itemOC.subtotal = unSubtotal;
-
-                    itemOC.destino = unDestino;
                 }
                 else
                 {
-                    unaOrdenCompra.itemsOC.Add(new ItemOrdenCompra { ordenCompra = unaOrdenCompra, material = unMaterial, cantidad = unaCantidad, precioUnitario = unPrecioUnitario, subtotal = unSubtotal, destino = unDestino });
+                    unaOrdenCompra.itemsOC.Add(new ItemOrdenCompra { ordenCompra = unaOrdenCompra, material = unMaterial, cantidad = unaCantidad, precioUnitario = unPrecioUnitario, subtotal = unSubtotal });
                 }
 
                 ordenCompraRepository.Edit(unaOrdenCompra);

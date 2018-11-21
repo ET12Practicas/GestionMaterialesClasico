@@ -22,7 +22,7 @@ $(document).ready(function () {
                 "targets": [],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [4,5]
+                "aTargets": [3,4]
             }],
             "aoColumns": [
                 {
@@ -32,10 +32,6 @@ $(document).ready(function () {
                 {
                     "sWidth": "30%",
                     "data": "material"
-                },
-                {
-                    "sWidth": "30%",
-                    "data": "dest"
                 },
                 {
                     "sWidth": "10%",
@@ -74,7 +70,6 @@ function descargarOrdenCompra() {
     var columns = [
         { title: "N°", dataKey: "nroItem" },
         { title: "Detalle", dataKey: "material" },
-        { title: "Destino", dataKey: "dest" },
         { title: "Cantidad", dataKey: "cantidad" },
         { title: "P. Unit.", dataKey: "precioUnitario" },
         { title: "Subtotal", dataKey: "subtotal" }

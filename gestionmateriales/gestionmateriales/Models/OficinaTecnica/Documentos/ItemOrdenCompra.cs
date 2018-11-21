@@ -18,10 +18,6 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int cantidad { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string destino { get; set; }
-
-        [Required]
         public double precioUnitario { get; set; }
 
         [Required]
