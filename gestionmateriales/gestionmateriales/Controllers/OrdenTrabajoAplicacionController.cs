@@ -259,6 +259,8 @@ namespace gestionmateriales.Controllers
         [HttpGet]
         public JsonResult GetMateriales(int id)
         {
+            ItemOrdenTrabajoAplicacion itemOTA;
+
             int cantMat;
 
             var itemsMateriales = new List<object>();
@@ -269,9 +271,18 @@ namespace gestionmateriales.Controllers
 
             foreach (Material mat in materialRepository.Find(x => x.hab))
             {
+                itemOTA = items.FirstOrDefault(x => x.material.idMaterial == mat.idMaterial);
+
                 cantMat = getCantidadByIdMaterial(items, mat.idMaterial);
 
-                itemsMateriales.Add(new { idOT = ot.idOrdenTrabajoAplicacion, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, stkMat = mat.stockActual, cant = cantMat });
+                if (itemOTA != null)
+                {
+                    itemsMateriales.Add(new { idOT = ot.idOrdenTrabajoAplicacion, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, dest = itemOTA.destino, stkMat = mat.stockActual, cant = cantMat });
+                }
+                else
+                {
+                    itemsMateriales.Add(new { idOT = ot.idOrdenTrabajoAplicacion, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, dest = String.Empty, stkMat = mat.stockActual, cant = 0 });
+                }
             }
 
             return Json(new { Response = itemsMateriales }, JsonRequestBehavior.AllowGet);
@@ -286,7 +297,7 @@ namespace gestionmateriales.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddItemMaterial(int id, int idMaterial, int cant)
+        public ActionResult AddItemMaterial(int id, int idMaterial, int cant, string unDestino)
         {
             var ot = ordenTrabajoAplicacionRepository.FindOne(x => x.idOrdenTrabajoAplicacion == id);
 
@@ -303,10 +314,11 @@ namespace gestionmateriales.Controllers
                 if (itemOTA != null)
                 {
                     itemOTA.cantidad = cant;
+                    itemOTA.destino = unDestino;
                 }
                 else
                 {
-                    ot.itemsOTA.Add(new ItemOrdenTrabajoAplicacion { ordenTrabajoAplicacion = ot, material = mat, cantidad = cant });
+                    ot.itemsOTA.Add(new ItemOrdenTrabajoAplicacion { ordenTrabajoAplicacion = ot, material = mat, cantidad = cant, destino = unDestino });
                 }
 
                 ordenTrabajoAplicacionRepository.Edit(ot);
@@ -347,14 +359,14 @@ namespace gestionmateriales.Controllers
             if (ota == null) throw new Exception("No existe orden trabajo aplicacion");
 
             var itemsOTA = from i in ota.itemsOTA
-                           select new { cant = i.cantidad, codMat = i.material.codigo, codMatId = i.material.idMaterial, matNom = i.material.nombre, otaNro = i.ordenTrabajoAplicacion.numero };
+                           select new { cant = i.cantidad, codMat = i.material.codigo, codMatId = i.material.idMaterial, matNom = i.material.nombre, destino = i.destino, otaNro = i.ordenTrabajoAplicacion.numero };
 
             List<object> itemsOTAactual = new List<object>();
             int itemNro = 0;
             foreach (var item in itemsOTA.OrderBy(x => x.matNom))
             {
                 itemNro++;
-                itemsOTAactual.Add(new { nroItem = itemNro, cant = item.cant,   mat = item.matNom, cantRet = GetCantidadRetirada(item.otaNro, item.codMatId) });
+                itemsOTAactual.Add(new { nroItem = itemNro, cant = item.cant,   mat = item.matNom, dist = item.destino, cantRet = GetCantidadRetirada(item.otaNro, item.codMatId) });
             }
 
             return Json(new { Response = itemsOTAactual }, JsonRequestBehavior.AllowGet);

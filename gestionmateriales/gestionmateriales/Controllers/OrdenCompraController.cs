@@ -231,8 +231,7 @@ namespace gestionmateriales.Controllers
                 else
                 {
                     itemsMateriales.Add(new { idOC = oc.IdOrdenCompra, idMat = mat.idMaterial, codMat = mat.codigo, nomMat = mat.nombre, dest = String.Empty, cantidad = String.Empty, precioUnitario = String.Empty, subtotal = String.Empty });
-                }
-                    
+                }                    
             }
 
             return Json(new { Response = itemsMateriales }, JsonRequestBehavior.AllowGet);

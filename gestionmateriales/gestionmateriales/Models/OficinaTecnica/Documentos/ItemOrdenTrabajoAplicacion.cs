@@ -12,6 +12,10 @@ namespace gestionmateriales.Models.OficinaTecnica.Documentos
         public int idItemOrdenTrabajoAplicacion { get; set; }
 
         [Required]
+        [StringLength(50)]
+        public string destino { get; set; }
+
+        [Required]
         public int cantidad { get; set; }
 
         [Required]

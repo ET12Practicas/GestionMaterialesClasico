@@ -36,8 +36,12 @@ $(document).ready(function () {
                     "data": "cant"
                 },
                 {
-                    "sWidth": "60%",
+                    "sWidth": "40%",
                     "data": "mat"
+                },
+                {
+                    "sWidth": "20%",
+                    "data": "dist"
                 },
                 {
                     "sWidth": "5%",
@@ -62,7 +66,8 @@ function descargarOrdenTrabajoAplicacion() {
     var columns = [
         { title: "N°", dataKey: "nroItem" },
         { title: "Cantidad", dataKey: "cant" },
-        { title: "Descripción", dataKey: "mat" }
+        { title: "Descripción", dataKey: "mat" },
+        { title: "Destino", dataKey: "dist" }
     ];
 
     var nombreInstiticion = 'Escuela Técnica N°12 DE 1 "Libertador General Jose de San Martin"';

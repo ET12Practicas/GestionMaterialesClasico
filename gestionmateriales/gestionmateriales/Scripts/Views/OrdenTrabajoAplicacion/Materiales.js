@@ -22,7 +22,7 @@ $(document).ready(function () {
                 "targets": [0, 1],
                 "visible": false,
                 "sType": "html",
-                "aTargets": [5,6]
+                "aTargets": [6, 7]
             }],
             "aoColumns": [
                 {
@@ -36,8 +36,16 @@ $(document).ready(function () {
                     "data": "codMat"
                 },
                 {
-                    "sWidth": "50%",
+                    "sWidth": "30%",
                     "data": "nomMat"
+                },
+                {
+                    "sWidth": "20%",
+                    "data": "dest",
+                    "mRender": function (dato, type, raw) {
+                        var editarDest = '<input id="iDes-' + raw.idOT + '-' + raw.idMat + '" type="text" maxlength="49" class="form-control form-control-sm" value="' + raw.dest + '"/>';
+                        return editarDest;
+                    }
                 },
                 {
                     "sWidth": "10%",
@@ -75,6 +83,7 @@ $(document).ready(function () {
 function AgregarItemOTA(data) {
     var idOT = data.id.split('-')[1];
     var idMaterial = data.id.split('-')[2];
+    var destino = $('#iDes-' + idOT + '-' + idMaterial).val();
     var cant = $('#iCant-' + idOT + '-' + idMaterial).val();
     if (cant <= 0) {
         ShowNotificationDanger('Orden de Trabajo de Aplicación', 'El campo cantidad debe ser un valor entero y positivo');
@@ -83,7 +92,7 @@ function AgregarItemOTA(data) {
         var request = $.ajax({
             url: baseURL + "OrdenTrabajoAplicacion/AddItemMaterial",
             type: 'POST',
-            data: "{ 'id': '" + idOT + "', 'idMaterial':'" + idMaterial + "', 'cant':'" + cant + "' }",
+            data: "{ 'id': '" + idOT + "', 'idMaterial':'" + idMaterial + "', 'cant':'" + cant + "', 'unDestino':'" + destino + "'}",
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         });
