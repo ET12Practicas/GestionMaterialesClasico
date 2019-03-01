@@ -626,6 +626,7 @@
     <Content Include="Content\googlefonts\quicksand-bold-webfont.woff2" />
     <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\OFTEC.pubxml" />
     <None Include="Properties\PublishProfiles\win2012-01.pubxml" />
     <None Include="Properties\PublishProfiles\win2016-ot.pubxml" />
     <Content Include="Scripts\jquery-3.2.1.js" />

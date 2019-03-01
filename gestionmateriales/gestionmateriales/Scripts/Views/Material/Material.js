@@ -4,9 +4,6 @@ var tablaMateriales;
 
 $(document).ready(function () {
 
-    if (window.location.href.split(':').length == 2)
-        baseURL = baseURL + appName + "/";
-
     $('#divgrdMateriales').append('<table id="grdMateriales" class="table table-bordered table-striped table-hover"> <thead> <tr> <th></th> <th> Código </th> <th> Material </th> <th> Stock Actual </th> <th> Stock Mínimo </th> <th> Stock </th> <th> Opciones </th> </tr> </thead> </table>');
 
     jQuery.fn.dataTable.Api.register('processing()', function (show) {

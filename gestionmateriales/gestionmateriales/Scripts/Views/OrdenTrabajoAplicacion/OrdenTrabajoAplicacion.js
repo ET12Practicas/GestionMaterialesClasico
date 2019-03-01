@@ -3,9 +3,6 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
 $(document).ready(function () {
 
-    if (window.location.href.split(':').length == 2)
-        baseURL = baseURL + appName + "/";
-    
     var requestFecha = $.ajax({
         url: baseURL + "OrdenTrabajoAplicacion/GetLastUpdated",
         type: 'GET',

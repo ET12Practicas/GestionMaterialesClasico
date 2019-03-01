@@ -2,9 +2,6 @@
 var baseURL = window.location.protocol + "//" + window.location.host + "/";
 var tablaMateriales;
 
-if (window.location.href.split(':').length == 2)
-    baseURL = baseURL + appName + "/";
-
 $('#divgrdIngresos').append('<table id="grdIngresos" class="table table-bordered table-striped table-hover"> <thead> <tr> <th> Nro Entrada. </th> <th> Cod. Material </th> <th> Material </th> <th> Cantidad </th> <th> Tipo de Entrada </th> <th> Nro. Documento </th> <th> Usuario </th> <th> Fecha </th> </tr> </thead> </table>');
 
 jQuery.fn.dataTable.Api.register('processing()', function (show) {

@@ -4,9 +4,6 @@ var tablaProveedores;
 
 $(document).ready(function () {
 
-    if (window.location.href.split(':').length == 2)
-        baseURL = baseURL + appName + "/";
-
     var requestFecha = $.ajax({
         url: baseURL + "Proveedor/GetLastUpdated",
         type: 'GET',

@@ -4,8 +4,8 @@ var itemsOC;
 
 $(document).ready(function () {
 
-    if (window.location.href.split(':').length == 2)
-        baseURL = baseURL + appName + "/";
+    //if (window.location.href.split(':').length == 2)
+    //    baseURL = baseURL + appName + "/";
 
     var request = $.ajax({
         url: baseURL + "OrdenCompra/Get_Detalle_ItemsOrdenCompra",

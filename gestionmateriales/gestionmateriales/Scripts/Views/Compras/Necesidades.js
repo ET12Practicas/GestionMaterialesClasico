@@ -6,9 +6,6 @@ var tablaCompras;
 
 $(document).ready(function () {
 
-    if (window.location.href.split(':').length == 2)
-        baseURL = baseURL + appName + "/";
-
     $('#divgrdCompras').append('<table id="grdCompras" class="table table-bordered table-striped table-hover"> <thead> <tr> <th> Código </th> <th> Material </th> <th> Stock Actual </th> <th> Stock Mínimo </th> <th> Stock </th> <th> Proveedor </th> </tr> </thead> </table>');
 
     jQuery.fn.dataTable.Api.register('processing()', function (show) {

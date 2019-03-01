@@ -3,9 +3,6 @@ var baseURL = window.location.protocol + "//" + window.location.host + "/";
 
 $(document).ready(function () {
 
-    if (window.location.href.split(':').length == 2)
-        baseURL = baseURL + appName + "/";
-
     var requestMaterial = $.ajax({
         url: baseURL + "OrdenTrabajoAplicacion/GetMateriales",
         type: 'GET',
