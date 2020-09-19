@@ -624,6 +624,7 @@
     <Content Include="Content\googlefonts\quicksand-regular-webfont.woff2" />
     <Content Include="Content\googlefonts\quicksand-bold-webfont.woff" />
     <Content Include="Content\googlefonts\quicksand-bold-webfont.woff2" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\OFTEC.pubxml" />
